@@ -17,7 +17,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Main_locale {
+public class Main {
     // **********************************************
     // *** Update or verify the following values. ***
     // **********************************************
@@ -74,20 +74,9 @@ public class Main_locale {
             HttpEntity entity = response.getEntity();
 
 
-            if (entity != null) {
-                // Format and display the JSON response.
-                System.out.println("REST Response:\n");
-
-                String jsonString = EntityUtils.toString(entity).trim();
-                if (jsonString.charAt(0) == '[') {
-                    JSONArray jsonArray = new JSONArray(jsonString);
-                    System.out.println(jsonArray.toString(2));
-                } else if (jsonString.charAt(0) == '{') {
-                    JSONObject jsonObject = new JSONObject(jsonString);
-                    System.out.println(jsonObject.toString(2));
-                } else {
-                    System.out.println(jsonString);
-                }
+            if (entity != null)
+            {
+                Json.JsonDisplay(EntityUtils.toString(entity).trim());
             }
         } catch (Exception e) {
             // Display error message.

@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import java.net.URI;
 
-public class Main_Microsoft {
+public class MicrosoftCode {
     // This sample uses the Apache HTTP client library(org.apache.httpcomponents:httpclient:4.2.4)
 // and the org.json library (org.json:json:20170516).
 
@@ -69,20 +69,7 @@ public class Main_Microsoft {
 
                 if (entity != null)
                 {
-                    // Format and display the JSON response.
-                    System.out.println("REST Response:\n");
-
-                    String jsonString = EntityUtils.toString(entity).trim();
-                    if (jsonString.charAt(0) == '[') {
-                        JSONArray jsonArray = new JSONArray(jsonString);
-                        System.out.println(jsonArray.toString(2));
-                    }
-                    else if (jsonString.charAt(0) == '{') {
-                        JSONObject jsonObject = new JSONObject(jsonString);
-                        System.out.println(jsonObject.toString(2));
-                    } else {
-                        System.out.println(jsonString);
-                    }
+                    Json.JsonDisplay(EntityUtils.toString(entity).trim());
                 }
             }
             catch (Exception e)
