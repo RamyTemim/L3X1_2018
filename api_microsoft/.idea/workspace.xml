@@ -2,24 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c556494f-df0b-4fd5-8a54-e8bbae013d62" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_2_4.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_2_4.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20170516.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_cedarsoftware_json_io_4_5_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/API_Microsoft.iml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/IdAPI.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/Json.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/Main.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/MicrosoftCode.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/RequeteVersAPI.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/inconnu.jpeg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/yoni1.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/yoni2.jpg" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api_face_microsoft.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/microsoftApi/Json.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/microsoftApi/Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/microsoftApi/MicrosoftCode.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/photo.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/photo.jpg" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -45,8 +38,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            <state relative-caret-position="75">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -356,16 +349,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518173208546</updated>
-      <workItem from="1518173209941" duration="759000" />
+      <workItem from="1518173209941" duration="966000" />
     </task>
+    <task id="LOCAL-00001" summary="Création d'un nouveau projet suite aux bug de l'ancien avec ajout de plusieurs classes pour faciliter le travail">
+      <created>1518174268915</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1518174268915</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="759000" />
+    <option name="totallyTimeSpent" value="966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -380,7 +380,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12148962" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12148962" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -403,6 +403,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Création d'un nouveau projet suite aux bug de l'ancien avec ajout de plusieurs classes pour faciliter le travail" />
+    <option name="LAST_COMMIT_MESSAGE" value="Création d'un nouveau projet suite aux bug de l'ancien avec ajout de plusieurs classes pour faciliter le travail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -451,8 +455,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        <state relative-caret-position="75">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
