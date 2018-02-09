@@ -14,7 +14,7 @@ import java.net.URI;
 
 public class RequeteVersAPI {
 
-    public static HttpEntity requete (String path)
+    public static HttpEntity requete (String path, String detectOnImage)
     {
         HttpClient httpclient = new DefaultHttpClient();
         //Pour le retourner en dehors du catch
@@ -29,7 +29,7 @@ public class RequeteVersAPI {
             builder.setParameter("returnFaceId", "true");
             builder.setParameter("returnFaceLandmarks", "false");
             //builder.setParameter("returnFaceAttributes", "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise");
-            builder.setParameter("returnFaceAttributes", "age,gender,smile,emotion,glasses");
+            builder.setParameter("returnFaceAttributes", detectOnImage);
 
             // Prepare the URI for the REST API call.
             URI uri = builder.build();
