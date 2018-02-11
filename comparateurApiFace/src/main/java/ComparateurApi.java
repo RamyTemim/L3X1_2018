@@ -12,7 +12,7 @@ import java.util.List;
 public class ComparateurApi {
 
 
-    static  String  filepath="/home/hocine/IdeaProjects/FaceDetect/src/main/resources/axel_tabti.jpg";
+    static  String  filepath="/home/hocine/L3X1_2018/comparateurApiFace/src/main/resources/image.jpg";
 
     public static void main(String[] argc) throws Exception,IOException{
         detectFaces(filepath, System.out);

@@ -29,8 +29,8 @@
       <file leaf-file-name="ComparateurApi.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ComparateurApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="38" column="89" lean-forward="false" selection-start-line="38" selection-start-column="89" selection-end-line="38" selection-end-column="89" />
+            <state relative-caret-position="90">
+              <caret line="14" column="100" lean-forward="false" selection-start-line="14" selection-start-column="100" selection-end-line="14" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -73,7 +73,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
     <option name="width" value="874" />
     <option name="height" value="826" />
@@ -289,15 +289,15 @@
       <workItem from="1517839754659" duration="3334000" />
       <workItem from="1517843983036" duration="6693000" />
       <workItem from="1517912623151" duration="297000" />
-      <workItem from="1518364571981" duration="69000" />
+      <workItem from="1518364571981" duration="155000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10393000" />
+    <option name="totallyTimeSpent" value="10479000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1600" height="828" extended-state="7" />
+    <frame x="0" y="25" width="1600" height="828" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -412,8 +412,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ComparateurApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="38" column="89" lean-forward="false" selection-start-line="38" selection-start-column="89" selection-end-line="38" selection-end-column="89" />
+        <state relative-caret-position="90">
+          <caret line="14" column="100" lean-forward="false" selection-start-line="14" selection-start-column="100" selection-end-line="14" selection-end-column="100" />
           <folding />
         </state>
       </provider>
