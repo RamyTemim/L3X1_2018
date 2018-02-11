@@ -46,8 +46,9 @@ public class Json {
         }
     }
 
-    public static void jsonToFile (String json, String name)
+    public static void jsonToFile (String json, String path)
     {
+        String name = pathToNameOfFile(path);
         try {
             PrintWriter pw = new PrintWriter(name);
             pw.println(json);
@@ -55,5 +56,10 @@ public class Json {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String pathToNameOfFile(String path)
+    {
+        return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."));
     }
 }
