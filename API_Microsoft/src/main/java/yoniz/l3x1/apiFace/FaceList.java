@@ -47,7 +47,7 @@ public class FaceList {
             HttpEntity entity = response.getEntity();
 
             if (entity != null) {
-                System.out.println(EntityUtils.toString(entity));
+                System.out.println("Création de la faceList " + id + " réussi \n");
             }
 
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class FaceList {
             HttpEntity entity = response.getEntity();
 
             System.out.println("Liste des FaceList : \n");
-            System.out.println(JsonUtil.httpToString(entity));
+            System.out.println(JsonUtil.httpToJsonObject(entity));
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
@@ -99,8 +99,8 @@ public class FaceList {
             HttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
 
-            System.out.println("Liste des Face de la FaceList "+ id+ ": \n");
-            System.out.println(JsonUtil.httpToString(entity));
+            System.out.println("Liste des photos de la FaceList "+ id + ":");
+            System.out.println(JsonUtil.httpToJsonObject(entity).toString(2));
         }
         catch (Exception e)
         {

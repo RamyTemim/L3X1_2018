@@ -11,41 +11,40 @@ import java.io.PrintWriter;
 
 public class JsonUtil {
 
-    public static String httpToString(HttpEntity entity)
+    public static JSONObject httpToJsonObject(HttpEntity entity)
     {
-        String jsonString="";
+        JSONObject jsonObject = null;
         if (entity!=null)
         {
             try {
-                jsonString=EntityUtils.toString(entity).trim();
-                jsonString = stringToJson(jsonString);
+                String jsonString=EntityUtils.toString(entity).trim();
+                jsonObject = stringToJson(jsonString);
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
-        return jsonString;
+        return jsonObject;
     }
 
-    private static String stringToJson (String jsonString)
+    private static JSONObject stringToJson (String jsonString)
     {
-        // Format and display the JSON response.
-        String response = "REST Response:\n";
-
+        JSONObject jsonObject=null;
         if (jsonString.charAt(0) == '[') {
-            JSONArray jsonArray = new JSONArray(jsonString);
-            return jsonArray.toString(2);
+            jsonObject = new JSONObject(jsonString.substring(1,jsonString.length()-1));
         }
         else if (jsonString.charAt(0) == '{') {
-            JSONObject jsonObject = new JSONObject(jsonString);
-            return jsonObject.toString(2);
+            jsonObject = new JSONObject(jsonString);
         }
-        else {
-            return jsonString;
-        }
+        return jsonObject;
+
     }
 
+    public static void DisplayJson (JSONObject jsonObject)
+    {
+
+    }
     public static void jsonToFile (String json, String path)
     {
         String name = pathToNameOfFile(path);
@@ -62,4 +61,5 @@ public class JsonUtil {
     {
         return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."))+".json";
     }
+
 }
