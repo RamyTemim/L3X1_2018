@@ -1,4 +1,4 @@
-package yoniz.l3x1.main;
+package yoniz.l3x1.apiFace;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import java.net.URI;
 
-public class MicrosoftCode {
+public class MicrosoftDetectFace {
     // This sample uses the Apache HTTP client library(org.apache.httpcomponents:httpclient:4.2.4)
 // and the org.json library (org.json:json:20170516).
 

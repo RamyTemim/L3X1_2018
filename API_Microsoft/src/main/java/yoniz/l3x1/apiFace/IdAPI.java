@@ -1,4 +1,4 @@
-package yoniz.l3x1.main;
+package yoniz.l3x1.apiFace;
 
 public interface IdAPI {
     // **********************************************
@@ -16,7 +16,9 @@ public interface IdAPI {
     //
     // NOTE: Free trial subscription keys are generated in the westcentralus region, so if you are using
     // a free trial subscription key, you should not need to change this region.
-    String uriBase = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/detect";
+    String uriBaseDetect = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/detect";
+
+    String uriBaseFaceList = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/facelists/";
 
 
 }

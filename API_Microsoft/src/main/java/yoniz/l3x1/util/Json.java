@@ -1,4 +1,4 @@
-package yoniz.l3x1.main;
+package yoniz.l3x1.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
@@ -35,11 +35,11 @@ public class Json {
 
         if (jsonString.charAt(0) == '[') {
             JSONArray jsonArray = new JSONArray(jsonString);
-            return jsonArray.toString(1);
+            return jsonArray.toString(2);
         }
         else if (jsonString.charAt(0) == '{') {
             JSONObject jsonObject = new JSONObject(jsonString);
-            return jsonObject.toString(1);
+            return jsonObject.toString(2);
         }
         else {
             return jsonString;
@@ -60,6 +60,6 @@ public class Json {
 
     private static String pathToNameOfFile(String path)
     {
-        return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."));
+        return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."))+".json";
     }
 }
