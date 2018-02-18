@@ -44,16 +44,19 @@ public class ComparateurApi {
             // Performs label detection on the image file
             BatchAnnotateImagesResponse response = vision.batchAnnotateImages(requests);
             List<AnnotateImageResponse> responses = response.getResponsesList();
-
             for (AnnotateImageResponse res : responses) {
                 if (res.hasError()) {
                     System.out.printf("Error: %s\n", res.getError().getMessage());
                     return;
                 }
 
-                for (FaceAnnotation annotation : res.getFaceAnnotationsList()) {
-                    out.println("Landmark :" );
-                    out.printf("",annotation.getBoundingPoly(),annotation.getLandmarksList());
+            for (FaceAnnotation annotation : res.getFaceAnnotationsList()) {
+                out.printf(
+                        "anger: %s\n joy: %s\n surprise: %s\n position: %s",
+                        annotation.getAngerLikelihood(),
+                        annotation.getJoyLikelihood(),
+                        annotation.getSurpriseLikelihood(),
+                        annotation.getBoundingPoly());
                 }
             }
         }
