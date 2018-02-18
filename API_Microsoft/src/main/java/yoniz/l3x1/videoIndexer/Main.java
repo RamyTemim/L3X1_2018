@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.net.URI;
 
 public class Main {
-    // // This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)
 
     public static void main(String[] args)
     {
@@ -30,7 +29,7 @@ public class Main {
             //Création de la requête HTTP Post
             HttpPost httpPost = new HttpPost(uri);
             //Header de la requête Post
-            httpPost.setHeader("Content-Type", "multipart/form-data");
+            //httpPost.setHeader("Content-Type", "multipart/form-data");
             httpPost.setHeader("Ocp-Apim-Subscription-Key", "19b9d647b7e649b38ec9dbb472b6d668");
 
             //Création de l'entite Multipart qui va être rajouté dans le http

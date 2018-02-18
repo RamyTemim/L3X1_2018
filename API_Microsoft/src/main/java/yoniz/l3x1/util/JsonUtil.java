@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Json {
+public class JsonUtil {
 
     public static String httpToString(HttpEntity entity)
     {

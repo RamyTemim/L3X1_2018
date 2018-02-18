@@ -1,14 +1,20 @@
 package yoniz.l3x1.apiFace;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
 import org.apache.http.HttpEntity;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.FileEntity;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
+import java.io.Closeable;
 import java.io.File;
 import java.net.URI;
 
@@ -27,7 +33,7 @@ public class DetectFace {
             // Pour définir les paramètres que le fichier json doit renvoyer
             // Request parameters. All of them are optional.
             builder.setParameter("returnFaceId", "true");
-            builder.setParameter("returnFaceLandmarks", "true");
+            builder.setParameter("returnFaceLandmarks", "false");
             //builder.setParameter("returnFaceAttributes", "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise");
             builder.setParameter("returnFaceAttributes", detectOnImage);
 
@@ -56,6 +62,42 @@ public class DetectFace {
             System.out.println(e.getMessage());
         }
         return entity;
+    }
+
+    public static void findSimilar(String faceListId, String faceId)
+    {
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+
+        try
+        {
+            URIBuilder builder = new URIBuilder(IdAPI.uriBaseFindSimilar);
+
+            URI uri = builder.build();
+
+            HttpPost request = new HttpPost(uri);
+            request.setHeader("Content-Type", "application/json");
+            request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
+
+
+            // Request body
+
+            JsonObject json = Json.object().add("faceId",faceId).add("faceListId",faceListId).add("maxNumOfCandidatesReturned","1");
+
+            StringEntity reqEntity = new StringEntity(json.toString());
+            request.setEntity(reqEntity);
+
+            CloseableHttpResponse response = httpclient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (entity != null)
+            {
+                System.out.println(EntityUtils.toString(entity));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }
 
