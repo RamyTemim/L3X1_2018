@@ -34,7 +34,8 @@ public class Main {
         JSONObject jsonObject = JsonUtil.httpToJsonObject(entity);
         String faceIdModele = jsonObject.get("faceId").toString();
 
-        JSONObject jsonResultat = DetectFace.findSimilar("l", faceIdModele, "2");
+        //Voir comment maxNbPersonne fonctionne...
+        JSONObject jsonResultat = DetectFace.findSimilar("l", faceIdModele, "1");
 
         System.out.println("\nRetour de detectFace :");
         if(jsonResultat !=null)
