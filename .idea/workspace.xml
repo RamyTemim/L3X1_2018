@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6eebefcb-7720-403a-b763-d8faad34929f" name="Default" comment="Comparaison de deux photos">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/L3X1_2018.iml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/compiler.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_acm_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_alexaforbusiness_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_api_gateway_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_applicationautoscaling_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_appstream_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_appsync_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_athena_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_autoscaling_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_autoscalingplans_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_batch_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_budgets_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloud9_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_clouddirectory_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudformation_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudfront_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudhsm_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudhsmv2_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudsearch_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudtrail_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudwatch_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cloudwatchmetrics_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_codebuild_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_codecommit_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_codedeploy_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_codepipeline_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_codestar_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cognitoidentity_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cognitoidp_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_cognitosync_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_comprehend_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_config_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_core_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_costandusagereport_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_costexplorer_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_datapipeline_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_dax_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_devicefarm_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_directconnect_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_directory_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_discovery_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_dms_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_dynamodb_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_ec2_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_ecr_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_ecs_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_efs_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_elasticache_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_elasticbeanstalk_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_elasticloadbalancing_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_elasticloadbalancingv2_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_elasticsearch_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_elastictranscoder_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_emr_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_events_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_gamelift_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_glacier_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_glue_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_greengrass_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_guardduty_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_health_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_iam_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_importexport_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_inspector_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_iot_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_iotjobsdataplane_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_kinesis_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_kinesisvideo_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_kms_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_lambda_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_lex_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_lexmodelbuilding_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_lightsail_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_logs_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_machinelearning_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_marketplacecommerceanalytics_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_marketplaceentitlement_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_marketplacemeteringservice_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_mechanicalturkrequester_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_mediaconvert_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_medialive_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_mediapackage_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_mediastore_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_mediastoredata_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_migrationhub_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_mobile_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_models_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_mq_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_opsworks_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_opsworkscm_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_organizations_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_pinpoint_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_polly_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_pricing_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_rds_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_redshift_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_rekognition_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_resourcegroups_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_resourcegroupstaggingapi_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_route53_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_s3_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_sagemaker_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_sagemakerruntime_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_serverlessapplicationrepository_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_servermigration_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_servicecatalog_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_servicediscovery_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_ses_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_shield_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_simpledb_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_simpleworkflow_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_snowball_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_sns_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_sqs_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_ssm_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_stepfunctions_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_storagegateway_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_sts_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_support_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_swf_libraries_1_11_22.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_transcribe_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_translate_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_waf_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_workdocs_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_workmail_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_workspaces_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_xray_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_amazonaws_jmespath_java_1_11_279.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_6_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_6_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_6_7_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_cbor_2_6_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__commons_logging_commons_logging_1_1_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__io_netty_netty_buffer_4_1_17_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__io_netty_netty_codec_4_1_17_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__io_netty_netty_codec_http_4_1_17_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__io_netty_netty_common_4_1_17_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__io_netty_netty_handler_4_1_17_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__io_netty_netty_resolver_4_1_17_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__io_netty_netty_transport_4_1_17_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__joda_time_joda_time_2_8_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/libraries/Maven__software_amazon_ion_ion_java_1_0_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/CompareFace.iml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/pom.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/src/main/java/App.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/src/main/resources/V1.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/src/main/resources/V2.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/src/main/resources/Visage.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/src/main/resources/credentials" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/target/classes/V1.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/target/classes/V2.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/target/classes/Visage.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/CompareFace/target/classes/credentials" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testaws/src/main/java/testaws/App.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CompareFace/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="L3X1_2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L3X1_2018" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L3X1_2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L3X1_2018" type="462c0819:PsiDirectoryNode" />
+              <item name="CompareFace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L3X1_2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L3X1_2018" type="462c0819:PsiDirectoryNode" />
+              <item name="CompareFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L3X1_2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L3X1_2018" type="462c0819:PsiDirectoryNode" />
+              <item name="CompareFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L3X1_2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L3X1_2018" type="462c0819:PsiDirectoryNode" />
+              <item name="CompareFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L3X1_2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L3X1_2018" type="462c0819:PsiDirectoryNode" />
+              <item name="CompareFace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6eebefcb-7720-403a-b763-d8faad34929f" name="Default" comment="" />
+      <created>1519134646622</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1519134646622</updated>
+      <workItem from="1519134648165" duration="426000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="426000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Comparaison de deux photos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Comparaison de deux photos" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CompareFace/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CompareFace/src/main/java/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="73" lean-forward="true" selection-start-line="13" selection-start-column="73" selection-end-line="13" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testaws/src/main/java/testaws/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
