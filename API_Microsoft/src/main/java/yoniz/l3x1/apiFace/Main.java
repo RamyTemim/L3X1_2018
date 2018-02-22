@@ -17,7 +17,7 @@ public class Main {
 
 
         //String detectOnImage = "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
-        FaceList.deleteFaceList("l");
+        //FaceList.deleteFaceList("l");
         String pathHocine = "src/main/resources/hocine.jpg";
         String pathJordan = "src/main/resources/jordan.jpg";
         String pathYoni1 = "src/main/resources/yoni1.jpg";
@@ -47,6 +47,8 @@ public class Main {
         System.out.println("\nAffichage de la liste des photos de la faceList");
 
         FaceList.getFaceOflist("l");
+
+        FaceList.deleteFaceList("l");
         //*/
 
         /*
