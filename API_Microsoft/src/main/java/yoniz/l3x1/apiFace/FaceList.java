@@ -13,6 +13,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 import yoniz.l3x1.util.JsonUtil;
 
 import java.io.Closeable;
@@ -21,7 +22,12 @@ import java.net.URI;
 
 public class FaceList {
 
-    //Pour créer une face List
+    /**
+     * Pour créer une liste (faceList) qui va pouvoir contenir une liste de photo
+     * @param name Nom de la liste à créer
+     * @param id L'identifiant de la liste qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la méthode findSimilar
+     * @param user Nom de l'utilisateur de la liste
+     */
     public static void create(String name, String id, String user) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -55,11 +61,14 @@ public class FaceList {
         }
     }
 
-    //Pour afficher la liste des face List
-    public static void getFaceList()
+    /**
+     * C'est une fonction qui va intéragir avec l'API et récuperer permettant de renvoyer l'ensembles des listes de photos contenus dans le compte de l'utilisateur
+     * @return Renvois un Objet JSON contenant la liste des faceList qui correspond au retour de l'API de Microsoft
+     */
+    public static JSONObject getFaceList()
     {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-
+        JSONObject json = null;
         try {
             URIBuilder builder = new URIBuilder(IdAPI.uriBaseFaceList);
 
@@ -73,11 +82,12 @@ public class FaceList {
             HttpEntity entity = response.getEntity();
 
             System.out.println("Liste des FaceList : \n");
-            System.out.println(JsonUtil.httpToJsonObject(entity));
+            json = JsonUtil.httpToJsonObject(entity);
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return json;
     }
 
     //Pour obenir la liste des photos d'une face list

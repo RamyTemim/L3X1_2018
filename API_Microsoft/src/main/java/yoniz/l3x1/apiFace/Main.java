@@ -15,8 +15,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         //String detectOnImage = "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
-        //FaceList.deleteFaceList("l");
+        FaceList.deleteFaceList("l");
         String pathHocine = "src/main/resources/hocine.jpg";
         String pathJordan = "src/main/resources/jordan.jpg";
         String pathYoni1 = "src/main/resources/yoni1.jpg";
@@ -30,12 +31,12 @@ public class Main {
         FaceList.addFace(pathYoni1,"l","Yoni1");
         FaceList.addFace(pathYoni2,"l","Yoni2");
 
-        HttpEntity entity = DetectFace.requete(pathYoniModele, "");
-        JSONObject jsonObject = JsonUtil.httpToJsonObject(entity);
+        JSONObject jsonObject = DetectFace.detect(pathYoniModele, "",false);
         String faceIdModele = jsonObject.get("faceId").toString();
 
         //Voir comment maxNbPersonne fonctionne...
         JSONObject jsonResultat = DetectFace.findSimilar("l", faceIdModele, "1");
+
 
         System.out.println("\nRetour de detectFace :");
         if(jsonResultat !=null)
@@ -46,45 +47,29 @@ public class Main {
         System.out.println("\nAffichage de la liste des photos de la faceList");
 
         FaceList.getFaceOflist("l");
+        //*/
 
+        /*
+        //Utilisation des classes de JSON
+        //Pour créer un objet Json à parir d'une String (il faut que ça commence par une { sinon c'est un JSONArray )
+        JSONObject json = new JSONObject(jsonString.substring(1,jsonString.length()-1));
 
+        //Pour créer un json manuellement :
+        JsonObject j = Json.object().add("name", "Fabrice").add("age", "23");
+         */
 
-        /*HttpEntity entity = DetectFace.requete(path, detectOnImage);
+        /*
+        //Pour récuperer la liste des faceList
+        System.out.println(FaceList.getFaceList());
 
-        JSONObject jsonObject = JsonUtil.httpToJsonObject(entity);
+        //Pour récuperer la liste des photos d'une faceList
+        FaceList.getFaceOflist("t1");
 
-        System.out.println(jsonObject.get("faceId"));*/
-
-        //String jsonString = JsonUtil.httpToString(entity);
-
-        //System.out.println(jsonString);
-        //JSONObject json = new JSONObject(jsonString.substring(1,jsonString.length()-1));
-
-
-        //DetectFace.findSimilar("t1",json.get("faceId").toString());
-         //Création d'un fichier à partir du nom de fichier
-        //JsonUtil.jsonToFile(jsonString, path);
-
-
-        //Main pour FaceList
-
-        //FaceList.create("Test Avec 2 photos Yoni et 1 Hocine ", "t1", "yoni");
-
-        //FaceList.getFaceList();
-
-        //FaceList.addFace("src/main/resources/yoni1.jpg","t1","yoni1");
-        //FaceList.addFace("src/main/resources/hocine.jpg","t1","hocine");
-
-
-        //FaceList.getFaceOflist("t1");
-
+        //Pour supprimer une faceList
         FaceList.deleteFaceList("l");
+        */
 
-        //JsonObject j = Json.object().add("name", "Fabrice").add("age", "23");
-
-        //System.out.println(j.toString());
-
-
+        //System.out.println(DetectFace.detect("https://www.videoindexer.ai/api/Thumbnail/02caeebb58/aa4e5013-180f-47fe-a2d8-c5e9f2788205","",true));
 
     }
 }

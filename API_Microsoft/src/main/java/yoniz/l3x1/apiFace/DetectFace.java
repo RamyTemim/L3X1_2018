@@ -22,12 +22,19 @@ import java.net.URI;
 
 public class DetectFace {
 
-    //Pour demander une analyse d'une photo à l'API (Detect)
-    public static HttpEntity requete (String path, String detectOnImage)
+    /**
+     * C'est une fonction permettant d'envoyer la requête post à l'api de microsoft pour lui demander d'analyser une photo (Detect)
+     * @param path Le chemin permettant d'accéder à la vidéo (en local si url = false ou en ligne si url = true)
+     * @param detectOnImage Les éléments à détécter sur l'image (age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise)
+     * @param url Un boolean permettant à la méthode de savoir si le path est une adresse local (si url = false) ou un url (si url = true)
+     * @return Renvoit une un JSONObject qui correspond à l'objet Json renvoyé par l'API Face de microsoft
+     */
+
+    public static JSONObject detect (String path, String detectOnImage, Boolean url)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         //Pour le retourner en dehors du catch
-        HttpEntity entity=null;
+        JSONObject jsonObject = null;
 
         try {
             // Pour transformer le lien en URI (une URI c'est un String qui permet d'identifier une ressource du web)
@@ -46,25 +53,33 @@ public class DetectFace {
 
             // Request headers.
             //request.setHeader("Content-Type", "application/json");
-            request.setHeader("Content-Type", "application/octet-stream");
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
 
-            // Pour définir le lien vers la photo que l'on va intégrer dans la requête
-            File file = new File(path);
+            if (url)
+            {
+                request.setHeader("Content-Type", "application/json");
+                JsonObject json = Json.object().add("url", path);
+                request.setEntity(new StringEntity(json.toString()));
+            }
 
-            FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
-            request.setEntity(reqEntity);
+            else
+            {
+                request.setHeader("Content-Type", "application/octet-stream");
 
+                // Pour définir le lien vers la photo que l'on va intégrer dans la requête
+                File file = new File(path);
+                FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
+                request.setEntity(reqEntity);
+            }
 
             // Pour effectuer l'appel vers l'API et recuperer le retour de cette appel
             CloseableHttpResponse response = httpclient.execute(request);
-            entity = response.getEntity();
-
-            return entity;
+            HttpEntity entity = response.getEntity();
+            jsonObject = JsonUtil.httpToJsonObject(entity);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return entity;
+        return jsonObject;
     }
 
     //Pour demander à l'Api de renvoyer la
