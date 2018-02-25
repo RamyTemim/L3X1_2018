@@ -20,7 +20,14 @@
         </plugins>
     </build>
     <dependencies>
+        <!--IBM-->
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>visual-recognition</artifactId>
+            <version>4.2.1</version>
+        </dependency>
 
+  <!--google-->
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-vision</artifactId>
