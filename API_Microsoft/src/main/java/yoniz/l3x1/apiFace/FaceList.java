@@ -52,9 +52,6 @@ public class FaceList {
             CloseableHttpResponse response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
 
-            if (entity != null) {
-                System.out.println("Création de la faceList " + id + " réussi \n");
-            }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -62,7 +59,58 @@ public class FaceList {
     }
 
     /**
-     * C'est une fonction qui va intéragir avec l'API et récuperer permettant de renvoyer l'ensembles des listes de photos contenus dans le compte de l'utilisateur
+     * Pour ajouter une photo dans une faceList
+     * @param path Le chemin pour accéder à la photo (en local)
+     * @param id l'identifiant de la faceList dans laquelle il faut rajouter la photo
+     * @param userData le label de la photo (nom de l'individu)
+     * @param url si vrai alors il s'agit d'un chemin vers un url sinon il s'agi d'une photo stocké localement
+     */
+    public static void addFace(String path, String id, String userData, Boolean url)
+    {
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+
+        try
+        {
+            URIBuilder builder = new URIBuilder(IdAPI.uriBaseFaceList);
+
+            builder.setPath(builder.getPath() + id + "/persistedFaces");
+
+            builder.addParameter("userData",userData);
+            URI uri = builder.build();
+            HttpPost request = new HttpPost(uri);
+            request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
+
+            if (url)
+            {
+                request.setHeader("Content-Type", "application/json");
+                JsonObject json = Json.object().add("url", path);
+                request.setEntity(new StringEntity(json.toString()));
+            }
+
+            else
+            {
+                request.setHeader("Content-Type", "application/octet-stream");
+                // Pour définir le lien vers la photo que l'on va intégrer dans la requête
+                File file = new File(path);
+                FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
+                request.setEntity(reqEntity);
+            }
+
+            CloseableHttpResponse response = httpclient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            System.out.println(JsonUtil.httpToJsonObject(entity).toString(2));
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    /**
+     * C'est une fonction qui va intéragir avec l'API et permettant de renvoyer l'ensembles des
+     * listes de photos contenus dans le compte de l'utilisateur
      * @return Renvois un Objet JSON contenant la liste des faceList qui correspond au retour de l'API de Microsoft
      */
     public static JSONObject getFaceList()
@@ -90,11 +138,15 @@ public class FaceList {
         return json;
     }
 
-    //Pour obenir la liste des photos d'une face list
-    public static void getFaceOflist(String id)
+    /**
+     * Pour renvoyer la liste des photos d'une face list
+     * @param id l'identifiant de la faceList à analyser
+     * @return Le fichier JSON contenanr la liste des identifiant des photos de la faceList id
+     */
+    public static JSONObject getFaceOflist(String id)
     {
         HttpClient httpclient = HttpClients.createDefault();
-
+        JSONObject json = null;
         try
         {
             URIBuilder builder = new URIBuilder(IdAPI.uriBaseFaceList);
@@ -109,54 +161,19 @@ public class FaceList {
             HttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
 
-            System.out.println("Liste des photos de la FaceList "+ id + ":");
-            System.out.println(JsonUtil.httpToJsonObject(entity).toString(2));
+            json = JsonUtil.httpToJsonObject(entity);
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
         }
+        return json;
     }
 
-    //Pour ajouter une photo à une face list
-    public static void addFace(String path, String id, String userData)
-    {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-
-        try
-        {
-            URIBuilder builder = new URIBuilder(IdAPI.uriBaseFaceList);
-
-            builder.setPath(builder.getPath() + id + "/persistedFaces");
-
-            builder.addParameter("userData",userData);
-            URI uri = builder.build();
-            HttpPost request = new HttpPost(uri);
-            request.setHeader("Content-Type", "application/octet-stream");
-            request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
-
-
-            File file = new File(path);
-
-            FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
-            request.setEntity(reqEntity);
-
-
-            CloseableHttpResponse response = httpclient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (entity != null)
-            {
-                System.out.println(EntityUtils.toString(entity));
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
+    /**
+     * Pour supprimer une faceList
+     * @param id l'identifiant de la faceList à supprimer
+     */
     public static void deleteFaceList(String id)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();

@@ -13,6 +13,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import yoniz.l3x1.util.JsonUtil;
 
@@ -76,17 +77,25 @@ public class DetectFace {
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
             jsonObject = JsonUtil.httpToJsonObject(entity);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return jsonObject;
     }
 
-    //Pour demander à l'Api de renvoyer la
-    public static JSONObject findSimilar(String faceListId, String faceId, String maxNbPersonne)
+    /**
+     * Pour demander à l'API de renvoyer la (ou les) photos de la faceList qui correspondent à celle de la photo "modèle"
+     * @param faceListId L'id de la faceList contenant les photos à comparer avec le modèle
+     * @param faceId L'id de la photo qui sert de modèle pour la comparaison
+     * @param maxNbPersonne le nombre de personne à renvoyer qui ressemble le plus au modèle
+     * @return Un fichier json contenant la photo que l'API à trouver qui correspond le plus au modèle ainsi que l'indice de
+     * confiance de l'API
+     */
+    public static JSONArray findSimilar(String faceListId, String faceId, int maxNbPersonne)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        JSONObject jsonObject = null;
+        JSONArray jsonArray = null;
         try
         {
             URIBuilder builder = new URIBuilder(IdAPI.uriBaseFindSimilar);
@@ -97,20 +106,23 @@ public class DetectFace {
             request.setHeader("Content-Type", "application/json");
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
 
-            JsonObject json = Json.object().add("faceId",faceId).add("faceListId",faceListId).add("maxNumOfCandidatesReturned",maxNbPersonne);
+            JsonObject json = Json.object().add("faceId",faceId)
+                                            .add("faceListId",faceListId)
+                                            .add("maxNumOfCandidatesReturned",maxNbPersonne);
+
 
             StringEntity reqEntity = new StringEntity(json.toString());
             request.setEntity(reqEntity);
 
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
-            jsonObject = JsonUtil.httpToJsonObject(entity);
+            jsonArray = new JSONArray(EntityUtils.toString(entity).trim());
         }
         catch (Exception e)
         {
             //System.out.println(e.getMessage());
         }
-        return jsonObject;
+        return jsonArray;
     }
 }
 

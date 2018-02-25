@@ -28,7 +28,7 @@ public class JsonUtil {
         return jsonObject;
     }
 
-    private static JSONObject stringToJson (String jsonString)
+    public static JSONObject stringToJson (String jsonString)
     {
         JSONObject jsonObject=null;
         if (jsonString.charAt(0) == '[') {
@@ -41,13 +41,9 @@ public class JsonUtil {
 
     }
 
-    public static void DisplayJson (JSONObject jsonObject)
+    /*public static void jsonToFile (String json, String path)
     {
-
-    }
-    public static void jsonToFile (String json, String path)
-    {
-        String name = pathToNameOfFile(path);
+        String name = pathToName(path);
         try {
             PrintWriter pw = new PrintWriter(name);
             pw.println(json);
@@ -55,11 +51,13 @@ public class JsonUtil {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }*/
+
+    public static String pathToName(String path)
+    {
+        return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."));
     }
 
-    private static String pathToNameOfFile(String path)
-    {
-        return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."))+".json";
-    }
+
 
 }

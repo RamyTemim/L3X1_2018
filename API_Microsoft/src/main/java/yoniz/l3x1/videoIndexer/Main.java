@@ -1,65 +1,43 @@
 package yoniz.l3x1.videoIndexer;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.net.URI;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Main {
 
     public static void main(String[] args)
     {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-
-        try
+        /*String path = "src/main/resources/film1.mov";
+        String videoId = VideoIndexer.upload(path);
+        //System.out.println(videoId);
+        boolean bool = true;
+        while(bool)
         {
-            //Transforme le lien en Uri
-            URIBuilder builder = new URIBuilder("https://videobreakdown.azure-api.net/Breakdowns/Api/Partner/Breakdowns?name=film2&privacy=Public");
-
-            URI uri = builder.build();
-
-            //Création de la requête HTTP Post
-            HttpPost httpPost = new HttpPost(uri);
-            //Header de la requête Post
-            //httpPost.setHeader("Content-Type", "multipart/form-data");
-            httpPost.setHeader("Ocp-Apim-Subscription-Key", "19b9d647b7e649b38ec9dbb472b6d668");
-
-            //Création de l'entite Multipart qui va être rajouté dans le http
-            MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
-
-            //Rajout du fichier dans le multipart
-            File f = new File("src/main/resources/film2.mov");
-            multipart.addBinaryBody("film2",new FileInputStream(f));
-
-            //Transforme le multipart en entité Http
-            HttpEntity entityMultipart = multipart.build();
-
-            //Rajout de cette entité à la requête http POST
-            httpPost.setEntity(entityMultipart);
-
-            //Récupere la réponse de la requête Http
-            CloseableHttpResponse response = httpclient.execute(httpPost);
-            //Transforme la réponse en entité Http
-            HttpEntity entity = response.getEntity();
-
-            //Affiche le contenu de l'entité Http de la réponse
-            if (entity != null)
-            {
-                System.out.println(EntityUtils.toString(entity));
-            }
+            JSONObject json = VideoIndexer.getProcessingState(videoId.substring(1,videoId.length()-1));
+            System.out.println(json);
+            if(json.get("state")=="Processed" && json.get("state")=="Failed")
+                bool = false;
         }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+
+
+        System.out.println(VideoIndexer.getProcessingState(videoId.substring(1,videoId.length()-1)));
+        System.out.println(VideoIndexer.getProcessingState("4550037e04"));
+
+        //System.out.println(VideoIndexer.getBreakdown("4550037e04"));
+        */
+
+        String videoId = "7c26a90418";
+
+        JSONObject json = VideoIndexer.getBreakdown(videoId);
+        //Pour obtenir le nombre de visage extrait de la vidéo
+        JSONArray faces = VideoIndexer.getFacesFromVideos(json);
+        System.out.println(faces.length());
+        System.out.println(faces.getJSONObject(0).get("thumbnailId"));
+        System.out.println(faces.getJSONObject(1).get("thumbnailId"));
+
+
+
+
     }
 }
 
