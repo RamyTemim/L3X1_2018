@@ -12,7 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MethodMain {
-    
+
+    /**
+     * Méthode permettant d'uploader une liste de vidéos et d'attendre que l'API de microsoft ait terminé de les indexer
+     * @param pathVideo Une liste de lien vers les vidéos stockées localement
+     * @return Une liste de videoId correspondant à l'Id permettant d'accéder aux vidéos indexées sur le cloud de Microsoft
+     */
     public static List<String> uploadVideo(List<String> pathVideo)
     {
         //videoId est la liste qui va contenir la liste des Id des vidéos que videoIndexer va renvoyer
@@ -44,6 +49,14 @@ public class MethodMain {
         return videoIds;
     }
 
+    /**
+     * Méthode qui va :
+     *      extraire les photos que l'API de Microsoft aura détécter sur les photos
+     *      stocker les urls des photos extraite dans une List
+     *      Créer une faceList pour chaque vidéo et stocker les photos extraites de chaque video dans la faceList correspondante
+     * @param videoIds List des videoId pour chaque vidéo permettant d'accéder à la vidéo qui a été indexe sur le cloud
+     * @param pathVideos La liste des chemins pour accéder aux vidéos (pour en extraire le nom)
+     */
     public static void createFaceListFromPhotosOnVideo (List<String> videoIds, List<String> pathVideos)
     {
         for(int i = 0 ; i< videoIds.size() ; i++) {
@@ -62,7 +75,7 @@ public class MethodMain {
 
             //Création de la faceList qui va contenir les photos extraite de la vidéo
             FaceList.create(JsonUtil.pathToName(pathVideos.get(i)), String.valueOf(i), "yoni");
-            System.out.println("Ajout des photos dans la liste " + i+1 + " : ");
+            System.out.println("Ajout des photos dans la liste " + (i+1) + " : ");
             //Ajout des photos dans la faceList
             for (int j = 0; j < faces.length(); j++) {
                 FaceList.addFace(listUrlPhoto.get(j), String.valueOf(i), "Photo ".concat(String.valueOf(j+1)), true);
@@ -73,6 +86,12 @@ public class MethodMain {
         }
     }
 
+    /**
+     * Méthode permettant de prendre chaque photo de profil et d'analyser avec l'ensemble des faceList de chaque vidéo pour vérifier si la photo
+     * apparait dans la vidéo
+     * @param photosPath La liste des photos de profil à analyser
+     * @param nbVideos le nombre de vidéos avec lesquelle il faudra comparer chaque vidéo
+     */
     public static void detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos)
     {
         for(int i = 0; i< photosPath.size() ; i++) {

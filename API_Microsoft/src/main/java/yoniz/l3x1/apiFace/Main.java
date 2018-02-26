@@ -2,6 +2,7 @@ package yoniz.l3x1.apiFace;
 
 
 import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.github.axet.vget.VGet;
 import org.apache.http.HttpEntity;
@@ -17,6 +18,20 @@ import java.net.URL;
 public class Main {
 
     public static void main(String[] args) {
+
+        JsonObject json1= Json.object().add("photo1","lien1").add("photo2","lien2");
+
+        JsonObject json2 = Json.object().add("video1",json1);
+
+        System.out.println(json2.toString());
+        /*{
+            "video1": {
+                "photo1": "lien1",
+                "photo2": "Lien2"
+            },
+        }
+
+        }*/
 
 
         /*//String detectOnImage = "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
@@ -81,7 +96,7 @@ public class Main {
         //System.out.println(DetectFace.detect("https://www.videoindexer.ai/api/Thumbnail/02caeebb58/aa4e5013-180f-47fe-a2d8-c5e9f2788205","",true));
 
 
-        //Pour télécharger des vidéos de youtubes
+        /*//Pour télécharger des vidéos de youtubes
         try {
             String url = "https://www.youtube.com/watch?v=gRbKmDNJI8g&list=WL&t=0s&index=4";
             String path = "src/main/resources/";
@@ -89,7 +104,7 @@ public class Main {
             v.download();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
     }
 }

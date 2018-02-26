@@ -1,8 +1,13 @@
 package yoniz.l3x1.util;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import yoniz.l3x1.apiFace.IdAPI;
+import yoniz.l3x1.videoIndexer.VideoIndexer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,11 +17,10 @@ public class JsonUtil {
 
     /**
      * Lis un fichier texte qui contient les liens. Chaque ligne dans le fichier est un lien
-     * @param pathTofile le chemain vers le fichier qui contient les liens
+     * @param pathTofile le chemin vers le fichier qui contient les liens
      * @return une liste se String qui contient les liens
      * @throws IOException
      */
-
     public static List<String> ReadFile (String pathTofile) throws IOException
     {
         String path;
@@ -56,6 +60,7 @@ public class JsonUtil {
         }
         return jsonObject;
     }
+
     private static JSONObject stringToJson (String jsonString)
     {
         JSONObject jsonObject=null;
@@ -90,5 +95,30 @@ public class JsonUtil {
     {
         return mot.substring(1,mot.length()-1);
     }
+
+    /*public static JsonObject jsonVideo (List<String> videoIds )
+    {
+        JsonObject jsonObject = Json.object();
+        for (int i = 0; i<videoIds.size();i++)
+        {
+            JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
+            //Création de la liste qui va contenir les urls pour accéder aux photos de profils extraite de la vidéo
+            List<String> listUrlPhoto = new ArrayList<String>();
+            //Récupération du tableau JSON de face de la vidéo
+            JSONArray faces = VideoIndexer.getFacesFromVideos(json);
+            //Met dans la liste les url pour accéder aux photos extraite de la vidéo
+            for (int j = 0; j < faces.length(); j++) {
+                listUrlPhoto.add(IdAPI.thumbnail.concat(videoIds.get(i) + "/")
+                        .concat(faces.getJSONObject(j).get("thumbnailId").toString()));
+            }
+
+            jsonObject.add("photo"+String.valueOf(i), IdAPI.thumbnail.concat(videoIds.get(i) + "/")
+                    .concat(faces.getJSONObject(j).get("thumbnailId").toString()));
+        }
+
+        JsonObject json1= Json.object().add("photo1","lien1").add("photo2","lien2");
+        JsonObject json2 = Json.object().add("video1",json1);
+
+    }*/
 
 }
