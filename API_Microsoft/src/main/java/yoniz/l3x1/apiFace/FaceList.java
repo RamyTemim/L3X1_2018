@@ -16,7 +16,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import yoniz.l3x1.util.JsonUtil;
 
-import java.io.Closeable;
+
 import java.io.File;
 import java.net.URI;
 
@@ -52,6 +52,9 @@ public class FaceList {
             CloseableHttpResponse response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
 
+            if (entity != null) {
+                System.out.println("Création de la faceList " + id + " réussi \n");
+            }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -99,7 +102,7 @@ public class FaceList {
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
 
-            System.out.println(JsonUtil.httpToJsonObject(entity).toString(2));
+            System.out.println(JsonUtil.httpToJsonObject(entity));
         }
         catch (Exception e)
         {

@@ -58,6 +58,9 @@ public class JsonUtil {
         return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."));
     }
 
-
+    public static String supprimeGuillemet(String mot)
+    {
+        return mot.substring(1,mot.length()-1);
+    }
 
 }

@@ -5,19 +5,51 @@ import org.json.JSONObject;
 import yoniz.l3x1.apiFace.DetectFace;
 import yoniz.l3x1.apiFace.FaceList;
 import yoniz.l3x1.apiFace.IdAPI;
+import yoniz.l3x1.util.JsonUtil;
 import yoniz.l3x1.videoIndexer.VideoIndexer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
     public static void main (String []args) {
-        /*//Upload1
-        //Upload2
-        //Upload3
-        FaceList.deleteFaceList("1");
-        FaceList.deleteFaceList("2");
-        FaceList.deleteFaceList("3");
+        String path1 = "src/main/resources/film1.mov";
+        String path2 = "src/main/resources/film2.mov";
+        String path3 = "src/main/resources/film3.mp4";
+
+
+        /*
+        //Yoni
+        String videoId1 = JsonUtil.supprimeGuillemet(VideoIndexer.upload(path1));
+        //Yoni et Hocine
+        String videoId2 = JsonUtil.supprimeGuillemet(VideoIndexer.upload(path2));
+        //Video du net
+        String videoId3 = JsonUtil.supprimeGuillemet(VideoIndexer.upload(path3));
+
+        boolean notUpload = true;
+        while(notUpload)
+        {
+            JSONObject json1 = VideoIndexer.getProcessingState(videoId1);
+            JSONObject json2 = VideoIndexer.getProcessingState(videoId2);
+            JSONObject json3 = VideoIndexer.getProcessingState(videoId3);
+            System.out.println("Video1 : " + json1);
+            System.out.println("Video2 : " + json2);
+            System.out.println("Video3 : " + json3);
+
+
+            if(json1.get("state").toString().equals("Processed") && json2.get("state").toString().equals("Processed") && json3.get("state").toString().equals("Processed"))
+                notUpload = false;
+
+            else if(json1.get("state").toString().equals("Failed") || json2.get("state").toString().equals("Failed") || json3.get("state").toString().equals("Failed"))
+            {
+                System.out.println("Erreur lors de l'upload des vidéos : ");
+                System.exit(-1);
+            }
+        }*/
+
+
+
 
         //Identifiant des vidéos
         //Yoni
@@ -95,7 +127,7 @@ public class Main {
         System.out.println(FaceList.getFaceOflist("2").toString(2));
         System.out.println("\nListe 3 :");
         System.out.println(FaceList.getFaceOflist("2").toString(2));
-*/
+
 
         String pathHocine = "src/main/resources/hocine.jpg";
         String pathJordan = "src/main/resources/jordan.jpg";
@@ -110,7 +142,7 @@ public class Main {
         //Boucle permettant d'analyser les 3 FaceList de chaque vidéo pour la photo de Hocine
         for (int i = 1 ;i <= 3;i++)
         {
-            JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(i), faceIdHocine, 20);
+            JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(i), faceIdHocine);
             if(jsonResultat!=null)
                 System.out.println("Pour la vidéo " + i + ":\n"+jsonResultat.toString(2));
         }
@@ -124,7 +156,7 @@ public class Main {
         //Boucle permettant d'analyser les 3 FaceList de chaque vidéo pour la photo de Hocine
         for (int i = 1 ;i <= 3;i++)
         {
-            JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(i), faceIdJordan, 20);
+            JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(i), faceIdJordan);
             if(jsonResultat!=null)
                 System.out.println("Pour la vidéo " + i + ":\n"+jsonResultat.toString(2));
         }
@@ -138,10 +170,14 @@ public class Main {
         //Boucle permettant d'analyser les 3 FaceList de chaque vidéo pour la photo de Hocine
         for (int i = 1 ;i <= 3;i++)
         {
-            JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(i), faceIdYoni, 20);
+            JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(i), faceIdYoni);
             if(jsonResultat!=null)
                 System.out.println("Pour la vidéo " + i + ":\n"+jsonResultat.toString(2));
         }
+
+        FaceList.deleteFaceList("1");
+        FaceList.deleteFaceList("2");
+        FaceList.deleteFaceList("3");
 
 
     }

@@ -30,7 +30,6 @@ public class DetectFace {
      * @param url Un boolean permettant à la méthode de savoir si le path est une adresse local (si url = false) ou un url (si url = true)
      * @return Renvoit une un JSONObject qui correspond à l'objet Json renvoyé par l'API Face de microsoft
      */
-
     public static JSONObject detect (String path, String detectOnImage, Boolean url)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -88,11 +87,10 @@ public class DetectFace {
      * Pour demander à l'API de renvoyer la (ou les) photos de la faceList qui correspondent à celle de la photo "modèle"
      * @param faceListId L'id de la faceList contenant les photos à comparer avec le modèle
      * @param faceId L'id de la photo qui sert de modèle pour la comparaison
-     * @param maxNbPersonne le nombre de personne à renvoyer qui ressemble le plus au modèle
      * @return Un fichier json contenant la photo que l'API à trouver qui correspond le plus au modèle ainsi que l'indice de
      * confiance de l'API
      */
-    public static JSONArray findSimilar(String faceListId, String faceId, int maxNbPersonne)
+    public static JSONArray findSimilar(String faceListId, String faceId)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         JSONArray jsonArray = null;
@@ -107,8 +105,7 @@ public class DetectFace {
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
 
             JsonObject json = Json.object().add("faceId",faceId)
-                                            .add("faceListId",faceListId)
-                                            .add("maxNumOfCandidatesReturned",maxNbPersonne);
+                                            .add("faceListId",faceListId);
 
 
             StringEntity reqEntity = new StringEntity(json.toString());
