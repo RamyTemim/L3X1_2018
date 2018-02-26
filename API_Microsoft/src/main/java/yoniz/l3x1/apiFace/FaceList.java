@@ -53,7 +53,7 @@ public class FaceList {
             HttpEntity entity = response.getEntity();
 
             if (entity != null) {
-                System.out.println("Création de la faceList " + id + " réussi \n");
+                System.out.println("Création de la faceList " + (Integer.parseInt(id)+1) + " réussi \n");
             }
 
         } catch (Exception e) {
