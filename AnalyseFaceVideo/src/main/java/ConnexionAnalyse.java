@@ -7,17 +7,8 @@ import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
-import com.amazonaws.services.rekognition.model.GetLabelDetectionRequest;
-import com.amazonaws.services.rekognition.model.GetLabelDetectionResult;
-import com.amazonaws.services.rekognition.model.LabelDetection;
-import com.amazonaws.services.rekognition.model.LabelDetectionSortBy;
-import com.amazonaws.services.rekognition.model.NotificationChannel;
-import com.amazonaws.services.rekognition.model.S3Object;
-import com.amazonaws.services.rekognition.model.StartLabelDetectionRequest;
-import com.amazonaws.services.rekognition.model.StartLabelDetectionResult;
+import com.amazonaws.services.rekognition.model.*;
 
-import com.amazonaws.services.rekognition.model.Video;
-import com.amazonaws.services.rekognition.model.VideoMetadata;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
@@ -75,7 +66,7 @@ public class ConnexionAnalyse {
 ConnexionAnalyse.connexion();
 
         //=================================================
-        StartLabels("yanisaws", "yan.mov");
+        StartFaces("yanisaws", "yan.mov");
         //=================================================
         System.out.println("Waiting for job: " + startJobId);
         //Poll queue for messages
@@ -118,7 +109,7 @@ ConnexionAnalyse.connexion();
                     System.out.println("Status : " + operationStatus.toString());
                     if (operationStatus.asText().equals("SUCCEEDED")){
                         //============================================
-                        GetResultsLabels();
+                        GetResultsFaces();
                         //============================================
                     }
                     else{
@@ -139,43 +130,41 @@ ConnexionAnalyse.connexion();
     }
 
 
-    private static void StartLabels(String bucket, String video) throws Exception{
+    //Faces=======================================================================
 
-        StartLabelDetectionRequest req = new StartLabelDetectionRequest()
+    private static void StartFaces(String bucket, String video) throws Exception{
+
+        StartFaceDetectionRequest req = new StartFaceDetectionRequest()
                 .withVideo(new Video()
                         .withS3Object(new S3Object()
                                 .withBucket(bucket)
                                 .withName(video)))
-                .withMinConfidence(50F)
-                .withJobTag("DetectingLabels")
                 .withNotificationChannel(channel);
 
-        StartLabelDetectionResult startLabelDetectionResult = rek.startLabelDetection(req);
+
+
+        StartFaceDetectionResult startLabelDetectionResult = rek.startFaceDetection(req);
         startJobId=startLabelDetectionResult.getJobId();
 
     }
 
-    private static void GetResultsLabels() throws Exception{
+    private static void GetResultsFaces() throws Exception{
 
         int maxResults=10;
         String paginationToken=null;
-        GetLabelDetectionResult labelDetectionResult=null;
+        GetFaceDetectionResult faceDetectionResult=null;
 
-        do {
-            if (labelDetectionResult !=null){
-                paginationToken = labelDetectionResult.getNextToken();
+        do{
+            if (faceDetectionResult !=null){
+                paginationToken = faceDetectionResult.getNextToken();
             }
 
-            GetLabelDetectionRequest labelDetectionRequest= new GetLabelDetectionRequest()
+            faceDetectionResult = rek.getFaceDetection(new GetFaceDetectionRequest()
                     .withJobId(startJobId)
-                    .withSortBy(LabelDetectionSortBy.TIMESTAMP)
-                    .withMaxResults(maxResults)
-                    .withNextToken(paginationToken);
+                    .withNextToken(paginationToken)
+                    .withMaxResults(maxResults));
 
-
-            labelDetectionResult = rek.getLabelDetection(labelDetectionRequest);
-
-            VideoMetadata videoMetaData=labelDetectionResult.getVideoMetadata();
+            VideoMetadata videoMetaData=faceDetectionResult.getVideoMetadata();
 
             System.out.println("Format: " + videoMetaData.getFormat());
             System.out.println("Codec: " + videoMetaData.getCodec());
@@ -183,19 +172,19 @@ ConnexionAnalyse.connexion();
             System.out.println("FrameRate: " + videoMetaData.getFrameRate());
 
 
-            //Show labels, confidence and detection times
-            List<LabelDetection> detectedLabels= labelDetectionResult.getLabels();
+            //Show faces, confidence and detection times
+            List<FaceDetection> faces= faceDetectionResult.getFaces();
 
-            for (LabelDetection detectedLabel: detectedLabels) {
-                long seconds=detectedLabel.getTimestamp()/1000;
+            for (FaceDetection face: faces) {
+                long seconds=face.getTimestamp()/1000;
                 System.out.print("Sec: " + Long.toString(seconds) + " ");
-                System.out.println("\t" + detectedLabel.getLabel().getName() +
-                        "     \t" +
-                        detectedLabel.getLabel().getConfidence().toString());
+                System.out.println(face.getFace().toString());
                 System.out.println();
             }
-        } while (labelDetectionResult !=null && labelDetectionResult.getNextToken() != null);
+        } while (faceDetectionResult !=null && faceDetectionResult.getNextToken() != null);
 
 
     }
+
+
 }
