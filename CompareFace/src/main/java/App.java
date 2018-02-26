@@ -25,8 +25,8 @@ public class App {
 
     public static void main(String[] args) throws Exception{
         Float similarityThreshold = 70F;
-        String sourceImage = "/Users/yanis/IdeaProjects/CompareFace/src/main/resources/V1.jpg";
-        String targetImage = "/Users/yanis/IdeaProjects/CompareFace/src/main/resources/V2.jpg";
+        String sourceImage = "/Users/yanis/L3X1_2018/CompareFace/src/main/resources/V1.jpg";
+        String targetImage = "/Users/yanis/L3X1_2018/CompareFace/src/main/resources/V2.jpg";
         ByteBuffer sourceImageBytes=null;
         ByteBuffer targetImageBytes=null;
 
