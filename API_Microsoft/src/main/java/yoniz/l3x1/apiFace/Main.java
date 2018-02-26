@@ -37,7 +37,7 @@ public class Main {
         JSONObject jsonObject = DetectFace.detect(pathYoniModele, "",false);
         String faceIdModele = jsonObject.get("faceId").toString();
 
-        JSONArray jsonResultat = DetectFace.findSimilar("l", faceIdModele, 20);
+        JSONArray jsonResultat = DetectFace.findSimilar("l", faceIdModele);
 
 
         System.out.println("\nRetour de detectFace :");

@@ -2,14 +2,43 @@ package yoniz.l3x1.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonUtil {
+
+    /**
+     * Lis un fichier texte qui contient les liens. Chaque ligne dans le fichier est un lien
+     * @param pathTofile le chemain vers le fichier qui contient les liens
+     * @return une liste se String qui contient les liens
+     * @throws IOException
+     */
+
+    public static List<String> ReadFile (String pathTofile) throws IOException
+    {
+        String path;
+        List<String> listeOfpaths = new ArrayList<String>();
+        File file = new File(pathTofile);
+        //teste si le fichier existe
+        if (file.exists()) {
+            // test si on peut lire le fichier
+            if (file.canRead()) {
+                BufferedReader buffer = new BufferedReader(new FileReader(file));
+                while ((path = buffer.readLine()) != null) {
+                    listeOfpaths.add(path);
+                }
+            }else {
+                System.out.println("Le fichier ne peut pas être lu ");
+            }
+        }else {
+            System.out.println("Le fichier n'existe pas ");
+        }
+        return listeOfpaths;
+    }// END RedFile
+
 
     public static JSONObject httpToJsonObject(HttpEntity entity)
     {
@@ -27,8 +56,7 @@ public class JsonUtil {
         }
         return jsonObject;
     }
-
-    public static JSONObject stringToJson (String jsonString)
+    private static JSONObject stringToJson (String jsonString)
     {
         JSONObject jsonObject=null;
         if (jsonString.charAt(0) == '[') {
