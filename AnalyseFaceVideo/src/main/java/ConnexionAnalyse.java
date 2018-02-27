@@ -20,20 +20,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.*;
 
 public class ConnexionAnalyse {
-    /**
+     /**
      *    l'id-collection de photos
      */
-
-    public static final String collectionId = "CollectionPhoto";
+    public static final String collectionId = "CollectionFaces";
 
     /**
      * Id du compartiment S3 ou sont stocké les photos
      */
     public static final String bucket = "yanisaws";
+
     public static final String fileName = "V1.jpg";
 
     /**
-     * service Web qui coordonne et gère la livraison ou l'envoi de messages aux terminaux ou aux clients abonnés
+     * service Web qui coordonne et gère la livraison ou l'envoi de messages  aux clients abonnés
      */
     private static AmazonSNS sns = null;
     /**
@@ -41,9 +41,8 @@ public class ConnexionAnalyse {
      */
     private static AmazonSQS sqs = null;
     private static AmazonRekognition rek = null;
-    private static NotificationChannel channel= new NotificationChannel()
-            .withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video")
-            .withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
+    private static NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video")
+                  .withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
     /**
      * URL de la file d'attente SQS
      */
@@ -51,11 +50,13 @@ public class ConnexionAnalyse {
     private static String startJobId = null;
 
     /**
-     * Connexion a l'aide des informations d'identification de sécurité (clé d'accès et la clé d'accès secrète) qui se trouve dans le fihier credentials
+     * Connexion a l'aide des informations d'identification de sécurité :
+     *  ++clé d'accès
+     *  ++la clé d'accès secrète
+     *  qui se trouve dans le fihier credentials
      */
     public static void connexion(){
         AWSCredentials credentials;
-
         try {
             credentials = new ProfileCredentialsProvider().getCredentials();
         } catch (Exception e) {
@@ -63,41 +64,25 @@ public class ConnexionAnalyse {
                     + "Please make sure that your credentials file is at the correct "
                     + "location (/Users/userid>.aws/credentials), and is in valid format.", e);
         }
-/**
- * Creation d'un objet client de service
- */
-        sns = AmazonSNSClientBuilder
-                .standard()
-                .withRegion(Regions.US_EAST_1)
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .build();
 
-        sqs = AmazonSQSClientBuilder
-                .standard()
-                .withRegion(Regions.US_EAST_1)
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .build();
+        /**
+         * Creation d'un objet client de service
 
-
+         */
+        sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
                 .withEndpointConfiguration(new EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
 
     }
 
 
-
-
-
-
-
-
     public ConnexionAnalyse() throws Exception {
+        ConnexionAnalyse.connexion();
 
-ConnexionAnalyse.connexion();
-
-/**
- * Récuperer les visages de la collection
- */
+        /**
+         * Récuperer les visages de la collection
+         */
         //=================================================
         StartFaceSearchCollection("yanisaws", "yan.mov");
         //=================================================
@@ -177,7 +162,7 @@ ConnexionAnalyse.connexion();
 
 
         StartFaceSearchRequest req = new StartFaceSearchRequest()
-                .withCollectionId("CollectionPhoto")
+                .withCollectionId(collectionId)
                 .withVideo(new Video()
                         .withS3Object(new S3Object()
                                 .withBucket(bucket)
