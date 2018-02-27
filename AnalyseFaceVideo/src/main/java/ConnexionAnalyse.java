@@ -33,16 +33,7 @@ public class ConnexionAnalyse {
     public static final String bucket = "yanisaws";
     public static final String fileName = "V1.jpg";
 
-    Image image=new Image()
-            .withS3Object(new S3Object()
-                    .withBucket(bucket)
-                    .withName(fileName));
 
-    IndexFacesRequest indexFacesRequest = new IndexFacesRequest()
-            .withImage(image)
-            .withCollectionId(collectionId)
-            .withExternalImageId(fileName)
-            .withDetectionAttributes("ALL");
     /**
      * service Web qui coordonne et gère la livraison ou l'envoi de messages  aux clients abonnés
      */
