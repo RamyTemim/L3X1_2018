@@ -14,20 +14,26 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.List;
-
 public class DetectFaceInVideo {
 
+    /**
+     *
+     * @param credentials
+     * @param sqs
+     * @param sns
+     * @param rek
+     */
     public static void connexionDetectFace(AWSCredentials credentials, AmazonSQS sqs,AmazonSNS sns,AmazonRekognition rek)
 
     {
 
         // Connection au cloud d'amazon avec les données d'identification
         try {
-            credentials = new ProfileCredentialsProvider("AdminUser").getCredentials();
+            credentials = new ProfileCredentialsProvider().getCredentials();
         } catch (Exception e) {
             throw new AmazonClientException(
+                    "\t\t\t ############  DetectFaceInVideo  #########\n"+
                     "Cannot load the credentials from the credential profiles file. " +
                             "Please make sure that your credentials file is at the correct " +
                             "location (/Users/userid/.aws/credentials), and is in valid format.", e);
@@ -38,7 +44,18 @@ public class DetectFaceInVideo {
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
     }// end connexion
 
-
+    /**
+     *
+     * @param bucket
+     * @param video
+     * @param startJobId
+     * @param rek
+     * @param channel
+     * @param collectionId
+     * @param queueUrl
+     * @param sqs
+     * @throws Exception
+     */
     public static  void DetectFacesInVideos(String bucket, String video, String startJobId, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
@@ -88,7 +105,7 @@ public class DetectFaceInVideo {
                     if (operationStatus.asText().equals("SUCCEEDED")){
                         //#################################################
                         GetResultsFaceSearchCollection(startJobId,rek);//##
-                        //#################################################
+                        //============================================
                     }
                     else{
                         System.out.println("Video analysis failed");
@@ -108,8 +125,16 @@ public class DetectFaceInVideo {
     }// end DetectFacesInVideos
 
 
-
-
+    /**
+     *
+     * @param bucket
+     * @param video
+     * @param startJobId
+     * @param rek
+     * @param channel
+     * @param collectionId
+     * @throws Exception
+     */
     private static void StartFaceSearchCollection(String bucket, String video, String startJobId, AmazonRekognition rek, NotificationChannel channel,String collectionId) throws Exception
     {
 
@@ -129,6 +154,12 @@ public class DetectFaceInVideo {
 
     }// END Start
 
+    /**
+     *
+     * @param startJobId
+     * @param rek
+     * @throws Exception
+     */
     private static void GetResultsFaceSearchCollection(String startJobId,AmazonRekognition rek) throws Exception
     {
 

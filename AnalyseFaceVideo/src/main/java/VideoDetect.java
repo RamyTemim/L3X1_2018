@@ -17,8 +17,7 @@ public class VideoDetect {
           String nameOfImage = "V1.jpg";
           String startJobId = null;
           String queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
-          NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video")
-                .withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
+          NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video").withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
           String video ="yan.mov";
 
  //#########################################################################################################
