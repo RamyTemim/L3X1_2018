@@ -96,29 +96,28 @@ public class JsonUtil {
         return mot.substring(1,mot.length()-1);
     }
 
-    /*public static JsonObject jsonVideo (List<String> videoIds )
+    /**
+     * Méthode qui renvoit une liste de liens permettant d'accéder au photos extraites de chaque vidéo
+     * @param videoIds List de videoId permettant d'accéder aux vidéos indexe dans le cloud
+     * @return Une list qui va contenir pour chaque membre de sa liste une list de lien pour accéder aux photos
+     */
+    public static List<List<String>> getListLienVideo (List<String> videoIds )
     {
-        JsonObject jsonObject = Json.object();
-        for (int i = 0; i<videoIds.size();i++)
+        List<List<String>> listLien = new ArrayList<List<String>>();
+        for(int i = 0; i<videoIds.size(); i++)
         {
             JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
-            //Création de la liste qui va contenir les urls pour accéder aux photos de profils extraite de la vidéo
             List<String> listUrlPhoto = new ArrayList<String>();
-            //Récupération du tableau JSON de face de la vidéo
-            JSONArray faces = VideoIndexer.getFacesFromVideos(json);
             //Met dans la liste les url pour accéder aux photos extraite de la vidéo
+            JSONArray faces = VideoIndexer.getFacesFromVideos(json);
+
             for (int j = 0; j < faces.length(); j++) {
                 listUrlPhoto.add(IdAPI.thumbnail.concat(videoIds.get(i) + "/")
                         .concat(faces.getJSONObject(j).get("thumbnailId").toString()));
             }
-
-            jsonObject.add("photo"+String.valueOf(i), IdAPI.thumbnail.concat(videoIds.get(i) + "/")
-                    .concat(faces.getJSONObject(j).get("thumbnailId").toString()));
+            listLien.add(listUrlPhoto);
         }
-
-        JsonObject json1= Json.object().add("photo1","lien1").add("photo2","lien2");
-        JsonObject json2 = Json.object().add("video1",json1);
-
-    }*/
+        return listLien;
+    }
 
 }
