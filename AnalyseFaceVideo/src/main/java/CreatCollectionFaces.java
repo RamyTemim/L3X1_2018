@@ -21,15 +21,11 @@ public class CreatCollectionFaces {
     //private static NotificationChannel channel = new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video")
     //      .withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
 
-    /**
-     * identéfication auprés du cloud d'amazon pour verifier les autorisation d'accé
-     *
-     * @param credentials fichier qui contien les clé d'accé
-     */
-    public static void connexionIdexFace(AWSCredentials credentials)
+
+    public static AWSCredentials connexionIdexFace()
 
     {
-
+        AWSCredentials credentials = null;
         // Connection au cloud d'amazon avec les données d'identification
         try {
             credentials = new ProfileCredentialsProvider().getCredentials();
@@ -40,33 +36,33 @@ public class CreatCollectionFaces {
                             "Please make sure that your credentials file is at the correct " +
                             "location (/Users/userid/.aws/credentials), and is in valid format.", e);
         }
+        return credentials;
     }
-
-
-    /**
-     * Création d'une collection pour stocker les métadonnées des visages
-     * Puis index les visages qui se trouve sur la photo et les ajoute à la collection
-     * @param credentials données d'identification
-     * @param bucket l'endois ou est srtocker la photo sur le cloud S3
-     * @param nameOfImage Le nom de l'image
-     * @param collectionId l'identifiant de la collection
-     */
-        public static void CreatCollectionFace (AWSCredentials credentials,String bucket,String nameOfImage,String collectionId)
-        {
-
+    public static AmazonRekognition getAWSR(AWSCredentials credentials)
+    {
         // création une instance du service  Amazon Rekognition
         AmazonRekognition amazonRekognition = AmazonRekognitionClientBuilder
                 .standard()
                 .withRegion(Regions.US_EAST_1)
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
-        // création de collection avec collectionId = "CollectionF"
-        CreateCollectionRequest request = new CreateCollectionRequest()
-                .withCollectionId(collectionId);
+        return amazonRekognition;
+    }
 
-        CreateCollectionResult createCollectionResult = amazonRekognition.createCollection(request);
-        System.out.println("Collection créer son nom est "+createCollectionResult.getCollectionArn());
 
+        public static void CreatCollectionFace (AWSCredentials credentials,String bucket,String nameOfImage,String collectionId) {
+
+
+            // création de collection avec collectionId = "CollectionF"
+            CreateCollectionRequest request = new CreateCollectionRequest()
+                    .withCollectionId(collectionId);
+
+            CreateCollectionResult createCollectionResult = getAWSR(credentials).createCollection(request);
+            System.out.println("Collection créer son nom est " + createCollectionResult.getCollectionArn());
+        }// end Creat
+
+    public static void addFace(AWSCredentials credentials,String bucket,String nameOfImage,String collectionId)
+    {
             // chargement de l'image encoder en base64 en mémoire
         Image picture = new Image().withS3Object(new S3Object()
                 .withBucket(bucket)
@@ -80,7 +76,7 @@ public class CreatCollectionFaces {
                 .withDetectionAttributes("ALL");
 
 
-       IndexFacesResult indexFacesResult=amazonRekognition.indexFaces(indexFacesRequest);
+       IndexFacesResult indexFacesResult=getAWSR(credentials).indexFaces(indexFacesRequest);
        System.out.println(nameOfImage + " ajouter");
        List<FaceRecord> faceRecords = indexFacesResult.getFaceRecords();
         for(FaceRecord faceRecord: faceRecords) {
@@ -89,6 +85,17 @@ public class CreatCollectionFaces {
 
        }
 
-    }
+    }// end ADDface
+
+    public static void DeleteCollection (String collectionId,AWSCredentials credentials)
+    {
+        DeleteCollectionRequest request = new DeleteCollectionRequest()
+                .withCollectionId(collectionId);
+        DeleteCollectionResult deleteCollectionResult = getAWSR(credentials).deleteCollection(request);
+
+        System.out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
+                .toString());
+
+    }// end Delet
 
     }

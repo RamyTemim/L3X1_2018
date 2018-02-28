@@ -1,61 +1,27 @@
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.regions.Regions;
+
 import com.amazonaws.services.rekognition.AmazonRekognition;
-import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.*;
 import com.amazonaws.services.sqs.model.Message;
-import com.amazonaws.services.sns.AmazonSNS;
-import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 public class DetectFaceInVideo {
 
-    /**
-     *
-     * @param credentials
-     * @param sqs
-     * @param sns
-     * @param rek
-     */
+   /*
     public static void connexionDetectFace(AWSCredentials credentials, AmazonSQS sqs,AmazonSNS sns,AmazonRekognition rek)
 
     {
 
         // Connection au cloud d'amazon avec les données d'identification
-        try {
-            credentials = new ProfileCredentialsProvider().getCredentials();
-        } catch (Exception e) {
-            throw new AmazonClientException(
-                    "\t\t\t ############  DetectFaceInVideo  #########\n"+
-                    "Cannot load the credentials from the credential profiles file. " +
-                            "Please make sure that your credentials file is at the correct " +
-                            "location (/Users/userid/.aws/credentials), and is in valid format.", e);
-        }
+
         sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
     }// end connexion
+*/
 
-    /**
-     *
-     * @param bucket
-     * @param video
-     * @param startJobId
-     * @param rek
-     * @param channel
-     * @param collectionId
-     * @param queueUrl
-     * @param sqs
-     * @throws Exception
-     */
     public static  void DetectFacesInVideos(String bucket, String video, String startJobId, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
@@ -124,17 +90,6 @@ public class DetectFaceInVideo {
         System.out.println("Done!");
     }// end DetectFacesInVideos
 
-
-    /**
-     *
-     * @param bucket
-     * @param video
-     * @param startJobId
-     * @param rek
-     * @param channel
-     * @param collectionId
-     * @throws Exception
-     */
     private static void StartFaceSearchCollection(String bucket, String video, String startJobId, AmazonRekognition rek, NotificationChannel channel,String collectionId) throws Exception
     {
 
@@ -154,12 +109,7 @@ public class DetectFaceInVideo {
 
     }// END Start
 
-    /**
-     *
-     * @param startJobId
-     * @param rek
-     * @throws Exception
-     */
+
     private static void GetResultsFaceSearchCollection(String startJobId,AmazonRekognition rek) throws Exception
     {
 
