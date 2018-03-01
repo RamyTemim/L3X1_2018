@@ -71,7 +71,7 @@ public class ConnexionAnalyse {
          * Creation d'un objet client de service
 
          */
-        sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+      //  sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
                 .withEndpointConfiguration(new EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();

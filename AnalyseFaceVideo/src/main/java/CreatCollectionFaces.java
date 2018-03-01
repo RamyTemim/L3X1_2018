@@ -2,12 +2,17 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.*;
+import com.amazonaws.services.sns.AmazonSNS;
+import com.amazonaws.services.sns.AmazonSNSClientBuilder;
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -22,9 +27,12 @@ public class CreatCollectionFaces {
     //      .withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
 
 
-    public static AWSCredentials connexionIdexFace()
+   public static AWSCredentials connexionIdexFace()
 
     {
+        AmazonSQS sqs = null;
+        AmazonSNS sns = null;
+        AmazonRekognition rek=null;
         AWSCredentials credentials ;
         // Connection au cloud d'amazon avec les données d'identification
         try {
@@ -36,6 +44,12 @@ public class CreatCollectionFaces {
                             "Please make sure that your credentials file is at the correct " +
                             "location (/Users/userid/.aws/credentials), and is in valid format.", e);
         }
+
+        sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
+
         return credentials;
     }
     public static AmazonRekognition getAWSR(AWSCredentials credentials)
@@ -46,6 +60,7 @@ public class CreatCollectionFaces {
                 .withRegion(Regions.US_EAST_1)
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
+
         return amazonRekognition;
     }
 
@@ -58,7 +73,7 @@ public class CreatCollectionFaces {
                     .withCollectionId(collectionId);
 
             CreateCollectionResult createCollectionResult = getAWSR(credentials).createCollection(request);
-            System.out.println("Collection créer son nom est " + createCollectionResult.getCollectionArn());
+            System.out.println("Collection ARN = " + createCollectionResult.getCollectionArn());
         }// end Creat
 
     public static void addFace(AWSCredentials credentials,String bucket,String nameOfImage,String collectionId)
@@ -101,7 +116,7 @@ public class CreatCollectionFaces {
         DeleteCollectionRequest request = new DeleteCollectionRequest()
                 .withCollectionId(collectionId);
         DeleteCollectionResult deleteCollectionResult = getAWSR(credentials).deleteCollection(request);
-
+        System.out.println("Suprimé ");
         System.out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
                 .toString());
 

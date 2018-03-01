@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DetectFaceInVideo {
 
-
+/*
     public static AWSCredentials connexionDetectFace( AmazonSQS sqs, AmazonSNS sns, AmazonRekognition rek)
 
     {
@@ -44,11 +44,11 @@ public class DetectFaceInVideo {
 
         return credentials;
     }// end connexion
+*/
 
-
-    public static  void DetectFacesInVideos(String bucket, String video, String startJobId, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
+    public static  void DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
-
+        String startJobId = "198d19cdec68869202839421718a5b3d55162e29c191ba11e15684ae224a8de3";
         //##################################################################################
         StartFaceSearchCollection(bucket,video,startJobId, rek,  channel, collectionId);//##
         //##################################################################################
@@ -58,7 +58,6 @@ public class DetectFaceInVideo {
         List<Message> messages=null;
         int dotLine=0;
         boolean jobFound=false;
-
         //loop until the job status is published. Ignore other messages in queue.
         do{
             //Get messages.
@@ -73,11 +72,9 @@ public class DetectFaceInVideo {
             }while(messages.isEmpty());
 
             System.out.println();
-
             //Loop through messages received.
             for (Message message: messages) {
                 String notification = message.getBody();
-
                 // Get status and job id from notification.
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonMessageTree = mapper.readTree(notification);
@@ -116,8 +113,6 @@ public class DetectFaceInVideo {
 
     private static void StartFaceSearchCollection(String bucket, String video, String startJobId, AmazonRekognition rek, NotificationChannel channel,String collectionId) throws Exception
     {
-
-
         StartFaceSearchRequest req = new StartFaceSearchRequest()
                 .withCollectionId(collectionId)
                 .withVideo(new Video()
@@ -125,8 +120,6 @@ public class DetectFaceInVideo {
                                 .withBucket(bucket)
                                 .withName(video)))
                 .withNotificationChannel(channel);
-
-
 
         StartFaceSearchResult startPersonCollectionSearchResult = rek.startFaceSearch(req);
         startJobId = startPersonCollectionSearchResult.getJobId();
@@ -138,7 +131,7 @@ public class DetectFaceInVideo {
     {
 
         GetFaceSearchResult faceSearchResult=null;
-        int maxResults=10;
+     //   int maxResults=10;
         String paginationToken=null;
 
         do {
@@ -151,7 +144,7 @@ public class DetectFaceInVideo {
             faceSearchResult  = rek.getFaceSearch(
                     new GetFaceSearchRequest()
                             .withJobId(startJobId)
-                            .withMaxResults(maxResults)
+
                             .withNextToken(paginationToken)
                             .withSortBy(FaceSearchSortBy.TIMESTAMP)
             );
@@ -167,13 +160,12 @@ public class DetectFaceInVideo {
 
 
             //Show search results
-            List<PersonMatch> matches=
-                    faceSearchResult.getPersons();
+            List<PersonMatch> matches= faceSearchResult.getPersons();
 
             for (PersonMatch match: matches) {
                 long seconds=match.getTimestamp()/1000;
-                System.out.print("Sec: " + Long.toString(seconds));
-                System.out.println("Person number: " + match.getPerson().getIndex());
+                System.out.print("Sec: \t" + Long.toString(seconds));
+                System.out.println("\t\tPerson number: " + match.getPerson().getIndex());
                 List <FaceMatch> faceMatches = match.getFaceMatches();
                 System.out.println("Matches in collection...");
                 for (FaceMatch faceMatch: faceMatches){

@@ -16,16 +16,16 @@ public class VideoDetect {
 
 
     public static void main(String[] args)  throws Exception{
-        AmazonSQS sqs = null;
+    AmazonSQS sqs = null;
     AmazonSNS sns = null;
     AmazonRekognition rek=null;
     String collectionId = "CollectionF";
     String bucket = "yanisaws";
     String nameOfImage = "V.jpg";
-    String startJobId = null;
+    //String startJobId = null;
     String queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
     NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video").withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
-    String video ="yan.mov";
+    String video ="VideoYan.mov";
     AWSCredentials credentials;
 
 
@@ -35,14 +35,14 @@ public class VideoDetect {
         CreatCollectionFaces.CreatCollectionFace(credentials, collectionId);
         CreatCollectionFaces.addFace(credentials,bucket,nameOfImage,collectionId);
 
-/*
+
         sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
         .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
-*/
-        credentials =DetectFaceInVideo.connexionDetectFace( sqs, sns, rek);
-        DetectFaceInVideo.DetectFacesInVideos( bucket,  video,  startJobId,  rek,  channel, collectionId, queueUrl, sqs);
+
+       // credentials =DetectFaceInVideo.connexionDetectFace( sqs, sns, rek);
+          DetectFaceInVideo.DetectFacesInVideos( bucket,  video,   rek,  channel, collectionId, queueUrl, sqs);
 
         }
         }
