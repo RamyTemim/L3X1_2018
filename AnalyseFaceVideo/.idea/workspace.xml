@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9a0c992-0ece-42a7-ae63-cfe89de2ace3" name="Default" comment="detcte face dans une video regler">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f9a0c992-0ece-42a7-ae63-cfe89de2ace3" name="Default" comment="detcte face dans une video regler" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -308,7 +306,7 @@
       <workItem from="1519897895735" duration="17072000" />
       <workItem from="1519982199456" duration="4987000" />
       <workItem from="1519987382715" duration="38000" />
-      <workItem from="1519987466492" duration="5401000" />
+      <workItem from="1519987466492" duration="5559000" />
     </task>
     <task id="LOCAL-00001" summary="hocine">
       <created>1519741937732</created>
@@ -335,7 +333,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82083000" />
+    <option name="totallyTimeSpent" value="82241000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1600" height="875" extended-state="7" />

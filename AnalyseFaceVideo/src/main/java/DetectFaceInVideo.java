@@ -160,7 +160,6 @@ public class DetectFaceInVideo {
 
                 //List <FaceMatch> faceMatches = match.getFaceMatches();
                 //System.out.println("Matches in collection...");
-
                 //for (FaceMatch faceMatch : faceMatches){
                  //   Face face=faceMatch.getFace();
                   //  System.out.println("Face Id: "+ face.getFaceId());
