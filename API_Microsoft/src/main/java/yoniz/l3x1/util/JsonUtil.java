@@ -16,7 +16,7 @@ import java.util.List;
 public class JsonUtil {
 
     /**
-     * Lis un fichier texte qui contient les liens. Chaque ligne dans le fichier est un lien
+     * Lis un fichier texte qui contient les liens. Chaque ligne dans le fichier est un lien.
      * @param pathTofile le chemin vers le fichier qui contient les liens
      * @return une liste se String qui contient les liens
      * @throws IOException
@@ -41,9 +41,13 @@ public class JsonUtil {
             System.out.println("Le fichier n'existe pas ");
         }
         return listeOfpaths;
-    }// END RedFile
+    }
 
-
+    /**
+     * Méthode permettant à partir d'une entité HTTP de récupérer le fichier JSON contenu à l'intérieur
+     * @param entity L'entitée HTTP à extraire
+     * @return Un objet JSON qui était présent dans l'entité HTTP
+     */
     public static JSONObject httpToJsonObject(HttpEntity entity)
     {
         JSONObject jsonObject = null;
@@ -61,6 +65,11 @@ public class JsonUtil {
         return jsonObject;
     }
 
+    /**
+     * Méthode permettant de transformer une chaine de caractère en Objet JSON
+     * @param jsonString La chaine de caractère à transformer en Objet JSON
+     * @return Un objet JSON correspondant à la chaine de caractère passée en paramètre
+     */
     private static JSONObject stringToJson (String jsonString)
     {
         JSONObject jsonObject=null;
@@ -74,23 +83,21 @@ public class JsonUtil {
 
     }
 
-    /*public static void jsonToFile (String json, String path)
-    {
-        String name = pathToName(path);
-        try {
-            PrintWriter pw = new PrintWriter(name);
-            pw.println(json);
-            pw.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
+    /**
+     * Méthode permettant de récupérer le nom d'un fichier à partir de son path
+     * @param path le path du fichier que l'on veut extraire le nom
+     * @return le nom du fichier correspondant au path
+     */
     public static String pathToName(String path)
     {
         return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."));
     }
 
+    /**
+     * Méthode permettant de supprimer les guillemets d'une chaine de caractère
+     * @param mot le String auquel on veut supprimer les guillemets
+     * @return un String auquel on a enlevé les guillemets
+     */
     public static String supprimeGuillemet(String mot)
     {
         return mot.substring(1,mot.length()-1);

@@ -82,6 +82,12 @@ public class VideoIndexer {
         return videoId;
     }
 
+    /**
+     * Méthode permettant de récuperer l'ensemble des informations qui on été extraite de la vidéo passé en paramètre par l'API Video Indexer
+     * de Microsoft
+     * @param videoId l'Id de la vidéo
+     * @return Un objet Json qui va contenir l'ensemble des éléments que l'API de Microsoft a extrait de la vidéo
+     */
     public static JSONObject getBreakdown(String videoId)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -109,6 +115,12 @@ public class VideoIndexer {
         return json;
     }
 
+    /**
+     * Méthode permettant de filtrer le Json de récupérer par la méthode getBreakdown et de récuperer seulement la partie qui correspond aux
+     * photos extraites de la vidéos
+     * @param jsonObject l'objet JSON qui a été retourné par la méthode getBreakdown
+     * @return Un Json contenant seulement la partie correspondant aux photos
+     */
     public static JSONArray getFacesFromVideos (JSONObject jsonObject)
     {
         return jsonObject.getJSONArray("breakdowns")
@@ -118,6 +130,15 @@ public class VideoIndexer {
 
     }
 
+    /**
+     * Méthode permettant de récupérer l'état de la vidéo, il y a 4 états :
+     * La vidéo s'est bien chargé dans leur cloud (Uploaded)
+     * La vidéo ne s'est pas chargé (Failed)
+     * La vidéo est en cours d'indéxation (Processing)
+     * La vidéo est indéxé (Processed)
+     * @param videoId L'id de la vidéo
+     * @return renvoit l'objet JSON qui va contenir les informations à propos de la vidéo
+     */
     public static JSONObject getProcessingState (String videoId)
     {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -129,7 +150,6 @@ public class VideoIndexer {
             URI uri = builder.build();
             HttpGet request = new HttpGet(uri);
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
-
 
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();

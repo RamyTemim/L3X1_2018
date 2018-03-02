@@ -87,28 +87,40 @@ public class MethodMain {
     }
 
     /**
-     * Méthode permettant de prendre chaque photo de profil et d'analyser avec l'ensemble des faceList de chaque vidéo pour vérifier si la photo
-     * apparait dans la vidéo
+     * Méthode permettant de prendre chaque photo de profil, la comparer avec chaque liste de photo de profil extraite des vidéos,
+     * et renvoyer un fichier Json qui va afficher pour chaque photo les vidéos ou celle-ci apparait
      * @param photosPath La liste des photos de profil à analyser
      * @param nbVideos le nombre de vidéos avec lesquelle il faudra comparer chaque vidéo
+     * @param videosPath La liste des vidéos à analyser
+     * @return Un Objet Json contenant pour chaque photo la liste des vidéos ou celle ci apparait
      */
-    public static void detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos)
+    public static JSONObject detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos, List <String> videosPath)
     {
+        // Un tableau json qui va contenir la liste des photos avec leur vidéos
+        JSONArray jsonArrayListDePhoto = new JSONArray();
         for(int i = 0; i< photosPath.size() ; i++) {
             //Analyse de l'ensemble des faceList avec la photo i
             //Récupération du FaceId de i
-            System.out.println("\nPhoto de " + JsonUtil.pathToName(photosPath.get(i)));
+
             JSONObject jsonObject = DetectFace.detect(photosPath.get(i), "", false);
             String faceId = jsonObject.get("faceId").toString();
+
+            //Un tableau qui va contenir la liste de vidéo pour la photo i
+            JSONArray jsonArrayVideoDePhoto = new JSONArray();
+            //Un Objet qui va contenir la photo et les videos pour la photo i
+            JSONObject jsonObjectPhoto = new JSONObject();
             //Boucle permettant d'analyser les FaceList de chaque vidéo pour la photo i
-            for (int j = 0; j < nbVideos; j++)
-            {
+            for (int j = 0; j < nbVideos; j++) {
                 JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(j), faceId);
-                if (jsonResultat != null)
-                    System.out.println("Pour la vidéo " + (j+1) + ":\n" + jsonResultat.toString(2));
-                else
-                    System.out.println("Pour la vidéo " + (j+1) + ":\n[]");
+                if(!jsonResultat.toString().equals("[]"))
+                   jsonArrayVideoDePhoto.put(JsonUtil.pathToName(videosPath.get(j)));
+
             }
+            jsonObjectPhoto.put(JsonUtil.pathToName(photosPath.get(i)), jsonArrayVideoDePhoto);
+            jsonArrayListDePhoto.put(jsonObjectPhoto);
         }
+        //L'objet qui va contenir le résultat avec microsoft comme key et la liste des photos et vidéos en parametre
+        JSONObject jsonObjectMicrosoft = new JSONObject().put("Microsoft",jsonArrayListDePhoto);
+        return jsonObjectMicrosoft;
     }
 }

@@ -1,5 +1,7 @@
 package yoniz.l3x1.Main;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import yoniz.l3x1.apiFace.DetectFace;
@@ -16,25 +18,29 @@ import java.util.List;
 public class Main {
 
     public static void main (String []args) throws IOException {
-        //List des paths pour les vidéos
 
-        //List<String> videoPath = JsonUtil.ReadFile("src/main/resources/listeVideo.txt");
+        // Pour récupérer les paths des vidéos se trouvant dans le fichier passe en paramètre
+        List<String> videoPath = JsonUtil.ReadFile("src/main/resources/listeVideo.txt");
 
-        //Récupération des videosId renvoyé par l'API video Indexer pour chaque vidéo (ou par upload ou par les vidéos déja indexe)
-        //List<String> videoIds = MethodMain.uploadVideo(videoPath);
+        // Pour uploader les vidéos se trouvant dans le fichier listeVidéo et récupérer les id des vidéos
+        // List<String> videoIds = MethodMain.uploadVideo(videoPath);
 
+        // Pour avoir une liste de vidéos déja indexés sans avoir à les uploader auparavant
         List<String> videoIds = Arrays.asList("8f6aa69ebc","7c26a90418","b84e9c7f30");
-        System.out.println(videoIds.toString());
+        //System.out.println(videoIds.toString());
 
-        System.out.println(JsonUtil.getListLienVideo(videoIds));
-        //List<String> photoPath = JsonUtil.ReadFile("src/main/resources/listePhoto.txt");
-        //Création de toutes les Facelist pour chaque vidéo (stockés dans un id , 0 pour la 1ere video, ...)
-        //MethodMain.createFaceListFromPhotosOnVideo(videoIds,photoPath);
+        //Pour afficher l'ensemble des photos détéctées dans chaque vidéos
+        //System.out.println(JsonUtil.getListLienVideo(videoIds));
 
+        // Pour récupérer les paths des photos se trouvant dans le fichier passe en paramètre
+        List<String> photoPath = JsonUtil.ReadFile("src/main/resources/listePhoto.txt");
 
-        //MethodMain.detectFaceWithVideoAndPhoto(JsonUtil.ReadFile("src/main/resources/listePhoto.txt"),videoIds.size());
+        // Création de toutes les Facelist pour chaque vidéo (stockés dans un id , 0 pour la 1ere video, ...)
+        MethodMain.createFaceListFromPhotosOnVideo(videoIds,videoPath);
 
-
+        // Pour lancer la comparaison entre toutes les photos et les vidéos
+        JSONObject jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(photoPath,videoIds.size(),videoPath);
+        System.out.println(jsonResultat.toString(3));
 
     }
 
