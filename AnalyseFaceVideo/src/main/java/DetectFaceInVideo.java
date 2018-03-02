@@ -1,25 +1,16 @@
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.rekognition.AmazonRekognition;
-import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.*;
-import com.amazonaws.services.sns.AmazonSNS;
-import com.amazonaws.services.sns.AmazonSNSClientBuilder;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 
 
 public class DetectFaceInVideo {
-
+  public static   String startJobId=null;
 /*
     public static AWSCredentials connexionDetectFace( AmazonSQS sqs, AmazonSNS sns, AmazonRekognition rek)
 
@@ -48,9 +39,9 @@ public class DetectFaceInVideo {
 
     public static  void DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
-        String startJobId = "198d19cdec68869202839421718a5b3d55162e29c191ba11e15684ae224a8de3";
+        //String startJobId = "a849a056ed1ec63561d1bcab7a52c049b6570cc2fa0094adc5470b12469d2849";
         //##################################################################################
-        StartFaceSearchCollection(bucket,video,startJobId, rek,  channel, collectionId);//##
+        StartFaceSearchCollection(bucket,video, rek,  channel, collectionId);//##
         //##################################################################################
 
         System.out.println("Waiting for job: " + startJobId);
@@ -91,8 +82,9 @@ public class DetectFaceInVideo {
                     System.out.println("Status : " + operationStatus.toString());
                     if (operationStatus.asText().equals("SUCCEEDED")){
                         //#################################################
-                        GetResultsFaceSearchCollection(startJobId,rek);//##
+                         GetResultsFaceSearchCollection(startJobId,rek);//##
                         //============================================
+
                     }
                     else{
                         System.out.println("Video analysis failed");
@@ -107,11 +99,10 @@ public class DetectFaceInVideo {
             }
         } while (!jobFound);
 
-
         System.out.println("Done!");
     }// end DetectFacesInVideos
 
-    private static void StartFaceSearchCollection(String bucket, String video, String startJobId, AmazonRekognition rek, NotificationChannel channel,String collectionId) throws Exception
+    private static String StartFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId) throws Exception
     {
         StartFaceSearchRequest req = new StartFaceSearchRequest()
                 .withCollectionId(collectionId)
@@ -123,16 +114,16 @@ public class DetectFaceInVideo {
 
         StartFaceSearchResult startPersonCollectionSearchResult = rek.startFaceSearch(req);
         startJobId = startPersonCollectionSearchResult.getJobId();
-
+return startJobId;
     }// END Start
 
 
-    private static void GetResultsFaceSearchCollection(String startJobId,AmazonRekognition rek) throws Exception
+    private static void   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek) throws Exception
     {
 
         GetFaceSearchResult faceSearchResult=null;
-     //   int maxResults=10;
-        String paginationToken=null;
+     // int maxResults=10;
+       String paginationToken=null;
 
         do {
 
@@ -149,7 +140,6 @@ public class DetectFaceInVideo {
                             .withSortBy(FaceSearchSortBy.TIMESTAMP)
             );
 
-
             VideoMetadata videoMetaData=faceSearchResult.getVideoMetadata();
 
             System.out.println("Format: " + videoMetaData.getFormat());
@@ -157,14 +147,10 @@ public class DetectFaceInVideo {
             System.out.println("Duration: " + videoMetaData.getDurationMillis());
             System.out.println("FrameRate: " + videoMetaData.getFrameRate());
             System.out.println();
-
-
             //Show search results
             List<PersonMatch> matches= faceSearchResult.getPersons();
-
             for (PersonMatch match: matches) {
-                long seconds=match.getTimestamp()/1000;
-                System.out.print("Sec: \t" + Long.toString(seconds));
+
                 System.out.println("\t\tPerson number: " + match.getPerson().getIndex());
                 List <FaceMatch> faceMatches = match.getFaceMatches();
                 System.out.println("Matches in collection...");
@@ -172,15 +158,12 @@ public class DetectFaceInVideo {
                     Face face=faceMatch.getFace();
                     System.out.println("Face Id: "+ face.getFaceId());
                     System.out.println("Similarity: " + faceMatch.getSimilarity().toString());
-                    System.out.println();
                 }
-                System.out.println();
             }
-
-            System.out.println();
 
         } while (faceSearchResult !=null && faceSearchResult.getNextToken() != null);
 
-    }// end getResults
+    }
+// end getResults
 
 }

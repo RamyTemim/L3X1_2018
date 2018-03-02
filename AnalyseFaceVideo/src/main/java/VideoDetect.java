@@ -21,7 +21,7 @@ public class VideoDetect {
     AmazonRekognition rek=null;
     String collectionId = "CollectionF";
     String bucket = "yanisaws";
-    String nameOfImage = "V.jpg";
+    String nameOfImage = "yanho.jpg";
     //String startJobId = null;
     String queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
     NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video").withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
