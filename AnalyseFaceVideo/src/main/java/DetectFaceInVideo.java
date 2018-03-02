@@ -10,7 +10,8 @@ import java.util.List;
 
 
 public class DetectFaceInVideo {
-  public static   String startJobId=null;
+
+  private static   String startJobId=null;
 /*
     public static AWSCredentials connexionDetectFace( AmazonSQS sqs, AmazonSNS sns, AmazonRekognition rek)
 
@@ -50,13 +51,17 @@ public class DetectFaceInVideo {
         int dotLine=0;
         boolean jobFound=false;
         //loop until the job status is published. Ignore other messages in queue.
-        do{
+        do
+            {
             //Get messages.
-            do{
+            do
+                {
                 messages = sqs.receiveMessage(queueUrl).getMessages();
-                if (dotLine++<20){
+                if (dotLine++<20)
+                {
                     System.out.print(".");
-                }else{
+                }else
+                    {
                     System.out.println();
                     dotLine=0;
                 }
@@ -64,7 +69,8 @@ public class DetectFaceInVideo {
 
             System.out.println();
             //Loop through messages received.
-            for (Message message: messages) {
+            for (Message message: messages)
+            {
                 String notification = message.getBody();
                 // Get status and job id from notification.
                 ObjectMapper mapper = new ObjectMapper();
@@ -76,24 +82,25 @@ public class DetectFaceInVideo {
                 JsonNode operationStatus = jsonResultTree.get("Status");
                 System.out.println("Job found was " + operationJobId);
                 // Found job. Get the results and display.
-                if(operationJobId.asText().equals(startJobId)){
+                if(operationJobId.asText().equals(startJobId))
+                {
                     jobFound=true;
                     System.out.println("Job id: " + operationJobId );
                     System.out.println("Status : " + operationStatus.toString());
-                    if (operationStatus.asText().equals("SUCCEEDED")){
+                    if (operationStatus.asText().equals("SUCCEEDED"))
+                    {
                         //#################################################
                          GetResultsFaceSearchCollection(startJobId,rek);//##
                         //============================================
-
                     }
-                    else{
+                    else
+                        {
                         System.out.println("Video analysis failed");
                     }
-
                     sqs.deleteMessage(queueUrl,message.getReceiptHandle());
                 }
-
-                else{
+                else
+                    {
                     System.out.println("Job received was not job " +  startJobId);
                 }
             }
@@ -102,23 +109,21 @@ public class DetectFaceInVideo {
         System.out.println("Done!");
     }// end DetectFacesInVideos
 
-    private static String StartFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId) throws Exception
+    private static void StartFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId)
     {
         StartFaceSearchRequest req = new StartFaceSearchRequest()
                 .withCollectionId(collectionId)
-                .withVideo(new Video()
-                        .withS3Object(new S3Object()
-                                .withBucket(bucket)
-                                .withName(video)))
+                .withVideo(new Video().withS3Object(new S3Object().withBucket(bucket).withName(video)))
                 .withNotificationChannel(channel);
 
         StartFaceSearchResult startPersonCollectionSearchResult = rek.startFaceSearch(req);
         startJobId = startPersonCollectionSearchResult.getJobId();
-return startJobId;
+
+
     }// END Start
 
 
-    private static void   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek) throws Exception
+    private static void   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek)
     {
 
         GetFaceSearchResult faceSearchResult=null;
@@ -146,22 +151,24 @@ return startJobId;
             System.out.println("Codec: " + videoMetaData.getCodec());
             System.out.println("Duration: " + videoMetaData.getDurationMillis());
             System.out.println("FrameRate: " + videoMetaData.getFrameRate());
-            System.out.println();
+
             //Show search results
             List<PersonMatch> matches= faceSearchResult.getPersons();
             for (PersonMatch match: matches) {
 
-                System.out.println("\t\tPerson number: " + match.getPerson().getIndex());
-                List <FaceMatch> faceMatches = match.getFaceMatches();
-                System.out.println("Matches in collection...");
-                for (FaceMatch faceMatch: faceMatches){
-                    Face face=faceMatch.getFace();
-                    System.out.println("Face Id: "+ face.getFaceId());
-                    System.out.println("Similarity: " + faceMatch.getSimilarity().toString());
-                }
+                System.out.println("\t\tPerson number: " + match.getFaceMatches());
+
+                //List <FaceMatch> faceMatches = match.getFaceMatches();
+                //System.out.println("Matches in collection...");
+
+                //for (FaceMatch faceMatch : faceMatches){
+                 //   Face face=faceMatch.getFace();
+                  //  System.out.println("Face Id: "+ face.getFaceId());
+                   // System.out.println("Similarity: " + faceMatch.getSimilarity().toString());
+                //}
             }
 
-        } while (faceSearchResult !=null && faceSearchResult.getNextToken() != null);
+        } while (faceSearchResult.getNextToken() != null);
 
     }
 // end getResults
