@@ -1,0 +1,7 @@
+organization=tabtihocine-github
+projectKey=com.AnalyseVideo:AnalyseVideo
+serverUrl=https://sonarcloud.io
+serverVersion=7.1.0.36868
+dashboardUrl=https://sonarcloud.io/dashboard/index/com.AnalyseVideo:AnalyseVideo
+ceTaskId=AWHsnQfkvD4nwDDaIrjQ
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWHsnQfkvD4nwDDaIrjQ

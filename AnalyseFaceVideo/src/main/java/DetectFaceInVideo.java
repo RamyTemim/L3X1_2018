@@ -11,8 +11,19 @@ import java.util.List;
 
 public class DetectFaceInVideo {
 
-  private static   String startJobId=null;
+    private static   String startJobId=null;
 
+    /**
+     *
+     * @param bucket
+     * @param video
+     * @param rek
+     * @param channel
+     * @param collectionId
+     * @param queueUrl
+     * @param sqs
+     * @throws Exception
+     */
     public static  void DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
@@ -68,9 +79,17 @@ public class DetectFaceInVideo {
             }
         } while (!jobFound);
 
-        System.out.println("Done!");
     }// end DetectFacesInVideos
 
+
+    /**
+     *
+     * @param bucket
+     * @param video
+     * @param rek
+     * @param channel
+     * @param collectionId
+     */
     private static void StartFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId)
     {
         StartFaceSearchRequest req = new StartFaceSearchRequest()
@@ -85,20 +104,19 @@ public class DetectFaceInVideo {
     }// END Start
 
 
+    /**
+     *
+     * @param startJobId
+     * @param rek
+     */
     private static void   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek)
     {
-
         GetFaceSearchResult faceSearchResult=null;
-
        String paginationToken=null;
-
         do {
-
             if (faceSearchResult !=null){
                 paginationToken = faceSearchResult.getNextToken();
             }
-
-
             faceSearchResult  = rek.getFaceSearch(
                     new GetFaceSearchRequest()
                             .withJobId(startJobId)
@@ -108,33 +126,24 @@ public class DetectFaceInVideo {
 
             //Show search results
             List<PersonMatch> matches= faceSearchResult.getPersons();
+
             for (PersonMatch match: matches)
             {
                 if (match.getFaceMatches()!=null && match.getFaceMatches().size()!=0) {
-                    //System.out.println("\t\tPerson number: " + match.getFaceMatches());
+
                     List<FaceMatch> faceMatches = match.getFaceMatches();
+
                     for (FaceMatch faceMatch : faceMatches)
                     {
-                        Face face=faceMatch.getFace();
-                        System.out.println( face.getExternalImageId() +" est dans la video ");
-                      //  System.out.println("Similarity: " + faceMatch.getSimilarity().toString());
-                    }
 
+                        Face firstFace=faceMatch.getFace();
+                        System.out.println(firstFace.getExternalImageId() + " est dans la video :  " + VideoDetect.video);
+
+                    }
                 }
-                /*
-                List <FaceMatch> faceMatches = match.getFaceMatches();
-                System.out.println("Matches in collection...");
-                for (FaceMatch faceMatch : faceMatches)
-                 {
-                  Face face=faceMatch.getFace();
-                  System.out.println("Face Id: "+ face.getFaceId());
-                  System.out.println("Similarity: " + faceMatch.getSimilarity().toString());
-                }*/
             }
 
         } while (faceSearchResult.getNextToken() != null);
 
-    }
-// end getResults
-
+    }// end getResults
 }
