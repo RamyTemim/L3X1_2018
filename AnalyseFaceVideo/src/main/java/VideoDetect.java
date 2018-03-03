@@ -16,7 +16,7 @@ public class VideoDetect {
 
 
     public static void main(String[] args)  throws Exception{
-    AmazonSQS sqs = null;
+    AmazonSQS sqs ;
     AmazonSNS sns = null;
     AmazonRekognition rek=null;
     String collectionId = "CollectionF";
@@ -40,8 +40,8 @@ public class VideoDetect {
         rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
         .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
 
-       // credentials =DetectFaceInVideo.connexionDetectFace( sqs, sns, rek);
-          DetectFaceInVideo.DetectFacesInVideos( bucket,  video,   rek,  channel, collectionId, queueUrl, sqs);
+
+        DetectFaceInVideo.DetectFacesInVideos( bucket,  video,   rek,  channel, collectionId, queueUrl, sqs);
 
         }
         }
