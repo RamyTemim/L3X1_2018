@@ -53,7 +53,7 @@ public class FaceList {
             HttpEntity entity = response.getEntity();
 
             if (entity != null) {
-                System.out.println("Création de la faceList " + (Integer.parseInt(id)+1) + " réussi \n");
+                System.out.println("\nCréation de la faceList pour la vidéo " + (Integer.parseInt(id)+1) + " réussi \n");
             }
 
         } catch (Exception e) {
@@ -102,7 +102,7 @@ public class FaceList {
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
 
-            System.out.println(JsonUtil.httpToJsonObject(entity));
+            //System.out.println(JsonUtil.httpToJsonObject(entity));
         }
         catch (Exception e)
         {
@@ -144,7 +144,7 @@ public class FaceList {
     /**
      * Pour renvoyer la liste des photos d'une face list
      * @param id l'identifiant de la faceList à analyser
-     * @return Le fichier JSON contenanr la liste des identifiant des photos de la faceList id
+     * @return Le fichier JSON contenant la liste des identifiant des photos de la faceList id
      */
     public static JSONObject getFaceOflist(String id)
     {
@@ -197,7 +197,7 @@ public class FaceList {
 
             if (entity != null)
             {
-                System.out.println(EntityUtils.toString(entity));
+                //System.out.println(EntityUtils.toString(entity));
             }
         }
         catch (Exception e)

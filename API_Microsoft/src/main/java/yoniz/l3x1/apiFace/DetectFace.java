@@ -78,7 +78,7 @@ public class DetectFace {
             jsonObject = JsonUtil.httpToJsonObject(entity);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
         return jsonObject;
     }

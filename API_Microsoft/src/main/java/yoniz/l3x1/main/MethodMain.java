@@ -1,4 +1,4 @@
-package yoniz.l3x1.Main;
+package yoniz.l3x1.main;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -75,14 +75,14 @@ public class MethodMain {
 
             //Création de la faceList qui va contenir les photos extraite de la vidéo
             FaceList.create(JsonUtil.pathToName(pathVideos.get(i)), String.valueOf(i), "yoni");
-            System.out.println("Ajout des photos dans la liste " + (i+1) + " : ");
+            //System.out.println("Ajout des photos dans la liste " + (i+1) + " : ");
             //Ajout des photos dans la faceList
             for (int j = 0; j < faces.length(); j++) {
                 FaceList.addFace(listUrlPhoto.get(j), String.valueOf(i), "Photo ".concat(String.valueOf(j+1)), true);
             }
 
-            System.out.println("\nListe "+ (i+1) + ": ");
-            System.out.println(FaceList.getFaceOflist(String.valueOf(i)).toString(2));
+            //System.out.println("\nListe "+ (i+1) + ": ");
+            //System.out.println(FaceList.getFaceOflist(String.valueOf(i)).toString(2));
         }
     }
 
