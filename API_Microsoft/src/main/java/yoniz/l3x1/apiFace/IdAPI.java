@@ -3,10 +3,10 @@ package yoniz.l3x1.apiFace;
 public interface IdAPI {
 
     //Clé pour accéder à l'Api Face
-    //String subscriptionKey = "54fc76374ac34667b970aad66bff6b6d";
+    String subscriptionKey = "54fc76374ac34667b970aad66bff6b6d";
 
     // 2
-    String subscriptionKey = "081ada40e80e4a5c9be2ceb2f9f06941";
+    //String subscriptionKey = "081ada40e80e4a5c9be2ceb2f9f06941";
 
     //Url pour accéder à la fonction de detection des visages dans l'API face
     String uriBaseDetect = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/detect";
