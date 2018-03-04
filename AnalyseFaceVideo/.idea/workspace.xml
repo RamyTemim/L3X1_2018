@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9a0c992-0ece-42a7-ae63-cfe89de2ace3" name="Default" comment="detcte face dans une video regler">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/S3operation.java" afterPath="$PROJECT_DIR$/src/main/java/S3operation.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VideoDetect.java" afterPath="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
-    </list>
+    <list default="true" id="f9a0c992-0ece-42a7-ae63-cfe89de2ace3" name="Default" comment="detcte face dans une video regler" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,10 +62,11 @@
       <file leaf-file-name="S3operation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
+            <state relative-caret-position="620">
               <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#getS3Client#0;class#S3operation#0" expanded="false" />
                 <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
                 <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
                 <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
@@ -388,7 +385,7 @@
       <workItem from="1519982199456" duration="4987000" />
       <workItem from="1519987382715" duration="38000" />
       <workItem from="1519987466492" duration="19774000" />
-      <workItem from="1520159846287" duration="7963000" />
+      <workItem from="1520159846287" duration="8627000" />
     </task>
     <task id="LOCAL-00001" summary="hocine">
       <created>1519741937732</created>
@@ -415,7 +412,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104419000" />
+    <option name="totallyTimeSpent" value="105083000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -864,10 +861,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
+        <state relative-caret-position="620">
           <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getS3Client#0;class#S3operation#0" expanded="false" />
             <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
             <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
             <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
