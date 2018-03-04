@@ -16,10 +16,7 @@ public class VideoDetect {
     public static  String video ="Video.mov";
 
     public static void main(String[] args)  throws Exception{
-
-    AmazonSQS sqs ;
-    AmazonSNS sns = null;
-    AmazonRekognition rek=null;
+        
     String collectionId = "CollectionF";
     String bucket = "yanisaws";
     String nameOfImage = "yanho.jpg";
@@ -35,9 +32,9 @@ public class VideoDetect {
         CreatCollectionFaces.addFace(credentials,bucket,nameOfImage,collectionId);
 
 
-        sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-        sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-        rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
+        AmazonSNS  sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        AmazonSQS  sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        AmazonRekognition  rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
         .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
 
 
