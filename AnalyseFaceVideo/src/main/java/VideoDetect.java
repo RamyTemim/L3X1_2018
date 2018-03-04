@@ -1,4 +1,5 @@
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
@@ -10,6 +11,7 @@ import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.NotificationChannel;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
@@ -21,18 +23,18 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
 import java.io.File;
+import java.util.Iterator;
 
 
 public class VideoDetect {
 
-   public static  String video ="Video.mov";
-    public  static String bucket = "yanisaws";
-    public static  String filePath = "/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/svn_script.sh";
+    public static  String video ="Video.mov";
+    public  static String bucket = "compartimentimages";
+   public static  String filePath = "/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/svn_script.sh";
 
     public static void main(String[] args)  throws Exception
     {
-
-    String collectionId = "CollectionF";
+        String collectionId = "CollectionF";
     String bucket = "yanisaws";
     String nameOfImage = "yanho.jpg";
     String queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
@@ -42,7 +44,6 @@ public class VideoDetect {
 
 
         credentials =CreatCollectionFaces.connexionIdexFace();
-        CreatCollectionFaces.DeleteCollection(collectionId,credentials);
         CreatCollectionFaces.CreatCollectionFace(credentials, collectionId);
         CreatCollectionFaces.addFace(credentials,bucket,nameOfImage,collectionId);
 
@@ -50,14 +51,21 @@ public class VideoDetect {
         AmazonSNS  sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         AmazonSQS  sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         AmazonRekognition  rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
-        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
-
-
+                   .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
         DetectFaceInVideo.DetectFacesInVideos( bucket,  video,   rek,  channel, collectionId, queueUrl, sqs);
+        CreatCollectionFaces.DeleteCollection(collectionId,credentials);
 
 
 
 
-    }// END MAIN
+
+
+
+
+
+
+
+
+}// END MAIN
 
 }// END CLASS

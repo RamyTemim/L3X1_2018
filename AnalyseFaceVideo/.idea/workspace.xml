@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a0c992-0ece-42a7-ae63-cfe89de2ace3" name="Default" comment="detcte face dans une video regler">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/S3operation.java" afterPath="$PROJECT_DIR$/src/main/java/S3operation.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VideoDetect.java" afterPath="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
     </list>
@@ -19,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VideoDetect.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VideoDetect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/VideoDetect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="192">
+              <caret line="30" column="4" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,11 +35,12 @@
       <file leaf-file-name="CreatCollectionFaces.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/CreatCollectionFaces.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
+            <state relative-caret-position="-14">
               <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#connexionIdexFace#0;class#CreatCollectionFaces#0" expanded="false" />
+                <element signature="method#getAWSR#0;class#CreatCollectionFaces#0" expanded="false" />
                 <element signature="method#CreatCollectionFace#0;class#CreatCollectionFaces#0" expanded="false" />
                 <element signature="method#addFace#0;class#CreatCollectionFaces#0" expanded="false" />
                 <element signature="method#DeleteCollection#0;class#CreatCollectionFaces#0" expanded="false" />
@@ -61,16 +63,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="S3operation.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="S3operation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="76" column="44" lean-forward="false" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
+            <state relative-caret-position="512">
+              <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
+                <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
                 <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
-                <element signature="e#4096#4104#0" expanded="true" />
+                <element signature="e#4027#4035#0" expanded="true" />
+                <element signature="method#PurgeBucket#0;class#S3operation#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -120,8 +124,8 @@
         <option value="$PROJECT_DIR$/src/main/java/CreatCollectionFaces.java" />
         <option value="$PROJECT_DIR$/src/main/java/ConnexionAnalyse.java" />
         <option value="$PROJECT_DIR$/src/main/java/DetectFaceInVideo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/S3operation.java" />
         <option value="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/S3operation.java" />
       </list>
     </option>
   </component>
@@ -384,7 +388,7 @@
       <workItem from="1519982199456" duration="4987000" />
       <workItem from="1519987382715" duration="38000" />
       <workItem from="1519987466492" duration="19774000" />
-      <workItem from="1520159846287" duration="5414000" />
+      <workItem from="1520159846287" duration="7963000" />
     </task>
     <task id="LOCAL-00001" summary="hocine">
       <created>1519741937732</created>
@@ -411,7 +415,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101870000" />
+    <option name="totallyTimeSpent" value="104419000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -502,7 +506,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="54" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -835,11 +839,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/CreatCollectionFaces.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
+        <state relative-caret-position="-14">
           <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#connexionIdexFace#0;class#CreatCollectionFaces#0" expanded="false" />
+            <element signature="method#getAWSR#0;class#CreatCollectionFaces#0" expanded="false" />
             <element signature="method#CreatCollectionFace#0;class#CreatCollectionFaces#0" expanded="false" />
             <element signature="method#addFace#0;class#CreatCollectionFaces#0" expanded="false" />
             <element signature="method#DeleteCollection#0;class#CreatCollectionFaces#0" expanded="false" />
@@ -847,25 +852,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/VideoDetect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="76" column="44" lean-forward="false" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
+        <state relative-caret-position="192">
+          <caret line="30" column="4" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="e#4096#4104#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/VideoDetect.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="512">
+          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="e#4027#4035#0" expanded="true" />
+            <element signature="method#PurgeBucket#0;class#S3operation#0" expanded="false" />
           </folding>
         </state>
       </provider>
