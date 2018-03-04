@@ -137,7 +137,7 @@ public class DetectFaceInVideo {
                     {
 
                         Face firstFace=faceMatch.getFace();
-                        System.out.println(firstFace.getExternalImageId() + " est dans la video :  " + VideoDetect.video);
+                       // System.out.println(firstFace.getExternalImageId() + " est dans la video :  " + VideoDetect.video);
 
                     }
                 }

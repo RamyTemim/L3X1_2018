@@ -8,22 +8,22 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class S3operation {
-    private static String bucketName = "*** bucket name ***";
+    private static String bucketName = "";
+
     String existingBucketName = "*** Provide existing bucket name ***";
     String keyName            = "*** Provide object key ***";
     String filePath           = "*** Path to and name of the file to upload ***";
 
-    /**
-     * @return
-     */
     private static AmazonS3 getS3Client() {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
@@ -32,9 +32,7 @@ public class S3operation {
     }// END  getS3Client
 
 
-    /**
-     *
-     */
+
     public static void CreatBucket()
     {
         try {
@@ -67,13 +65,7 @@ public class S3operation {
     }// END  CreatBucket
 
 
-    /**
-     *
-     * @param existingBucketName
-     * @param keyName
-     * @param filePath
-     * @throws Exception
-     */
+
     public static void UploadFileToBucket( String existingBucketName, String keyName,  String filePath) throws Exception
     {
 
@@ -95,13 +87,20 @@ public class S3operation {
     }// END UploadFileToBucket
 
 
-    public  static void ListOfFiles ()
+    public  static List<String>  ListFilesInBucket()
     {
-        ObjectListing objectListing = getS3Client().listObjects(new ListObjectsRequest().withBucketName(bucketName));
-
+        AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
+        s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
+        ObjectListing objectListing = s3client.listObjects(new ListObjectsRequest().withBucketName(bucketName));
+        List<S3ObjectSummary> summary =  objectListing.getObjectSummaries();
+        List<String> listefile =new ArrayList<String>();
+        for (S3ObjectSummary sun : summary)
+        {
+            listefile.add(sun.getKey());
+        }
+     return listefile;
 
     }// END  ListOfFiles
-
 }//END CLASs
 
 
