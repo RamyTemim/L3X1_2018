@@ -18,6 +18,7 @@ import java.util.List;
 
 
 public class S3operation {
+
     private static String bucketName = "";
 
     String existingBucketName = "*** Provide existing bucket name ***";
@@ -69,11 +70,11 @@ public class S3operation {
     public static void UploadFileToBucket( String existingBucketName, String keyName,  String filePath) throws Exception
     {
 
+        File file = new File(filePath);
         TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
-
         // TransferManager processes all transfers asynchronously,
         // so this call will return immediately.
-        Upload upload = tm.upload(existingBucketName, keyName, new File(filePath));
+        Upload upload = tm.upload(bucketName, keyName , file );
 
         try {
             // Or you can block and wait for the upload to finish
@@ -101,6 +102,7 @@ public class S3operation {
      return listefile;
 
     }// END  ListOfFiles
+
 }//END CLASs
 
 

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a0c992-0ece-42a7-ae63-cfe89de2ace3" name="Default" comment="detcte face dans une video regler">
-      <change beforePath="$PROJECT_DIR$/src/main/java/DetectFaceInVideo.java" afterPath="$PROJECT_DIR$/src/main/java/DetectFaceInVideo.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/S3operation.java" afterPath="$PROJECT_DIR$/src/main/java/S3operation.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VideoDetect.java" afterPath="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
     </list>
@@ -20,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VideoDetect.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VideoDetect.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/VideoDetect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="23" column="2" lean-forward="false" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+            <state relative-caret-position="494">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,16 +61,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="S3operation.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="S3operation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="98" column="40" lean-forward="true" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
+            <state relative-caret-position="422">
+              <caret line="76" column="44" lean-forward="false" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
-                <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
-                <element signature="e#4076#4084#0" expanded="true" />
+                <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
+                <element signature="e#4096#4104#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,8 +120,8 @@
         <option value="$PROJECT_DIR$/src/main/java/CreatCollectionFaces.java" />
         <option value="$PROJECT_DIR$/src/main/java/ConnexionAnalyse.java" />
         <option value="$PROJECT_DIR$/src/main/java/DetectFaceInVideo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
         <option value="$PROJECT_DIR$/src/main/java/S3operation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
       </list>
     </option>
   </component>
@@ -157,7 +156,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -170,7 +169,48 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="AnalyseFaceVideo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AnalyseFaceVideo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AnalyseFaceVideo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AnalyseFaceVideo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AnalyseFaceVideo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AnalyseFaceVideo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AnalyseFaceVideo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AnalyseFaceVideo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AnalyseFaceVideo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AnalyseFaceVideo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -344,7 +384,7 @@
       <workItem from="1519982199456" duration="4987000" />
       <workItem from="1519987382715" duration="38000" />
       <workItem from="1519987466492" duration="19774000" />
-      <workItem from="1520159846287" duration="4403000" />
+      <workItem from="1520159846287" duration="5414000" />
     </task>
     <task id="LOCAL-00001" summary="hocine">
       <created>1519741937732</created>
@@ -371,7 +411,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100859000" />
+    <option name="totallyTimeSpent" value="101870000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -428,7 +468,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="SonarQube" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="SonarQube" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -442,7 +482,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44758064" sideWeight="0.49761903" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4137709" sideWeight="0.49298596" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4137709" sideWeight="0.49298596" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4137709" sideWeight="0.50701404" order="5" side_tool="true" content_ui="tabs" />
@@ -781,6 +821,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DetectFaceInVideo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#DetectFacesInVideos#0;class#DetectFaceInVideo#0" expanded="false" />
+            <element signature="method#StartFaceSearchCollection#0;class#DetectFaceInVideo#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/CreatCollectionFaces.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -795,37 +847,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DetectFaceInVideo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        <state relative-caret-position="422">
+          <caret line="76" column="44" lean-forward="false" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#DetectFacesInVideos#0;class#DetectFaceInVideo#0" expanded="false" />
-            <element signature="method#StartFaceSearchCollection#0;class#DetectFaceInVideo#0" expanded="false" />
+            <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="e#4096#4104#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/VideoDetect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="23" column="2" lean-forward="false" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+        <state relative-caret-position="494">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="98" column="40" lean-forward="true" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="e#4076#4084#0" expanded="true" />
           </folding>
         </state>
       </provider>

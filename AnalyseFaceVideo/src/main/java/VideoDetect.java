@@ -1,3 +1,4 @@
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
@@ -12,18 +13,24 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.amazonaws.services.s3.transfer.TransferManager;
+import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
-import java.util.List;
+import java.io.File;
+
 
 public class VideoDetect {
 
    public static  String video ="Video.mov";
     public  static String bucket = "yanisaws";
-    public static void main(String[] args)  throws Exception{
+    public static  String filePath = "/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/svn_script.sh";
+
+    public static void main(String[] args)  throws Exception
+    {
 
     String collectionId = "CollectionF";
     String bucket = "yanisaws";
@@ -50,5 +57,7 @@ public class VideoDetect {
 
 
 
-    }
-        }
+
+    }// END MAIN
+
+}// END CLASS
