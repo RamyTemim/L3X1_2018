@@ -1,7 +1,5 @@
 package yoniz.l3x1.apiFace;
 
-import com.eclipsesource.json.Json;
-import com.eclipsesource.json.JsonObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -15,7 +13,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import yoniz.l3x1.util.JsonUtil;
-
 
 import java.io.File;
 import java.net.URI;
@@ -43,7 +40,7 @@ public class FaceList {
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
 
             //Création du fichier Json pour l'envoyer à l'api
-            JsonObject j= Json.object().add("name",name).add("userData",user);
+            JSONObject j= new JSONObject().put("name",name).put("userData",user);
             StringEntity reqEntity =new StringEntity(j.toString());
 
 
@@ -86,7 +83,7 @@ public class FaceList {
             if (url)
             {
                 request.setHeader("Content-Type", "application/json");
-                JsonObject json = Json.object().add("url", path);
+                JSONObject json = new JSONObject().put("url", path);
                 request.setEntity(new StringEntity(json.toString()));
             }
 
@@ -102,7 +99,7 @@ public class FaceList {
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
 
-            //System.out.println(JsonUtil.httpToJsonObject(entity));
+            System.out.println(JsonUtil.httpToJsonObject(entity));
         }
         catch (Exception e)
         {
@@ -197,7 +194,7 @@ public class FaceList {
 
             if (entity != null)
             {
-                //System.out.println(EntityUtils.toString(entity));
+                System.out.println(EntityUtils.toString(entity));
             }
         }
         catch (Exception e)

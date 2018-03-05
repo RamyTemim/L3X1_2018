@@ -1,7 +1,6 @@
 package yoniz.l3x1.util;
 
-import com.eclipsesource.json.Json;
-import com.eclipsesource.json.JsonObject;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
@@ -9,7 +8,11 @@ import org.json.JSONObject;
 import yoniz.l3x1.apiFace.IdAPI;
 import yoniz.l3x1.videoIndexer.VideoIndexer;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

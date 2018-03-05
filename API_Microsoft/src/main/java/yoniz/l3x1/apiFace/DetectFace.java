@@ -1,9 +1,6 @@
 package yoniz.l3x1.apiFace;
 
-import com.eclipsesource.json.Json;
-import com.eclipsesource.json.JsonObject;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
@@ -17,7 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import yoniz.l3x1.util.JsonUtil;
 
-import java.io.Closeable;
 import java.io.File;
 import java.net.URI;
 
@@ -58,7 +54,7 @@ public class DetectFace {
             if (url)
             {
                 request.setHeader("Content-Type", "application/json");
-                JsonObject json = Json.object().add("url", path);
+                JSONObject json = new JSONObject().put("url", path);
                 request.setEntity(new StringEntity(json.toString()));
             }
 
@@ -78,7 +74,7 @@ public class DetectFace {
             jsonObject = JsonUtil.httpToJsonObject(entity);
 
         } catch (Exception e) {
-            //System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return jsonObject;
     }
@@ -104,8 +100,8 @@ public class DetectFace {
             request.setHeader("Content-Type", "application/json");
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
 
-            JsonObject json = Json.object().add("faceId",faceId)
-                                            .add("faceListId",faceListId);
+            JSONObject json = new JSONObject().put("faceId",faceId)
+                                                .put("faceListId",faceListId);
 
 
             StringEntity reqEntity = new StringEntity(json.toString());
@@ -117,7 +113,7 @@ public class DetectFace {
         }
         catch (Exception e)
         {
-            //System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return jsonArray;
     }

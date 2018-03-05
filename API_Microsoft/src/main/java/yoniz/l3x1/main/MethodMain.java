@@ -33,7 +33,7 @@ public class MethodMain {
             nbVideoUpload = 0;
             for (int i = 0; i<videoIds.size();i++){
                 JSONObject json = VideoIndexer.getProcessingState(videoIds.get(i));
-                System.out.println("Video " + i + " : " +json);
+                System.out.println("Video " + (i+1) + " : " +json);
                 if (json.get("state").toString().equals("Processed"))
                 {
                    nbVideoUpload++;
