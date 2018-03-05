@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6ed799b-dd24-4155-8adf-229f39dbdb24" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_eclipsesource_minimal_json_minimal_json_0_9_4.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/API_Microsoft.iml" afterPath="$PROJECT_DIR$/API_Microsoft.iml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/apiFace/DetectFace.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/apiFace/DetectFace.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/apiFace/FaceList.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/apiFace/FaceList.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/MethodMain.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/MethodMain.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/springBoot/application/ApplicationSpringBoot.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/springBoot/application/ApplicationSpringBoot.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/springBoot/controller/MicrosoftController.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/springBoot/controller/MicrosoftController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/springBoot/service/MicrosoftService.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/springBoot/service/MicrosoftService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/util/JsonUtil.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/util/JsonUtil.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/videoIndexer/VideoIndexer.java" afterPath="$PROJECT_DIR$/src/main/java/yoniz/l3x1/videoIndexer/VideoIndexer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,8 +101,8 @@
       <file leaf-file-name="MethodMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/MethodMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+            <state relative-caret-position="664">
+              <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#uploadVideo#0;class#MethodMain#0" expanded="false" />
@@ -553,7 +541,7 @@
       <workItem from="1520127882508" duration="153000" />
       <workItem from="1520191870670" duration="3122000" />
       <workItem from="1520247137586" duration="90000" />
-      <workItem from="1520259525429" duration="351000" />
+      <workItem from="1520259525429" duration="950000" />
     </task>
     <task id="LOCAL-00001" summary="Lire un fichier avec les control de sécurité">
       <created>1519677051501</created>
@@ -604,11 +592,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520194615756</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Résoluion de problèmes avec controller et service">
+      <created>1520260198734</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1520260198734</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33709000" />
+    <option name="totallyTimeSpent" value="34308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -661,7 +656,8 @@
     <MESSAGE value="Implémentation de la méthode permettant de récupérer les liens vers les photos extraite des vidéos (dans la méthode JsonUtil)" />
     <MESSAGE value="Rajout d'une méthode permettant de renvoyer le résultat final sous la forme d'un fichier JSON" />
     <MESSAGE value="Ajout de l'application SpringBoot pour Microsoft" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de l'application SpringBoot pour Microsoft" />
+    <MESSAGE value="Résoluion de problèmes avec controller et service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Résoluion de problèmes avec controller et service" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1058,8 +1054,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/yoniz/l3x1/main/MethodMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        <state relative-caret-position="664">
+          <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#uploadVideo#0;class#MethodMain#0" expanded="false" />
