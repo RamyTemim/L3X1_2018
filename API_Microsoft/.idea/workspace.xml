@@ -541,7 +541,7 @@
       <workItem from="1520127882508" duration="153000" />
       <workItem from="1520191870670" duration="3122000" />
       <workItem from="1520247137586" duration="90000" />
-      <workItem from="1520259525429" duration="950000" />
+      <workItem from="1520259525429" duration="967000" />
     </task>
     <task id="LOCAL-00001" summary="Lire un fichier avec les control de sécurité">
       <created>1519677051501</created>
@@ -599,11 +599,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520260198734</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit inutile">
+      <created>1520261944820</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1520261944820</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34308000" />
+    <option name="totallyTimeSpent" value="34325000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -657,7 +664,8 @@
     <MESSAGE value="Rajout d'une méthode permettant de renvoyer le résultat final sous la forme d'un fichier JSON" />
     <MESSAGE value="Ajout de l'application SpringBoot pour Microsoft" />
     <MESSAGE value="Résoluion de problèmes avec controller et service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Résoluion de problèmes avec controller et service" />
+    <MESSAGE value="commit inutile" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit inutile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
