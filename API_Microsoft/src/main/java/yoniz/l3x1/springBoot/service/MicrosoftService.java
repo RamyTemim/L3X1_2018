@@ -32,6 +32,7 @@ public class MicrosoftService {
         List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418", "b84e9c7f30");
         //System.out.println(videoIds.toString());
 
+        
         //Pour afficher l'ensemble des photos detectes dans chaque vidéo
         //System.out.println(JsonUtil.getListLienVideo(videoIds));
 
