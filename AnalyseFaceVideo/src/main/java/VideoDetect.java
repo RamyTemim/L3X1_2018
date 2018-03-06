@@ -13,14 +13,13 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class VideoDetect {
   public static   String collectionId = "yoni";
-  //public static  String video= "film1.mov";
-  //public static String  bucketVideos = "yanisaws";
-   // public static String  pho = "a.jpg";
+
     public static void main(String[] args)  throws Exception
     {
 
@@ -32,11 +31,11 @@ public class VideoDetect {
         NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video").withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
 
         AWSCredentials credentials;
-        String  pathPhoto = "src/main/resources/listePhoto.txt";
-        String  pathVideo = "src/main/resources/listeVideo.txt";
+      //  String  pathPhoto = "src/main/resources/listePhoto.txt";
+      //  String  pathVideo = "src/main/resources/listeVideo.txt";
 
-        List<String> listpathTophoto = JsonUtil.ReadFile(pathPhoto);
-        List<String> listpathToVideo = JsonUtil.ReadFile(pathVideo);
+       // List<String> listpathTophoto = JsonUtil.ReadFile(pathPhoto);
+       // List<String> listpathToVideo = JsonUtil.ReadFile(pathVideo);
 /*
         S3operation.CreatBucket(bucketPhoto);
         for (String aListpathTophoto : listpathTophoto)
@@ -70,37 +69,14 @@ public class VideoDetect {
 
 
         List<String> listnameOfVideos = S3operation.ListFilesInBucket(bucketVideo);
+        List<List<String>> listImageInVideo = new ArrayList<List<String>>();
 
         for (int i =0 ; i<listnameOfVideos.size();i++)
         {
-            DetectFaceInVideo.DetectFacesInVideos(bucketVideo, listnameOfVideos.get(i), rek, channel, collectionId, queueUrl, sqs);
+           listImageInVideo.add(DetectFaceInVideo.DetectFacesInVideos(bucketVideo, listnameOfVideos.get(i), rek, channel, collectionId, queueUrl, sqs));
         }
+        System.out.println(listImageInVideo);
 
-
-
-        /*
-        String collectionId = "CollectionF";
-    String bucket = "yanisaws";
-    String nameOfImage = "yanho.jpg";
-    String queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
-    NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video").withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
-    AWSCredentials credentials;
-
-
-
-        credentials =CreatCollectionFaces.connexionIdexFace();
-        CreatCollectionFaces.CreatCollectionFace(credentials, collectionId);
-        CreatCollectionFaces.addFace(credentials,bucket,nameOfImage,collectionId);
-
-
-        AmazonSNS  sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-        AmazonSQS  sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-        AmazonRekognition  rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
-                   .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
-        DetectFaceInVideo.DetectFacesInVideos( bucket,  video,   rek,  channel, collectionId, queueUrl, sqs);
-        CreatCollectionFaces.DeleteCollection(collectionId,credentials);
-
-*/
 }// END MAIN
 
 }// END CLASS

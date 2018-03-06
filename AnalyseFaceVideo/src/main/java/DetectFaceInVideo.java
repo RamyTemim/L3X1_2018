@@ -6,7 +6,9 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 
 public class DetectFaceInVideo {
@@ -24,13 +26,13 @@ public class DetectFaceInVideo {
      * @param sqs
      * @throws Exception
      */
-    public static  void DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
+    public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
         //##################################################################################
         StartFaceSearchCollection(bucket,video, rek,  channel, collectionId);//#############
         //##################################################################################
-
+        List<String> listnameimage = new ArrayList<String>();
         System.out.println("Waiting for job: " + startJobId);
         //Poll queue for messages
         List<Message> messages;
@@ -74,7 +76,7 @@ public class DetectFaceInVideo {
                     if (operationStatus.asText().equals("SUCCEEDED"))
                     {
                         //####################################################
-                         GetResultsFaceSearchCollection(startJobId,rek,video);//####
+                        listnameimage= GetResultsFaceSearchCollection(startJobId,rek,video);//####
                         //####################################################
                     }
                     else
@@ -90,6 +92,7 @@ public class DetectFaceInVideo {
 
         } while (!jobFound);
         System.out.println("Done!");
+        return listnameimage;
     }// end DetectFacesInVideos
 
 
@@ -120,10 +123,11 @@ public class DetectFaceInVideo {
      * @param startJobId
      * @param rek
      */
-    private static void   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek,String video)
+    private static List<String>   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek,String video)
     {
         GetFaceSearchResult faceSearchResult=null;
        String paginationToken=null;
+        List<String> nameimage = new ArrayList<String>();
         do {
             if (faceSearchResult !=null){
                 paginationToken = faceSearchResult.getNextToken();
@@ -143,17 +147,21 @@ public class DetectFaceInVideo {
                 if (match.getFaceMatches()!=null && match.getFaceMatches().size()!=0) {
 
                     List<FaceMatch> faceMatches = match.getFaceMatches();
-
                     for (FaceMatch faceMatch : faceMatches)
                     {
-                        Face firstFace=faceMatch.getFace();
-                        System.out.println(firstFace.getExternalImageId() + " est dans la video :  "+ video);
+                        Face face= faceMatch.getFace();
+                        String im = face.getExternalImageId();
+                        if (!nameimage.contains(im))
+                        {
+                            nameimage.add(im);
+                        }
 
                     }
+
                 }
             }
 
         } while (faceSearchResult !=null && faceSearchResult.getNextToken() != null);
-
+      return nameimage;
     }// end getResults
 }
