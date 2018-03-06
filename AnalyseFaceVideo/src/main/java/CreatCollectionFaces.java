@@ -45,7 +45,7 @@ public class CreatCollectionFaces {
     {
         return AmazonRekognitionClientBuilder
                 .standard()
-                .withRegion(Regions.US_EAST_2)
+                .withRegion(Regions.US_EAST_1)
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
     }
@@ -81,7 +81,7 @@ public class CreatCollectionFaces {
 
         AmazonRekognition amazonRekognition = AmazonRekognitionClientBuilder
                 .standard()
-                .withRegion(Regions.US_EAST_2)
+                .withRegion(Regions.US_EAST_1)
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
 

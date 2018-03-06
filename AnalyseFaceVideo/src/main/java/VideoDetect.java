@@ -18,15 +18,18 @@ import java.util.List;
 
 public class VideoDetect {
   public static   String collectionId = "yoni";
+  //public static  String video= "film1.mov";
+  //public static String  bucketVideos = "yanisaws";
+   // public static String  pho = "a.jpg";
     public static void main(String[] args)  throws Exception
     {
 
 
-        String  bucketPhoto= "lxphotos";
-        String  bucketVideo = "lxvideos";
+        String  bucketPhoto= "lxphoto";
+        String  bucketVideo = "lxvideo";
        // String collectionId = "CollectionFac";
-        String queueUrl =  "https://sqs.us-east-2.amazonaws.com/378526699773/VideoRek";
-        NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-2:378526699773:VideoRek").withRoleArn("arn:aws:iam::378526699773:role/Rekognition");
+        String queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
+        NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video").withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
 
         AWSCredentials credentials;
         String  pathPhoto = "src/main/resources/listePhoto.txt";
@@ -49,21 +52,23 @@ public class VideoDetect {
 
 
         credentials =CreatCollectionFaces.connexionIdexFace();
-       CreatCollectionFaces.DeleteCollection(collectionId,credentials);
+        CreatCollectionFaces.DeleteCollection(collectionId,credentials);
         CreatCollectionFaces.CreatCollectionFace(credentials, collectionId);
 
         List<String> listnameOfImage = S3operation.ListFilesInBucket(bucketPhoto);
         for (int i=0; i<listnameOfImage.size();i++)
         {
-            CreatCollectionFaces.addFace(credentials, bucketPhoto, listnameOfImage.get(i), collectionId);
+            CreatCollectionFaces.addFace(credentials, bucketPhoto, listnameOfImage.get(i) ,collectionId);
         }
 
 
 
-        AmazonSNS  sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_2).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
-        AmazonSQS  sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_2).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        AmazonSNS  sns = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        AmazonSQS  sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
         AmazonRekognition  rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-2.amazonaws.com", "us-east-2")).build();
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
+
+
         List<String> listnameOfVideos = S3operation.ListFilesInBucket(bucketVideo);
 
         for (int i =0 ; i<listnameOfVideos.size();i++)

@@ -20,7 +20,7 @@ public class S3operation {
 
     private static AmazonS3 getS3Client() {
         AmazonS3 s3client = new AmazonS3Client();
-        s3client.setRegion(Region.getRegion(Regions.US_EAST_2));
+        s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
 
         return s3client;
     }// END  getS3Client
@@ -83,7 +83,7 @@ public class S3operation {
     public  static List<String>  ListFilesInBucket(String bucketName)
     {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
-        s3client.setRegion(Region.getRegion(Regions.US_EAST_2));
+        s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
         ObjectListing objectListing = s3client.listObjects(new ListObjectsRequest().withBucketName(bucketName));
         List<S3ObjectSummary> summary =  objectListing.getObjectSummaries();
         List<String> listefile =new ArrayList<String>();

@@ -34,7 +34,7 @@ public class DetectFaceInVideo {
         System.out.println("Waiting for job: " + startJobId);
         //Poll queue for messages
         List<Message> messages;
-
+        int dotLine=0;
         boolean jobFound=false;
         //loop until the job status is published. Ignore other messages in queue.
         do
@@ -43,6 +43,13 @@ public class DetectFaceInVideo {
             do
                 {
                 messages = sqs.receiveMessage(queueUrl).getMessages();
+
+                    if (dotLine++<100){
+                        System.out.print(".");
+                    }else{
+                        System.out.println();
+                        dotLine=0;
+                    }
 
             }while(messages.isEmpty());
 
@@ -58,6 +65,7 @@ public class DetectFaceInVideo {
                 JsonNode jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
                 JsonNode operationJobId = jsonResultTree.get("JobId");
                 JsonNode operationStatus = jsonResultTree.get("Status");
+                System.out.println("Job found was " + operationJobId);
                 if(operationJobId.asText().equals(startJobId))
                 {
                     jobFound=true;
@@ -74,11 +82,14 @@ public class DetectFaceInVideo {
                         System.out.println("Video analysis failed");
                     }
                     sqs.deleteMessage(queueUrl,message.getReceiptHandle());
+                }else{
+                    System.out.println("Job received was not job " +  startJobId);
                 }
 
             }
-        } while (!jobFound);
 
+        } while (!jobFound);
+        System.out.println("Done!");
     }// end DetectFacesInVideos
 
 
@@ -136,13 +147,13 @@ public class DetectFaceInVideo {
                     for (FaceMatch faceMatch : faceMatches)
                     {
                         Face firstFace=faceMatch.getFace();
-                        System.out.println(firstFace.getExternalImageId() + " est dans la video :  " +video);
+                        System.out.println(firstFace.getExternalImageId() + " est dans la video :  "+ video);
 
                     }
                 }
             }
 
-        } while (faceSearchResult.getNextToken() != null);
+        } while (faceSearchResult !=null && faceSearchResult.getNextToken() != null);
 
     }// end getResults
 }
