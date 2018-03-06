@@ -17,7 +17,10 @@ import java.util.List;
 public class S3operation {
 
 
-
+    /**
+     * Méthode pour créer un client S3
+     * @return s3client un client identifier
+     */
     private static AmazonS3 getS3Client() {
         AmazonS3 s3client = new AmazonS3Client();
         s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
@@ -26,6 +29,10 @@ public class S3operation {
     }// END  getS3Client
 
 
+    /**
+     * Méthode  pour créer un compartiment dans le service S3 pour y stocker les photos et les videos
+     * @param bucketName le nom que vous voulez donner au compartiment
+     */
     public static void CreatBucket(String bucketName)
     {
         try {
@@ -57,7 +64,12 @@ public class S3operation {
     }// END  CreatBucket
 
 
-
+    /**
+     * Methode pour uploader un fichier dans un compartiment S3
+     * @param bucketName le nom du compartiment dans lequel vous voulez uploader le fichier
+     * @param filePath le chemain relative du fichier que vous voulez uploader
+     * @throws Exception si la création du fichier ne réussi pas
+     */
     public static void UploadFileToBucket( String bucketName,   String filePath) throws Exception
     {
 
@@ -80,6 +92,11 @@ public class S3operation {
     }// END UploadFileToBucket
 
 
+    /**
+     * Méthode pour récupérer la liste des fichiers qui se trouve dans un compartiment
+     * @param bucketName le nom du compartiment du quel vous voulez récupérer les fichiers
+     * @return liste de srting qui contient les nom des fichiers
+     */
     public  static List<String>  ListFilesInBucket(String bucketName)
     {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
@@ -95,33 +112,11 @@ public class S3operation {
 
     }// END  ListOfFiles
 
-   /* public static void charger (String bucketName,   String filePath) {
 
-        try {
-            System.out.println("Uploading a new object to S3 from a file\n");
-            File file = new File(filePath);
-            String keyName= file.getName();
-            getS3Client().putObject(new PutObjectRequest(bucketName, keyName, file));
-            System.out.println("sayerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-        } catch (AmazonServiceException ase) {
-            System.out.println("Caught an AmazonServiceException, which " +
-                    "means your request made it " +
-                    "to Amazon S3, but was rejected with an error response" +
-                    " for some reason.");
-            System.out.println("Error Message:    " + ase.getMessage());
-            System.out.println("HTTP Status Code: " + ase.getStatusCode());
-            System.out.println("AWS Error Code:   " + ase.getErrorCode());
-            System.out.println("Error Type:       " + ase.getErrorType());
-            System.out.println("Request ID:       " + ase.getRequestId());
-        } catch (AmazonClientException ace) {
-            System.out.println("Caught an AmazonClientException, which " +
-                    "means the client encountered " +
-                    "an internal error while trying to " +
-                    "communicate with S3, " +
-                    "such as not being able to access the network.");
-            System.out.println("Error Message: " + ace.getMessage());
-        }
-    }*/
+    /**
+     * Méthode qui vide un compartiment S3
+     * @param bucketName le nom du compartiment a vider
+     */
     public  static  void  PurgeBucket (String bucketName)
     {
 
@@ -149,5 +144,3 @@ public class S3operation {
     }// END  PurgeBucket
 
 }//END CLASs
-
-

@@ -11,32 +11,33 @@ import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class VideoDetect {
-  public static   String collectionId = "yoni";
 
     public static void main(String[] args)  throws Exception
     {
 
-
-        String  bucketPhoto= "lxphoto";
+        String  collectionId = "yoni";
+        String  bucketPhoto = "lxphoto";
         String  bucketVideo = "lxvideo";
-       // String collectionId = "CollectionFac";
-        String queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
-        NotificationChannel channel= new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video").withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
-
+        String  queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
+        NotificationChannel channel = new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video")
+                .withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
         AWSCredentials credentials;
-      //  String  pathPhoto = "src/main/resources/listePhoto.txt";
-      //  String  pathVideo = "src/main/resources/listeVideo.txt";
+        String  pathPhoto = "src/main/resources/listePhoto.txt";
+        String  pathVideo = "src/main/resources/listeVideo.txt";
 
-       // List<String> listpathTophoto = JsonUtil.ReadFile(pathPhoto);
-       // List<String> listpathToVideo = JsonUtil.ReadFile(pathVideo);
-/*
+
+        List<String> listpathTophoto = JsonUtil.ReadFile(pathPhoto);
+        List<String> listpathToVideo = JsonUtil.ReadFile(pathVideo);
+
         S3operation.CreatBucket(bucketPhoto);
         for (String aListpathTophoto : listpathTophoto)
         {
@@ -47,7 +48,7 @@ public class VideoDetect {
         for (String aListpathToVideo : listpathToVideo)
         {
             S3operation.UploadFileToBucket(bucketVideo, aListpathToVideo);
-        }*/
+        }
 
 
         credentials =CreatCollectionFaces.connexionIdexFace();
@@ -69,14 +70,38 @@ public class VideoDetect {
 
 
         List<String> listnameOfVideos = S3operation.ListFilesInBucket(bucketVideo);
-        List<List<String>> listImageInVideo = new ArrayList<List<String>>();
+        List<List<String>> listImageInVideos = new ArrayList<List<String>>();
 
         for (int i =0 ; i<listnameOfVideos.size();i++)
         {
-           listImageInVideo.add(DetectFaceInVideo.DetectFacesInVideos(bucketVideo, listnameOfVideos.get(i), rek, channel, collectionId, queueUrl, sqs));
+           listImageInVideos.add(DetectFaceInVideo.DetectFacesInVideos(bucketVideo, listnameOfVideos.get(i), rek, channel, collectionId, queueUrl, sqs));
         }
-        System.out.println(listImageInVideo);
+        System.out.println(listImageInVideos);
 
+        JSONObject jsonObjectAmazon = new JSONObject();
+        JSONArray valueAmazon = new JSONArray();
+        JSONObject valeuOfValeuAmazon =  new JSONObject();
+
+        List<String> listVi = new ArrayList<String>();
+        for (int i=0; i<listnameOfImage.size(); i++)
+       {
+           for ( int j=0; j<listImageInVideos.size();j++ )
+           {
+                  List<String> listperson = listImageInVideos.get(j);
+               if (listperson.contains(listnameOfImage.get(i)))
+               {
+
+
+                   listVi.add(listnameOfVideos.get(j));
+                  // System.out.println(listnameOfImage.get(i) + " est dans la video " + listnameOfVideos.get(j));
+               }
+           }
+          valeuOfValeuAmazon.append(listnameOfImage.get(i) , listVi );
+       }
+       valueAmazon.put(valeuOfValeuAmazon);
+       jsonObjectAmazon.append("Amazon",valueAmazon);
+
+       System.out.println(jsonObjectAmazon);
 }// END MAIN
 
 }// END CLASS

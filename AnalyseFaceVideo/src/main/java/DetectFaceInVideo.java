@@ -8,24 +8,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
-
 
 public class DetectFaceInVideo {
 
-    private static   String startJobId=null;
+    private  static String startJobId=null;
 
-    /**
-     *
-     * @param bucket
-     * @param video
-     * @param rek
-     * @param channel
-     * @param collectionId
-     * @param queueUrl
-     * @param sqs
-     * @throws Exception
-     */
+
     public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
@@ -46,7 +34,7 @@ public class DetectFaceInVideo {
                 {
                 messages = sqs.receiveMessage(queueUrl).getMessages();
 
-                    if (dotLine++<100){
+                    if (dotLine++<20){
                         System.out.print(".");
                     }else{
                         System.out.println();
@@ -96,14 +84,7 @@ public class DetectFaceInVideo {
     }// end DetectFacesInVideos
 
 
-    /**
-     *
-     * @param bucket
-     * @param video
-     * @param rek
-     * @param channel
-     * @param collectionId
-     */
+
     private static void StartFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId)
     {
         StartFaceSearchRequest req = new StartFaceSearchRequest()
@@ -118,11 +99,7 @@ public class DetectFaceInVideo {
     }// END Start
 
 
-    /**
-     *
-     * @param startJobId
-     * @param rek
-     */
+
     private static List<String>   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek,String video)
     {
         GetFaceSearchResult faceSearchResult=null;
@@ -161,7 +138,7 @@ public class DetectFaceInVideo {
                 }
             }
 
-        } while (faceSearchResult !=null && faceSearchResult.getNextToken() != null);
+        } while (faceSearchResult.getNextToken() != null);
       return nameimage;
     }// end getResults
 }
