@@ -11,7 +11,6 @@ import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -76,32 +75,34 @@ public class VideoDetect {
         {
            listImageInVideos.add(DetectFaceInVideo.DetectFacesInVideos(bucketVideo, listnameOfVideos.get(i), rek, channel, collectionId, queueUrl, sqs));
         }
-        System.out.println(listImageInVideos);
+
+
 
         JSONObject jsonObjectAmazon = new JSONObject();
         JSONArray valueAmazon = new JSONArray();
         JSONObject valeuOfValeuAmazon =  new JSONObject();
 
-        List<String> listVi = new ArrayList<String>();
+
         for (int i=0; i<listnameOfImage.size(); i++)
        {
-           for ( int j=0; j<listImageInVideos.size();j++ )
+           for ( int j=0; j<listImageInVideos.size(); j++ )
            {
-                  List<String> listperson = listImageInVideos.get(j);
-               if (listperson.contains(listnameOfImage.get(i)))
+               if (listImageInVideos.get(j).contains(listnameOfImage.get(i)))
                {
 
-
-                   listVi.add(listnameOfVideos.get(j));
-                  // System.out.println(listnameOfImage.get(i) + " est dans la video " + listnameOfVideos.get(j));
+                  //System.out.println(listnameOfImage.get(i) + " est dans la video " + listnameOfVideos.get(j));
+                   valeuOfValeuAmazon.append(listnameOfImage.get(i) , listnameOfVideos.get(j) );
                }
+
            }
-          valeuOfValeuAmazon.append(listnameOfImage.get(i) , listVi );
+
+
        }
-       valueAmazon.put(valeuOfValeuAmazon);
-       jsonObjectAmazon.append("Amazon",valueAmazon);
+        valueAmazon.put(valeuOfValeuAmazon);
+        jsonObjectAmazon.append("Amazon",valueAmazon);
 
        System.out.println(jsonObjectAmazon);
+
 }// END MAIN
 
 }// END CLASS

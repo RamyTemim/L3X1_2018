@@ -17,14 +17,12 @@ public class DetectFaceInVideo {
     public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
-        //##################################################################################
-        StartFaceSearchCollection(bucket,video, rek,  channel, collectionId);//#############
-        //##################################################################################
+        StartFaceSearchCollection(bucket,video, rek,  channel, collectionId);
+
         List<String> listnameimage = new ArrayList<String>();
         System.out.println("Waiting for job: " + startJobId);
         //Poll queue for messages
         List<Message> messages;
-        int dotLine=0;
         boolean jobFound=false;
         //loop until the job status is published. Ignore other messages in queue.
         do
@@ -33,13 +31,6 @@ public class DetectFaceInVideo {
             do
                 {
                 messages = sqs.receiveMessage(queueUrl).getMessages();
-
-                    if (dotLine++<20){
-                        System.out.print(".");
-                    }else{
-                        System.out.println();
-                        dotLine=0;
-                    }
 
             }while(messages.isEmpty());
 
@@ -63,9 +54,9 @@ public class DetectFaceInVideo {
                     System.out.println("Status : " + operationStatus.toString());
                     if (operationStatus.asText().equals("SUCCEEDED"))
                     {
-                        //####################################################
-                        listnameimage= GetResultsFaceSearchCollection(startJobId,rek,video);//####
-                        //####################################################
+
+                        listnameimage= GetResultsFaceSearchCollection(startJobId,rek,video);
+
                     }
                     else
                         {
@@ -75,11 +66,9 @@ public class DetectFaceInVideo {
                 }else{
                     System.out.println("Job received was not job " +  startJobId);
                 }
-
             }
 
         } while (!jobFound);
-        System.out.println("Done!");
         return listnameimage;
     }// end DetectFacesInVideos
 
