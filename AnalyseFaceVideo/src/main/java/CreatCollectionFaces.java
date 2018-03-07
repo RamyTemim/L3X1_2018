@@ -48,7 +48,7 @@ public class CreatCollectionFaces {
                 .withRegion(Regions.US_EAST_1)
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
-    }
+    }// END getAWSR
 
 
     /**
@@ -66,7 +66,7 @@ public class CreatCollectionFaces {
 
             CreateCollectionResult createCollectionResult = getAWSR(credentials).createCollection(request);
             System.out.println("Collection ARN = " + createCollectionResult.getCollectionArn());
-        }// end Creat
+        }// END CreatCollectionFace
 
 
     /**
@@ -109,7 +109,7 @@ public class CreatCollectionFaces {
 
        }
 
-    }// end ADDface
+    }// END addface
 
 
     /**
@@ -126,6 +126,6 @@ public class CreatCollectionFaces {
         System.out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
                 .toString());
 
-    }// end Delet
+    }// END DeleteCollection
 
     }

@@ -1,3 +1,4 @@
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
@@ -12,7 +13,6 @@ import com.amazonaws.services.s3.transfer.Upload;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class S3operation {
 
@@ -44,10 +44,7 @@ public class S3operation {
             }
 
         } catch (AmazonServiceException ase) {
-            System.out.println("Caught an AmazonServiceException, which " +
-                    "means your request made it " +
-                    "to Amazon S3, but was rejected with an error response" +
-                    " for some reason.");
+            System.out.println("La création du compartiment n'a pa pu etre effectuer a cause : ");
             System.err.println("Error Message:    " + ase.getMessage());
             System.err.println("HTTP Status Code: " + ase.getStatusCode());
             System.err.println("AWS Error Code:   " + ase.getErrorCode());
@@ -55,14 +52,9 @@ public class S3operation {
             System.err.println("Request ID:       " + ase.getRequestId());
 
         } catch (AmazonClientException ace) {
-            System.err.println("Caught an AmazonClientException, which " +
-                    "means the client encountered " +
-                    "an internal error while trying to " +
-                    "communicate with S3, " +
-                    "such as not being able to access the network.");
+            System.err.println("La création du compartiment n'a pa pu etre effectuer a cause :.");
             System.err.println("Error Message: " + ace.getMessage());
         }
-
     }// END  CreatBucket
 
 
@@ -70,12 +62,15 @@ public class S3operation {
      * Methode pour uploader un fichier dans un compartiment S3
      * @param bucketName le nom du compartiment dans lequel vous voulez uploader le fichier
      * @param filePath le chemain relative du fichier que vous voulez uploader
-     * @throws Exception si la création du fichier ne réussi pas
+     *
      */
-    public static void UploadFileToBucket( String bucketName,   String filePath)
+    public static void UploadFileToBucket(String bucketName,String filePath)
     {
 
-        File file = new File(filePath);
+       try
+       {
+           File file = new File(filePath);
+
         String keyName = file.getName();
         TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
         // TransferManager processes all transfers asynchronously,
@@ -92,7 +87,10 @@ public class S3operation {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+       } catch (Exception e)
+       {
+           System.err.println(" le fichier n'a pas pu être lu ");
+       }
     }// END UploadFileToBucket
 
 
@@ -107,7 +105,7 @@ public class S3operation {
         s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
         ObjectListing objectListing = s3client.listObjects(new ListObjectsRequest().withBucketName(bucketName));
         List<S3ObjectSummary> summary =  objectListing.getObjectSummaries();
-        List<String> listefile =new ArrayList<String>();
+        List<String> listefile =new ArrayList<>();
         for (S3ObjectSummary sun : summary)
         {
             listefile.add(sun.getKey());

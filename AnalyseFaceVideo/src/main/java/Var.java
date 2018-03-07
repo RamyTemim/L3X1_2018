@@ -13,13 +13,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public interface Var {
-
+    // nom de la collection ou seront stocker les métha-données des visages
     String  collectionId = "yoni";
 
+    // le nom du compartiment S3 pour les photos
     String  bucketPhoto = "lxphoto";
 
+    // le nom du compartiment S3 pour les videos
     String  bucketVideo = "lxvideo";
 
+    //
     String  queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
 
     NotificationChannel channel = new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video")

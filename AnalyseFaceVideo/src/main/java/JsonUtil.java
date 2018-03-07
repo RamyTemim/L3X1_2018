@@ -16,7 +16,7 @@ public class JsonUtil {
     public static List<String> readFile (String pathTofile) throws IOException
     {
         String path;
-        List<String> listeOfpaths = new ArrayList<String>();
+        List<String> listeOfpaths = new ArrayList<>();
         File file = new File(pathTofile);
         //teste si le fichier existe
         if (file.exists()) {
