@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a0c992-0ece-42a7-ae63-cfe89de2ace3" name="Default" comment="detcte face dans une video regler">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarIssues.xml" afterPath="$PROJECT_DIR$/.idea/sonarIssues.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/AnalyseVideo.iml" afterPath="$PROJECT_DIR$/AnalyseVideo.iml" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/JsonUtil.java" afterPath="$PROJECT_DIR$/src/main/java/JsonUtil.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ResultOnJson.java" afterPath="$PROJECT_DIR$/src/main/java/ResultOnJson.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/S3operation.java" afterPath="$PROJECT_DIR$/src/main/java/S3operation.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VideoDetect.java" afterPath="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
+      <change beforePath="$PROJECT_DIR$/target/sonar/report-task.txt" afterPath="$PROJECT_DIR$/target/sonar/report-task.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VideoDetect.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VideoDetect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/VideoDetect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="126">
+              <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,14 +41,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultOnJson.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ResultOnJson.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ResultOnJson.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="504">
+              <caret line="37" column="66" lean-forward="true" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1450#1464#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,11 +56,9 @@
       <file leaf-file-name="JsonUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/JsonUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding>
-                <element signature="method#ReadFile#0;class#JsonUtil#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="396">
+              <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Var.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,15 +78,15 @@
       <file leaf-file-name="S3operation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state relative-caret-position="90">
+              <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
               <folding>
                 <element signature="method#getS3Client#0;class#S3operation#0" expanded="false" />
                 <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
+                <element signature="docComment;method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
                 <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
                 <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
                 <element signature="docComment;method#PurgeBucket#0;class#S3operation#0" expanded="false" />
-                <element signature="method#PurgeBucket#0;class#S3operation#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -162,15 +166,15 @@
         <option value="$PROJECT_DIR$/src/main/java/MainMicrosoft.java" />
         <option value="$PROJECT_DIR$/src/main/java/MainAmazon.java" />
         <option value="$PROJECT_DIR$/src/main/java/ConnexionAnalyse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/JsonUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/listeVideo.txt" />
         <option value="$PROJECT_DIR$/src/main/resources/credentials" />
         <option value="$PROJECT_DIR$/src/main/java/CreatCollectionFaces.java" />
-        <option value="$PROJECT_DIR$/src/main/java/S3operation.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/DetectFaceInVideo.java" />
         <option value="$PROJECT_DIR$/src/main/java/Var.java" />
+        <option value="$PROJECT_DIR$/src/main/java/S3operation.java" />
         <option value="$PROJECT_DIR$/src/main/java/ResultOnJson.java" />
+        <option value="$PROJECT_DIR$/src/main/java/JsonUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/VideoDetect.java" />
       </list>
     </option>
@@ -199,7 +203,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="y" value="25" />
     <option name="width" value="800" />
     <option name="height" value="873" />
@@ -266,7 +270,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -437,7 +441,7 @@
       <workItem from="1520159846287" duration="8627000" />
       <workItem from="1520265087040" duration="8774000" />
       <workItem from="1520327620467" duration="21909000" />
-      <workItem from="1520411848027" duration="20015000" />
+      <workItem from="1520411848027" duration="21854000" />
     </task>
     <task id="LOCAL-00001" summary="hocine">
       <created>1519741937732</created>
@@ -464,7 +468,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159332000" />
+    <option name="totallyTimeSpent" value="161171000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -476,7 +480,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1600" height="875" extended-state="6" />
+    <frame x="0" y="25" width="1600" height="875" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -557,7 +561,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="91" />
+      <option name="time" value="92" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -823,48 +827,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="method#getS3Client#0;class#S3operation#0" expanded="false" />
-            <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="docComment;method#PurgeBucket#0;class#S3operation#0" expanded="false" />
-            <element signature="method#PurgeBucket#0;class#S3operation#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Var.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/JsonUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="method#ReadFile#0;class#JsonUtil#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ResultOnJson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1450#1464#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -896,10 +864,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/S3operation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="method#getS3Client#0;class#S3operation#0" expanded="false" />
+            <element signature="method#CreatBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="docComment;method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="method#UploadFileToBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="method#ListFilesInBucket#0;class#S3operation#0" expanded="false" />
+            <element signature="docComment;method#PurgeBucket#0;class#S3operation#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/JsonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/VideoDetect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="126">
+          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ResultOnJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="37" column="66" lean-forward="true" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -946,7 +947,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9.0</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -16,6 +16,8 @@ import java.util.List;
 
 public class S3operation {
 
+    private S3operation(){}
+
 
     /**
      * Méthode pour créer un client S3
@@ -46,19 +48,19 @@ public class S3operation {
                     "means your request made it " +
                     "to Amazon S3, but was rejected with an error response" +
                     " for some reason.");
-            System.out.println("Error Message:    " + ase.getMessage());
-            System.out.println("HTTP Status Code: " + ase.getStatusCode());
-            System.out.println("AWS Error Code:   " + ase.getErrorCode());
-            System.out.println("Error Type:       " + ase.getErrorType());
-            System.out.println("Request ID:       " + ase.getRequestId());
+            System.err.println("Error Message:    " + ase.getMessage());
+            System.err.println("HTTP Status Code: " + ase.getStatusCode());
+            System.err.println("AWS Error Code:   " + ase.getErrorCode());
+            System.err.println("Error Type:       " + ase.getErrorType());
+            System.err.println("Request ID:       " + ase.getRequestId());
 
         } catch (AmazonClientException ace) {
-            System.out.println("Caught an AmazonClientException, which " +
+            System.err.println("Caught an AmazonClientException, which " +
                     "means the client encountered " +
                     "an internal error while trying to " +
                     "communicate with S3, " +
                     "such as not being able to access the network.");
-            System.out.println("Error Message: " + ace.getMessage());
+            System.err.println("Error Message: " + ace.getMessage());
         }
 
     }// END  CreatBucket
@@ -70,7 +72,7 @@ public class S3operation {
      * @param filePath le chemain relative du fichier que vous voulez uploader
      * @throws Exception si la création du fichier ne réussi pas
      */
-    public static void UploadFileToBucket( String bucketName,   String filePath) throws Exception
+    public static void UploadFileToBucket( String bucketName,   String filePath)
     {
 
         File file = new File(filePath);
@@ -87,6 +89,8 @@ public class S3operation {
         } catch (AmazonClientException amazonClientException) {
             System.out.println("Impossible de charger le fichier le chargement a étais annuler .");
             amazonClientException.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
     }// END UploadFileToBucket
@@ -121,7 +125,6 @@ public class S3operation {
     {
 
         try {
-            System.out.println(" - removing objects from bucket");
             ObjectListing object_listing = getS3Client().listObjects(bucketName);
             while (true) {
                 for (S3ObjectSummary summary : object_listing.getObjectSummaries()) {
@@ -137,7 +140,7 @@ public class S3operation {
             }
         }catch (AmazonServiceException e)
         {
-            System.err.println(e.getErrorMessage());
+            System.out.println(e.getErrorMessage());
             System.exit(1);
         }
 

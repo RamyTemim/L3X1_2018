@@ -4,9 +4,9 @@ import org.json.JSONObject;
 
 public class VideoDetect {
 
-    public static   AWSCredentials credentials;
-    public static String  pathPhoto = "src/main/resources/listePhoto.txt";
-    public static String  pathVideo = "src/main/resources/listeVideo.txt";
+    public static       AWSCredentials credentials;
+    public static final String  pathPhoto = "src/main/resources/listePhoto.txt";
+    public static final String  pathVideo = "src/main/resources/listeVideo.txt";
 
     public static void main(String[] args)  throws Exception
     {

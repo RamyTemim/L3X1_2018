@@ -9,8 +9,8 @@ public class ResultOnJson {
 
     public static JSONObject getJsonObjectAmazon() throws Exception {
 
-        List<String> listpathTophoto = JsonUtil.ReadFile(VideoDetect.pathPhoto);
-        List<String> listpathToVideo = JsonUtil.ReadFile(VideoDetect.pathVideo);
+        List<String> listpathTophoto = JsonUtil.readFile(VideoDetect.pathPhoto);
+        List<String> listpathToVideo = JsonUtil.readFile(VideoDetect.pathVideo);
 
         S3operation.CreatBucket(Var.bucketPhoto);
         for (String aListpathTophoto : listpathTophoto)
