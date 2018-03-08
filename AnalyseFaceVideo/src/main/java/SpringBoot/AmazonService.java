@@ -3,7 +3,7 @@ package SpringBoot;
 import amazon.*;
 
 import com.amazonaws.auth.AWSCredentials;
-import org.json.JSONObject;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,14 +14,13 @@ import java.util.Scanner;
 
 @Service
 public class AmazonService {
-
-  public static   AWSCredentials credentials;
-
-  public AmazonService()
+    
+   public static   AWSCredentials credentials;
+  private AmazonService()
   {
 
   }
-    public static String getJsonObjectAmazon() throws Exception {
+    static String getJsonObjectAmazon() throws Exception {
 
 
         String  pathPhoto;
@@ -65,12 +64,12 @@ public class AmazonService {
 
  //#####################################3############################################################
         // vérification des données d'authentificaton et des aurorisation d'accée           //#######
-        credentials = CreatCollectionFaces.connexionIdexFace();                 //#######
+        credentials = CreatCollectionFaces.connexionIdexFace();                             //#######
                                                                                             //#######
         //Supprimer l'anciene collection                                                    //#######
-        CreatCollectionFaces.DeleteCollection(Var.collectionId, credentials);   //#######
+        CreatCollectionFaces.DeleteCollection(Var.collectionId, credentials);               //#######
         // création d'une nouvelle  collection                                              //#######
-        CreatCollectionFaces.CreatCollectionFace(credentials, Var.collectionId);//#######
+        CreatCollectionFaces.CreatCollectionFace(credentials, Var.collectionId);            //#######
  //##################################################################################################
 
  //###########################################4########################################################################################
@@ -80,7 +79,7 @@ public class AmazonService {
         // Ajout des visages dans la collection                                                                               //#######
         for (int i=0; i<listnameOfImage.size();i++)                                                                           //#######
         {                                                                                                                     //#######
-            CreatCollectionFaces.addFace(credentials, Var.bucketPhoto, listnameOfImage.get(i) , Var.collectionId);//#######
+            CreatCollectionFaces.addFace(credentials, Var.bucketPhoto, listnameOfImage.get(i) , Var.collectionId);            //#######
         }                                                                                                                     //#######
  //###################################################################################################################################
 
@@ -116,7 +115,7 @@ public class AmazonService {
         S3operation.PurgeBucket(Var.bucketVideo);//#######
  //#######################################################
 
-        return Var.jsonObjectAmazon.toString();
+        return Var.jsonObjectAmazon.toString(2);
     }// END getJsonObjectAmazon
 
 }
