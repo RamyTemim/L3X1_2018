@@ -1,22 +1,22 @@
 package SpringBoot;
 
+import microsoft.JsonUtil;
+import microsoft.MethodMain;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-import microsoft.MethodMain;
-import microsoft.JsonUtil;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static SpringBoot.AmazonService.pathPhoto;
-import static SpringBoot.AmazonService.pathVideo;
+import static SpringBoot.Services.pathPhoto;
+import static SpringBoot.Services.pathVideo;
 
 @Service
 public class MicrosoftService
 {
-/*
-    public String getJSON() throws IOException{
+
+    public String getJSON() throws IOException {
        // Scanner sc = new Scanner(System.in);
         //System.out.println("Veuillez saisir le path pour accéder au fichier contenant les photos :");
         //String pathPhoto = sc.nextLine();
@@ -32,7 +32,7 @@ public class MicrosoftService
         // List<String> videoIds = MethodMain.uploadVideo(videoPath);
 
         // Pour avoir une liste de vidéos déja indexés sans avoir à les uploader auparavant
-        List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418", "b84e9c7f30");
+        List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418");
         //System.out.println(videoIds.toString());
 
         
@@ -50,5 +50,5 @@ public class MicrosoftService
         //System.out.println("\n\n"+jsonResultat.toString(2));
         return jsonResultat.toString();
     }
-    */
+
 }

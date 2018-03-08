@@ -6,27 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import microsoft.*;
-import java.io.IOException;
 
-import static SpringBoot.AmazonService.*;
+import static SpringBoot.Services.*;
 
 @RestController
 @RequestMapping("/")
-public class AmazonControler
+public class Controleur
 {
 
     @Autowired
-    private AmazonService microsoftService;
+    private MicrosoftService microsoftService;
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value ="/", method = RequestMethod.GET, produces ="application/json")
+
     public String getJSONObjectAmazon() throws Exception {
 
-        String resultOfAnalyseAmazon;
+       String resultOfAnalyseAmazon;
        resultOfAnalyseAmazon = getJsonObjectAmazon();
          String resultOfAnalyseMicrosoft;
-        resultOfAnalyseMicrosoft= microsoftService.getJSON();
+        resultOfAnalyseMicrosoft=microsoftService.getJSON();
 
         JSONObject re = new JSONObject();
         JSONArray ra = new JSONArray();

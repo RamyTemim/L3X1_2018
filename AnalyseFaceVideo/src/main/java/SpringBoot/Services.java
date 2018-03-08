@@ -16,13 +16,14 @@ import java.util.Scanner;
 
 
 
-@Service
-public class AmazonService {
+@org.springframework.stereotype.Service
+public class Services {
 
    public static   AWSCredentials credentials;
    public static String  pathPhoto;
    public static String  pathVideo;
-  private AmazonService()
+
+ public Services()
   {
 
   }
@@ -134,7 +135,7 @@ public class AmazonService {
     }// END getJsonObjectAmazon
 
 
-
+/*
     public String getJSON() throws IOException {
         // Scanner sc = new Scanner(System.in);
         //System.out.println("Veuillez saisir le path pour accéder au fichier contenant les photos :");
@@ -169,5 +170,5 @@ public class AmazonService {
         //System.out.println("\n\n"+jsonResultat.toString(2));
         return jsonResultat.toString();
     }
-
+*/
 }

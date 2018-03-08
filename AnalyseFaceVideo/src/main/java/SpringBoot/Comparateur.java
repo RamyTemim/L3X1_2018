@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class AmazonApplication {
+public class Comparateur {
     public static void main(String[] args) {
 
-        SpringApplication.run(AmazonApplication.class, args);
-        AmazonService.readfileOfpath();
+        SpringApplication.run(Comparateur.class, args);
+        Services.readfileOfpath();
     }
 }
