@@ -9,21 +9,15 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static SpringBoot.Services.pathPhoto;
-import static SpringBoot.Services.pathVideo;
+import static SpringBoot.AmazonServices.pathPhoto;
+import static SpringBoot.AmazonServices.pathVideo;
 
 @Service
 public class MicrosoftService
 {
 
     public String getJSON() throws IOException {
-       // Scanner sc = new Scanner(System.in);
-        //System.out.println("Veuillez saisir le path pour accéder au fichier contenant les photos :");
-        //String pathPhoto = sc.nextLine();
 
-       // sc = new Scanner(System.in);
-       // System.out.println("Veuillez saisir le path pour accéder au fichier contenant les vidéos :");
-        //String pathVideo = sc.nextLine();
 
         // Pour récupérer les paths des vidéos se trouvant dans le fichier passe en paramètre
         List<String> videoPath = JsonUtil.readFile(pathVideo);
@@ -35,7 +29,6 @@ public class MicrosoftService
         List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418");
         //System.out.println(videoIds.toString());
 
-        
         //Pour afficher l'ensemble des photos detectes dans chaque vidéo
         //System.out.println(JsonUtil.getListLienVideo(videoIds));
 
