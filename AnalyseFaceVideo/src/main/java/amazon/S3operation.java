@@ -13,6 +13,7 @@ import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
+import microsoft.JsonUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class S3operation {
        {
            File file = new File(filePath);
 
-        String keyName = file.getName();
+        String keyName = JsonUtil.pathToName(filePath);
         TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
         // TransferManager processes all transfers asynchronously,
         // so this call will return immediately.

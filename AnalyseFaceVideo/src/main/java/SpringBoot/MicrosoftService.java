@@ -2,7 +2,7 @@ package SpringBoot;
 
 import microsoft.JsonUtil;
 import microsoft.MethodMain;
-import org.json.JSONObject;
+import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,7 +18,6 @@ public class MicrosoftService
 
     public String getJSON() throws IOException {
 
-
         // Pour récupérer les paths des vidéos se trouvant dans le fichier passe en paramètre
         List<String> videoPath = JsonUtil.readFile(pathVideo);
 
@@ -26,7 +25,7 @@ public class MicrosoftService
         // List<String> videoIds = MethodMain.uploadVideo(videoPath);
 
         // Pour avoir une liste de vidéos déja indexés sans avoir à les uploader auparavant
-        List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418");
+        List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418" );
         //System.out.println(videoIds.toString());
 
         //Pour afficher l'ensemble des photos detectes dans chaque vidéo
@@ -39,7 +38,7 @@ public class MicrosoftService
         MethodMain.createFaceListFromPhotosOnVideo(videoIds, videoPath);
 
         // Pour lancer la comparaison entre toutes les photos et les vidéos
-        JSONObject jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(photoPath, videoIds.size(), videoPath);
+        JSONArray jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(photoPath, videoIds.size(), videoPath);
         //System.out.println("\n\n"+jsonResultat.toString(2));
         return jsonResultat.toString();
     }

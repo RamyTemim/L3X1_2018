@@ -1,15 +1,19 @@
 package SpringBoot;
 
 import amazon.*;
+
 import microsoft.JsonUtil;
 import com.amazonaws.auth.AWSCredentials;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Scanner;
 
-@org.springframework.stereotype.Service
+@Service
 public class AmazonServices {
 
    public static   AWSCredentials credentials;
@@ -23,9 +27,9 @@ public class AmazonServices {
     public static  void  readfileOfpath ()
     {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir le chemain pour accéder au fichier qui contient les photos  :");
+        System.out.println("Veuillez saisir le chemin pour accéder au fichier qui contient les photos  :");
         pathPhoto = sc.nextLine();
-        System.out.println("Veuillez saisire e chemain pour accéder au fichier qui contient les videos :");
+        System.out.println("Veuillez saisirs le chemin pour accéder au fichier qui contient les videos :");
         pathVideo = sc.nextLine();
     }
 
@@ -76,28 +80,33 @@ public class AmazonServices {
 
         List<List<String>> listImageInVideos = new ArrayList<>();
 
+        JSONObject valeuOfValeuAmazon =  new JSONObject();
+        JSONArray rrr = new JSONArray();
         // detecter les personnes qui se trouve dans chaque video en utilise la méthode DetectFacesInVideos
         for (int i =0 ; i<listnameOfVideos.size();i++)
         {
             listImageInVideos.add(DetectFaceInVideo.DetectFacesInVideos(Var.bucketVideo, listnameOfVideos.get(i), Var.rek, Var.channel, Var.collectionId, Var.queueUrl, Var.sqs));
         }
 
+        JSONObject jsonObjectListFinal = new JSONObject();
         for (int i=0; i<listnameOfImage.size(); i++)
         {
+            JSONArray jsonArrayListVideo = new JSONArray();
             for ( int j=0; j<listImageInVideos.size(); j++ )
             {
                 if (listImageInVideos.get(j).contains(listnameOfImage.get(i)))
                 {
-                    Var.valeuOfValeuAmazon.append(listnameOfImage.get(i) , listnameOfVideos.get(j));
+                    jsonArrayListVideo.put(listnameOfVideos.get(j));
                 }
             }
+            jsonObjectListFinal.put(listnameOfImage.get(i),jsonArrayListVideo);
         }
-        //Var.jsonObjectAmazon.put(Var.valeuOfValeuAmazon);
+
+
         S3operation.PurgeBucket(Var.bucketPhoto);
         S3operation.PurgeBucket(Var.bucketVideo);
 
-
-        return Var.valeuOfValeuAmazon.toString(0);
+        return jsonObjectListFinal.toString();
     }// END getJsonObjectAmazon
 
 

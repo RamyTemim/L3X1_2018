@@ -1,2 +1,4 @@
+src/main/resources/56007.HR.jpg
+src/main/resources/jordan.jpg
 src/main/resources/hocine.jpg
 src/main/resources/yoni.jpg
