@@ -3,7 +3,7 @@ package yoniz.l3x1.apiFace;
 public interface IdAPI {
 
     //Clé pour accéder à l'Api Face
-    String subscriptionKey = "54fc76374ac34667b970aad66bff6b6d";
+    String subscriptionKey = "7c5a15ca818b48d6b13d8ec78bcc8cbe";
 
     // 2
     //String subscriptionKey = "081ada40e80e4a5c9be2ceb2f9f06941";

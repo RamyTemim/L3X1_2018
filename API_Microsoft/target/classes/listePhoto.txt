@@ -1,2 +1,7 @@
+src/main/resources/inconnu.jpg
+src/main/resources/jordan.jpg
 src/main/resources/hocine.jpg
 src/main/resources/yoni.jpg
+src/main/resources/femme.jpg
+src/main/resources/bebe.jpg
+src/main/resources/photo_de_video3.png
