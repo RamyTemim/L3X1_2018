@@ -26,10 +26,10 @@ public class Controller
        String resultOfAnalyseMicrosoft;
        resultOfAnalyseMicrosoft=microsoftService.getJSON();
 
-       JSONObject re = new JSONObject();
-       re.put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
-       re.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
+       JSONObject finalResutJson = new JSONObject();
+        finalResutJson .put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
+        finalResutJson .put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
 
-       return  re.toString() ;
+       return  finalResutJson .toString() ;
     }
 }
