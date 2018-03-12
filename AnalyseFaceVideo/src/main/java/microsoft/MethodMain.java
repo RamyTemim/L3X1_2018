@@ -89,7 +89,7 @@ public class MethodMain {
      * @param videosPath La liste des vidéos à analyser
      * @return Un Objet Json contenant pour chaque photo la liste des vidéos ou celle ci apparait
      */
-    public static JSONArray detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos, List <String> videosPath)
+    public static JSONObject detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos, List <String> videosPath)
     {
         // Un tableau json qui va contenir la liste des photos avec leur vidéos
         JSONObject jsonObjectListDePhoto = new JSONObject();
@@ -117,12 +117,6 @@ public class MethodMain {
             jsonObjectListDePhoto.put(JsonUtil.pathToName(photosPath.get(i)), jsonArrayVideoDePhoto);
         }
         //L'objet qui va contenir le résultat avec microsoft comme key et la liste des photos et vidéos en parametre
-<<<<<<< HEAD
-        //JSONObject jsonObjectMicrosoft = new JSONObject().put("Microsoft",jsonArrayListDePhoto);
-        //return jsonObjectMicrosoft;
-        return jsonArrayListDePhoto;
-=======
         return jsonObjectListDePhoto;
->>>>>>> 74e45c63aeb7f6f4117a2b91b5e2c9de74d90bf6
     }
 }
