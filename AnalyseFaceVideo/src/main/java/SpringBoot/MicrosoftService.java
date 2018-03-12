@@ -3,6 +3,7 @@ package SpringBoot;
 import microsoft.JsonUtil;
 import microsoft.MethodMain;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class MicrosoftService
         MethodMain.createFaceListFromPhotosOnVideo(videoIds, videoPath);
 
         // Pour lancer la comparaison entre toutes les photos et les vidéos
-        JSONArray jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(photoPath, videoIds.size(), videoPath);
+        JSONObject jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(photoPath, videoIds.size(), videoPath);
         //System.out.println("\n\n"+jsonResultat.toString(2));
         return jsonResultat.toString();
     }

@@ -1,7 +1,5 @@
 package SpringBoot;
 
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +10,16 @@ import static SpringBoot.AmazonServices.*;
 
 @RestController
 @RequestMapping("/")
-public class Controleur
+public class Controller
 {
 
     @Autowired
     private MicrosoftService microsoftService;
 
     @RequestMapping(value ="/", method = RequestMethod.GET, produces ="application/json")
-
     public String getJSONObjectAmazon() throws Exception {
+
+       AmazonServices.readfileOfpath();
 
        String resultOfAnalyseAmazon;
        resultOfAnalyseAmazon = getJsonObjectAmazon();
@@ -29,7 +28,7 @@ public class Controleur
 
        JSONObject re = new JSONObject();
        re.put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
-       re.put("Microsoft ",new JSONArray(resultOfAnalyseMicrosoft ));
+       re.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
 
        return  re.toString() ;
     }

@@ -29,7 +29,7 @@ public class AmazonServices {
         Scanner sc = new Scanner(System.in);
         System.out.println("Veuillez saisir le chemin pour accéder au fichier qui contient les photos  :");
         pathPhoto = sc.nextLine();
-        System.out.println("Veuillez saisirs le chemin pour accéder au fichier qui contient les videos :");
+        System.out.println("Veuillez saisir le chemin pour accéder au fichier qui contient les videos :");
         pathVideo = sc.nextLine();
     }
 
@@ -80,8 +80,7 @@ public class AmazonServices {
 
         List<List<String>> listImageInVideos = new ArrayList<>();
 
-        JSONObject valeuOfValeuAmazon =  new JSONObject();
-        JSONArray rrr = new JSONArray();
+
         // detecter les personnes qui se trouve dans chaque video en utilise la méthode DetectFacesInVideos
         for (int i =0 ; i<listnameOfVideos.size();i++)
         {

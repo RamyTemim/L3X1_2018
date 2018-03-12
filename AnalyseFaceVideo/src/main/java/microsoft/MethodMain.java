@@ -114,7 +114,7 @@ public class MethodMain {
                     jsonArrayVideoDePhoto.put(JsonUtil.pathToName(videosPath.get(j)));
 
             }
-            jsonObjectListDePhoto.put(JsonUtil.pathToName(photosPath.get(i)), jsonArrayVideoDePhoto);
+            jsonObjectListDePhoto.append(JsonUtil.pathToName(photosPath.get(i)), jsonArrayVideoDePhoto);
         }
         //L'objet qui va contenir le résultat avec microsoft comme key et la liste des photos et vidéos en parametre
         return jsonObjectListDePhoto;

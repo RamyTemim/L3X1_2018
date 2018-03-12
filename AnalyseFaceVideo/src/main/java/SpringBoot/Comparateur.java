@@ -9,6 +9,6 @@ public class Comparateur {
     public static void main(String[] args) {
 
         SpringApplication.run(Comparateur.class, args);
-        AmazonServices.readfileOfpath();
+
     }
 }
