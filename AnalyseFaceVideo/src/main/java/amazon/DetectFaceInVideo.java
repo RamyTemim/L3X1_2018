@@ -14,7 +14,18 @@ public class DetectFaceInVideo {
 
     private  static String startJobId=null;
 
-
+    /**
+     *Méthode qui detecte les visages des personnes dans une vidéo et les compare a la collection
+     * @param bucket Le nom du compartiment dans lequel sont uploader les videos et les images
+     * @param video Le nom de la video à analyser
+     * @param rek instance du service de reconnaissance de amazon
+     * @param channel Service de notification à laquelle Amazon Rekognition publie l'état d'achèvement d'une opération d'analyse vidéo
+     * @param collectionId Le nom de la collection qui comporte les images
+     * @param queueUrl L'URL de la file d'attente
+     * @param sqs Service de mise en file d'attente (Amazon SQS) offre une file d'attente hébergée fiable et hautement évolutive pour le stockage des messages
+     * @return liste des noms des images
+     * @throws Exception
+     */
     public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
@@ -74,6 +85,14 @@ public class DetectFaceInVideo {
     }// end DetectFacesInVideos
 
 
+    /**
+     *
+     * @param bucket Le nom du compartiment dans lequel sont uploader les videos et les images
+     * @param video Le nom de la video à analyser
+     * @param rek instance du service de reconnaissance de amazon
+     * @param channel Service de notification à laquelle Amazon Rekognition publie l'état d'achèvement d'une opération d'analyse vidéo
+     * @param collectionId Le nom de la collection qui comporte les images
+     */
 
     private static void StartFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId)
     {
@@ -89,7 +108,13 @@ public class DetectFaceInVideo {
     }// END Start
 
 
-
+    /**
+     *
+     * @param startJobId identifiant de la vidéo
+     * @param rek instance du service de reconnaissance de amazon
+     * @param video Le nom de la video à analyser
+     * @return nom de l'image
+     */
     private static List<String>   GetResultsFaceSearchCollection(String startJobId, AmazonRekognition rek,String video)
     {
         GetFaceSearchResult faceSearchResult=null;

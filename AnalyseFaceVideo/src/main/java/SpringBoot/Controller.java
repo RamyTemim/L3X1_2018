@@ -30,6 +30,6 @@ public class Controller
         finalResutJson .put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
         finalResutJson .put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
 
-       return  finalResutJson .toString() ;
+       return  finalResutJson.toString() ;
     }
 }
