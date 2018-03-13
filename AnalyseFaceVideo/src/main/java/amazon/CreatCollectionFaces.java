@@ -56,7 +56,7 @@ public class CreatCollectionFaces {
      * @param credentials données d'identification et autorisation d'accé
      * @param collectionId identifiant pour  la collection
      */
-    public static void CreatCollectionFace (AWSCredentials credentials,String collectionId)
+    public static String CreatCollectionFace (AWSCredentials credentials,String collectionId)
     {
 
 
@@ -66,6 +66,7 @@ public class CreatCollectionFaces {
 
             CreateCollectionResult createCollectionResult = getAWSR(credentials).createCollection(request);
             System.out.println("Collection ARN = " + createCollectionResult.getCollectionArn());
+            return collectionId;
         }// END CreatCollectionFace
 
 

@@ -1,5 +1,6 @@
 
 
+import amazon.CreatCollectionFaces;
 import amazon.S3operation;
 import microsoft.DetectFace;
 import microsoft.JsonUtil;
@@ -35,9 +36,9 @@ public class Testuni {
     public void testreadFile() throws IOException {
        List<String> listfile = new ArrayList<>();
        listfile.add("src/main/resources/yoni.jpg");
-        listfile.add("src/main/resources/jordan.jpg");
-        listfile.add("src/main/resources/56007.HR.jpg");
-        listfile.add("src/main/resources/hocine.jpg");
+       listfile.add("src/main/resources/jordan.jpg");
+       listfile.add("src/main/resources/56007.HR.jpg");
+       listfile.add("src/main/resources/hocine.jpg");
        Assert.assertEquals(listfile,JsonUtil.readFile("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/listePhoto.txt") );
     }
 
@@ -49,6 +50,11 @@ public class Testuni {
     Assert.assertEquals("yanis",JsonUtil.supprimeGuillemet("\"yanis\""));
     }
 
+    @Test
+    public void testCreateCollection ()
+    {
+        Assert.assertEquals("hocine", CreatCollectionFaces.CreatCollectionFace(CreatCollectionFaces.connexionIdexFace(),"hocine"));
+    }
 
 
 }
