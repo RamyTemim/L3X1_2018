@@ -6,8 +6,12 @@ import microsoft.JsonUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Testuni {
+
     @Test
     public void testpathToName ()
     {
@@ -17,23 +21,16 @@ public class Testuni {
     @Test
     public void testListFilesInBucket()
     {
-       Assert.assertEquals("yanis" +"yoni",S3operation.ListFilesInBucket("yanisaws"));
+    List<String> ListFile= new ArrayList<String>();
+    ListFile.add("a.jpg");
+    ListFile.add("film1.mov");
+    ListFile.add("yanis.jpg");
+
+       Assert.assertEquals(ListFile,S3operation.ListFilesInBucket("yanisaws"));
     }
 
-    @Test
-    public void testdetect()
-    {
-        Assert.assertEquals(" {\n" +
-                "\t\"age\":100,\n" +
-                "\t\"name\":\"mkyong.com\",\n" +
-                "} ", DetectFace.detect("/Users/yanis/Desktop/ProjetL3X1/L3X1_2018/AnalyseFaceVideo/src/main/resources/yanis.jpg","name, age",true));
-    }
 
-    @Test
-    public void testindSimilar()
-    {
-    Assert.assertEquals("[{ \"A\" : \"IN\", \"B\" : \"DL\"},{ \"A\" : \"US\", \"B\" : \"KA\"}]",DetectFace.findSimilar("yanislist","yan01200"));
-    }
+
 
     @Test
     public void testJSONObject()
@@ -73,7 +70,7 @@ public class Testuni {
     @Test
     public void testsupprimeGuillemet()
     {
-
+    Assert.assertEquals("yanis",JsonUtil.supprimeGuillemet("\"yanis\""));
     }
 
     @Test
