@@ -1,2 +1,5 @@
-src/main/resources/film1.mov
-src/main/resources/film2.mov
+/src/main/resources/videoXebia/XebiCon'17 - Blockchain & IoT Le nouveau contrat de confiance ?.mp4
+/src/main/resources/videoXebia/XebiCon'17 - Comment identifier ses tribus en 4 étapes.mp4
+/src/main/resources/videoXebia/XebiCon'17 - Les assistants du futur 2022 c’est déjà demain.mp4
+/src/main/resources/videoXebia/XebiCon'17 - Migration d'une application web vers un PaaS Openshift.mp4
+/src/main/resources/videoXebia/XebiCon'17 - Une longue route vers la transformation Agile de l’entreprise.mp4

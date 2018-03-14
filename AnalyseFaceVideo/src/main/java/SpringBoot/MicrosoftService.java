@@ -26,7 +26,8 @@ public class MicrosoftService
         // List<String> videoIds = MethodMain.uploadVideo(videoPath);
 
         // Pour avoir une liste de vidéos déja indexés sans avoir à les uploader auparavant
-        List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418" );
+        // List<String> videoIds = Arrays.asList("8f6aa69ebc", "7c26a90418" );
+        List<String> videoIds = Arrays.asList("f0ff5c5d65", "e985eae0a1","9b22a2132c", "12cdf60881", "a28fe96b88");
         //System.out.println(videoIds.toString());
 
         //Pour afficher l'ensemble des photos detectes dans chaque vidéo
