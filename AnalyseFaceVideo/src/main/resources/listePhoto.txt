@@ -1,4 +1,6 @@
-src/main/resources/yoni.jpg
-src/main/resources/jordan.jpg
-src/main/resources/56007.HR.jpg
-src/main/resources/hocine.jpg
+/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/akram_blouza.jpg
+/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/arnaud_Brachetti.jpeg
+/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/julien-smadja.png
+/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/mael.png
+/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/renaud_chevalier.jpg
+/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/sameh.png
