@@ -27,8 +27,8 @@ public class Controller
        resultOfAnalyseMicrosoft=microsoftService.getJSON();
 
        JSONObject finalResutJson = new JSONObject();
-       finalResutJson .put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
-       finalResutJson .put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
+       finalResutJson.put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
+       finalResutJson.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
 
        return  finalResutJson.toString() ;
     }

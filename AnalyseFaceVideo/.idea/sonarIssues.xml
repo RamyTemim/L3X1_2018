@@ -8,12 +8,12 @@
             <set />
           </value>
         </entry>
-        <entry key="/a.dummy">
+        <entry key="$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-s3/1.11.279/aws-java-sdk-s3-1.11.279.jar!/com/amazonaws/services/s3/AmazonS3Client.class">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-s3/1.11.279/aws-java-sdk-s3-1.11.279.jar!/com/amazonaws/services/s3/AmazonS3Client.class">
+        <entry key="$USER_HOME$/IdeaProjects/angular/src/app/hero.service.ts">
           <value>
             <set />
           </value>
@@ -244,6 +244,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/trst/TestUnit.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/a.dummy">
           <value>
             <set />
           </value>
