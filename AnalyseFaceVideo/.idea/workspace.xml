@@ -4,8 +4,6 @@
     <list default="true" id="2603a644-fb46-427b-b7ff-65700527ad6e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../API_Microsoft/API_Microsoft.iml" afterPath="$PROJECT_DIR$/../API_Microsoft/API_Microsoft.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SpringBoot/AmazonServices.java" afterPath="$PROJECT_DIR$/src/main/java/SpringBoot/AmazonServices.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SpringBoot/MicrosoftService.java" afterPath="$PROJECT_DIR$/src/main/java/SpringBoot/MicrosoftService.java" />
       <change beforePath="$PROJECT_DIR$/target/classes/XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain.mov" afterPath="$PROJECT_DIR$/target/classes/XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain.mov" />
       <change beforePath="$PROJECT_DIR$/target/classes/XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise.mov" afterPath="$PROJECT_DIR$/target/classes/XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise.mov" />
       <change beforePath="$PROJECT_DIR$/target/classes/listePhoto.txt" afterPath="$PROJECT_DIR$/target/classes/listePhoto.txt" />
@@ -403,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521044452899</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Modif du lien pour une video qui ne fonctionnait pas">
+      <created>1521146459089</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1521146459089</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -412,7 +417,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13035000" />
+    <option name="totallyTimeSpent" value="13080000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -489,7 +494,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout des vidéos de xebia et modifications des méthodes pour accéder à ces vidéos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout des vidéos de xebia et modifications des méthodes pour accéder à ces vidéos" />
+    <MESSAGE value="Modif du lien pour une video qui ne fonctionnait pas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modif du lien pour une video qui ne fonctionnait pas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
