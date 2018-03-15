@@ -35,10 +35,9 @@ public class AmazonServices {
 
     static String getJsonObjectAmazon() throws Exception {
 
-        List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
-
-        List<String> listpathToVideo = JsonUtil.readFile(pathVideo);
-
+       // List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
+        //List<String> listpathToVideo = JsonUtil.readFile(pathVideo);
+/*
         // création du compartiment S3 pour les photos
         S3operation.CreatBucket(Var.bucketPhoto);
 
@@ -55,7 +54,7 @@ public class AmazonServices {
         {
             S3operation.UploadFileToBucket(Var.bucketVideo, aListpathToVideo);
         }
-
+*/
         // vérification des données d'authentificaton et des aurorisation d'accée
         credentials = CreatCollectionFaces.connexionIdexFace();
 
