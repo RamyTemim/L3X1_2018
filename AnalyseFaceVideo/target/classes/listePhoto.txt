@@ -1,6 +1,6 @@
-/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/akram_blouza.jpg
-/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/arnaud_Brachetti.jpeg
-/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/julien-smadja.png
-/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/mael.png
-/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/renaud_chevalier.jpg
-/home/hocine/L3X1_2018/AnalyseFaceVideo/src/main/resources/sameh.png
+src/main/resources/akram_blouza.jpg
+src/main/resources/arnaud_Brachetti.jpeg
+src/main/resources/julien-smadja.png
+src/main/resources/mael.png
+src/main/resources/renaud_chevalier.jpg
+src/main/resources/sameh.png
