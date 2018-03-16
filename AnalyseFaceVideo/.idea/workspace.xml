@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2603a644-fb46-427b-b7ff-65700527ad6e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../API_Microsoft/API_Microsoft.iml" afterPath="$PROJECT_DIR$/../API_Microsoft/API_Microsoft.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/Var.java" afterPath="$PROJECT_DIR$/src/main/java/amazon/Var.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -365,7 +364,7 @@
       <workItem from="1521222125046" duration="803000" />
       <workItem from="1521224712785" duration="480000" />
       <workItem from="1521225365962" duration="1414000" />
-      <workItem from="1521227687347" duration="116000" />
+      <workItem from="1521227687347" duration="176000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout des vidéos de xebia et modifications des méthodes pour accéder à ces vidéos">
       <created>1521044452899</created>
@@ -390,7 +389,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15999000" />
+    <option name="totallyTimeSpent" value="16059000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
