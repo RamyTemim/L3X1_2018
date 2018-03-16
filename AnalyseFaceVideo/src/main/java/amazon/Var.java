@@ -24,11 +24,11 @@ public interface Var {
     // le nom du compartiment S3 pour les videos
     String  bucketVideo = "lxvideo";
 
-    // c'est l'url de sqs
-    String  queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
+    // l'url du sqs
+    String  queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/SQS-Yan";
 
-    NotificationChannel channel = new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:analyse-video")
-            .withRoleArn("arn:aws:iam::027932523227:role/Rekognition");
+    NotificationChannel channel = new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:topic-Yanis")
+            .withRoleArn("arn:aws:iam::027932523227:role/Role-yanis");
 
 
     AmazonSQS sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(AmazonServices.credentials)).build();
