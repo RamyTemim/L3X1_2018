@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-s3/1.11.279/aws-java-sdk-s3-1.11.279.jar!/com/amazonaws/services/s3/AmazonS3Client.class">
           <value>
             <set />
@@ -198,6 +203,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/microsoft/VideoIndexer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/yoniz/l3x1/springBoot/application/ApplicationSpringBoot.java">
           <value>
             <set />
@@ -244,11 +254,6 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/trst/TestUnit.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/a.dummy">
           <value>
             <set />
           </value>

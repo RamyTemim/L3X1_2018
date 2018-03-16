@@ -11,8 +11,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import microsoft.IdAPI;
-import microsoft.JsonUtil;
 
 import java.io.File;
 import java.io.FileInputStream;

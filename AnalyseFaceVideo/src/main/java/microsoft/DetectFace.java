@@ -56,7 +56,6 @@ public class DetectFace {
                 JSONObject json = new JSONObject().put("url", path);
                 request.setEntity(new StringEntity(json.toString()));
             }
-
             else
             {
                 request.setHeader("Content-Type", "application/octet-stream");
