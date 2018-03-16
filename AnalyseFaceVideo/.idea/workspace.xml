@@ -364,7 +364,7 @@
       <workItem from="1521222125046" duration="803000" />
       <workItem from="1521224712785" duration="480000" />
       <workItem from="1521225365962" duration="1414000" />
-      <workItem from="1521227687347" duration="176000" />
+      <workItem from="1521227687347" duration="400000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout des vidéos de xebia et modifications des méthodes pour accéder à ces vidéos">
       <created>1521044452899</created>
@@ -389,7 +389,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16059000" />
+    <option name="totallyTimeSpent" value="16283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
