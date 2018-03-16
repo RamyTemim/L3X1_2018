@@ -19,10 +19,10 @@ public interface Var {
     String  collectionId = "yoni";
 
     // le nom du compartiment S3 pour les photos
-    String  bucketPhoto = "lxphoto";
+    String  bucketPhoto = "lxphotoss";
 
     // le nom du compartiment S3 pour les videos
-    String  bucketVideo = "lxvideo";
+    String  bucketVideo = "lxvideoss";
 
     // c'est l'url de sqs
     String  queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
