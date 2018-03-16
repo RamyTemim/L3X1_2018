@@ -16,7 +16,7 @@ public class MethodMain {
     public static List<String> uploadVideo(List<String> pathVideo)
     {
         //videoId est la liste qui va contenir la liste des Id des vidéos que videoIndexer va renvoyer
-        List <String> videoIds = new ArrayList<String>();
+        List <String> videoIds = new ArrayList<>();
         //On rajoute dans la liste le retour de l'upload de videoIndexer
         for (String path : pathVideo) {
             videoIds.add(JsonUtil.supprimeGuillemet(VideoIndexer.upload(path)));
@@ -59,7 +59,7 @@ public class MethodMain {
             //Récupération des métadonnées de la vidéo
             JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
             //Création de la liste qui va contenir les urls pour accéder aux photos de profils extraite de la vidéo
-            List<String> listUrlPhoto = new ArrayList<String>();
+            List<String> listUrlPhoto = new ArrayList<>();
             //Récupération du tableau JSON de face de la vidéo
             JSONArray faces = VideoIndexer.getFacesFromVideos(json);
             //Met dans la liste les url pour accéder aux photos extraite de la vidéo

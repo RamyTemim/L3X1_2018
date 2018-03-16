@@ -116,11 +116,11 @@ public class JsonUtil {
      */
     public static List<List<String>> getListLienVideo (List<String> videoIds )
     {
-        List<List<String>> listLien = new ArrayList<List<String>>();
+        List<List<String>> listLien = new ArrayList<>();
         for(int i = 0; i<videoIds.size(); i++)
         {
             JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
-            List<String> listUrlPhoto = new ArrayList<String>();
+            List<String> listUrlPhoto = new ArrayList<>();
             //Met dans la liste les url pour accéder aux photos extraite de la vidéo
             JSONArray faces = VideoIndexer.getFacesFromVideos(json);
 

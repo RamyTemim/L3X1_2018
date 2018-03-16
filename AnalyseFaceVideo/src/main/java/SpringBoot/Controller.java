@@ -22,13 +22,13 @@ public class Controller
        AmazonServices.readfileOfpath();
 
        String resultOfAnalyseAmazon;
-       resultOfAnalyseAmazon = getJsonObjectAmazon();
+      resultOfAnalyseAmazon = getJsonObjectAmazon();
        String resultOfAnalyseMicrosoft;
-       resultOfAnalyseMicrosoft=microsoftService.getJSON();
+      // resultOfAnalyseMicrosoft=microsoftService.getJSON();
 
        JSONObject finalResutJson = new JSONObject();
        finalResutJson.put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
-       finalResutJson.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
+       //finalResutJson.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
 
        return  finalResutJson.toString() ;
     }

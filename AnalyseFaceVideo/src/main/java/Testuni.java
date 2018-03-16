@@ -23,7 +23,7 @@ public class Testuni {
     @Test
     public void testListFilesInBucket()
     {
-    List<String> ListFile= new ArrayList<String>();
+    List<String> ListFile= new ArrayList<>();
     ListFile.add("a.jpg");
     ListFile.add("film1.mov");
     ListFile.add("yanis.jpg");
@@ -54,6 +54,12 @@ public class Testuni {
     public void testCreateCollection ()
     {
         Assert.assertEquals("hocine", CreatCollectionFaces.CreatCollectionFace(CreatCollectionFaces.connexionIdexFace(),"hocine"));
+    }
+
+    @Test
+    public void testCreateBucket ()
+    {
+        Assert.assertEquals("testbucket",S3operation.CreatBucket("testbucket"));
     }
 
 

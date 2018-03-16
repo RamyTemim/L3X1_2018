@@ -19,10 +19,10 @@ public interface Var {
     String  collectionId = "yoni";
 
     // le nom du compartiment S3 pour les photos
-    String  bucketPhoto = "lxphotoss";
+    String  bucketPhoto = "lxphoto";
 
     // le nom du compartiment S3 pour les videos
-    String  bucketVideo = "lxvideoss";
+    String  bucketVideo = "lxvideo";
 
     // c'est l'url de sqs
     String  queueUrl =  "https://sqs.us-east-1.amazonaws.com/027932523227/FileDattenteVideo";
@@ -35,6 +35,9 @@ public interface Var {
 
     AmazonRekognition rek = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
             .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
+
+
+
 
 
 

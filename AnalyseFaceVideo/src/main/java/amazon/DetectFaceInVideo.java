@@ -24,14 +24,13 @@ public class DetectFaceInVideo {
      * @param queueUrl L'URL de la file d'attente
      * @param sqs Service de mise en file d'attente (Amazon SQS) offre une file d'attente hébergée fiable et hautement évolutive pour le stockage des messages
      * @return liste des noms des images
-     * @throws Exception
      */
     public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
     {
 
         StartFaceSearchCollection(bucket,video, rek,  channel, collectionId);
 
-        List<String> listnameimage = new ArrayList<String>();
+        List<String> listnameimage = new ArrayList<>();
         System.out.println("Waiting for job: " + startJobId);
         //Poll queue for messages
         List<Message> messages;
@@ -119,7 +118,7 @@ public class DetectFaceInVideo {
     {
         GetFaceSearchResult faceSearchResult=null;
        String paginationToken=null;
-        List<String> nameimage = new ArrayList<String>();
+        List<String> nameimage = new ArrayList<>();
         do {
             if (faceSearchResult !=null){
                 paginationToken = faceSearchResult.getNextToken();

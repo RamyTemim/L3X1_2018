@@ -36,7 +36,7 @@ public class AmazonServices {
     static String getJsonObjectAmazon() throws Exception {
 
 
-        /*List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
+     /*   List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
         List<String> listpathToVideo = JsonUtil.readFile(pathVideo);
 
         // création du compartiment S3 pour les photos
@@ -56,11 +56,10 @@ public class AmazonServices {
             S3operation.UploadFileToBucket(Var.bucketVideo, aListpathToVideo);
         }
 
-        */
+*/
 
         // vérification des données d'authentificaton et des aurorisation d'accée
         credentials = CreatCollectionFaces.connexionIdexFace();
-
         //Supprimer l'anciene collection
         CreatCollectionFaces.DeleteCollection(Var.collectionId, credentials);
         // création d'une nouvelle  collection
@@ -104,6 +103,8 @@ public class AmazonServices {
         }
 
 
+
+        // vider les compartiments
         S3operation.PurgeBucket(Var.bucketPhoto);
         S3operation.PurgeBucket(Var.bucketVideo);
 
