@@ -111,9 +111,13 @@ public class DetectFace {
         }
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
-        return jsonArray;
+
+        if(jsonArray == null)
+            return new JSONArray();
+        else
+            return jsonArray;
     }
 }
 

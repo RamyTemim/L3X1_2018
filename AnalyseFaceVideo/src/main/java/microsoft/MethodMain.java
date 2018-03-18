@@ -109,7 +109,6 @@ public class MethodMain {
             //Boucle permettant d'analyser les FaceList de chaque vidéo pour la photo i
             for (int j = 0; j < nbVideos; j++) {
                 JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(j), faceId);
-
                 if(!jsonResultat.toString().equals("[]"))
                     jsonArrayVideoDePhoto.put(JsonUtil.pathToName(videosPath.get(j)));
 

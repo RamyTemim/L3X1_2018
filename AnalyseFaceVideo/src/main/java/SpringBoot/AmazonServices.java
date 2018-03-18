@@ -16,27 +16,11 @@ import java.util.Scanner;
 @Service
 public class AmazonServices {
 
-   public static   AWSCredentials credentials;
-   public static String  pathPhoto;
-   public static String  pathVideo;
+    public static AWSCredentials credentials;
 
- public AmazonServices()
-  {
+    public String getJson(String pathPhoto, String pathVideo) throws Exception {
 
-  }
-    public static  void  readfileOfpath ()
-    {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir le chemin pour accéder au fichier qui contient les photos  :");
-        pathPhoto = sc.nextLine();
-        System.out.println("Veuillez saisir le chemin pour accéder au fichier qui contient les videos :");
-        pathVideo = sc.nextLine();
-    }
-
-    static String getJsonObjectAmazon() throws Exception {
-
-
-     /*   List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
+        List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
         List<String> listpathToVideo = JsonUtil.readFile(pathVideo);
 
         // création du compartiment S3 pour les photos
@@ -56,7 +40,7 @@ public class AmazonServices {
             S3operation.UploadFileToBucket(Var.bucketVideo, aListpathToVideo);
         }
 
-*/
+
 
         // vérification des données d'authentificaton et des aurorisation d'accée
         credentials = CreatCollectionFaces.connexionIdexFace();

@@ -118,10 +118,14 @@ public class VideoIndexer {
      */
     public static JSONArray getFacesFromVideos (JSONObject jsonObject)
     {
-        return jsonObject.getJSONArray("breakdowns")
+        JSONArray json = jsonObject.getJSONArray("breakdowns")
                 .getJSONObject(0)
                 .getJSONObject("insights")
                 .getJSONArray("faces");
+        if(json !=null)
+            return json;
+        else
+            return new JSONArray();
 
     }
 
