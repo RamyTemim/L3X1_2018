@@ -1,6 +1,7 @@
 package microsoft;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -147,9 +148,12 @@ public class VideoIndexer {
             URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload.concat(videoId).concat("/State"));
 
             URI uri = builder.build();
+
+            final RequestConfig params = RequestConfig.custom().setConnectTimeout(3000).setSocketTimeout(3000).build();
+
             HttpGet request = new HttpGet(uri);
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
-
+            request.setConfig(params);
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
             json = JsonUtil.httpToJsonObject(entity);
@@ -159,6 +163,10 @@ public class VideoIndexer {
         {
             System.out.println(e.getMessage());
         }
-        return json;
+
+        if(json == null)
+            return new JSONObject();
+        else
+            return json;
     }
 }

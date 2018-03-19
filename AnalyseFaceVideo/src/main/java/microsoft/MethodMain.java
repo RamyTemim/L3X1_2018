@@ -17,11 +17,13 @@ public class MethodMain {
     {
         //videoId est la liste qui va contenir la liste des Id des vidéos que videoIndexer va renvoyer
         List <String> videoIds = new ArrayList<>();
+        System.out.println("videos en cours d'upload");
         //On rajoute dans la liste le retour de l'upload de videoIndexer
         for (String path : pathVideo) {
             videoIds.add(JsonUtil.supprimeGuillemet(VideoIndexer.upload(path)));
         }
 
+        System.out.println("videos en cours d'indexation");
         int nbVideoUpload = 0;
         //Tant que toutes les vidéos n'ont pas finis d'être uploadé on attend
         while (nbVideoUpload != videoIds.size()) {
@@ -30,14 +32,17 @@ public class MethodMain {
 
                 JSONObject json = VideoIndexer.getProcessingState(videoIds.get(i));
                 System.out.println("Video " + (i+1) + " : " +json);
-                if (json.get("state").toString().equals("Processed"))
+                if(json.has("state"))
                 {
-                   nbVideoUpload++;
-                }
-                else if(json.get("state").toString().equals("Failed"))
-                {
-                    System.out.println("Erreur lors de l'upload des vidéos : ");
-                    System.exit(-1);
+                    if (json.get("state").toString().equals("Processed"))
+                    {
+                        nbVideoUpload++;
+                    }
+                    else if(json.get("state").toString().equals("Failed"))
+                    {
+                        System.out.println("Erreur lors de l'upload des vidéos : ");
+                        System.exit(-1);
+                    }
                 }
             }
         }
