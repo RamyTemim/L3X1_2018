@@ -5,6 +5,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.*;
@@ -13,18 +14,31 @@ import java.util.List;
 
 public class JsonUtil {
 
+
     /**
-     * Lis un fichier texte qui contient les liens. Chaque ligne dans le fichier est un lien.
-     * @param pathTofile le chemin vers le fichier qui contient les liens
-     * @return une liste se String qui contient les liens
-     * @throws IOException si le fichier n'a paspu etres créer
+     *  Methode pour convertir un multiparleFile en file .
+     * @param multipart le multpartFile a converire
+     * @return un fichier
+     * @throws IllegalStateException erreur lors de convertion du fichier
+     * @throws IOException erreur lors de création du fichier
      */
-    public static List<String> readFile (String pathTofile)
+    public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
+    {
+        File convFile = new File( multipart.getOriginalFilename());
+        multipart.transferTo(convFile);
+        return convFile;
+    }
+
+
+    /**
+     * Methode qui lis un fichier ligne par ligne
+     * @param file fichier a lire
+     * @return  listeOfpaths : liste de string qui contien les ligne du fichier
+     */
+    public static List<String> readFile (File file)
     {
         String path;
         List<String> listeOfpaths = new ArrayList<>();
-        File file = new File(pathTofile);
-        //teste si le fichier existe
         if (file.exists()) {
             // test si on peut lire le fichier
             if (file.canRead())
@@ -49,6 +63,7 @@ public class JsonUtil {
         }
         return listeOfpaths;
     }
+
 
     /**
      * Méthode permettant à partir d'une entité HTTP de récupérer le fichier JSON contenu à l'intérieur

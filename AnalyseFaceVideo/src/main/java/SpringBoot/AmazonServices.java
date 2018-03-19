@@ -11,23 +11,23 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.Scanner;
+
 
 @Service
 public class AmazonServices {
 
     public static AWSCredentials credentials;
 
-    public String getJson(String pathPhoto, String pathVideo)  {
+    public String getJson(List<String> pathPhoto, List<String> pathVideo)  {
 
-        List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
-        List<String> listpathToVideo = JsonUtil.readFile(pathVideo);
+       // List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
+       // List<String> listpathToVideo = JsonUtil.readFile(pathVideo);
 
         // création du compartiment S3 pour les photos
         S3operation.CreatBucket(Var.bucketPhoto);
 
         // chargement des photos das le compartiment des photos
-        for (String aListpathTophoto : listpathTophoto)
+        for (String aListpathTophoto : pathPhoto)
         {
             S3operation.UploadFileToBucket(Var.bucketPhoto, aListpathTophoto);
         }
@@ -35,7 +35,7 @@ public class AmazonServices {
         S3operation.CreatBucket(Var.bucketVideo);
 
         // chargement des photos das le compartiment des videos
-        for (String aListpathToVideo : listpathToVideo)
+        for (String aListpathToVideo : pathVideo)
         {
             S3operation.UploadFileToBucket(Var.bucketVideo, aListpathToVideo);
         }
