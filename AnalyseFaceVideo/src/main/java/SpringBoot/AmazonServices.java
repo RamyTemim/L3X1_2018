@@ -18,7 +18,7 @@ public class AmazonServices {
 
     public static AWSCredentials credentials;
 
-    public String getJson(String pathPhoto, String pathVideo) throws Exception {
+    public String getJson(String pathPhoto, String pathVideo)  {
 
         List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
         List<String> listpathToVideo = JsonUtil.readFile(pathVideo);

@@ -7,10 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class JsonUtil {
      * @return une liste se String qui contient les liens
      * @throws IOException si le fichier n'a paspu etres créer
      */
-    public static List<String> readFile (String pathTofile) throws IOException
+    public static List<String> readFile (String pathTofile)
     {
         String path;
         List<String> listeOfpaths = new ArrayList<>();
@@ -36,6 +33,10 @@ public class JsonUtil {
                     while ((path = buffer.readLine()) != null) {
                         listeOfpaths.add(path);
                     }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
             } else

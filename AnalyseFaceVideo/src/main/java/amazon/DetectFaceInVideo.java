@@ -7,6 +7,7 @@ import com.amazonaws.services.sqs.model.Message;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class DetectFaceInVideo {
      * @param sqs Service de mise en file d'attente (Amazon SQS) offre une file d'attente hébergée fiable et hautement évolutive pour le stockage des messages
      * @return liste des noms des images
      */
-    public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws Exception
+    public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs)
     {
 
         StartFaceSearchCollection(bucket,video, rek,  channel, collectionId);
@@ -51,10 +52,20 @@ public class DetectFaceInVideo {
                 String notification = message.getBody();
                 // Get status and job id from notification.
                 ObjectMapper mapper = new ObjectMapper();
-                JsonNode jsonMessageTree = mapper.readTree(notification);
+                JsonNode jsonMessageTree = null;
+                try {
+                    jsonMessageTree = mapper.readTree(notification);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 JsonNode messageBodyText = jsonMessageTree.get("Message");
                 ObjectMapper operationResultMapper = new ObjectMapper();
-                JsonNode jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
+                JsonNode jsonResultTree = null;
+                try {
+                    jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 JsonNode operationJobId = jsonResultTree.get("JobId");
                 JsonNode operationStatus = jsonResultTree.get("Status");
                 System.out.println("Job found was " + operationJobId);

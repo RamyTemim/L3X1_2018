@@ -22,6 +22,10 @@ public class Controller
     private String pathPhoto = null;
     private String pathVideo = null;
 
+    /**
+     * Méthode pour définir le Post dans l'application qui va récupérer le lien pour le fichier contenant les photos
+     * @param pathPhoto le path pour accéder au fichier contenant tous les path pour accéder aux photos
+     */
     @RequestMapping(value = "/photos", method = RequestMethod.POST)
     public void PostPathPhotos (@RequestBody String pathPhoto)
     {
@@ -30,6 +34,10 @@ public class Controller
         this.pathPhoto = pathPhotosJson.get("name").toString();
     }
 
+    /**
+     * Méthode pour définir le Post dans l'application qui va récupérer le lien pour le fichier contenant les vidéos
+     * @param pathVideo le path pour accéder au fichier contenant tous les path pour accéder aux vidéos
+     */
     @RequestMapping(value = "/videos", method = RequestMethod.POST)
     public void PostPathVideos (@RequestBody String pathVideo)
     {
@@ -38,6 +46,10 @@ public class Controller
         this.pathVideo = pathVideoJson.get("name").toString();
     }
 
+    /**
+     * Méthode pour définir le get qui va permettre de récupérer le resultat de l'analyse avec l'api de Amazon
+     * @return Le fichier json sous forme de String contenant le résultat de l'analyse de amazon
+     */
     @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
     public String getAmazon() throws Exception
     {
@@ -48,8 +60,12 @@ public class Controller
         return  json.toString() ;
     }
 
+    /**
+     * Méthode pour définir le get qui va permettre de récupérer le resultat de l'analyse avec l'api de Microsoft
+     * @return Le fichier json sous forme de String contenant le résultat de l'analyse de Microsoft
+     */
     @RequestMapping(value ="/microsoft", method = RequestMethod.GET, produces ="application/json")
-    public String getMicrosoft() throws Exception
+    public String getMicrosoft()
     {
         System.out.println(this.pathPhoto );
         System.out.println(this.pathVideo );

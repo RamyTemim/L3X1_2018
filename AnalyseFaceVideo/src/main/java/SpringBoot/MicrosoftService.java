@@ -15,7 +15,7 @@ import java.util.List;
 public class MicrosoftService
 {
 
-    public String getJson(String pathPhoto, String pathVideo) throws IOException {
+    public String getJson(String pathPhoto, String pathVideo){
 
         // Pour récupérer les paths des vidéos se trouvant dans le fichier passe en paramètre
         List<String> videoPath = JsonUtil.readFile(pathVideo);
