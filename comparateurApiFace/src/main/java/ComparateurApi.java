@@ -21,13 +21,13 @@ import okhttp3.RequestBody;
 
 public class ComparateurApi  extends WatsonService{
      // name of the project in IBM cloud
-    private static final String SERVICE_NAME = "apirest-watson-vis-1519555011205";
+    private static final String SERVICE_NAME = "";
     // URL to poste request HTTP
-    private static final String URL = "https://gateway-a.watsonplatform.net/visual-recognition/api";
+    private static final String URL = "";
     // version avec api
     private String versionDate;
      // the consatant version
-    public static final String VERSION_DATE_2016_05_20 = "2016-05-20";
+    public static final String VERSION_DATE_2016_05_20 = "";
     private boolean endPointChanged;
 
     /**
