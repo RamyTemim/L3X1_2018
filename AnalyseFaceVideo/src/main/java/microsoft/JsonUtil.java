@@ -52,10 +52,8 @@ public class JsonUtil {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             } else
             {
-
                 System.err.println("Le fichier ne peut pas être lu ");
             }
         }else {

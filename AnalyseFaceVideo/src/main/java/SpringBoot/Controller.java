@@ -12,8 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-public class Controller
-{
+public class Controller {
 
     @Autowired
     private MicrosoftService microsoftService;
@@ -21,24 +20,27 @@ public class Controller
     @Autowired
     private AmazonServices amazonServices;
 
+    @Autowired
+    private  StorageService storageService;
 
-   private   List<String> listpathTophoto ;
-   private   List<String> listpathToVideo ;
+    private List<String> listpathTophoto;
+    private List<String> listpathToVideo;
 
     /**
      * Méthode pour définir le Post dans l'application qui va récupérer le lien pour le fichier contenant les photos
+     *
      * @param multipartFileImage le fichier reçu du client avec le post Angular
      */
-    @RequestMapping(value = "/photos", method = RequestMethod.POST )
-    public void PostPathPhotos (@RequestParam("file") MultipartFile multipartFileImage)  {
+    @RequestMapping(value = "/photos", method = RequestMethod.POST)
+    public void PostPathPhotos(@RequestParam("file") MultipartFile multipartFileImage) {
         try {
 
-            File file = JsonUtil.multipartToFile(multipartFileImage);
-            listpathTophoto=JsonUtil.readFile(file);
+            storageService.storFile(multipartFileImage);
+            File  listePhoto =new File("src/main/resources/"+multipartFileImage.getOriginalFilename());
+            listpathTophoto=JsonUtil.readFile(listePhoto);
         } catch (Exception e) {
-            System.err.println("le fichier qui contient les paths vers les photos n'a pa pu être lu");
+           e.printStackTrace();
         }
-
     }
 
     /**
@@ -50,8 +52,9 @@ public class Controller
     {
 
         try {
-            File file = JsonUtil.multipartToFile(multipartFileVideo);
-            listpathToVideo=JsonUtil.readFile(file);
+            storageService.storFile(multipartFileVideo);
+            File  listeVideo =new File("src/main/resources/"+multipartFileVideo.getOriginalFilename());
+            listpathToVideo=JsonUtil.readFile(listeVideo);
 
         } catch (Exception e) {
             System.err.println("le fichier qui contient les path vers les vidéos n'a pa pu etre lu");
@@ -93,3 +96,4 @@ public class Controller
         return  json.toString() ;
     }
 }
+

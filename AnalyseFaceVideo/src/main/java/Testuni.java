@@ -2,14 +2,14 @@
 
 import amazon.CreatCollectionFaces;
 import amazon.S3operation;
-import microsoft.DetectFace;
+
 import microsoft.JsonUtil;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.File;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

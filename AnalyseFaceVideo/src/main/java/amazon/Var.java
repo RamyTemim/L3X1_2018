@@ -25,10 +25,10 @@ public interface Var {
     String  bucketVideo = "lxvideo";
 
     // l'url du sqs
-    String  queueUrl = "https://sqs.us-east-1.amazonaws.com/027932523227/SQS-Yan";
+    String  queueUrl = "";
 
-    NotificationChannel channel = new NotificationChannel().withSNSTopicArn("arn:aws:sns:us-east-1:027932523227:topic-Yanis")
-            .withRoleArn("arn:aws:iam::027932523227:role/Role-yanis");
+    NotificationChannel channel = new NotificationChannel().withSNSTopicArn("")
+            .withRoleArn("");
 
     AmazonSQS sqs = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(AmazonServices.credentials)).build();
 
