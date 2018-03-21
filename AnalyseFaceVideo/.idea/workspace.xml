@@ -4,60 +4,17 @@
     <list default="true" id="deed255a-99e0-4a7d-bb6b-de57e6683dad" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/sonarIssues.xml" afterPath="$PROJECT_DIR$/.idea/sonarIssues.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SpringBoot/AmazonServices.java" afterPath="$PROJECT_DIR$/src/main/java/SpringBoot/AmazonServices.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java" afterPath="$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SpringBoot/MicrosoftService.java" afterPath="$PROJECT_DIR$/src/main/java/SpringBoot/MicrosoftService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Testuni.java" afterPath="$PROJECT_DIR$/src/main/java/Testuni.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/Var.java" afterPath="$PROJECT_DIR$/src/main/java/amazon/Var.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/DetectFaceInVideo.java" afterPath="$PROJECT_DIR$/src/main/java/amazon/DetectFaceInVideo.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/amazon/S3operation.java" afterPath="$PROJECT_DIR$/src/main/java/amazon/S3operation.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/microsoft/FaceList.java" afterPath="$PROJECT_DIR$/src/main/java/microsoft/FaceList.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/microsoft/JsonUtil.java" afterPath="$PROJECT_DIR$/src/main/java/microsoft/JsonUtil.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Données de configuration amazon.rtf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/akram_blouza.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/arnaud_Brachetti.jpeg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/credentials" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/julien-smadja.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/listePhoto.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/listeVideo.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mael.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/renaud_chevalier.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sameh.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon-17-Blockchain-Le-nouveau-contrat-de-confiance-1.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_1-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon_17_Blockchain_ampLe_nouveau_contrat_de_confiance_1-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon_17_Blockchain_ampLe_nouveau_contrat_de_confiance_2-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_2-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/videoXebia/XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Données de configuration amazon.rtf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/akram_blouza.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/arnaud_Brachetti.jpeg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/credentials" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/julien-smadja.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/listePhoto.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/listeVideo.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mael.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/renaud_chevalier.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sameh.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon-17-Blockchain-Le-nouveau-contrat-de-confiance-1.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise.mov" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_1-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon_17_Blockchain_ampLe_nouveau_contrat_de_confiance_1-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon_17_Blockchain_ampLe_nouveau_contrat_de_confiance_2-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_2-HD.mp4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/videoXebia/XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD.mp4" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/microsoft/MethodMain.java" afterPath="$PROJECT_DIR$/src/main/java/microsoft/MethodMain.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,54 +25,33 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+    <leaf>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
+            <state relative-caret-position="-856">
+              <caret line="4" column="62" lean-forward="true" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getAmazon#0;class#Controller#0" expanded="false" />
                 <element signature="method#getMicrosoft#0;class#Controller#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Comparateur.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java">
+      <file leaf-file-name="JsonUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/microsoft/JsonUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+            <state relative-caret-position="-460">
+              <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
               <folding>
-                <element signature="e#373#374#0" expanded="true" />
-                <element signature="e#435#436#0" expanded="true" />
+                <element signature="method#readFile#0;class#JsonUtil#0" expanded="false" />
+                <element signature="method#httpToJsonObject#0;class#JsonUtil#0" expanded="false" />
+                <element signature="method#stringToJson#0;class#JsonUtil#0" expanded="false" />
+                <element signature="method#pathToName#0;class#JsonUtil#0" expanded="false" />
+                <element signature="e#3312#3313#0" expanded="true" />
+                <element signature="e#3366#3367#0" expanded="true" />
+                <element signature="method#getListLienVideo#0;class#JsonUtil#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StorageService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#665#666#0" expanded="true" />
-                <element signature="e#729#730#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Var.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/amazon/Var.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -148,12 +84,12 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/StorageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/amazon/Var.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/Testuni.java" />
         <option value="$PROJECT_DIR$/src/main/java/microsoft/JsonUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java" />
-        <option value="$PROJECT_DIR$/src/main/java/amazon/Var.java" />
       </list>
     </option>
   </component>
@@ -164,10 +100,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="120" />
-    <option name="y" value="27" />
+    <option name="y" value="25" />
     <option name="width" value="800" />
-    <option name="height" value="873" />
+    <option name="height" value="875" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -184,6 +119,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -234,13 +171,17 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="SpringBoot" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="AnalyseFaceVideo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AnalyseFaceVideo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -389,11 +330,14 @@
       <workItem from="1521537465147" duration="5137000" />
       <workItem from="1521549026912" duration="6737000" />
       <workItem from="1521567734557" duration="75000" />
+      <workItem from="1521568527530" duration="140000" />
+      <workItem from="1521573070611" duration="2835000" />
+      <workItem from="1521621732364" duration="6015000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12889000" />
+    <option name="totallyTimeSpent" value="21879000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1600" height="875" extended-state="6" />
@@ -411,6 +355,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39919356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -419,18 +364,17 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6841398" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24581724" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17824967" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +385,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -451,8 +395,6 @@
         <state relative-caret-position="792">
           <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getAmazon#0;class#Controller#0" expanded="false" />
             <element signature="method#getMicrosoft#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -463,8 +405,8 @@
         <state relative-caret-position="108">
           <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding>
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#435#436#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="false" />
+            <element signature="e#385#386#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -473,11 +415,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/amazon/Var.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-            <element signature="e#729#730#0" expanded="true" />
+            <element signature="method#getMicrosoft#0;class#Controller#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <element signature="e#323#324#0" expanded="false" />
+            <element signature="e#385#386#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/amazon/Var.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
+          <folding>
+            <element signature="method#getMicrosoft#0;class#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <element signature="e#323#324#0" expanded="false" />
+            <element signature="e#385#386#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -486,8 +498,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getAmazon#0;class#Controller#0" expanded="false" />
             <element signature="method#getMicrosoft#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -497,11 +507,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-            <element signature="e#729#730#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -516,14 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
           <caret line="131" column="20" lean-forward="true" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Testuni.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -531,13 +529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/MicrosoftService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -551,53 +542,142 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Document.txt" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/listePhoto.txt" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/microsoft/JsonUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/amazon/S3operation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+        <state relative-caret-position="72">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java">
+    <entry file="jar://$USER_HOME$/Téléchargements/jdk-8u161-linux-x64/jdk1.8.0_161/jre/lib/rt.jar!/java/io/Serializable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getAmazon#0;class#Controller#0" expanded="false" />
-            <element signature="method#getMicrosoft#0;class#Controller#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding>
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#435#436#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#665#666#0" expanded="true" />
-            <element signature="e#729#730#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="162">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/amazon/Var.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        <state relative-caret-position="270">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/microsoft/IdAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/AmazonServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="48" column="16" lean-forward="true" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Comparateur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/MicrosoftService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/hocine.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Document.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/Document.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/StorageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="16" selection-start-column="3" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Testuni.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+          <folding>
+            <element signature="e#1301#1302#0" expanded="true" />
+            <element signature="e#1381#1382#0" expanded="true" />
+            <element signature="e#1629#1630#0" expanded="true" />
+            <element signature="e#1716#1717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/listeVideo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/listePhoto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/microsoft/JsonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-460">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <element signature="method#readFile#0;class#JsonUtil#0" expanded="false" />
+            <element signature="method#httpToJsonObject#0;class#JsonUtil#0" expanded="false" />
+            <element signature="method#stringToJson#0;class#JsonUtil#0" expanded="false" />
+            <element signature="method#pathToName#0;class#JsonUtil#0" expanded="false" />
+            <element signature="e#3312#3313#0" expanded="true" />
+            <element signature="e#3366#3367#0" expanded="true" />
+            <element signature="method#getListLienVideo#0;class#JsonUtil#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SpringBoot/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-856">
+          <caret line="4" column="62" lean-forward="true" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+          <folding>
+            <element signature="method#getMicrosoft#0;class#Controller#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

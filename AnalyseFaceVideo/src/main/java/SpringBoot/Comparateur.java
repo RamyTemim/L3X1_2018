@@ -10,9 +10,6 @@ import javax.annotation.Resource;
 @SpringBootApplication
 public class Comparateur {
 
-    @Resource
-    StorageService storageService;
-
     public static void main(String[] args) {
         SpringApplication.run(Comparateur.class, args);
     }

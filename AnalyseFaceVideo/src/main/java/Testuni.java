@@ -32,7 +32,6 @@ public class Testuni {
      }
 
 
-
     @Test
     public void testpathToName ()
     {
@@ -49,10 +48,6 @@ public class Testuni {
 
        Assert.assertEquals(ListFile,S3operation.ListFilesInBucket("yanisaws"));
     }
-
-
-
-
 
     @Test
     public void testsupprimeGuillemet()

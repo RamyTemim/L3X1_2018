@@ -101,9 +101,9 @@ public class S3operation {
 
 
     /**
-     * Méthode pour récupérer la liste des fichiers qui se trouve dans un compartiment
+     * Méthode pour récupérer la listePhoto des fichiers qui se trouve dans un compartiment
      * @param bucketName le nom du compartiment du quel vous voulez récupérer les fichiers
-     * @return liste de srting qui contient les nom des fichiers
+     * @return listePhoto de srting qui contient les nom des fichiers
      */
     public  static List<String>  ListFilesInBucket(String bucketName)
     {

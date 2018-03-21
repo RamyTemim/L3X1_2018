@@ -60,7 +60,7 @@ public class AmazonServices {
             CreatCollectionFaces.addFace(credentials, Var.bucketPhoto, listnameOfImage.get(i) , Var.collectionId);
         }
 
-        // liste qui contient les nom des videos qui se trouve dasn le compartiment videos
+        // listePhoto qui contient les nom des videos qui se trouve dasn le compartiment videos
         List<String> listnameOfVideos = S3operation.ListFilesInBucket(Var.bucketVideo);
 
         List<List<String>> listImageInVideos = new ArrayList<>();

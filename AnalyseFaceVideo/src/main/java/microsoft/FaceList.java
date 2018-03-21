@@ -19,10 +19,10 @@ import java.net.URI;
 public class FaceList {
 
     /**
-     * Pour créer une liste (faceList) qui va pouvoir contenir une liste de photo
-     * @param name Nom de la liste à créer
-     * @param id L'identifiant de la liste qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la méthode findSimilar
-     * @param user Nom de l'utilisateur de la liste
+     * Pour créer une listePhoto (faceList) qui va pouvoir contenir une listePhoto de photo
+     * @param name Nom de la listePhoto à créer
+     * @param id L'identifiant de la listePhoto qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la méthode findSimilar
+     * @param user Nom de l'utilisateur de la listePhoto
      */
     public static void create(String name, String id, String user) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -110,7 +110,7 @@ public class FaceList {
     /**
      * C'est une fonction qui va intéragir avec l'API et permettant de renvoyer l'ensembles des
      * listes de photos contenus dans le compte de l'utilisateur
-     * @return Renvois un Objet JSON contenant la liste des faceList qui correspond au retour de l'API de Microsoft
+     * @return Renvois un Objet JSON contenant la listePhoto des faceList qui correspond au retour de l'API de Microsoft
      */
     public static JSONObject getFaceList()
     {
@@ -138,9 +138,9 @@ public class FaceList {
     }
 
     /**
-     * Pour renvoyer la liste des photos d'une face list
+     * Pour renvoyer la listePhoto des photos d'une face list
      * @param id l'identifiant de la faceList à analyser
-     * @return Le fichier JSON contenant la liste des identifiant des photos de la faceList id
+     * @return Le fichier JSON contenant la listePhoto des identifiant des photos de la faceList id
      */
     public static JSONObject getFaceOflist(String id)
     {

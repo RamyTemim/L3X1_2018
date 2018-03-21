@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import java.io.File;
+
 import java.util.List;
 
 
@@ -17,30 +19,26 @@ public class Controller {
     @Autowired
     private MicrosoftService microsoftService;
 
-    @Autowired
-    private AmazonServices amazonServices;
-
-    @Autowired
-    private  StorageService storageService;
+  //@Autowired
+  //private AmazonServices amazonServices;
 
     private List<String> listpathTophoto;
     private List<String> listpathToVideo;
 
+
     /**
      * Méthode pour définir le Post dans l'application qui va récupérer le lien pour le fichier contenant les photos
-     *
      * @param multipartFileImage le fichier reçu du client avec le post Angular
      */
-    @RequestMapping(value = "/photos", method = RequestMethod.POST)
+   @RequestMapping(value = "/photos", method = RequestMethod.POST)
     public void PostPathPhotos(@RequestParam("file") MultipartFile multipartFileImage) {
+       File file= new File("src/resources/listePhoto");
         try {
-
-            storageService.storFile(multipartFileImage);
-            File  listePhoto =new File("src/main/resources/"+multipartFileImage.getOriginalFilename());
-            listpathTophoto=JsonUtil.readFile(listePhoto);
+           multipartFileImage.transferTo(file);
         } catch (Exception e) {
-           e.printStackTrace();
+           System.out.println("Le fichier n'a pa pu être transferer");
         }
+       listpathTophoto=JsonUtil.readFile(file);
     }
 
     /**
@@ -50,24 +48,20 @@ public class Controller {
     @RequestMapping(value = "/videos", method = RequestMethod.POST)
     public void PostPathVideos (@RequestParam("file") MultipartFile multipartFileVideo)
     {
-
+       File file= new File("src/resources/listeVideo");
         try {
-            storageService.storFile(multipartFileVideo);
-            File  listeVideo =new File("src/main/resources/"+multipartFileVideo.getOriginalFilename());
-            listpathToVideo=JsonUtil.readFile(listeVideo);
-
+           multipartFileVideo.transferTo(file);
         } catch (Exception e) {
-            System.err.println("le fichier qui contient les path vers les vidéos n'a pa pu etre lu");
+           System.out.println("Le fichier n'a pa pu être transferer");
         }
+       listpathToVideo=JsonUtil.readFile(file);
     }
 
-
-
-    /**
+     /**
      * Méthode pour définir le get qui va permettre de récupérer le resultat de l'analyse avec l'api de Amazon
      * @return Le fichier json sous forme de String contenant le résultat de l'analyse de amazon
      */
-    @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
+  /*  @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
     public String getAmazon()
     {
         String resultOfAnalyseAmazon;
@@ -76,7 +70,7 @@ public class Controller {
         json.put("Amazon ",new JSONObject(resultOfAnalyseAmazon ) );
         return  json.toString() ;
     }
-
+*/
 
 
     /**

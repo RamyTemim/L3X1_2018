@@ -5,7 +5,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.web.multipart.MultipartFile;
+
 
 
 import java.io.*;
@@ -16,24 +16,9 @@ public class JsonUtil {
 
 
     /**
-     *  Methode pour convertir un multiparleFile en file .
-     * @param multipart le multpartFile a converire
-     * @return un fichier
-     * @throws IllegalStateException erreur lors de convertion du fichier
-     * @throws IOException erreur lors de création du fichier
-     */
-    public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
-    {
-        File convFile = new File( multipart.getOriginalFilename());
-        multipart.transferTo(convFile);
-        return convFile;
-    }
-
-
-    /**
      * Methode qui lis un fichier ligne par ligne
      * @param file fichier a lire
-     * @return  listeOfpaths : liste de string qui contien les ligne du fichier
+     * @return  listeOfpaths : listePhoto de string qui contien les ligne du fichier
      */
     public static List<String> readFile (File file)
     {
@@ -124,9 +109,9 @@ public class JsonUtil {
     }
 
     /**
-     * Méthode qui renvoit une liste de liens permettant d'accéder au photos extraites de chaque vidéo
+     * Méthode qui renvoit une listePhoto de liens permettant d'accéder au photos extraites de chaque vidéo
      * @param videoIds List de videoId permettant d'accéder aux vidéos indexe dans le cloud
-     * @return Une list qui va contenir pour chaque membre de sa liste une list de lien pour accéder aux photos
+     * @return Une list qui va contenir pour chaque membre de sa listePhoto une list de lien pour accéder aux photos
      */
     public static List<List<String>> getListLienVideo (List<String> videoIds )
     {
@@ -135,7 +120,7 @@ public class JsonUtil {
         {
             JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
             List<String> listUrlPhoto = new ArrayList<>();
-            //Met dans la liste les url pour accéder aux photos extraite de la vidéo
+            //Met dans la listePhoto les url pour accéder aux photos extraite de la vidéo
             JSONArray faces = VideoIndexer.getFacesFromVideos(json);
 
             for (int j = 0; j < faces.length(); j++) {
