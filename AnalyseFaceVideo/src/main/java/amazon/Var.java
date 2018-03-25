@@ -1,6 +1,6 @@
 package amazon;
 
-import SpringBoot.AmazonServices;
+import SpringBoot.service.AmazonServices;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;

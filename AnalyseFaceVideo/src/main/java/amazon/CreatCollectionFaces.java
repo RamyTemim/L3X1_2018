@@ -79,13 +79,6 @@ public class CreatCollectionFaces {
      */
     public static void addFace(AWSCredentials credentials,String bucket,String nameOfImage,String collectionId)
     {
-
-        AmazonRekognition amazonRekognition = AmazonRekognitionClientBuilder
-                .standard()
-                .withRegion(Regions.US_EAST_1)
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .build();
-
             // chargement de l'image encoder en base64 en mémoire
         Image picture = new Image().withS3Object(new S3Object()
                 .withBucket(bucket)
@@ -100,7 +93,7 @@ public class CreatCollectionFaces {
                 .withDetectionAttributes("ALL");
 
 
-       IndexFacesResult indexFacesResult=amazonRekognition.indexFaces(indexFacesRequest);
+       IndexFacesResult indexFacesResult=getAWSR(credentials).indexFaces(indexFacesRequest);
 
        System.out.println(nameOfImage + " ajouter");
        List<FaceRecord> faceRecords = indexFacesResult.getFaceRecords();

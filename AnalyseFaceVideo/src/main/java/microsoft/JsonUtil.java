@@ -5,14 +5,36 @@ import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtil {
+
+    /**
+     *
+     * @param multipartFile  fichier reçu dans une requete HTTP
+     * @return un fichier qui contient le contunue du multipartFile
+     */
+    public static File storFile(MultipartFile multipartFile)
+    {
+        File file=null;
+        try {
+            byte[] bytes = multipartFile.getBytes();
+            Path path = Paths.get("src/resources/"+ multipartFile.getOriginalFilename());
+            Files.write(path,bytes);
+            file = new File("src/resources/"+ multipartFile.getOriginalFilename());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
 
 
     /**

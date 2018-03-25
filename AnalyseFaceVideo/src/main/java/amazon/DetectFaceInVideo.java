@@ -26,7 +26,7 @@ public class DetectFaceInVideo {
      * @param sqs Service de mise en file d'attente (Amazon SQS) offre une file d'attente hébergée fiable et hautement évolutive pour le stockage des messages
      * @return listePhoto des noms des images
      */
-    public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs)
+    public static List<String> DetectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws NullPointerException
     {
 
         StartFaceSearchCollection(bucket,video, rek,  channel, collectionId);
@@ -59,6 +59,7 @@ public class DetectFaceInVideo {
                     e.printStackTrace();
                 }
                 JsonNode messageBodyText = jsonMessageTree.get("Message");
+
                 ObjectMapper operationResultMapper = new ObjectMapper();
                 JsonNode jsonResultTree = null;
                 try {

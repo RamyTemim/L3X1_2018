@@ -40,7 +40,7 @@ public class S3operation {
      * Méthode  pour créer un compartiment dans le service S3 pour y stocker les photos et les videos
      * @param bucketName le nom que vous voulez donner au compartiment
      */
-    public static String CreatBucket(String bucketName)
+    public static void CreatBucket(String bucketName)
     {
         try {
             if (!(getS3Client().doesBucketExist(bucketName))) {
@@ -60,7 +60,7 @@ public class S3operation {
             System.err.println("La création du compartiment n'a pa pu etre effectuer a cause :.");
             System.err.println("Error Message: " + ace.getMessage());
         }
-        return bucketName;
+
     }// END  CreatBucket
 
 
