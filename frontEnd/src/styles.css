@@ -1,0 +1,139 @@
+body {
+  background-image: url("./assets/images/stars.png");
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+
+}
+
+.microsoft {
+
+  top: 200px;
+  left: 600px;
+  width: 35%;
+  height: 30%;
+  object-fit: fill;
+  margin: 0 15px;
+}
+
+
+
+.vs {
+  top: 150px;
+  left: 500px;
+  width: 25%;
+  height: 50%;
+  object-fit: fill;
+}
+
+.amazon {
+  top: 200px;
+  left: 600px;
+  width: 35%;
+  height: 30%;
+  object-fit: fill;
+}
+
+.para1 {
+  color: white;
+  font-size: 30pt;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: overline;
+  word-spacing: 8px;
+  letter-spacing: 2px;
+}
+
+.para2 {
+  color: silver;
+  font-size: 12pt;
+  font-family: arial;
+
+}
+
+.para3 {
+  color: silver;
+  font-size: 12pt;
+  font-family: arial;
+}
+
+#conteneurFile .inputFile {
+  opacity: 0; /* pour !IE */
+  filter: alpha(opacity=0); /* pour IE */
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80%;
+}
+
+/*#conteneurFile*/
+.inputText {
+  border: 0px;
+  padding: 0px 10px;
+  background: #def;
+  width: 40%;
+  border-radius: 10px
+}
+
+#conteneurFile .inputFile2 {
+  opacity: 0; /* pour !IE */
+  filter: alpha(opacity=0); /* pour IE */
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80%;
+}
+
+/*#conteneurFile*/
+.inputText2 {
+  border: 0px;
+  padding: 0px 10px;
+  background: #def;
+  width: 40%;
+  border-radius: 10px
+}
+
+.comparer {
+  border: 0px;
+  font: bold 12pt Arial;
+  color: white;
+  background-image: url("./assets/images/sang.jpg");
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 50px 550px;
+  width: 30%;
+
+  align-content: center;
+  text-decoration: underline;
+  border-radius: 10px;
+
+}
+
+.microsoftR {
+  top: 100px;
+  left: 300px;
+  width: 300em;
+  height: 140px;
+  object-fit: fill;
+right: auto;
+}
+
+.amazonR {
+  top: 100px;
+  left: 300px;
+  width: 300px;
+  height: 150px;
+  object-fit: fill;
+  left: auto;
+}
+
+.textarea {
+  color: white;
+  background-color: black;
+  height: 50%;
+  width: 75%;
+
+
+
+}
