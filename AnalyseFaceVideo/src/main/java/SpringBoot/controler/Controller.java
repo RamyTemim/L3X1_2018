@@ -4,6 +4,8 @@ import SpringBoot.service.MicrosoftService;
 import microsoft.JsonUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,8 +33,8 @@ public class Controller {
      * @param multipartFileImage le fichier reçu du client avec le post Angular
      */
     @RequestMapping(value = "/photos", method = RequestMethod.POST)
-    public void PostPathPhotos(@RequestParam("filePhoto") MultipartFile multipartFileImage) {
-        File file = JsonUtil.storFile(multipartFileImage);
+    public void postPathPhotos(@RequestParam("filePhoto") MultipartFile multipartFileImage) {
+        File file = JsonUtil.storFilePhoto(multipartFileImage);
         listpathTophoto=JsonUtil.readFile(file);
         System.out.println("Photos ");
         for(int i=0 ; i<listpathTophoto.size(); i++){
@@ -46,9 +48,9 @@ public class Controller {
      * @param multipartFileVideo le fichier reçu du client avec le post Angular
      */
     @RequestMapping(value = "/videos", method = RequestMethod.POST)
-    public void PostPathVideos (@RequestParam("fileVideo") MultipartFile multipartFileVideo)
+    public void postPathVideos (@RequestParam("fileVideo") MultipartFile multipartFileVideo)
     {
-       File file =JsonUtil.storFile(multipartFileVideo);
+       File file =JsonUtil.storFileVideo(multipartFileVideo);
        listpathToVideo=JsonUtil.readFile(file);
         System.out.println("Video");
         for(int i=0 ; i<listpathToVideo.size(); i++){

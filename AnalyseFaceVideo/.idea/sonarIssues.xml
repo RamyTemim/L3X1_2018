@@ -358,7 +358,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/resources/listePhoto">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/resources/listePhotos">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/resources/listeVideo">
           <value>
             <set />
           </value>

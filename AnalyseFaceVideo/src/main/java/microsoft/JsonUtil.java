@@ -22,14 +22,28 @@ public class JsonUtil {
      * @param multipartFile  fichier reçu dans une requete HTTP
      * @return un fichier qui contient le contunue du multipartFile
      */
-    public static File storFile(MultipartFile multipartFile)
+    public static File storFilePhoto(MultipartFile multipartFile)
     {
-        File file=null;
+        File file=new File("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listePhoto");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path = Paths.get("src/resources/"+ multipartFile.getOriginalFilename());
+            Path path =Paths.get("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listePhoto");
             Files.write(path,bytes);
-            file = new File("src/resources/"+ multipartFile.getOriginalFilename());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+
+
+    public static File storFileVideo(MultipartFile multipartFile)
+    {
+        File file= new File("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listeVideo");
+        try {
+            byte[] bytes = multipartFile.getBytes();
+            Path path =Paths.get("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listeVideo");
+            Files.write(path,bytes);
         } catch (Exception e) {
             e.printStackTrace();
         }
