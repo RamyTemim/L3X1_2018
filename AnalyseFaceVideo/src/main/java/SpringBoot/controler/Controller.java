@@ -35,8 +35,8 @@ public class Controller {
     @RequestMapping(value = "/photos", method = RequestMethod.POST)
     public void postPathPhotos(@RequestParam("filePhoto") MultipartFile multipartFileImage) {
         File file = JsonUtil.storFilePhoto(multipartFileImage);
-        listpathTophoto=JsonUtil.readFile(file);
-        System.out.println("Photos ");
+        this.listpathTophoto=JsonUtil.readFile(file);
+        System.out.println("Photos");
         for(int i=0 ; i<listpathTophoto.size(); i++){
             System.out.println(listpathTophoto.get(i));
         }
@@ -48,10 +48,9 @@ public class Controller {
      * @param multipartFileVideo le fichier reçu du client avec le post Angular
      */
     @RequestMapping(value = "/videos", method = RequestMethod.POST)
-    public void postPathVideos (@RequestParam("fileVideo") MultipartFile multipartFileVideo)
-    {
-       File file =JsonUtil.storFileVideo(multipartFileVideo);
-       listpathToVideo=JsonUtil.readFile(file);
+    public void postPathVideos (@RequestParam("fileVideo") MultipartFile multipartFileVideo) throws InterruptedException {
+        File file =JsonUtil.storFileVideo(multipartFileVideo);
+        this.listpathToVideo=JsonUtil.readFile(file);
         System.out.println("Video");
         for(int i=0 ; i<listpathToVideo.size(); i++){
             System.out.println(listpathToVideo.get(i));
@@ -89,6 +88,13 @@ public class Controller {
         json.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
 
         return  json.toString() ;
+    }
+
+    @RequestMapping(value ="/test", method = RequestMethod.GET, produces ="application/json")
+    public String test() {
+        if(listpathToVideo==null)
+            return "vide";
+        return listpathToVideo.toString();
     }
 }
 

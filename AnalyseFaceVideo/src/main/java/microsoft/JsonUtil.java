@@ -24,10 +24,10 @@ public class JsonUtil {
      */
     public static File storFilePhoto(MultipartFile multipartFile)
     {
-        File file=new File("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listePhoto");
+        File file=new File("src/resources/listePhoto");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path =Paths.get("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listePhoto");
+            Path path =Paths.get("src/resources/listePhoto");
             Files.write(path,bytes);
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,10 +39,10 @@ public class JsonUtil {
 
     public static File storFileVideo(MultipartFile multipartFile)
     {
-        File file= new File("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listeVideo");
+        File file= new File("src/resources/listeVideo");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path =Paths.get("/home/hocine/L3X1_2018/AnalyseFaceVideo/src/resources/listeVideo");
+            Path path =Paths.get("src/resources/listeVideo");
             Files.write(path,bytes);
         } catch (Exception e) {
             e.printStackTrace();
