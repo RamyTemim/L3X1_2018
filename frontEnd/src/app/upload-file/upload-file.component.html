@@ -1,4 +1,4 @@
-<p class="para1">Comparez ces différentes APIs de reconnaissance faciale:</p>
+<!--<p class="para1">Comparez ces différentes APIs de reconnaissance faciale:</p>
 
 
 
@@ -8,11 +8,18 @@
 <p>                       </p>
 
 <input id="inputT2" type="file" class="inputText" (change)="onSelectFileVideo($event)"> <input type="button" value="Chagrer fichier vidéo" class="upload" onclick="document.getElementById('inputT2').click()"> <br>
-
+-->
 <!--<button class="btn btn-success" (click)="ulpoadFileTo()">Upload</button>
 -->
 
-
+<!--
 
 <router-outlet></router-outlet>
 <input type="button" (click)="uploadFileTo()" routerLink="/results" name="comparer" value="Comparer" class="comparer"/>
+-->
+
+<input type="file" (change)="onSelectFilePhoto($event)"> <br>
+<input type="file" (change)="onSelectFileVideo($event)"> <br>
+<button class="btn btn-success" routerLink="/results" (click)="uploadFileTo()">Upload</button>
+
+<router-outlet></router-outlet>
