@@ -109,8 +109,10 @@ body {
   cursor: pointer;
   padding: 1em 5em;
   margin: 3em 5em;
-  width: 90%;
-  margin-left: 5em;
+  width: 30%;
+  margin-left: 35%;
+
+  position: center;
 
   align-content: center;
   text-decoration: underline;
@@ -158,10 +160,10 @@ right: auto;
 }
 
 .upload {
-  border-color: crimson;
+
   border-radius: 2em;
-  color: white;
-  background-image:url("./assets/images/sang.jpg") ;
+  color: black;
+  background-color: #ddeeff;
   width: 20%;
   height: 20%;
   cursor: pointer;
