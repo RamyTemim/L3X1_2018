@@ -99,7 +99,7 @@ public class JsonUtil {
                 jsonObject = stringToJson(jsonString);
             }
             catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("erreur lors de la lecture du fichier pour la methode httpToJsonObject" + e);
             }
 
         }
@@ -107,7 +107,7 @@ public class JsonUtil {
     }
 
     /**
-     * Méthode permettant de transformer une chaine de caractère en Objet JSON
+     * Méthode permettant de transformer une chaine de caractère en JSONObject ou JsonArray en fonction de la chaine de caractère
      * @param jsonString La chaine de caractère à transformer en Objet JSON
      * @return Un objet JSON correspondant à la chaine de caractère passée en paramètre
      */
@@ -145,9 +145,9 @@ public class JsonUtil {
     }
 
     /**
-     * Méthode qui renvoit une listePhoto de liens permettant d'accéder au photos extraites de chaque vidéo
-     * @param videoIds List de videoId permettant d'accéder aux vidéos indexe dans le cloud
-     * @return Une list qui va contenir pour chaque membre de sa listePhoto une list de lien pour accéder aux photos
+     * Méthode qui renvoit une liste de liens permettant d'accéder au photos extraites de chaque vidéo
+     * @param videoIds List de videoId permettant d'accéder aux vidéos indexées dans le cloud
+     * @return Une liste qui va contenir pour chaque membre de sa liste une liste de lien pour accéder aux photos extraite des vidéos
      */
     public static List<List<String>> getListLienVideo (List<String> videoIds )
     {

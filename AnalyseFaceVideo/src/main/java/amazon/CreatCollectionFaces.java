@@ -15,13 +15,13 @@ import java.util.List;
 public class CreatCollectionFaces {
 
     /**
-     * Methode pour pour verifier les données d'identification et les autorisations  et les droits d'accé que l'utilisateur
+     * Methode pour pour verifier les données d'identifications, les autorisations et les droits d'accèes de l'utilisateur
      * @return credentials
      */
    public static AWSCredentials connexionIdexFace()
     {
         AWSCredentials credentials ;
-        // Connection au cloud d'amazon avec les données d'identification
+        // Connexion au cloud d'amazon avec les données d'identifications
         try {
             credentials = new ProfileCredentialsProvider().getCredentials();
         } catch (Exception e) {
@@ -33,13 +33,12 @@ public class CreatCollectionFaces {
         }
 
         return credentials;
-    }// END connexionIdexFace
+    }
 
 
     /**
-     * Methode pour instancier  un client Amazon  dans la région pour lesquels l'utisateur est autorisé
-     * @param credentials  données d'identification et autorisation d'accé
-     *
+     * Methode pour instancier un client Amazon dans la région pour lesquels l'utisateur est autorisé
+     * @param credentials données d'identification et autorisation d'accès
      */
     private static AmazonRekognition getAWSR(AWSCredentials credentials)
     {
@@ -48,11 +47,11 @@ public class CreatCollectionFaces {
                 .withRegion(Regions.US_EAST_1)
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
-    }// END getAWSR
+    }
 
 
     /**
-     * Méthode pour la création d'une collection qui vas contenir les méthadonnées des visage qui se trouve sur les photos
+     * Méthode pour la création d'une collection qui va contenir les métadonnées des visages qui se trouvent sur les photos
      * @param credentials données d'identification et autorisation d'accé
      * @param collectionId identifiant pour  la collection
      */
@@ -67,14 +66,14 @@ public class CreatCollectionFaces {
             CreateCollectionResult createCollectionResult = getAWSR(credentials).createCollection(request);
             System.out.println("Collection ARN = " + createCollectionResult.getCollectionArn());
             return collectionId;
-        }// END CreatCollectionFace
+        }
 
 
     /**
-     * Méthode pour analyser un visage et l'indxer et qui l'ajoute a la collection
-     * @param credentials données d'identification et autorisation d'accé
-     * @param bucket nom du comportément ou sont stocker les photos
-     * @param nameOfImage nom de la photo qui contient le visage  à analyser
+     * Méthode pour analyser un visage, l'indexer puis l'ajouter à la collection
+     * @param credentials données d'identification et autorisation d'accès
+     * @param bucket nom du comportiment où sont stockés les photos
+     * @param nameOfImage nom de la photo qui contient le visage à analyser
      * @param collectionId identifiant de la collection
      */
     public static void addFace(AWSCredentials credentials,String bucket,String nameOfImage,String collectionId)
@@ -103,13 +102,13 @@ public class CreatCollectionFaces {
 
        }
 
-    }// END addface
+    }
 
 
     /**
-     *  Méthode pour supprimer une collecion
+     * Méthode pour supprimer une collecion
      * @param collectionId identifiant de la collection a supprimer
-     * @param credentials  données d'identification et autorisation d'accé
+     * @param credentials  données d'identification et autorisation d'accés
      */
     public static void DeleteCollection (String collectionId,AWSCredentials credentials)
     {
@@ -120,6 +119,6 @@ public class CreatCollectionFaces {
         System.out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
                 .toString());
 
-    }// END DeleteCollection
-
     }
+
+}

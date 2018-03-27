@@ -4,8 +4,6 @@ import SpringBoot.service.MicrosoftService;
 import microsoft.JsonUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,11 +56,11 @@ public class Controller {
     }
 
 
-    /*    /**
+    /*
      * Méthode pour définir le get qui va permettre de récupérer le resultat de l'analyse avec l'api de Amazon
      * @return Le fichier json sous forme de String contenant le résultat de l'analyse de amazon
      */
-  /*  @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
+/*    @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
     public String getAmazon()
     {
         String resultOfAnalyseAmazon;
@@ -90,11 +88,5 @@ public class Controller {
         return  json.toString() ;
     }
 
-    @RequestMapping(value ="/test", method = RequestMethod.GET, produces ="application/json")
-    public String test() {
-        if(listpathToVideo==null)
-            return "vide";
-        return listpathToVideo.toString();
-    }
 }
 

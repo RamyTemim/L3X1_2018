@@ -2,7 +2,6 @@ package SpringBoot.service;
 
 import amazon.*;
 
-import microsoft.JsonUtil;
 import com.amazonaws.auth.AWSCredentials;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,8 +19,6 @@ public class AmazonServices {
 
     public String getJson(List<String> pathPhoto, List<String> pathVideo)  {
 
-       // List<String> listpathTophoto = JsonUtil.readFile(pathPhoto);
-       // List<String> listpathToVideo = JsonUtil.readFile(pathVideo);
 
         // création du compartiment S3 pour les photos
         S3operation.CreatBucket(Var.bucketPhoto);
@@ -31,6 +28,7 @@ public class AmazonServices {
         {
             S3operation.UploadFileToBucket(Var.bucketPhoto, aListpathTophoto);
         }
+
         // création du compartiment S3 pour les videos
         S3operation.CreatBucket(Var.bucketVideo);
 
@@ -42,10 +40,12 @@ public class AmazonServices {
 
 
 
-        // vérification des données d'authentificaton et des aurorisation d'accée
+        // vérification des données d'authentificaton et des autorisations d'accèes
         credentials = CreatCollectionFaces.connexionIdexFace();
+
         //Supprimer l'anciene collection
         CreatCollectionFaces.DeleteCollection(Var.collectionId, credentials);
+
         // création d'une nouvelle  collection
         CreatCollectionFaces.CreatCollectionFace(credentials, Var.collectionId);
 
@@ -60,7 +60,7 @@ public class AmazonServices {
             CreatCollectionFaces.addFace(credentials, Var.bucketPhoto, listnameOfImage.get(i) , Var.collectionId);
         }
 
-        // listePhoto qui contient les nom des videos qui se trouve dasn le compartiment videos
+        // listePhoto qui contient les noms des videos qui se trouvent dans le compartiment videos
         List<String> listnameOfVideos = S3operation.ListFilesInBucket(Var.bucketVideo);
 
         List<List<String>> listImageInVideos = new ArrayList<>();
@@ -86,14 +86,12 @@ public class AmazonServices {
             jsonObjectListFinal.put(listnameOfImage.get(i),jsonArrayListVideo);
         }
 
-
-
         // vider les compartiments
         S3operation.PurgeBucket(Var.bucketPhoto);
         S3operation.PurgeBucket(Var.bucketVideo);
 
         return jsonObjectListFinal.toString();
-    }// END getJsonObjectAmazon
+    }
 
 
 }

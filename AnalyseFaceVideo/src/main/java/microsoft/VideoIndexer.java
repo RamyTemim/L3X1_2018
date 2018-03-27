@@ -1,6 +1,7 @@
 package microsoft;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -15,7 +16,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 public class VideoIndexer {
     /**
@@ -69,10 +73,14 @@ public class VideoIndexer {
 
             videoId = EntityUtils.toString(entity);
 
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode upload : " + e);
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode upload : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'execution de la requete pour la méthode upload : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur lors du parse de l'URI  la méthode upload : " + e);
         }
 
         return videoId;
@@ -103,16 +111,18 @@ public class VideoIndexer {
             HttpEntity entity = response.getEntity();
             json = JsonUtil.httpToJsonObject(entity);
 
-        }
-            catch (Exception e)
-        {
-            System.out.println(e.getMessage());
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode geBreakdown : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode getBreakdown : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur dans l'URI pour la méthode getBreakdown : " + e);
         }
         return json;
     }
 
     /**
-     * Méthode permettant de filtrer le Json de récupérer par la méthode getBreakdown et de récuperer seulement la partie qui correspond aux
+     * Méthode permettant de filtrer le Json récupéré par la méthode getBreakdown et de récuperer seulement la partie qui correspond aux
      * photos extraites de la vidéos
      * @param jsonObject l'objet JSON qui a été retourné par la méthode getBreakdown
      * @return Un Json contenant seulement la partie correspondant aux photos
@@ -127,7 +137,6 @@ public class VideoIndexer {
             return json;
         else
             return new JSONArray();
-
     }
 
     /**
@@ -158,10 +167,12 @@ public class VideoIndexer {
             HttpEntity entity = response.getEntity();
             json = JsonUtil.httpToJsonObject(entity);
 
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode getProcessingState : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode getProcessingState : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur dans l'URI pour la méthode getProcessingState : " + e);
         }
 
         if(json == null)
