@@ -2,6 +2,7 @@ package microsoft;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
@@ -14,7 +15,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 public class FaceList {
 
@@ -24,7 +28,7 @@ public class FaceList {
      * @param id L'identifiant de la listePhoto qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la méthode findSimilar
      * @param user Nom de l'utilisateur de la listePhoto
      */
-    public static void create(String name, String id, String user) {
+    public static void createFaceList(String name, String id, String user) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         try {
@@ -42,7 +46,6 @@ public class FaceList {
             JSONObject j= new JSONObject().put("name",name).put("userData",user);
             StringEntity reqEntity =new StringEntity(j.toString());
 
-
             request.setEntity(reqEntity);
 
             CloseableHttpResponse response = httpClient.execute(request);
@@ -52,13 +55,20 @@ public class FaceList {
                 System.out.println("\nCréation de la faceList pour la vidéo " + (Integer.parseInt(id)+1) + " réussi \n");
             }
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("Erreur dans le format du StringEntity pour la méthode createFaceList : " + e);
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode createFaceList : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode createFaceList : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur lors du parse de l'URI pour la méthode createFaceList : " + e);
         }
     }
 
+
     /**
-     * Pour ajouter une photo dans une faceList
+     * Pour ajouter une photo dans une faceList (POST)
      * @param path Le chemin pour accéder à la photo (en local)
      * @param id l'identifiant de la faceList dans laquelle il faut rajouter la photo
      * @param userData le label de la photo (nom de l'individu)
@@ -79,31 +89,23 @@ public class FaceList {
             HttpPost request = new HttpPost(uri);
             request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
 
-            if (url)
-            {
-                request.setHeader("Content-Type", "application/json");
-                JSONObject json = new JSONObject().put("url", path);
-                request.setEntity(new StringEntity(json.toString()));
-            }
-
-            else
-            {
-                request.setHeader("Content-Type", "application/octet-stream");
-                // Pour définir le lien vers la photo que l'on va intégrer dans la requête
-                File file = new File(path);
-                FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
-                request.setEntity(reqEntity);
-            }
+            DetectFace.insertFileToHttpRequest(path, url, request);
 
             CloseableHttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
 
             System.out.println(JsonUtil.httpToJsonObject(entity));
+
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("Erreur dans le format du StringEntity pour la méthode addFace : " + e);
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode addFace : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode addFace : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur lors du parse de l'URI pour la méthode addFace : " + e);
         }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+
 
     }
 
@@ -131,9 +133,17 @@ public class FaceList {
             System.out.println("Liste des FaceList : \n");
             json = JsonUtil.httpToJsonObject(entity);
 
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode getFaceList : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode getFaceList : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur lors du parse de l'URI pour la méthode getFaceList : " + e);
         }
+
+        if (json == null)
+            return new JSONObject();
+
         return json;
     }
 
@@ -161,11 +171,17 @@ public class FaceList {
             HttpEntity entity = response.getEntity();
 
             json = JsonUtil.httpToJsonObject(entity);
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode getFaceOfList : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode getFaceOfList : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur lors du parse de l'URI pour la méthode getFaceOfList : " + e);
         }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+
+        if (json == null)
+            return new JSONObject();
+
         return json;
     }
 
@@ -195,10 +211,12 @@ public class FaceList {
             {
                 System.out.println(EntityUtils.toString(entity));
             }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
+        } catch (ClientProtocolException e) {
+            System.err.println("Erreur dans la requête HTTP pour la méthode deleteFaceList : " + e);
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier pour la méthode deleteFaceList : " + e);
+        } catch (URISyntaxException e) {
+            System.err.println("Erreur lors du parse de l'URI pour la méthode deleteFaceList : " + e);
         }
     }
 }

@@ -75,7 +75,7 @@ public class MethodMain {
             }
 
             //Création de la faceList qui va contenir les photos extraite de la vidéo
-            FaceList.create(JsonUtil.pathToName(pathVideos.get(i)), String.valueOf(i), "yoni");
+            FaceList.createFaceList(JsonUtil.pathToName(pathVideos.get(i)), String.valueOf(i), "yoni");
             //System.out.println("Ajout des photos dans la listePhoto " + (i+1) + " : ");
             //Ajout des photos dans la faceList
             for (int j = 0; j < faces.length(); j++) {
@@ -102,7 +102,7 @@ public class MethodMain {
         for(int i = 0; i< photosPath.size() ; i++) {
             //Analyse de l'ensemble des faceList avec la photo i
             //Récupération du FaceId de i
-            JSONObject jsonObject = DetectFace.detect(photosPath.get(i), "", false);
+            JSONObject jsonObject = DetectFace.detectFace(photosPath.get(i), "", false);
             if(jsonObject==null)
             {
                 System.out.println("La photo "+i+" n'est pas détécté comme un humain");
@@ -114,7 +114,7 @@ public class MethodMain {
             JSONArray jsonArrayVideoDePhoto = new JSONArray();
             //Boucle permettant d'analyser les FaceList de chaque vidéo pour la photo i
             for (int j = 0; j < nbVideos; j++) {
-                JSONArray jsonResultat = DetectFace.findSimilar(String.valueOf(j), faceId);
+                JSONArray jsonResultat = DetectFace.findSimilarFace(String.valueOf(j), faceId);
                 if(!jsonResultat.toString().equals("[]"))
                     jsonArrayVideoDePhoto.put(JsonUtil.pathToName(videosPath.get(j)));
 
