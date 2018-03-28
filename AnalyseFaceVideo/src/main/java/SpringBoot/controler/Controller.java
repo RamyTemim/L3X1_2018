@@ -32,7 +32,7 @@ public class Controller {
      */
     @RequestMapping(value = "/photos", method = RequestMethod.POST)
     public void postPathPhotos(@RequestParam("filePhoto") MultipartFile multipartFileImage) {
-        File file = JsonUtil.storFilePhoto(multipartFileImage);
+        File file = JsonUtil.storeFilePhoto(multipartFileImage);
         this.listpathTophoto=JsonUtil.readFile(file);
         System.out.println("Photos");
         for(int i=0 ; i<listpathTophoto.size(); i++){
@@ -47,7 +47,7 @@ public class Controller {
      */
     @RequestMapping(value = "/videos", method = RequestMethod.POST)
     public void postPathVideos (@RequestParam("fileVideo") MultipartFile multipartFileVideo) throws InterruptedException {
-        File file =JsonUtil.storFileVideo(multipartFileVideo);
+        File file =JsonUtil.storeFileVideo(multipartFileVideo);
         this.listpathToVideo=JsonUtil.readFile(file);
         System.out.println("Video");
         for(int i=0 ; i<listpathToVideo.size(); i++){

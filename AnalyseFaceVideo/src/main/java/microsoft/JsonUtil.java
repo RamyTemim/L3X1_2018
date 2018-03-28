@@ -22,7 +22,7 @@ public class JsonUtil {
      * @param multipartFile  fichier reçu dans une requete HTTP
      * @return un fichier qui contient le contunue du multipartFile
      */
-    public static File storFilePhoto(MultipartFile multipartFile)
+    public static File storeFilePhoto(MultipartFile multipartFile)
     {
         File file=new File("src/resources/listePhoto");
         try {
@@ -37,7 +37,7 @@ public class JsonUtil {
 
 
 
-    public static File storFileVideo(MultipartFile multipartFile)
+    public static File storeFileVideo(MultipartFile multipartFile)
     {
         File file= new File("src/resources/listeVideo");
         try {
