@@ -20,7 +20,7 @@ public class MicrosoftService
 
         // Pour uploader les vidéos se trouvant dans le fichier listeVidéo et récupérer les ids des vidéos
 
-         //List<String> videoIds = MethodMain.uploadVideo(pathVideo);
+        // List<String> videoIds = MethodMain.uploadVideo(pathVideo);
 
         //List<String> videoIds = MethodMain.uploadVideo(pathVideo);
 

@@ -77,7 +77,7 @@ public class Controller {
         System.out.println("Attente de Prise en compte du POST");
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             System.out.println("Erreur dans le sleep : ");
         }
