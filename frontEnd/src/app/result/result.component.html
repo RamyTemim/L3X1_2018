@@ -2,8 +2,14 @@
   <table id="tableau" cellspacing="10">
     <tr>
       <td class="celule">
-        <pre>{{appResult | json}}
-        </pre>
+        <ul *ngFor="let photoObj of photos.photos">
+          <li>{{ photoObj.name }}</li>
+          <ul>
+            <li *ngFor="let link of photoObj.videos">
+              {{ link }}
+            </li>
+          </ul>
+        </ul>
       </td>
       <td class="celule">
          ERROR 500

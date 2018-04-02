@@ -73,8 +73,6 @@ public class Controller {
     @RequestMapping(value ="/microsoft", method = RequestMethod.GET, produces ="application/json")
     public MicrosoftModel getMicrosoft() throws IOException
     {
-
-    
         System.out.println("Attente de Prise en compte du POST");
 
         try {
@@ -84,60 +82,9 @@ public class Controller {
         }
         System.out.println("Fin Attente");
 
-
-        String resultOfAnalyseMicrosoft;
-        //resultOfAnalyseMicrosoft=microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
-        MicrosoftModel modeleMicrosoft=microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
+        MicrosoftModel modeleMicrosoft = microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
 
         return  modeleMicrosoft;
-    }
-
-
-    @RequestMapping(value ="/test", method = RequestMethod.GET, produces ="application/json")
-    public String getTest(){
-
-        return  new JSONObject("{\n" +
-                "    \"photos\": [\n" +
-                "        {\n" +
-                "            \"name\": \"akram_blouza\",\n" +
-                "            \"videos\": [\n" +
-                "                \"XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift\",\n" +
-                "                \"XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD\"\n" +
-                "            ]\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"arnaud_Brachetti\",\n" +
-                "            \"videos\": [\n" +
-                "                \"XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD\",\n" +
-                "                \"XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise\"\n" +
-                "            ]\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"julien-smadja\",\n" +
-                "            \"videos\": [\n" +
-                "                \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2\",\n" +
-                "                \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain\",\n" +
-                "                \"XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD\"\n" +
-                "            ]\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"mael\",\n" +
-                "            \"videos\": []\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"renaud_chevalier\",\n" +
-                "            \"videos\": [\n" +
-                "                \"XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD\",\n" +
-                "                \"XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes\"\n" +
-                "            ]\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"name\": \"sameh\",\n" +
-                "            \"videos\": []\n" +
-                "        }\n" +
-                "    ]\n" +
-                "}"
-        ).toString() ;
     }
 
 

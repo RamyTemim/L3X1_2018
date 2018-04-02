@@ -1,4 +1,4 @@
-import { Photos } from './photos';
+import { Photos } from './model/photos';
 
 export interface ApiResult {
   api: Array<Photos>;

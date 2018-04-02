@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {AppService} from '../app.service';
-import {ApiResult} from './api-result';
 import {ActivatedRoute} from '@angular/router';
+import {Person} from './model/person';
+import {TypedJSON} from '@upe/typedjson';
+import {Photos} from './model/photos';
 
 @Component({
   selector: 'app-api-result',
@@ -18,14 +20,14 @@ export class ResultComponent implements OnInit {
   ) {
   }
 
-  appResult: ApiResult;
+  photos: Photos;
+  person: Person;
 
   getJson() {
     this.appService.getMicrosoft()
-      .subscribe(
-        data => {
-          this.appResult = data;
-          console.log(this.appResult.api);
+      .subscribe( data => {
+          console.log(data);
+          this.photos = data;
         },
         error => {
           console.log(error);
@@ -33,6 +35,8 @@ export class ResultComponent implements OnInit {
           console.log('finis');
         });
   }
+
+
   goBack(): void {
     this.location.back();
   }
