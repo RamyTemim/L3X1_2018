@@ -69,6 +69,17 @@ public class Controller {
     @RequestMapping(value ="/microsoft", method = RequestMethod.GET, produces ="application/json")
     public String getMicrosoft() throws IOException {
 
+
+    {
+        System.out.println("pause");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            System.out.println("Erreur dans le sleep : ");
+        }
+        System.out.println("fin pause");
+
+
         String resultOfAnalyseMicrosoft;
         resultOfAnalyseMicrosoft=microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
         JSONObject json = new JSONObject();
@@ -76,6 +87,8 @@ public class Controller {
 
         return  json.toString() ;
     }
+    }
 
 }
+
 
