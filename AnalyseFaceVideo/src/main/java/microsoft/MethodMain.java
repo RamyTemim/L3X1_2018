@@ -1,5 +1,7 @@
 package microsoft;
 
+import SpringBoot.model.MicrosoftModel;
+import SpringBoot.model.Persons;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -100,12 +102,16 @@ public class MethodMain {
      * @param videosPath La listePhoto des vidéos à analyser
      * @return Un Objet Json contenant pour chaque photo la listePhoto des vidéos ou celle ci apparait
      */
-    public static JSONObject detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos, List <String> videosPath)
+    public static MicrosoftModel detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos, List <String> videosPath)
     {
+        MicrosoftModel model = new MicrosoftModel();
+
         // Un tableau json qui va contenir la listePhoto des photos avec leur vidéos
         JSONObject jsonObjectListDePhoto = new JSONObject();
+
         for(int i = 0; i< photosPath.size() ; i++) {
 
+            Persons persons;
             JSONObject jsonObject = DetectFace.detectFace(photosPath.get(i), "", false);
 
             if(jsonObject==null)
@@ -118,16 +124,21 @@ public class MethodMain {
 
             //Un tableau qui va contenir la listePhoto de vidéo pour la photo i
             JSONArray jsonArrayVideoDePhoto = new JSONArray();
+            List<String> list = new ArrayList<String>();
             //Boucle permettant d'analyser les FaceList de chaque vidéo pour la photo i
             for (int j = 0; j < nbVideos; j++) {
                 JSONArray jsonResultat = DetectFace.findSimilarFace(String.valueOf(j), faceId);
-                if(!jsonResultat.toString().equals("[]"))
+                if(!jsonResultat.toString().equals("[]")) {
                     jsonArrayVideoDePhoto.put(JsonUtil.pathToName(videosPath.get(j)));
+                    list.add(JsonUtil.pathToName(videosPath.get(j)));
+                }
 
             }
             jsonObjectListDePhoto.put(JsonUtil.pathToName(photosPath.get(i)), jsonArrayVideoDePhoto);
+            persons = new Persons(JsonUtil.pathToName(photosPath.get(i)), list);
+            model.addPerson(persons);
         }
-
-        return jsonObjectListDePhoto;
+        return model;
+        //return jsonObjectListDePhoto;
     }
 }

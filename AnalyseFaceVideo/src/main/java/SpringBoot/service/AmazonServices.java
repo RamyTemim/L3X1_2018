@@ -81,8 +81,8 @@ public class AmazonServices {
         AmazonModel amazonModel=null;
         for (Iterator iterator = jsonObjectListFinal.keys(); iterator.hasNext();)
         {
-            persons.nameOfPerson = iterator.next();
-            persons.listOfVideos = jsonObjectListFinal.get(String.valueOf(persons.nameOfPerson));
+            //persons.nameOfPerson = iterator.next();
+            //persons.listOfVideos = jsonObjectListFinal.get(String.valueOf(persons.nameOfPerson));
             amazonModel.persons.add(persons);
 
         }

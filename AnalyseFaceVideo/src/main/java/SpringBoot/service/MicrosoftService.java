@@ -1,6 +1,7 @@
 package SpringBoot.service;
 
 
+import SpringBoot.model.MicrosoftModel;
 import microsoft.JsonUtil;
 import microsoft.MethodMain;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class MicrosoftService
 {
 
-    public String getJson(List<String> pathPhoto, List<String> pathVideo) throws IOException {
+    public MicrosoftModel getJson(List<String> pathPhoto, List<String> pathVideo) throws IOException {
 
         // Pour uploader les vidéos se trouvant dans le fichier listeVidéo et récupérer les ids des vidéos
 
@@ -36,9 +37,10 @@ public class MicrosoftService
         MethodMain.createFaceListFromPhotosOnVideo(videoIds, pathVideo);
 
         // Pour lancer la comparaison entre toutes les photos et les vidéos
-        JSONObject jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(pathPhoto, videoIds.size(), pathVideo);
+        // JSONObject jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(pathPhoto, videoIds.size(), pathVideo);
+        MicrosoftModel microsoft = MethodMain.detectFaceWithVideoAndPhoto(pathPhoto, videoIds.size(), pathVideo);
 
-        return jsonResultat.toString();
+        return microsoft;
     }
 
 }

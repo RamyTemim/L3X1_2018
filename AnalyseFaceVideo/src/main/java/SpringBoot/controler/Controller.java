@@ -1,7 +1,9 @@
 package SpringBoot.controler;
 
+import SpringBoot.model.MicrosoftModel;
 import SpringBoot.service.MicrosoftService;
 import microsoft.JsonUtil;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -69,8 +71,7 @@ public class Controller {
      * @return Le fichier json sous forme de String contenant le résultat de l'analyse de Microsoft
      */
     @RequestMapping(value ="/microsoft", method = RequestMethod.GET, produces ="application/json")
-
-    public String getMicrosoft() throws IOException
+    public MicrosoftModel getMicrosoft() throws IOException
     {
 
     
@@ -85,12 +86,10 @@ public class Controller {
 
 
         String resultOfAnalyseMicrosoft;
-        resultOfAnalyseMicrosoft=microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
-        JSONObject json = new JSONObject();
-        json.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
+        //resultOfAnalyseMicrosoft=microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
+        MicrosoftModel modeleMicrosoft=microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
 
-
-        return  json.toString() ;
+        return  modeleMicrosoft;
     }
 
 
@@ -98,28 +97,27 @@ public class Controller {
     public String getTest(){
 
         return  new JSONObject("{\n" +
-                "    \"Microsoft \": {\n" +
-                "        \"julien-smadja\": [\n" +
-                "            \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2\",\n" +
-                "            \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain\",\n" +
-                "            \"XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD\"\n" +
-                "        ],\n" +
-                "        \"renaud_chevalier\": [\n" +
-                "            \"XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD\",\n" +
-                "            \"XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes\"\n" +
-                "        ],\n" +
-                "        \"sameh\": [],\n" +
-                "        \"mael\": [],\n" +
-                "        \"akram_blouza\": [\n" +
-                "            \"XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift\",\n" +
-                "            \"XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD\"\n" +
-                "        ],\n" +
-                "        \"arnaud_Brachetti\": [\n" +
-                "            \"XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD\",\n" +
-                "            \"XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise\"\n" +
-                "        ]\n" +
-                "    }\n" +
-                "}").toString() ;
+                "    \"julien-smadja\": [\n" +
+                "        \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2\",\n" +
+                "        \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain\",\n" +
+                "        \"XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD\"\n" +
+                "    ],\n" +
+                "    \"renaud_chevalier\": [\n" +
+                "        \"XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD\",\n" +
+                "        \"XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes\"\n" +
+                "    ],\n" +
+                "    \"sameh\": [],\n" +
+                "    \"mael\": [],\n" +
+                "    \"akram_blouza\": [\n" +
+                "        \"XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift\",\n" +
+                "        \"XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD\"\n" +
+                "    ],\n" +
+                "    \"arnaud_Brachetti\": [\n" +
+                "        \"XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD\",\n" +
+                "        \"XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise\"\n" +
+                "    ]\n" +
+                "}"
+        ).toString() ;
     }
 
 
