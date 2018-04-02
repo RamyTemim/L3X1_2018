@@ -37,7 +37,6 @@ public class MicrosoftService
         MethodMain.createFaceListFromPhotosOnVideo(videoIds, pathVideo);
 
         // Pour lancer la comparaison entre toutes les photos et les vidéos
-        // JSONObject jsonResultat = MethodMain.detectFaceWithVideoAndPhoto(pathPhoto, videoIds.size(), pathVideo);
         MicrosoftModel microsoft = MethodMain.detectFaceWithVideoAndPhoto(pathPhoto, videoIds.size(), pathVideo);
 
         return microsoft;

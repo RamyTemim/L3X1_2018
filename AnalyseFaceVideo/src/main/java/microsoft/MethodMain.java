@@ -106,9 +106,6 @@ public class MethodMain {
     {
         MicrosoftModel model = new MicrosoftModel();
 
-        // Un tableau json qui va contenir la listePhoto des photos avec leur vidéos
-        JSONObject jsonObjectListDePhoto = new JSONObject();
-
         for(int i = 0; i< photosPath.size() ; i++) {
 
             Persons persons;
@@ -123,22 +120,18 @@ public class MethodMain {
             String faceId = jsonObject.get("faceId").toString();
 
             //Un tableau qui va contenir la listePhoto de vidéo pour la photo i
-            JSONArray jsonArrayVideoDePhoto = new JSONArray();
             List<String> list = new ArrayList<String>();
             //Boucle permettant d'analyser les FaceList de chaque vidéo pour la photo i
             for (int j = 0; j < nbVideos; j++) {
                 JSONArray jsonResultat = DetectFace.findSimilarFace(String.valueOf(j), faceId);
                 if(!jsonResultat.toString().equals("[]")) {
-                    jsonArrayVideoDePhoto.put(JsonUtil.pathToName(videosPath.get(j)));
                     list.add(JsonUtil.pathToName(videosPath.get(j)));
                 }
 
             }
-            jsonObjectListDePhoto.put(JsonUtil.pathToName(photosPath.get(i)), jsonArrayVideoDePhoto);
             persons = new Persons(JsonUtil.pathToName(photosPath.get(i)), list);
             model.addPerson(persons);
         }
         return model;
-        //return jsonObjectListDePhoto;
     }
 }

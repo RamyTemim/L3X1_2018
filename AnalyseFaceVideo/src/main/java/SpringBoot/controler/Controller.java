@@ -97,24 +97,44 @@ public class Controller {
     public String getTest(){
 
         return  new JSONObject("{\n" +
-                "    \"julien-smadja\": [\n" +
-                "        \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2\",\n" +
-                "        \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain\",\n" +
-                "        \"XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD\"\n" +
-                "    ],\n" +
-                "    \"renaud_chevalier\": [\n" +
-                "        \"XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD\",\n" +
-                "        \"XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes\"\n" +
-                "    ],\n" +
-                "    \"sameh\": [],\n" +
-                "    \"mael\": [],\n" +
-                "    \"akram_blouza\": [\n" +
-                "        \"XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift\",\n" +
-                "        \"XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD\"\n" +
-                "    ],\n" +
-                "    \"arnaud_Brachetti\": [\n" +
-                "        \"XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD\",\n" +
-                "        \"XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise\"\n" +
+                "    \"photos\": [\n" +
+                "        {\n" +
+                "            \"name\": \"akram_blouza\",\n" +
+                "            \"videos\": [\n" +
+                "                \"XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift\",\n" +
+                "                \"XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD\"\n" +
+                "            ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"arnaud_Brachetti\",\n" +
+                "            \"videos\": [\n" +
+                "                \"XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD\",\n" +
+                "                \"XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise\"\n" +
+                "            ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"julien-smadja\",\n" +
+                "            \"videos\": [\n" +
+                "                \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2\",\n" +
+                "                \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain\",\n" +
+                "                \"XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD\"\n" +
+                "            ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"mael\",\n" +
+                "            \"videos\": []\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"renaud_chevalier\",\n" +
+                "            \"videos\": [\n" +
+                "                \"XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD\",\n" +
+                "                \"XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes\"\n" +
+                "            ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"sameh\",\n" +
+                "            \"videos\": []\n" +
+                "        }\n" +
                 "    ]\n" +
                 "}"
         ).toString() ;
