@@ -1,5 +1,3 @@
-
-
 import amazon.CreatCollectionFaces;
 import amazon.S3operation;
 
