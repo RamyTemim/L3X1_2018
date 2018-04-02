@@ -69,15 +69,19 @@ public class Controller {
      * @return Le fichier json sous forme de String contenant le résultat de l'analyse de Microsoft
      */
     @RequestMapping(value ="/microsoft", method = RequestMethod.GET, produces ="application/json")
+
     public String getMicrosoft() throws IOException
     {
-        System.out.println("pause");
+
+    
+        System.out.println("Attente de Prise en compte du POST");
+
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             System.out.println("Erreur dans le sleep : ");
         }
-        System.out.println("fin pause");
+        System.out.println("Fin Attente");
 
 
         String resultOfAnalyseMicrosoft;
@@ -87,6 +91,35 @@ public class Controller {
 
 
         return  json.toString() ;
+    }
+
+
+    @RequestMapping(value ="/test", method = RequestMethod.GET, produces ="application/json")
+    public String getTest(){
+
+        return  new JSONObject("{\n" +
+                "    \"Microsoft \": {\n" +
+                "        \"julien-smadja\": [\n" +
+                "            \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain-2\",\n" +
+                "            \"XebiCon-17-Les-assistants-du-futur-2022-cest-déjà-demain\",\n" +
+                "            \"XebiaCon17_Les_assistants_du_futur_2022_cest_déjà_demain-HD\"\n" +
+                "        ],\n" +
+                "        \"renaud_chevalier\": [\n" +
+                "            \"XebiCon_17_Comment_identifier_ses_tribus_en_4_étapes-HD\",\n" +
+                "            \"XebiCon-17-Comment-identifier-ses-tribus-en-4-étapes\"\n" +
+                "        ],\n" +
+                "        \"sameh\": [],\n" +
+                "        \"mael\": [],\n" +
+                "        \"akram_blouza\": [\n" +
+                "            \"XebiCon-17-Migration-d-une-application-web-vers-un-PaaS-Openshift\",\n" +
+                "            \"XebiCon17_Migration_une_application_web_vers_un_PaaS_Openshift_2-HD\"\n" +
+                "        ],\n" +
+                "        \"arnaud_Brachetti\": [\n" +
+                "            \"XebiCon_17_Une longue_route_vers_la_transformation_Agile_de_lentreprise_1-HD\",\n" +
+                "            \"XebiCon-17-Une-longue-route-vers-la-transformation-Agile-de-lentreprise\"\n" +
+                "        ]\n" +
+                "    }\n" +
+                "}").toString() ;
     }
 
 

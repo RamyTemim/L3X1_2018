@@ -7,7 +7,7 @@ export class AppService {
 
   apiUrlMicrosoft = 'http://localhost:8080/microsoft/';
   apiUrlAmazon = 'http://localhost:8080/amazon/';
-  apiUrl = 'http://localhost:8080/test/';
+  apiUrlTest = 'http://localhost:8080/test/';
   urlPhoto = 'http://localhost:8080/photos';
   urlVideo = 'http://localhost:8080/videos';
 
@@ -15,7 +15,7 @@ export class AppService {
 
   getJson() {
     return this.http
-      .get<ApiResult>(this.apiUrl);
+      .get<ApiResult>(this.apiUrlTest);
   }
 
   getMicrosoft() {
