@@ -33,6 +33,7 @@ public class Controller {
     {
         File file = JsonUtil.storeFilePhoto(multipartFileImage);
         this.listpathTophoto=JsonUtil.readFile(file);
+
     }
 
     /**
@@ -44,6 +45,7 @@ public class Controller {
     {
         File file =JsonUtil.storeFileVideo(multipartFileVideo);
         this.listpathToVideo=JsonUtil.readFile(file);
+
     }
 
     /*
@@ -67,9 +69,7 @@ public class Controller {
      * @return Le fichier json sous forme de String contenant le résultat de l'analyse de Microsoft
      */
     @RequestMapping(value ="/microsoft", method = RequestMethod.GET, produces ="application/json")
-    public String getMicrosoft() throws IOException {
-
-
+    public String getMicrosoft() throws IOException
     {
         System.out.println("pause");
         try {
@@ -85,9 +85,10 @@ public class Controller {
         JSONObject json = new JSONObject();
         json.put("Microsoft ",new JSONObject(resultOfAnalyseMicrosoft ));
 
+
         return  json.toString() ;
     }
-    }
+
 
 }
 

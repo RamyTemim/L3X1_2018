@@ -1,6 +1,6 @@
 package SpringBoot.model;
 
 public class FacialRecongition {
-    MicrosoftModel microsoftModel;
-   public static AmazonModel amazonModel;
+     public static MicrosoftModel microsoftModel;
+     public static AmazonModel amazonModel;
 }

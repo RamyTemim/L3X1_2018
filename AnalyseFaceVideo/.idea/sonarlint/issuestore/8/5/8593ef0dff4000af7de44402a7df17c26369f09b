@@ -1,0 +1,8 @@
+
+msquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(žæ½Æ
+Psquid:S2696"6Make the enclosing method "static" or remove this set.(¦¹¨®øÿÿÿÿ
+ˆ"squid:ClassVariableVisibilityCheck"WMake credentials a static final constant or non-public and provide accessors if needed.(ÜÃ±®ýÿÿÿÿ
+_squid:S2259"EA "NullPointerException" could be thrown; "persons" is nullable here.(–Øêèüÿÿÿÿ
+Osquid:S2209"5Change this instance-reference to a static reference.(“ôþ›ùÿÿÿÿ
+Ksquid:S1444"1Make this "public static credentials" field final(ÜÃ±®ýÿÿÿÿ
+Psquid:S2696"6Make the enclosing method "static" or remove this set.(°Æ×…þÿÿÿÿ

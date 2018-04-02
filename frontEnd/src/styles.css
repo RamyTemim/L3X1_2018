@@ -31,22 +31,6 @@ body {
   object-fit: fill;
 }
 
-.microsoftR {
-
-  width: 50%;
-  height: 50%;
-  object-fit: fill;
-right: auto;
-}
-
-.amazonR {
-  top: 100px;
-  left: 300px;
-  width: 300px;
-  height: 150px;
-  object-fit: fill;
-  left: auto;
-}
 
 .textarea1 {
   color: white;
@@ -78,6 +62,5 @@ right: auto;
   display: flex;
   justify-content: center;
 }
-#vs{
 
-}
+

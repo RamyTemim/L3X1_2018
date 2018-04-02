@@ -1,0 +1,17 @@
+.celule{
+  border: 2px solid white;
+  color: white;
+  width: 50%;
+  height: auto;
+
+}
+
+#tableau{
+  width: 100%;
+}
+.goBack{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
