@@ -1,25 +1,7 @@
-<!--<p class="para1">Comparez ces différentes APIs de reconnaissance faciale:</p>
-
-
-
-<p>                       </p>
-<input id="inputT" type="file" class="inputText" (change)="onSelectFilePhoto($event)"> <input type="button" value="Chagrer fichier photo" class="upload" onclick="document.getElementById('inputT').click()"> <br>
-
-<p>                       </p>
-
-<input id="inputT2" type="file" class="inputText" (change)="onSelectFileVideo($event)"> <input type="button" value="Chagrer fichier vidéo" class="upload" onclick="document.getElementById('inputT2').click()"> <br>
--->
-<!--<button class="btn btn-success" (click)="ulpoadFileTo()">Upload</button>
--->
-
-<!--
-
-<router-outlet></router-outlet>
-<input type="button" (click)="uploadFileTo()" routerLink="/results" name="comparer" value="Comparer" class="comparer"/>
--->
-
-<input type="file" (change)="onSelectFilePhoto($event)"> <br>
-<input type="file" (change)="onSelectFileVideo($event)"> <br>
-<button class="btn btn-success" routerLink="/results" (click)="uploadFileTo()">Upload</button>
+<div class="divInput">
+    <input type="file" (change)="onSelectFilePhoto($event)" class="iputFile" accept="text/uri-list"><br>
+    <input type="file" (change)="onSelectFileVideo($event)" class="iputFile" accept="text/uri-list"><br>
+    <button id="boutton"  routerLink="/results" (click)="uploadFileTo()">Comparer</button>
+</div>
 
 <router-outlet></router-outlet>

@@ -149,8 +149,7 @@ public class JsonUtil {
      * @param videoIds List de videoId permettant d'accéder aux vidéos indexées dans le cloud
      * @return Une liste qui va contenir pour chaque membre de sa liste une liste de lien pour accéder aux photos extraite des vidéos
      */
-    public static List<List<String>> getListLienVideo (List<String> videoIds )
-    {
+    public static List<List<String>> getListLienVideo (List<String> videoIds ) throws IOException {
         List<List<String>> listLien = new ArrayList<>();
         for(int i = 0; i<videoIds.size(); i++)
         {

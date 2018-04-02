@@ -27,62 +27,62 @@ public class VideoIndexer {
      * @param path le chemin pour acceder à la vidéo
      * @return l'identifiant de la vidéo uploadé
      */
-    public static String upload(String path)
-    {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        //Pour le retourner en dehors du catch
+    public static String upload(String path) throws IOException {
         String videoId = null;
+          try ( CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
-        try
-        {
-            //Transforme le lien en Uri
-            URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload);
-            builder.toString();
+              //Pour le retourner en dehors du catch
 
-            builder.addParameter("name", JsonUtil.pathToName(path));
-            builder.addParameter("privacy", "Public");
 
-            //builder.setPath(builder.toString().concat("name=").concat(JsonUtil.pathToName(path)).concat("&privacy=Public"));
-            //builder.setPath(builder.getPath()+"name="+JsonUtil.pathToName(path)+"&privacy=Public");
+              try {
+                  //Transforme le lien en Uri
+                  URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload);
+                  builder.toString();
 
-            URI uri = builder.build();
+                  builder.addParameter("name", JsonUtil.pathToName(path));
+                  builder.addParameter("privacy", "Public");
 
-            //Création de la requête HTTP Post
-            HttpPost httpPost = new HttpPost(uri);
-            //Header de la requête Post
-            //httpPost.setHeader("Content-Type", "multipart/form-data");
-            httpPost.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
+                  //builder.setPath(builder.toString().concat("name=").concat(JsonUtil.pathToName(path)).concat("&privacy=Public"));
+                  //builder.setPath(builder.getPath()+"name="+JsonUtil.pathToName(path)+"&privacy=Public");
 
-            //Création de l'entite Multipart qui va être rajouté dans le http
-            MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
+                  URI uri = builder.build();
 
-            //Rajout du fichier dans le multipart
-            File f = new File(path);
-            multipart.addBinaryBody("film2",new FileInputStream(f));
+                  //Création de la requête HTTP Post
+                  HttpPost httpPost = new HttpPost(uri);
+                  //Header de la requête Post
+                  //httpPost.setHeader("Content-Type", "multipart/form-data");
+                  httpPost.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
 
-            //Transforme le multipart en entité Http
-            HttpEntity entityMultipart = multipart.build();
+                  //Création de l'entite Multipart qui va être rajouté dans le http
+                  MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
 
-            //Rajout de cette entité à la requête http POST
-            httpPost.setEntity(entityMultipart);
+                  //Rajout du fichier dans le multipart
+                  File f = new File(path);
+                  multipart.addBinaryBody("film2", new FileInputStream(f));
 
-            //Récupere la réponse de la requête Http
-            CloseableHttpResponse response = httpclient.execute(httpPost);
-            //Transforme la réponse en entité Http
-            HttpEntity entity = response.getEntity();
+                  //Transforme le multipart en entité Http
+                  HttpEntity entityMultipart = multipart.build();
 
-            videoId = EntityUtils.toString(entity);
+                  //Rajout de cette entité à la requête http POST
+                  httpPost.setEntity(entityMultipart);
 
-        } catch (FileNotFoundException e) {
-            System.err.println("Erreur lors de la lecture du fichier pour la méthode upload : " + e);
-        } catch (ClientProtocolException e) {
-            System.err.println("Erreur dans la requête HTTP pour la méthode upload : " + e);
-        } catch (IOException e) {
-            System.err.println("Erreur lors de l'execution de la requete pour la méthode upload : " + e);
-        } catch (URISyntaxException e) {
-            System.err.println("Erreur lors du parse de l'URI  la méthode upload : " + e);
-        }
+                  //Récupere la réponse de la requête Http
+                  CloseableHttpResponse response = httpclient.execute(httpPost);
+                  //Transforme la réponse en entité Http
+                  HttpEntity entity = response.getEntity();
 
+                  videoId = EntityUtils.toString(entity);
+
+              } catch (FileNotFoundException e) {
+                  System.out.println("Erreur lors de la lecture du fichier pour la méthode upload : " + e);
+              } catch (ClientProtocolException e) {
+                  System.out.println("Erreur dans la requête HTTP pour la méthode upload : " + e);
+              } catch (IOException e) {
+                  System.out.println("Erreur lors de l'execution de la requete pour la méthode upload : " + e);
+              } catch (URISyntaxException e) {
+                  System.out.println("Erreur lors du parse de l'URI  la méthode upload : " + e);
+              }
+          }
         return videoId;
     }
 
@@ -92,12 +92,12 @@ public class VideoIndexer {
      * @param videoId l'Id de la vidéo
      * @return Un objet Json qui va contenir l'ensemble des éléments que l'API de Microsoft a extrait de la vidéo
      */
-    public static JSONObject getBreakdown(String videoId)
-    {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+    public static JSONObject getBreakdown(String videoId) throws IOException {
         JSONObject json = null;
-        try
-        {
+
+    try(CloseableHttpClient httpclient = HttpClients.createDefault()) {
+
+        try {
             URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload.concat(videoId));
 
             builder.setParameter("language", "French");
@@ -112,12 +112,13 @@ public class VideoIndexer {
             json = JsonUtil.httpToJsonObject(entity);
 
         } catch (ClientProtocolException e) {
-            System.err.println("Erreur dans la requête HTTP pour la méthode geBreakdown : " + e);
+            System.out.println("Erreur dans la requête HTTP pour la méthode geBreakdown : " + e);
         } catch (IOException e) {
-            System.err.println("Erreur lors de la lecture du fichier pour la méthode getBreakdown : " + e);
+            System.out.println("Erreur lors de la lecture du fichier pour la méthode getBreakdown : " + e);
         } catch (URISyntaxException e) {
-            System.err.println("Erreur dans l'URI pour la méthode getBreakdown : " + e);
+            System.out.println("Erreur dans l'URI pour la méthode getBreakdown : " + e);
         }
+    }
         return json;
     }
 
@@ -148,36 +149,37 @@ public class VideoIndexer {
      * @param videoId L'id de la vidéo
      * @return renvoit l'objet JSON qui va contenir les informations à propos de la vidéo
      */
-    public static JSONObject getProcessingState (String videoId)
-    {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+    public static JSONObject getProcessingState (String videoId) throws IOException {
         JSONObject json = null;
-        try
-        {
-            URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload.concat(videoId).concat("/State"));
 
-            URI uri = builder.build();
+        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
-            final RequestConfig params = RequestConfig.custom().setConnectTimeout(3000).setSocketTimeout(3000).build();
+            try {
+                URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload.concat(videoId).concat("/State"));
 
-            HttpGet request = new HttpGet(uri);
-            request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
-            request.setConfig(params);
-            CloseableHttpResponse response = httpclient.execute(request);
-            HttpEntity entity = response.getEntity();
-            json = JsonUtil.httpToJsonObject(entity);
+                URI uri = builder.build();
 
-        } catch (ClientProtocolException e) {
-            System.err.println("Erreur dans la requête HTTP pour la méthode getProcessingState : " + e);
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la lecture du fichier pour la méthode getProcessingState : " + e);
-        } catch (URISyntaxException e) {
-            System.err.println("Erreur dans l'URI pour la méthode getProcessingState : " + e);
+                final RequestConfig params = RequestConfig.custom().setConnectTimeout(3000).setSocketTimeout(3000).build();
+
+                HttpGet request = new HttpGet(uri);
+                request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
+                request.setConfig(params);
+                CloseableHttpResponse response = httpclient.execute(request);
+                HttpEntity entity = response.getEntity();
+                json = JsonUtil.httpToJsonObject(entity);
+
+            } catch (ClientProtocolException e) {
+                System.out.println("Erreur dans la requête HTTP pour la méthode getProcessingState : " + e);
+            } catch (IOException e) {
+                System.out.println("Erreur lors de la lecture du fichier pour la méthode getProcessingState : " + e);
+            } catch (URISyntaxException e) {
+                System.out.println("Erreur dans l'URI pour la méthode getProcessingState : " + e);
+            }
+
+            if (json == null)
+                return new JSONObject();
+            else
+                return json;
         }
-
-        if(json == null)
-            return new JSONObject();
-        else
-            return json;
     }
 }

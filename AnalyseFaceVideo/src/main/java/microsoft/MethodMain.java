@@ -3,6 +3,7 @@ package microsoft;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,7 @@ public class MethodMain {
      * @param pathVideo Une listePhoto de lien vers les vidéos stockées localement
      * @return Une listePhoto de videoId correspondant à l'Id permettant d'accéder aux vidéos indexées sur le cloud de Microsoft
      */
-    public static List<String> uploadVideo(List<String> pathVideo)
-    {
+    public static List<String> uploadVideo(List<String> pathVideo) throws IOException {
         //videoIds est la liste qui va contenir les Id des vidéos que videoIndexer va indéxer
         List <String> videoIds = new ArrayList<>();
         System.out.println("videos en cours d'upload");
@@ -58,8 +58,7 @@ public class MethodMain {
      * @param videoIds Liste des identifiants des vidéos stockées sur le cloud de microsoft
      * @param pathVideos La liste des chemins pour accéder aux vidéos localement (pour en extraire le nom)
      */
-    public static void createFaceListFromPhotosOnVideo (List<String> videoIds, List<String> pathVideos)
-    {
+    public static void createFaceListFromPhotosOnVideo (List<String> videoIds, List<String> pathVideos) throws IOException {
         for(int i = 0 ; i< videoIds.size() ; i++) {
             FaceList.deleteFaceList(String.valueOf(i));
 

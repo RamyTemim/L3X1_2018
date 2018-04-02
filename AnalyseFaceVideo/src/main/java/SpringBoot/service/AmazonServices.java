@@ -1,5 +1,8 @@
 package SpringBoot.service;
 
+import SpringBoot.model.AmazonModel;
+import SpringBoot.model.FacialRecongition;
+import SpringBoot.model.Persons;
 import amazon.*;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -19,58 +23,45 @@ public class AmazonServices {
 
     public String getJson(List<String> pathPhoto, List<String> pathVideo)  {
 
-
-        // création du compartiment S3 pour les photos
         S3operation.CreatBucket(Var.bucketPhoto);
 
-        // chargement des photos das le compartiment des photos
         for (String aListpathTophoto : pathPhoto)
         {
             S3operation.UploadFileToBucket(Var.bucketPhoto, aListpathTophoto);
         }
 
-        // création du compartiment S3 pour les videos
         S3operation.CreatBucket(Var.bucketVideo);
 
-        // chargement des photos das le compartiment des videos
+
         for (String aListpathToVideo : pathVideo)
         {
             S3operation.UploadFileToBucket(Var.bucketVideo, aListpathToVideo);
         }
 
-
-
-        // vérification des données d'authentificaton et des autorisations d'accèes
         credentials = CreatCollectionFaces.connexionIdexFace();
 
-        //Supprimer l'anciene collection
         CreatCollectionFaces.DeleteCollection(Var.collectionId, credentials);
 
-        // création d'une nouvelle  collection
         CreatCollectionFaces.CreatCollectionFace(credentials, Var.collectionId);
 
-
-
-        // récupérer les nom des photos dans le bucket photo
         List<String> listnameOfImage = S3operation.ListFilesInBucket(Var.bucketPhoto);
 
-        // Ajout des visages dans la collection
         for (int i=0; i<listnameOfImage.size();i++)
         {
             CreatCollectionFaces.addFace(credentials, Var.bucketPhoto, listnameOfImage.get(i) , Var.collectionId);
         }
 
-        // listePhoto qui contient les noms des videos qui se trouvent dans le compartiment videos
         List<String> listnameOfVideos = S3operation.ListFilesInBucket(Var.bucketVideo);
 
         List<List<String>> listImageInVideos = new ArrayList<>();
 
 
-        // detecter les personnes qui se trouve dans chaque video en utilise la méthode DetectFacesInVideos
         for (int i =0 ; i<listnameOfVideos.size();i++)
         {
             listImageInVideos.add(DetectFaceInVideo.DetectFacesInVideos(Var.bucketVideo, listnameOfVideos.get(i), Var.rek, Var.channel, Var.collectionId, Var.queueUrl, Var.sqs));
         }
+
+
 
         JSONObject jsonObjectListFinal = new JSONObject();
         for (int i=0; i<listnameOfImage.size(); i++)
@@ -83,14 +74,25 @@ public class AmazonServices {
                     jsonArrayListVideo.put(listnameOfVideos.get(j));
                 }
             }
-            jsonObjectListFinal.put(listnameOfImage.get(i),jsonArrayListVideo);
+            jsonObjectListFinal.put(listnameOfImage.get(i), jsonArrayListVideo);
         }
 
-        // vider les compartiments
+        Persons persons = null;
+        AmazonModel amazonModel=null;
+        for (Iterator iterator = jsonObjectListFinal.keys(); iterator.hasNext();)
+        {
+            persons.nameOfPerson = iterator.next();
+            persons.listOfVideos = jsonObjectListFinal.get(String.valueOf(persons.nameOfPerson));
+            amazonModel.persons.add(persons);
+
+        }
+        FacialRecongition.amazonModel = amazonModel;
+
+
         S3operation.PurgeBucket(Var.bucketPhoto);
         S3operation.PurgeBucket(Var.bucketVideo);
 
-        return jsonObjectListFinal.toString();
+        return FacialRecongition.amazonModel.toString();
     }
 
 
