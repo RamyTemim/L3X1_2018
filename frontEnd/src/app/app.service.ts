@@ -15,11 +15,6 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  getJson() {
-    return this.http
-      .get<Photos>(this.apiUrlTest);
-  }
-
   getMicrosoft() {
     return this.http
       .get<Photos>(this.apiUrlMicrosoft);

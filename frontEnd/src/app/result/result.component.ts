@@ -21,7 +21,6 @@ export class ResultComponent implements OnInit {
   }
 
   photos: Photos;
-  person: Person;
 
   getJson() {
     this.appService.getMicrosoft()
