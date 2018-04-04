@@ -3,6 +3,8 @@ package microsoft;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtil {
+private JsonUtil(){}
+    private static Logger log = LogManager.getLogger();
+    public static void sleepGet() throws InterruptedException {
+       log.info("Attente de fichier ");
+        Thread.sleep(5000);
+
+    }
 
     /**
      *
@@ -30,7 +39,7 @@ public class JsonUtil {
             Path path =Paths.get("src/resources/listePhoto");
             Files.write(path,bytes);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.info(e);
         }
         return file;
     }
@@ -56,8 +65,7 @@ public class JsonUtil {
      * @param file fichier a lire
      * @return  listeOfpaths : listePhoto de string qui contien les ligne du fichier
      */
-    public static List<String> readFile (File file)
-    {
+    public static List<String> readFile (File file) throws IOException {
         String path;
         List<String> listeOfpaths = new ArrayList<>();
         if (file.exists()) {
@@ -68,17 +76,13 @@ public class JsonUtil {
                     while ((path = buffer.readLine()) != null) {
                         listeOfpaths.add(path);
                     }
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             } else
             {
-                System.err.println("Le fichier ne peut pas être lu ");
+                log.info("Le fichier ne peut pas être lu ");
             }
         }else {
-            System.err.println("Le fichier n'existe pas ");
+            log.info("Le fichier n'existe pas ");
         }
         return listeOfpaths;
     }
@@ -99,7 +103,7 @@ public class JsonUtil {
                 jsonObject = stringToJson(jsonString);
             }
             catch (IOException e) {
-                System.err.println("erreur lors de la lecture du fichier pour la methode httpToJsonObject" + e);
+                log.info("erreur lors de la lecture du fichier pour la methode httpToJsonObject" + e);
             }
 
         }
@@ -159,7 +163,7 @@ public class JsonUtil {
             JSONArray faces = VideoIndexer.getFacesFromVideos(json);
 
             for (int j = 0; j < faces.length(); j++) {
-                listUrlPhoto.add(IdAPI.thumbnail.concat(videoIds.get(i) + "/")
+                listUrlPhoto.add(IdAPI.THUMBNAIL.concat(videoIds.get(i) + "/")
                         .concat(faces.getJSONObject(j).get("thumbnailId").toString()));
             }
             listLien.add(listUrlPhoto);

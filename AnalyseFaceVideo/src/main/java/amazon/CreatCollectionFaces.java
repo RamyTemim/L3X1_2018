@@ -11,8 +11,12 @@ import com.amazonaws.services.rekognition.model.*;
 
 import java.util.List;
 
+import static java.lang.System.*;
+
 
 public class CreatCollectionFaces {
+
+     private CreatCollectionFaces(){ }
 
     /**
      * Methode pour pour verifier les données d'identifications, les autorisations et les droits d'accèes de l'utilisateur
@@ -55,17 +59,14 @@ public class CreatCollectionFaces {
      * @param credentials données d'identification et autorisation d'accé
      * @param collectionId identifiant pour  la collection
      */
-    public static String CreatCollectionFace (AWSCredentials credentials,String collectionId)
+    public static void creatCollectionFace (AWSCredentials credentials,String collectionId)
     {
-
-
             // création de collection avec collectionId = "CollectionF"
             CreateCollectionRequest request = new CreateCollectionRequest()
                     .withCollectionId(collectionId);
 
             CreateCollectionResult createCollectionResult = getAWSR(credentials).createCollection(request);
-            System.out.println("Collection ARN = " + createCollectionResult.getCollectionArn());
-            return collectionId;
+            out.println("Collection ARN = " + createCollectionResult.getCollectionArn());
         }
 
 
@@ -94,10 +95,10 @@ public class CreatCollectionFaces {
 
        IndexFacesResult indexFacesResult=getAWSR(credentials).indexFaces(indexFacesRequest);
 
-       System.out.println(nameOfImage + " ajouter");
+       out.println(nameOfImage + " ajouter");
        List<FaceRecord> faceRecords = indexFacesResult.getFaceRecords();
         for(FaceRecord faceRecord: faceRecords) {
-                System.out.println("Face detected: Faceid is " +
+                out.println("Face detected: Faceid is " +
                         faceRecord.getFace().getFaceId());
 
        }
@@ -110,13 +111,13 @@ public class CreatCollectionFaces {
      * @param collectionId identifiant de la collection a supprimer
      * @param credentials  données d'identification et autorisation d'accés
      */
-    public static void DeleteCollection (String collectionId,AWSCredentials credentials)
+    public static void deleteCollection (String collectionId,AWSCredentials credentials)
     {
         DeleteCollectionRequest request = new DeleteCollectionRequest()
                 .withCollectionId(collectionId);
         DeleteCollectionResult deleteCollectionResult = getAWSR(credentials).deleteCollection(request);
-        System.out.println("Suprimé ");
-        System.out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
+        out.println("Suprimé ");
+        out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
                 .toString());
 
     }

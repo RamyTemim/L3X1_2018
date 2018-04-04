@@ -1,7 +1,9 @@
 package microsoft;
 
-import SpringBoot.model.MicrosoftModel;
-import SpringBoot.model.Persons;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import springboot.model.MicrosoftModel;
+import springboot.model.Persons;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -9,8 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MethodMain {
+import static java.lang.System.*;
 
+public class MethodMain {
+    private MethodMain(){}
+     private static Logger log = LogManager.getLogger();
+    private static final String STATE = "state";
     /**
      * Méthode permettant d'uploader une liste de vidéos et d'attendre que l'API de microsoft ait terminé de les indexer
      * @param pathVideo Une listePhoto de lien vers les vidéos stockées localement
@@ -19,13 +25,13 @@ public class MethodMain {
     public static List<String> uploadVideo(List<String> pathVideo) throws IOException {
         //videoIds est la liste qui va contenir les Id des vidéos que videoIndexer va indéxer
         List <String> videoIds = new ArrayList<>();
-        System.out.println("videos en cours d'upload");
+       log.info("videos en cours d'upload");
         //On rajoute dans la liste le retour de l'upload de videoIndexer
         for (String path : pathVideo) {
             videoIds.add(JsonUtil.supprimeGuillemet(VideoIndexer.upload(path)));
         }
 
-        System.out.println("Vidéos en cours d'indexation");
+        log.info("Vidéos en cours d'indexation");
         int nbVideoUpload = 0;
         //Tant que toutes les vidéos n'ont pas finis d'être uploadé on attend
         while (nbVideoUpload != videoIds.size()) {
@@ -33,22 +39,22 @@ public class MethodMain {
             for (int i = 0; i<videoIds.size();i++){
 
                 JSONObject json = VideoIndexer.getProcessingState(videoIds.get(i));
-                System.out.println("Video " + (i+1) + " : " +json);
-                if(json.has("state"))
+                log.info("Video " + (i+1) + " : " +json);
+                if(json.has(STATE))
                 {
-                    if (json.get("state").toString().equals("Processed"))
+                    if (json.get(STATE).toString().equals("Processed"))
                     {
                         nbVideoUpload++;
                     }
-                    else if(json.get("state").toString().equals("Failed"))
+                    else if(json.get(STATE).toString().equals("Failed"))
                     {
-                        System.out.println("Erreur lors de l'upload des vidéos : ");
-                        System.exit(-1);
+                        log.info("Erreur lors de l'upload des vidéos : ");
+                        exit(-1);
                     }
                 }
             }
         }
-        System.out.println("Vidéos uploadées avec succès");
+        log.info("Vidéos uploadées avec succès");
         return videoIds;
     }
 
@@ -75,22 +81,22 @@ public class MethodMain {
 
             //Met dans la listePhoto les url pour accéder aux photos extraite de la vidéo
             for (int j = 0; j < faces.length(); j++) {
-                listUrlPhoto.add(IdAPI.thumbnail.concat(videoIds.get(i) + "/")
+                listUrlPhoto.add(IdAPI.THUMBNAIL.concat(videoIds.get(i) + "/")
                                                 .concat(faces.getJSONObject(j).get("thumbnailId").toString()));
             }
 
             //Création de la faceList qui va contenir les photos extraite de la vidéo
             FaceList.createFaceList(JsonUtil.pathToName(pathVideos.get(i)), String.valueOf(i), "yoni");
 
-            System.out.println("Ajout des photos dans la listePhoto " + (i+1) + " : ");
+            log.info("Ajout des photos dans la listePhoto " + (i+1) + " : ");
 
             //Ajout des photos dans la faceList
             for (int j = 0; j < faces.length(); j++) {
                 FaceList.addFace(listUrlPhoto.get(j), String.valueOf(i), "Photo ".concat(String.valueOf(j+1)), true);
             }
 
-            System.out.println("\nListe "+ (i+1) + ": ");
-            System.out.println(FaceList.getFaceOflist(String.valueOf(i)).toString(2));
+            log.info("\nListe "+ (i+1) + ": ");
+            log.info(FaceList.getFaceOflist(String.valueOf(i)).toString(2));
         }
     }
 
@@ -102,8 +108,7 @@ public class MethodMain {
      * @param videosPath La listePhoto des vidéos à analyser
      * @return Un Objet Json contenant pour chaque photo la listePhoto des vidéos ou celle ci apparait
      */
-    public static MicrosoftModel detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos, List <String> videosPath)
-    {
+    public static MicrosoftModel detectFaceWithVideoAndPhoto (List <String> photosPath, int nbVideos, List <String> videosPath) throws IOException {
         MicrosoftModel model = new MicrosoftModel();
 
         for(int i = 0; i< photosPath.size() ; i++) {
@@ -113,14 +118,14 @@ public class MethodMain {
 
             if(jsonObject==null)
             {
-                System.out.println("La photo "+i+" n'est pas détécté comme un humain");
-                System.exit(-1);
+                log.info("La photo "+i+" n'est pas détécté comme un humain");
+                exit(-1);
             }
 
             String faceId = jsonObject.get("faceId").toString();
 
             //Un tableau qui va contenir la listePhoto de vidéo pour la photo i
-            List<String> list = new ArrayList<String>();
+            List<String> list = new ArrayList<>();
             //Boucle permettant d'analyser les FaceList de chaque vidéo pour la photo i
             for (int j = 0; j < nbVideos; j++) {
                 JSONArray jsonResultat = DetectFace.findSimilarFace(String.valueOf(j), faceId);

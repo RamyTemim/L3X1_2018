@@ -11,6 +11,8 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,6 +24,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class VideoIndexer {
+    private VideoIndexer(){}
+    private static Logger log =LogManager.getLogger();
+    private static final String OCP = "Ocp-Apim-Subscription-Key";
     /**
      * Permet d'uploader la vidéo vers le cloud de microsoft pour qu'il l'analyse
      * @param path le chemin pour acceder à la vidéo
@@ -36,22 +41,19 @@ public class VideoIndexer {
 
               try {
                   //Transforme le lien en Uri
-                  URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload);
+                  URIBuilder builder = new URIBuilder(IdAPI.VIDEO_INDEXER_UPLOAD);
                   builder.toString();
 
                   builder.addParameter("name", JsonUtil.pathToName(path));
                   builder.addParameter("privacy", "Public");
-
-                  //builder.setPath(builder.toString().concat("name=").concat(JsonUtil.pathToName(path)).concat("&privacy=Public"));
-                  //builder.setPath(builder.getPath()+"name="+JsonUtil.pathToName(path)+"&privacy=Public");
 
                   URI uri = builder.build();
 
                   //Création de la requête HTTP Post
                   HttpPost httpPost = new HttpPost(uri);
                   //Header de la requête Post
-                  //httpPost.setHeader("Content-Type", "multipart/form-data");
-                  httpPost.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
+
+                  httpPost.setHeader(OCP, IdAPI.VIDEO_KEY);
 
                   //Création de l'entite Multipart qui va être rajouté dans le http
                   MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
@@ -74,13 +76,13 @@ public class VideoIndexer {
                   videoId = EntityUtils.toString(entity);
 
               } catch (FileNotFoundException e) {
-                  System.out.println("Erreur lors de la lecture du fichier pour la méthode upload : " + e);
+                  log.info("Erreur lors de la lecture du fichier pour la méthode upload : " + e);
               } catch (ClientProtocolException e) {
-                  System.out.println("Erreur dans la requête HTTP pour la méthode upload : " + e);
+                  log.info("Erreur dans la requête HTTP pour la méthode upload : " + e);
               } catch (IOException e) {
-                  System.out.println("Erreur lors de l'execution de la requete pour la méthode upload : " + e);
+                  log.info("Erreur lors de l'execution de la requete pour la méthode upload : " + e);
               } catch (URISyntaxException e) {
-                  System.out.println("Erreur lors du parse de l'URI  la méthode upload : " + e);
+                  log.info("Erreur lors du parse de l'URI  la méthode upload : " + e);
               }
           }
         return videoId;
@@ -98,13 +100,13 @@ public class VideoIndexer {
     try(CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
         try {
-            URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload.concat(videoId));
+            URIBuilder builder = new URIBuilder(IdAPI.VIDEO_INDEXER_UPLOAD.concat(videoId));
 
             builder.setParameter("language", "French");
 
             URI uri = builder.build();
             HttpGet request = new HttpGet(uri);
-            request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
+            request.setHeader(OCP, IdAPI.VIDEO_KEY);
 
 
             CloseableHttpResponse response = httpclient.execute(request);
@@ -112,11 +114,11 @@ public class VideoIndexer {
             json = JsonUtil.httpToJsonObject(entity);
 
         } catch (ClientProtocolException e) {
-            System.out.println("Erreur dans la requête HTTP pour la méthode geBreakdown : " + e);
+            log.info("Erreur dans la requête HTTP pour la méthode geBreakdown : " + e);
         } catch (IOException e) {
-            System.out.println("Erreur lors de la lecture du fichier pour la méthode getBreakdown : " + e);
+            log.info("Erreur lors de la lecture du fichier pour la méthode getBreakdown : " + e);
         } catch (URISyntaxException e) {
-            System.out.println("Erreur dans l'URI pour la méthode getBreakdown : " + e);
+            log.info("Erreur dans l'URI pour la méthode getBreakdown : " + e);
         }
     }
         return json;
@@ -155,25 +157,25 @@ public class VideoIndexer {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
             try {
-                URIBuilder builder = new URIBuilder(IdAPI.videoIndexerUpload.concat(videoId).concat("/State"));
+                URIBuilder builder = new URIBuilder(IdAPI.VIDEO_INDEXER_UPLOAD.concat(videoId).concat("/State"));
 
                 URI uri = builder.build();
 
                 final RequestConfig params = RequestConfig.custom().setConnectTimeout(3000).setSocketTimeout(3000).build();
 
                 HttpGet request = new HttpGet(uri);
-                request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.videoKey);
+                request.setHeader(OCP, IdAPI.VIDEO_KEY);
                 request.setConfig(params);
                 CloseableHttpResponse response = httpclient.execute(request);
                 HttpEntity entity = response.getEntity();
                 json = JsonUtil.httpToJsonObject(entity);
 
             } catch (ClientProtocolException e) {
-                System.out.println("Erreur dans la requête HTTP pour la méthode getProcessingState : " + e);
+                log.info("Erreur dans la requête HTTP pour la méthode getProcessingState : " + e);
             } catch (IOException e) {
-                System.out.println("Erreur lors de la lecture du fichier pour la méthode getProcessingState : " + e);
+                log.info("Erreur lors de la lecture du fichier pour la méthode getProcessingState : " + e);
             } catch (URISyntaxException e) {
-                System.out.println("Erreur dans l'URI pour la méthode getProcessingState : " + e);
+                log.info("Erreur dans l'URI pour la méthode getProcessingState : " + e);
             }
 
             if (json == null)

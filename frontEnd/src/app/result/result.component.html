@@ -3,9 +3,9 @@
     <tr>
       <td class="celule">
         <ul *ngFor="let photoObj of photos.photos">
-          <li>{{ photoObj.name }}</li>
+          <li class="nameOf">{{ photoObj.name }}</li>
           <ul>
-            <li *ngFor="let link of photoObj.videos">
+            <li *ngFor="let link of photoObj.videos" class="videoOf">
               {{ link }}
             </li>
           </ul>

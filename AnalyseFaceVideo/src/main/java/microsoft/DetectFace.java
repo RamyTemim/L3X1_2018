@@ -14,7 +14,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -23,6 +24,10 @@ import java.net.URISyntaxException;
 
 public class DetectFace {
 
+    private DetectFace(){}
+
+    private static Logger log = LogManager.getLogger();
+    private static final String CONTENT  = "Content-Type";
     /**
      * C'est une fonction permettant d'envoyer la requête post à l'api de microsoft pour lui demander d'analyser une photo (Detect)
      * @param path Le chemin permettant d'accéder à la vidéo (en local si url = false ou en ligne si url = true)
@@ -30,41 +35,42 @@ public class DetectFace {
      * @param url Un boolean permettant à la méthode de savoir si le path est une adresse local (si url = false) ou un url (si url = true)
      * @return Renvoit une un JSONObject qui correspond à l'objet Json renvoyé par l'API Face de microsoft
      */
-    public static JSONObject detectFace (String path, String detectOnImage, Boolean url)
-    {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        JSONObject jsonObject = null;
+    public static JSONObject detectFace (String path, String detectOnImage, Boolean url) throws IOException {
+        JSONObject jsonObject;
+        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
+            jsonObject = null;
 
-        try {
-            // Pour transformer le lien en URI (une URI c'est un String qui permet d'identifier une ressource du web)
-            URIBuilder builder = new URIBuilder(IdAPI.uriBaseDetect);
+            try {
+                // Pour transformer le lien en URI (une URI c'est un String qui permet d'identifier une ressource du web)
+                URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_DETECT);
 
-            // Pour définir les paramètres que le fichier json doit renvoyer
-            builder.setParameter("returnFaceId", "true");
-            builder.setParameter("returnFaceLandmarks", "false");
-            builder.setParameter("returnFaceAttributes", detectOnImage);
+                // Pour définir les paramètres que le fichier json doit renvoyer
+                builder.setParameter("returnFaceId", "true");
+                builder.setParameter("returnFaceLandmarks", "false");
+                builder.setParameter("returnFaceAttributes", detectOnImage);
 
-            // Prepare the URI for the REST API call.
-            URI uri = builder.build();
-            HttpPost request = new HttpPost(uri);
+                // Prepare the URI for the REST API call.
+                URI uri = builder.build();
+                HttpPost request = new HttpPost(uri);
 
-            request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
+                request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.SUBSCRIPTION_KEY);
 
-            insertFileToHttpRequest(path, url, request);
+                insertFileToHttpRequest(path, url, request);
 
-            // Pour effectuer l'appel vers l'API et recuperer le retour de cette appel
-            CloseableHttpResponse response = httpclient.execute(request);
-            HttpEntity entity = response.getEntity();
-            jsonObject = JsonUtil.httpToJsonObject(entity);
+                // Pour effectuer l'appel vers l'API et recuperer le retour de cette appel
+                CloseableHttpResponse response = httpclient.execute(request);
+                HttpEntity entity = response.getEntity();
+                jsonObject = JsonUtil.httpToJsonObject(entity);
 
-        } catch (UnsupportedEncodingException e) {
-            System.err.println("Erreur dans le format du StringEntity pour la méthode detectFace : " + e);
-        } catch (ClientProtocolException e) {
-            System.err.println("Erreur dans la requête HTTP pour la méthode detectFace : " + e);
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la lecture du fichier pour la méthode detectFace : " + e);
-        } catch (URISyntaxException e) {
-            System.err.println("Erreur lors du parse de l'URI  la méthode detectFace : " + e);
+            } catch (UnsupportedEncodingException e) {
+                log.info("Erreur dans le format du StringEntity pour la méthode detectFace : " + e);
+            } catch (ClientProtocolException e) {
+                log.info("Erreur dans la requête HTTP pour la méthode detectFace : " + e);
+            } catch (IOException e) {
+                log.info("Erreur lors de la lecture du fichier pour la méthode detectFace : " + e);
+            } catch (URISyntaxException e) {
+                log.info("Erreur lors du parse de l'URI  la méthode detectFace : " + e);
+            }
         }
         return jsonObject;
     }
@@ -80,14 +86,14 @@ public class DetectFace {
     {
         if (url)
         {
-            request.setHeader("Content-Type", "application/json");
+            request.setHeader(CONTENT, "application/json");
             JSONObject json = new JSONObject().put("url", path);
             request.setEntity(new StringEntity(json.toString()));
         }
 
         else
         {
-            request.setHeader("Content-Type", "application/octet-stream");
+            request.setHeader(CONTENT, "application/octet-stream");
 
             // Pour définir le lien vers la photo que l'on va intégrer dans la requête
             File file = new File(path);
@@ -102,49 +108,52 @@ public class DetectFace {
      * @param faceId L'id de la photo qui sert de modèle pour la comparaison
      * @return Un fichier json contenant la photo que l'API à trouver qui correspond le plus au modèle
      */
-    public static JSONArray findSimilarFace(String faceListId, String faceId)
-    {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        JSONArray jsonArray = null;
-        try {
-            URIBuilder builder = new URIBuilder(IdAPI.uriBaseFindSimilar);
-
-            URI uri = builder.build();
-
-            HttpPost request = new HttpPost(uri);
-            request.setHeader("Content-Type", "application/json");
-            request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.subscriptionKey);
-
-            JSONObject json = new JSONObject().put("faceId", faceId)
-                    .put("faceListId", faceListId);
+    public static JSONArray findSimilarFace(String faceListId, String faceId) throws IOException {
 
 
-            StringEntity reqEntity = new StringEntity(json.toString());
-            request.setEntity(reqEntity);
+           JSONArray jsonArray;
+           try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
+               jsonArray = null;
+               try {
+                   URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FIND_SIMILAR);
 
-            CloseableHttpResponse response = httpclient.execute(request);
-            HttpEntity entity = response.getEntity();
-            if(entity !=null)
-                jsonArray = new JSONArray(EntityUtils.toString(entity).trim());
+                   URI uri = builder.build();
 
-        } catch (JSONException e)
-        {
-            System.out.println("Aucune photo similaire n'a été trouvé ");
-        }
-        catch (UnsupportedEncodingException e) {
-            System.err.println("Erreur dans le format du StringEntity pour la méthode findSimilarFace : " + e);
-        } catch (ClientProtocolException e) {
-            System.err.println("Erreur dans la requête HTTP pour la méthode findSimilarFace : " + e);
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la lecture du fichier pour la méthode findSimilarFace : " + e);
-        } catch (URISyntaxException e) {
-            System.err.println("Erreur lors du parse de l'URI pour la méthode findSimilarFace : " + e);
-        }
+                   HttpPost request = new HttpPost(uri);
+                   request.setHeader(CONTENT, "application/json");
+                   request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.SUBSCRIPTION_KEY);
+
+                   JSONObject json = new JSONObject().put("faceId", faceId)
+                           .put("faceListId", faceListId);
+
+
+                   StringEntity reqEntity = new StringEntity(json.toString());
+                   request.setEntity(reqEntity);
+
+                   CloseableHttpResponse response = httpclient.execute(request);
+                   HttpEntity entity = response.getEntity();
+                   if (entity != null)
+                       jsonArray = new JSONArray(EntityUtils.toString(entity).trim());
+
+               } catch (JSONException e) {
+                   log.info("Aucune photo similaire n'a été trouvé ");
+               } catch (UnsupportedEncodingException e) {
+                   log.info("Erreur dans le format du StringEntity pour la méthode findSimilarFace : " + e);
+               } catch (ClientProtocolException e) {
+                   log.info("Erreur dans la requête HTTP pour la méthode findSimilarFace : " + e);
+               } catch (IOException e) {
+                   log.info("Erreur lors de la lecture du fichier pour la méthode findSimilarFace : " + e);
+               } catch (URISyntaxException e) {
+                   log.info("Erreur lors du parse de l'URI pour la méthode findSimilarFace : " + e);
+               }
+           }
 
         if(jsonArray == null)
             return new JSONArray();
 
         return jsonArray;
+
     }
+
 }
 

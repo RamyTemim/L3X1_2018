@@ -1,6 +1,0 @@
-
-‰"squid:ClassVariableVisibilityCheck"XMake nameOfPerson a static final constant or non-public and provide accessors if needed.(íçõ›ùÿÿÿÿ
-„"squid:ClassVariableVisibilityCheck"XMake listOfVideos a static final constant or non-public and provide accessors if needed.(øÝ¨Ê
-rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(¬ªøåûÿÿÿÿ
-Rsquid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
-Vsquid:UselessImportCheck"/Remove this unused import 'org.json.JSONArray'.(¬¸Ê’üÿÿÿÿ

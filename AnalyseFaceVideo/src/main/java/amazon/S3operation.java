@@ -14,19 +14,22 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
 import microsoft.JsonUtil;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.*;
+
 public class S3operation {
 
     private S3operation(){}
-
+    private static  Logger log =LogManager.getLogger();
 
     /**
      * Méthode pour créer un client S3
-     * @return s3client un client identifier
+     * @return s3client un clien S3 pour utilise le service AWS S3
      */
     private static AmazonS3 getS3Client() {
         AmazonS3 s3client = new AmazonS3Client();
@@ -40,7 +43,7 @@ public class S3operation {
      * Méthode  pour créer un compartiment dans le service S3 pour y stocker les photos et les videos
      * @param bucketName le nom que vous voulez donner au compartiment
      */
-    public static void CreatBucket(String bucketName)
+    public static void creatBucket(String bucketName)
     {
         try {
             if (!(getS3Client().doesBucketExist(bucketName))) {
@@ -49,16 +52,16 @@ public class S3operation {
             }
 
         } catch (AmazonServiceException ase) {
-            System.out.println("La création du compartiment n'a pa pu etre effectuer a cause : ");
-            System.err.println("Error Message:    " + ase.getMessage());
-            System.err.println("HTTP Status Code: " + ase.getStatusCode());
-            System.err.println("AWS Error Code:   " + ase.getErrorCode());
-            System.err.println("Error Type:       " + ase.getErrorType());
-            System.err.println("Request ID:       " + ase.getRequestId());
+            log.info("La création du compartiment n'a pa pu etre effectuer a cause : ");
+            log.info("Error Message:    " + ase.getMessage());
+            log.info("HTTP Status Code: " + ase.getStatusCode());
+            log.info("AWS Error Code:   " + ase.getErrorCode());
+            log.info("Error Type:       " + ase.getErrorType());
+            log.info("Request ID:       " + ase.getRequestId());
 
         } catch (AmazonClientException ace) {
-            System.err.println("La création du compartiment n'a pa pu etre effectuer a cause :.");
-            System.err.println("Error Message: " + ace.getMessage());
+            log.info("La création du compartiment n'a pa pu etre effectuer a cause :.");
+            log.info("Error Message: " + ace.getMessage());
         }
 
     }// END  CreatBucket
@@ -70,42 +73,38 @@ public class S3operation {
      * @param filePath le chemain relative du fichier que vous voulez uploader
      *
      */
-    public static void UploadFileToBucket(String bucketName,String filePath)
-    {
 
-       try
-       {
-           File file = new File(filePath);
+    public static void uploadFileToBucket(String bucketName,String filePath)  {
 
-        String keyName = JsonUtil.pathToName(filePath);
-        TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
-        // TransferManager processes all transfers asynchronously,
-        // so this call will return immediately.
-        Upload upload = tm.upload(bucketName, keyName , file );
+        try
+        {
+            File file = new File(filePath);
 
-        try {
-            // Or you can block and wait for the upload to finish
-            upload.waitForCompletion();
-            System.out.println("Chargement réussi");
-        } catch (AmazonClientException amazonClientException) {
-            System.out.println("Impossible de charger le fichier le chargement a étais annuler .");
-            amazonClientException.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            String keyName = JsonUtil.pathToName(filePath);
+            TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
+            Upload upload = tm.upload(bucketName, keyName , file );
+
+            try {
+
+                upload.waitForCompletion();
+                out.println("Chargement réussi");
+            } catch (AmazonClientException amazonClientException) {
+                log.info("Impossible de charger le fichier le chargement a étais annuler .");
+                log.info(amazonClientException);
+            }
+        } catch (Exception e)
+        {
+            log.info(e);
         }
-       } catch (Exception e)
-       {
-           System.err.println(" le fichier n'a pas pu être lu ");
-       }
     }// END UploadFileToBucket
-
 
     /**
      * Méthode pour récupérer la listePhoto des fichiers qui se trouve dans un compartiment
      * @param bucketName le nom du compartiment du quel vous voulez récupérer les fichiers
      * @return listePhoto de srting qui contient les nom des fichiers
      */
-    public  static List<String>  ListFilesInBucket(String bucketName)
+
+    public  static List<String>  listFilesInBucket(String bucketName)
     {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
@@ -125,27 +124,27 @@ public class S3operation {
      * Méthode qui vide un compartiment S3
      * @param bucketName le nom du compartiment a vider
      */
-    public  static  void  PurgeBucket (String bucketName)
+    public  static  void  purgeBucket (String bucketName)
     {
 
         try {
-            ObjectListing object_listing = getS3Client().listObjects(bucketName);
+            ObjectListing objectListing = getS3Client().listObjects(bucketName);
             while (true) {
-                for (S3ObjectSummary summary : object_listing.getObjectSummaries()) {
+                for (S3ObjectSummary summary : objectListing.getObjectSummaries()) {
                     getS3Client().deleteObject(bucketName, summary.getKey());
                 }
 
                 // more object_listing to retrieve?
-                if (object_listing.isTruncated()) {
-                    object_listing = getS3Client().listNextBatchOfObjects(object_listing);
+                if (objectListing.isTruncated()) {
+                    objectListing = getS3Client().listNextBatchOfObjects(objectListing);
                 } else {
                     break;
                 }
             }
         }catch (AmazonServiceException e)
         {
-            System.out.println(e.getErrorMessage());
-            System.exit(1);
+            log.info(e);
+            exit(1);
         }
 
     }// END  PurgeBucket
