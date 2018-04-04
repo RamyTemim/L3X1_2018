@@ -32,21 +32,6 @@ body {
 }
 
 
-.textarea1 {
-  color: white;
-  background-color: black;
-  height: 90%;
-  width: 100%;
-  overflow: scroll;
-}
-
-.textarea2 {
-  color: white;
-  background-color: black;
-  height: 90%;
-  width: 95%;
-  overflow: scroll;
-}
 
 #div{
   display: flex;

@@ -1,4 +1,4 @@
-package springboot.configApp;
+package springboot.configapp;
 
 import org.springframework.stereotype.Component;
 

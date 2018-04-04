@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +69,11 @@ public class MethodMain {
      */
     public static void createFaceListFromPhotosOnVideo (List<String> videoIds, List<String> pathVideos) throws IOException {
         for(int i = 0 ; i< videoIds.size() ; i++) {
-            FaceList.deleteFaceList(String.valueOf(i));
+            try {
+                FaceList.deleteFaceList(String.valueOf(i));
+            } catch (URISyntaxException e) {
+               log.info(e);
+            }
 
             //Récupération des métadonnées de la vidéo
             JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
@@ -113,7 +118,7 @@ public class MethodMain {
 
         for(int i = 0; i< photosPath.size() ; i++) {
 
-            Persons persons;
+            Persons person = new Persons();
             JSONObject jsonObject = DetectFace.detectFace(photosPath.get(i), "", false);
 
             if(jsonObject==null)
@@ -134,8 +139,9 @@ public class MethodMain {
                 }
 
             }
-            persons = new Persons(JsonUtil.pathToName(photosPath.get(i)), list);
-            model.addPerson(persons);
+            person.setName(JsonUtil.pathToName(photosPath.get(i)));
+            person.setVideos(list);
+            model.addPerson(person);
         }
         return model;
     }

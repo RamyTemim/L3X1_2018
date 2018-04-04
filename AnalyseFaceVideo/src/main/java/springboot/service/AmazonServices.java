@@ -13,12 +13,11 @@ import java.util.List;
 
 @Service
 public class AmazonServices {
+private AmazonServices(){}
 
-    public   static    AWSCredentials credentials ;
+     public static final  AWSCredentials credentials = CreatCollectionFaces.connexionIdexFace();
 
-    public AmazonModel getJson(List<String> pathPhoto, List<String> pathVideo) throws IOException {
-
-
+     public static AmazonModel getJson(List<String> pathPhoto, List<String> pathVideo) throws IOException {
 
         S3operation.creatBucket(VarAma.BUCKETPHOTO);
 
@@ -34,8 +33,6 @@ public class AmazonServices {
         {
             S3operation.uploadFileToBucket(VarAma.BUCKETVIDEO, aListpathToVideo);
         }
-
-        credentials = CreatCollectionFaces.connexionIdexFace();
 
         CreatCollectionFaces.deleteCollection(VarAma.COLLECTIONID, credentials);
 
@@ -60,7 +57,7 @@ public class AmazonServices {
 
 
          AmazonModel amazonModel = new AmazonModel();
-         Persons persons ;
+         Persons persons = new Persons();
 
 
         for (int i=0; i<listnameOfImage.size(); i++)
@@ -74,8 +71,9 @@ public class AmazonServices {
                     list.add(listnameOfVideos.get(j));
                 }
             }
-            persons = new Persons(listnameOfImage.get(i), list);
-            amazonModel.addPerson(persons);
+          persons.setName(listnameOfImage.get(i));
+          persons.setVideos(list);
+          amazonModel.addPerson(persons);
         }
 
 

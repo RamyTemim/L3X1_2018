@@ -54,7 +54,7 @@ private JsonUtil(){}
             Path path =Paths.get("src/resources/listeVideo");
             Files.write(path,bytes);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.info(e);
         }
         return file;
     }
@@ -135,7 +135,7 @@ private JsonUtil(){}
      */
     public static String pathToName(String path)
     {
-        return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."));
+        return path.substring(path.lastIndexOf('/')+1, path.lastIndexOf('.'));
     }
 
     /**

@@ -1,5 +1,0 @@
-<root>
-    <item name='com.amazonaws.services.s3.AmazonS3Client'>
-        <annotation name='java.lang.Deprecated'/>
-    </item>
-</root>

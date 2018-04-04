@@ -22,9 +22,6 @@ public class Controller {
     @Autowired
     private MicrosoftService microsoftService;
 
-    @Autowired
-    private AmazonServices amazonServices;
-
     private List<String> listpathTophoto;
     private List<String> listpathToVideo;
 
@@ -57,7 +54,7 @@ public class Controller {
    @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
     public AmazonModel getAmazon() throws InterruptedException, IOException {
         JsonUtil.sleepGet();
-        return amazonServices.getJson(this.listpathTophoto, this.listpathToVideo);
+        return AmazonServices.getJson(this.listpathTophoto, this.listpathToVideo);
    }
 
 

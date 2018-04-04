@@ -2,16 +2,16 @@ package amazon;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.transfer.TransferManager;
+import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import microsoft.JsonUtil;
 import org.apache.logging.log4j.LogManager;
@@ -26,13 +26,14 @@ public class S3operation {
 
     private S3operation(){}
     private static  Logger log =LogManager.getLogger();
+    private  static Upload upload;
 
     /**
      * Méthode pour créer un client S3
      * @return s3client un clien S3 pour utilise le service AWS S3
      */
     private static AmazonS3 getS3Client() {
-        AmazonS3 s3client = new AmazonS3Client();
+        AmazonS3 s3client = AmazonS3ClientBuilder.standard().build();
         s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
 
         return s3client;
@@ -46,18 +47,14 @@ public class S3operation {
     public static void creatBucket(String bucketName)
     {
         try {
-            if (!(getS3Client().doesBucketExist(bucketName))) {
+            if (!(getS3Client().doesBucketExistV2(bucketName))) {
                 CreateBucketRequest bucket= new CreateBucketRequest(bucketName);
                 getS3Client().createBucket(bucket);
             }
 
         } catch (AmazonServiceException ase) {
-            log.info("La création du compartiment n'a pa pu etre effectuer a cause : ");
-            log.info("Error Message:    " + ase.getMessage());
-            log.info("HTTP Status Code: " + ase.getStatusCode());
-            log.info("AWS Error Code:   " + ase.getErrorCode());
-            log.info("Error Type:       " + ase.getErrorType());
-            log.info("Request ID:       " + ase.getRequestId());
+            log.info("La création du compartiment n'a pa pu etre effectuer a cause : "+ ase.getMessage());
+
 
         } catch (AmazonClientException ace) {
             log.info("La création du compartiment n'a pa pu etre effectuer a cause :.");
@@ -79,24 +76,29 @@ public class S3operation {
         try
         {
             File file = new File(filePath);
-
             String keyName = JsonUtil.pathToName(filePath);
-            TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
-            Upload upload = tm.upload(bucketName, keyName , file );
-
-            try {
-
-                upload.waitForCompletion();
-                out.println("Chargement réussi");
-            } catch (AmazonClientException amazonClientException) {
-                log.info("Impossible de charger le fichier le chargement a étais annuler .");
-                log.info(amazonClientException);
-            }
+            TransferManager tm =  TransferManagerBuilder.defaultTransferManager();
+             upload = tm.upload(bucketName, keyName , file );
+            uploadWait();
         } catch (Exception e)
         {
             log.info(e);
         }
     }// END UploadFileToBucket
+
+
+
+    private static void uploadWait() throws InterruptedException {
+        try {
+
+            upload.waitForCompletion();
+            out.println("Chargement réussi");
+        } catch (AmazonClientException amazonClientException) {
+            log.info("Impossible de charger le fichier le chargement a étais annuler .");
+            log.info(amazonClientException);
+        }
+
+    }
 
     /**
      * Méthode pour récupérer la listePhoto des fichiers qui se trouve dans un compartiment
@@ -106,14 +108,12 @@ public class S3operation {
 
     public  static List<String>  listFilesInBucket(String bucketName)
     {
-        AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
-        s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
-        ObjectListing objectListing = s3client.listObjects(new ListObjectsRequest().withBucketName(bucketName));
+        ObjectListing objectListing = getS3Client().listObjects(new ListObjectsRequest().withBucketName(bucketName));
         List<S3ObjectSummary> summary =  objectListing.getObjectSummaries();
         List<String> listefile =new ArrayList<>();
-        for (S3ObjectSummary sun : summary)
+        for (S3ObjectSummary sum : summary)
         {
-            listefile.add(sun.getKey());
+            listefile.add(sum.getKey());
         }
      return listefile;
 

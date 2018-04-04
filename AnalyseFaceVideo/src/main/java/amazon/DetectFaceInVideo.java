@@ -6,11 +6,11 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.Message;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import static java.lang.System.*;
 
 public class DetectFaceInVideo {
@@ -30,12 +30,13 @@ public class DetectFaceInVideo {
      * @param sqs Service de mise en file d'attente (Amazon SQS) offre une file d'attente hébergée fiable et hautement évolutive pour le stockage des messages
      * @return listePhoto des noms des images
      */
-    public static List<String> detectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws NullPointerException, IOException {
-        Logger log = LogManager.getLogger();
-        JsonNode messageBodyText= null;
-        JsonNode operationJobId=null;
-        JsonNode operationStatus =null;
+    public static List<String> detectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws  IOException {
 
+        JsonNode messageBodyText;
+        JsonNode operationJobId;
+        JsonNode operationStatus;
+        JsonNode jsonMessageTree;
+        JsonNode jsonResultTree;
         startFaceSearchCollection(bucket,video, rek,  channel, collectionId);
 
         List<String> listnameimage = new ArrayList<>();
@@ -52,37 +53,15 @@ public class DetectFaceInVideo {
             for (Message message: messages)
             {
                 String notification = message.getBody();
-
                 ObjectMapper mapper = new ObjectMapper();
-                JsonNode jsonMessageTree = null;
-                try {
-                    jsonMessageTree = mapper.readTree(notification);
-                } catch (IOException e) {
-                    log.info(e);
-                }
-                try {
-                     messageBodyText = jsonMessageTree.get("Message");
-                }catch (NullPointerException e){
-                    log.info(e);
-                }
+                jsonMessageTree = mapper.readTree(notification);
+                messageBodyText = jsonMessageTree.get("Message");
                 ObjectMapper operationResultMapper = new ObjectMapper();
-                JsonNode jsonResultTree = null;
-                try {
-                    jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
-                } catch (NullPointerException e) {
-                    log.info("Dans la méthode detectFacesInVideos"+e);
-                }
-                try {
+                jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
                 operationJobId = jsonResultTree.get("JobId");
-                } catch (NullPointerException e){
-                    log.info(e);
-                }
-                try {
-                     operationStatus = jsonResultTree.get("Status");
-                }catch (NullPointerException e){
-                    log.info(e);
-                }
+                operationStatus = jsonResultTree.get("Status");
                 out.println("Job found was " + operationJobId);
+
                 if(operationJobId.asText().equals(startJobId))
                 {
                     jobFound=true;
@@ -115,7 +94,6 @@ public class DetectFaceInVideo {
      * @param channel Service de notification à laquelle Amazon Rekognition publie l'état d'achèvement d'une opération d'analyse vidéo
      * @param collectionId Le nom de la collection qui comporte les images
      */
-
     private static void startFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId)
     {
         StartFaceSearchRequest req = new StartFaceSearchRequest()
@@ -138,13 +116,14 @@ public class DetectFaceInVideo {
      */
     private static List<String>   getResultsFaceSearchCollection(String startJobId, AmazonRekognition rek)
     {
-        GetFaceSearchResult faceSearchResult=null;
+
+        GetFaceSearchResult faceSearchResult= null;
         String paginationToken=null;
-        List<String> nameimage = new ArrayList<>();
+        List<String> nameImage = new ArrayList<>();
         do {
-            if (faceSearchResult !=null){
+               if(faceSearchResult !=null)
                 paginationToken = faceSearchResult.getNextToken();
-            }
+
             faceSearchResult  = rek.getFaceSearch(
                     new GetFaceSearchRequest()
                             .withJobId(startJobId)
@@ -154,21 +133,18 @@ public class DetectFaceInVideo {
             List<PersonMatch> matches= faceSearchResult.getPersons();
             for (PersonMatch match: matches)
             {
-                if (match.getFaceMatches()!=null && !match.getFaceMatches().isEmpty()) {
                     List<FaceMatch> faceMatches = match.getFaceMatches();
                     for (FaceMatch faceMatch : faceMatches)
                     {
                         Face face= faceMatch.getFace();
-                        String im = face.getExternalImageId();
-                        if (!nameimage.contains(im))
+                        String imageId = face.getExternalImageId();
+                        if (!nameImage.contains(imageId))
                         {
-                            nameimage.add(im);
+                            nameImage.add(imageId);
                         }
                     }
-                }
             }
-
-        } while (faceSearchResult.getNextToken() != null);
-      return nameimage;
+        } while (faceSearchResult.getNextToken() != null );
+      return nameImage;
     }// end getResults
 }

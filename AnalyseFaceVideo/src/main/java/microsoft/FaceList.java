@@ -2,7 +2,7 @@ package microsoft;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
+
 import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -60,14 +60,8 @@ public class FaceList {
                     log.info("\nCréation de la faceList pour la vidéo " + (Integer.parseInt(id) + 1) + " réussi \n");
                 }
 
-            } catch (UnsupportedEncodingException e) {
-                log.info("Erreur dans le format du StringEntity pour la méthode createFaceList : " + e);
-            } catch (ClientProtocolException e) {
-                log.info("Erreur dans la requête HTTP pour la méthode createFaceList : " + e);
-            } catch (IOException e) {
-                log.info("Erreur lors de la lecture du fichier pour la méthode createFaceList : " + e);
-            } catch (URISyntaxException e) {
-                log.info("Erreur lors du parse de l'URI pour la méthode createFaceList : " + e);
+            } catch (IOException | URISyntaxException e) {
+                log.info( e);
             }
         }
     }
@@ -100,14 +94,8 @@ public class FaceList {
 
                out.println(JsonUtil.httpToJsonObject(entity));
 
-           } catch (UnsupportedEncodingException e) {
-               log.info("Erreur dans le format du StringEntity pour la méthode addFace : " + e);
-           } catch (ClientProtocolException e) {
-               log.info("Erreur dans la requête HTTP pour la méthode addFace : " + e);
-           } catch (IOException e) {
-               log.info("Erreur lors de la lecture du fichier pour la méthode addFace : " + e);
-           } catch (URISyntaxException e) {
-               log.info("Erreur lors du parse de l'URI pour la méthode addFace : " + e);
+           } catch (IOException | URISyntaxException e) {
+               log.info( e);
            }
 
        }
@@ -137,12 +125,8 @@ public class FaceList {
                 out.println("Liste des FaceList : \n");
                 json = JsonUtil.httpToJsonObject(entity);
 
-            } catch (ClientProtocolException e) {
-               log.info("Erreur dans la requête HTTP pour la méthode getFaceList : " + e);
-            } catch (IOException e) {
-                log.info("Erreur lors de la lecture du fichier pour la méthode getFaceList : " + e);
-            } catch (URISyntaxException e) {
-                log.info("Erreur lors du parse de l'URI pour la méthode getFaceList : " + e);
+            } catch (IOException | URISyntaxException e) {
+                log.info(e);
             }
         }
 
@@ -175,12 +159,8 @@ public class FaceList {
                 HttpEntity entity = response.getEntity();
 
                 json = JsonUtil.httpToJsonObject(entity);
-            } catch (ClientProtocolException e) {
-                log.info("Erreur dans la requête HTTP pour la méthode getFaceOfList : " + e);
-            } catch (IOException e) {
-                log.info("Erreur lors de la lecture du fichier pour la méthode getFaceOfList : " + e);
-            } catch (URISyntaxException e) {
-                log.info("Erreur lors du parse de l'URI pour la méthode getFaceOfList : " + e);
+            } catch (IOException | URISyntaxException e) {
+                log.info(e);
             }
         }
         if (json == null)
@@ -193,31 +173,23 @@ public class FaceList {
      * Pour supprimer une faceList
      * @param id l'identifiant de la faceList à supprimer
      */
-    public static void deleteFaceList(String id) throws IOException {
+    public static void deleteFaceList(String id) throws IOException, URISyntaxException {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
-            try {
-                URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FACE_LIST);
+            URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FACE_LIST);
 
-                builder.setPath(builder.getPath() + id);
+            builder.setPath(builder.getPath() + id);
 
-                URI uri = builder.build();
-                HttpDelete request = new HttpDelete(uri);
-                request.setHeader(OCP, IdAPI.SUBSCRIPTION_KEY);
+            URI uri = builder.build();
+            HttpDelete request = new HttpDelete(uri);
+            request.setHeader(OCP, IdAPI.SUBSCRIPTION_KEY);
 
 
-                HttpResponse response = httpclient.execute(request);
-                HttpEntity entity = response.getEntity();
+            HttpResponse response = httpclient.execute(request);
+            HttpEntity entity = response.getEntity();
 
-                if (entity != null) {
-                    out.println(EntityUtils.toString(entity));
-                }
-            } catch (ClientProtocolException e) {
-                log.info("Erreur dans la requête HTTP pour la méthode deleteFaceList : " + e);
-            } catch (IOException e) {
-                log.info("Erreur lors de la lecture du fichier pour la méthode deleteFaceList : " + e);
-            } catch (URISyntaxException e) {
-                log.info("Erreur lors du parse de l'URI pour la méthode deleteFaceList : " + e);
+            if (entity != null) {
+                out.println(EntityUtils.toString(entity));
             }
         }
     }

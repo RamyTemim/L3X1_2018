@@ -4,15 +4,26 @@ package springboot.model;
 import java.util.List;
 
 public class Persons {
-    public String name;
-    public List<String> videos;
+    private  String name;
+    private List<String> videos;
 
-   public Persons(String name, List<String> videos) {
-      this.name = name;
-      this.videos = videos;
+   public Persons() {
+  //instanci une personne
    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setVideos(List<String> videos) {
+        this.videos = videos;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public List<String> getVideos() {
+        return videos;
+    }
 }
