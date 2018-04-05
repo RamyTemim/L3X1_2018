@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ApiResult} from './result/api-result';
-import {Person} from './result/model/person';
 import {Photos} from './result/model/photos';
 
 @Injectable()
