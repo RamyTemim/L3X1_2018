@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from '../app.service';
+import {NgProgress} from 'ngx-progressbar';
 
 @Component({
   selector: 'app-upload-file',
@@ -9,12 +10,15 @@ import {AppService} from '../app.service';
 export class UploadFileComponent implements OnInit {
   selectedFilePhoto: File = null;
   selectedFileVideo: File = null;
-  constructor(private appservice: AppService) { }
+  constructor(private appservice: AppService,
+              public progress: NgProgress) { }
 
   ngOnInit() {
   }
 
-
+  starts() {
+    this.progress.start();
+  }
   onSelectFilePhoto(eventa: any) {
     this.selectedFilePhoto = eventa.target.files;
   }

@@ -8,10 +8,11 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.*;
+import useful.JsonUtil;
 
 import java.util.List;
 
-import static java.lang.System.*;
+
 
 
 public class CreatCollectionFaces {
@@ -66,7 +67,7 @@ public class CreatCollectionFaces {
                     .withCollectionId(collectionId);
 
             CreateCollectionResult createCollectionResult = getAWSR(credentials).createCollection(request);
-            out.println("Collection ARN = " + createCollectionResult.getCollectionArn());
+        JsonUtil.log.info("Collection ARN = " + createCollectionResult.getCollectionArn());
         }
 
 
@@ -95,10 +96,10 @@ public class CreatCollectionFaces {
 
        IndexFacesResult indexFacesResult=getAWSR(credentials).indexFaces(indexFacesRequest);
 
-       out.println(nameOfImage + " ajouter");
+        JsonUtil.log.info(nameOfImage + " ajouter");
        List<FaceRecord> faceRecords = indexFacesResult.getFaceRecords();
         for(FaceRecord faceRecord: faceRecords) {
-                out.println("Face detected: Faceid is " +
+            JsonUtil.log.info("Face detected: Faceid is " +
                         faceRecord.getFace().getFaceId());
 
        }
@@ -116,8 +117,8 @@ public class CreatCollectionFaces {
         DeleteCollectionRequest request = new DeleteCollectionRequest()
                 .withCollectionId(collectionId);
         DeleteCollectionResult deleteCollectionResult = getAWSR(credentials).deleteCollection(request);
-        out.println("Suprimé ");
-        out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
+        JsonUtil.log.info("Suprimé ");
+        JsonUtil.log.info(collectionId + ": " + deleteCollectionResult.getStatusCode()
                 .toString());
 
     }

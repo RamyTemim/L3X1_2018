@@ -4,14 +4,14 @@ import springboot.model.AmazonModel;
 import springboot.model.MicrosoftModel;
 import springboot.service.AmazonServices;
 import springboot.service.MicrosoftService;
-import microsoft.JsonUtil;
+import useful.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-
 import java.io.IOException;
+
 import java.util.List;
 
 
@@ -50,14 +50,11 @@ public class Controller {
 
     }
 
-
    @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
     public AmazonModel getAmazon() throws InterruptedException, IOException {
         JsonUtil.sleepGet();
         return AmazonServices.getJson(this.listpathTophoto, this.listpathToVideo);
    }
-
-
 
     /**
      * Méthode pour définir le get qui va permettre de récupérer le resultat
@@ -69,7 +66,6 @@ public class Controller {
         JsonUtil.sleepGet();
         return microsoftService.getJson(this.listpathTophoto, this.listpathToVideo);
     }
-
 
 }
 

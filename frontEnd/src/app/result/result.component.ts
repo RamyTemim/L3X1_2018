@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {AppService} from '../app.service';
 import {ActivatedRoute} from '@angular/router';
-import {Person} from './model/person';
-import {TypedJSON} from '@upe/typedjson';
 import {Photos} from './model/photos';
 
 @Component({
@@ -16,7 +14,8 @@ export class ResultComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private appService: AppService
+    private appService: AppService,
+
   ) {
   }
 

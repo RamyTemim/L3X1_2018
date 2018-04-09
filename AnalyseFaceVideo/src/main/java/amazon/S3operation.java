@@ -13,9 +13,8 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
-import microsoft.JsonUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import useful.JsonUtil;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,7 @@ import static java.lang.System.*;
 public class S3operation {
 
     private S3operation(){}
-    private static  Logger log =LogManager.getLogger();
+
     private  static Upload upload;
 
     /**
@@ -53,12 +52,12 @@ public class S3operation {
             }
 
         } catch (AmazonServiceException ase) {
-            log.info("La création du compartiment n'a pa pu etre effectuer a cause : "+ ase.getMessage());
+            JsonUtil.log.info("La création du compartiment n'a pa pu etre effectuer a cause : "+ ase.getMessage());
 
 
         } catch (AmazonClientException ace) {
-            log.info("La création du compartiment n'a pa pu etre effectuer a cause :.");
-            log.info("Error Message: " + ace.getMessage());
+            JsonUtil.log.info("La création du compartiment n'a pa pu etre effectuer a cause :.");
+            JsonUtil.log.info("Error Message: " + ace.getMessage());
         }
 
     }// END  CreatBucket
@@ -82,7 +81,7 @@ public class S3operation {
             uploadWait();
         } catch (Exception e)
         {
-            log.info(e);
+            JsonUtil.log.info(e);
         }
     }// END UploadFileToBucket
 
@@ -94,8 +93,8 @@ public class S3operation {
             upload.waitForCompletion();
             out.println("Chargement réussi");
         } catch (AmazonClientException amazonClientException) {
-            log.info("Impossible de charger le fichier le chargement a étais annuler .");
-            log.info(amazonClientException);
+            JsonUtil.log.info("Impossible de charger le fichier le chargement a étais annuler .");
+            JsonUtil.log.info(amazonClientException);
         }
 
     }
@@ -143,7 +142,7 @@ public class S3operation {
             }
         }catch (AmazonServiceException e)
         {
-            log.info(e);
+            JsonUtil.log.info(e);
             exit(1);
         }
 

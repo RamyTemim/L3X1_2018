@@ -6,12 +6,12 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.Message;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import useful.JsonUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.System.*;
 
 public class DetectFaceInVideo {
 
@@ -40,7 +40,7 @@ public class DetectFaceInVideo {
         startFaceSearchCollection(bucket,video, rek,  channel, collectionId);
 
         List<String> listnameimage = new ArrayList<>();
-        out.println("Waiting for job: " + startJobId);
+        JsonUtil.log.info("Waiting for job: " + startJobId);
         //Poll queue for messages
         List<Message> messages;
         boolean jobFound=false;
@@ -60,24 +60,24 @@ public class DetectFaceInVideo {
                 jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
                 operationJobId = jsonResultTree.get("JobId");
                 operationStatus = jsonResultTree.get("Status");
-                out.println("Job found was " + operationJobId);
+                JsonUtil.log.info("Job found was " + operationJobId);
 
                 if(operationJobId.asText().equals(startJobId))
                 {
                     jobFound=true;
-                    out.println("Job id: " + operationJobId );
-                    out.println("Status : " + operationStatus.toString());
+                    JsonUtil.log.info("Job id: " + operationJobId );
+                    JsonUtil.log.info("Status : " + operationStatus.toString());
                     if (operationStatus.asText().equals("SUCCEEDED"))
                     {
                         listnameimage= getResultsFaceSearchCollection(startJobId,rek);
                     }
                     else
                         {
-                        out.println("Video analysis failed");
+                            JsonUtil.log.info("Video analysis failed");
                     }
                     sqs.deleteMessage(queueUrl,message.getReceiptHandle());
                 }else{
-                    out.println("Job received was not job " +  startJobId);
+                    JsonUtil.log.info("Job received was not job " +  startJobId);
                 }
             }
 

@@ -1,5 +1,6 @@
 package microsoft;
 
+import identification.KeyMicrosoftApi;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -14,8 +15,9 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import useful.JsonUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -26,7 +28,7 @@ public class DetectFace {
 
     private DetectFace(){}
 
-    private static Logger log = LogManager.getLogger();
+
     private static final String CONTENT  = "Content-Type";
     /**
      * C'est une fonction permettant d'envoyer la requête post à l'api de microsoft pour lui demander d'analyser une photo (Detect)
@@ -42,7 +44,7 @@ public class DetectFace {
 
             try {
                 // Pour transformer le lien en URI (une URI c'est un String qui permet d'identifier une ressource du web)
-                URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_DETECT);
+                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_DETECT);
 
                 // Pour définir les paramètres que le fichier json doit renvoyer
                 builder.setParameter("returnFaceId", "true");
@@ -53,7 +55,7 @@ public class DetectFace {
                 URI uri = builder.build();
                 HttpPost request = new HttpPost(uri);
 
-                request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.SUBSCRIPTION_KEY);
+                request.setHeader("Ocp-Apim-Subscription-Key", KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
                 insertFileToHttpRequest(path, url, request);
 
@@ -63,13 +65,13 @@ public class DetectFace {
                 jsonObject = JsonUtil.httpToJsonObject(entity);
 
             } catch (UnsupportedEncodingException e) {
-                log.info("Erreur dans le format du StringEntity pour la méthode detectFace : " + e);
+                JsonUtil.log.info("Erreur dans le format du StringEntity pour la méthode detectFace : " + e);
             } catch (ClientProtocolException e) {
-                log.info("Erreur dans la requête HTTP pour la méthode detectFace : " + e);
+                JsonUtil.log.info("Erreur dans la requête HTTP pour la méthode detectFace : " + e);
             } catch (IOException e) {
-                log.info("Erreur lors de la lecture du fichier pour la méthode detectFace : " + e);
+                JsonUtil.log.info("Erreur lors de la lecture du fichier pour la méthode detectFace : " + e);
             } catch (URISyntaxException e) {
-                log.info("Erreur lors du parse de l'URI  la méthode detectFace : " + e);
+                JsonUtil.log.info("Erreur lors du parse de l'URI  la méthode detectFace : " + e);
             }
         }
         return jsonObject;
@@ -115,13 +117,13 @@ public class DetectFace {
            try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
                jsonArray = null;
                try {
-                   URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FIND_SIMILAR);
+                   URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FIND_SIMILAR);
 
                    URI uri = builder.build();
 
                    HttpPost request = new HttpPost(uri);
                    request.setHeader(CONTENT, "application/json");
-                   request.setHeader("Ocp-Apim-Subscription-Key", IdAPI.SUBSCRIPTION_KEY);
+                   request.setHeader("Ocp-Apim-Subscription-Key", KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
                    JSONObject json = new JSONObject().put("faceId", faceId)
                            .put("faceListId", faceListId);
@@ -136,15 +138,15 @@ public class DetectFace {
                        jsonArray = new JSONArray(EntityUtils.toString(entity).trim());
 
                } catch (JSONException e) {
-                   log.info("Aucune photo similaire n'a été trouvé ");
+                   JsonUtil.log.info("Aucune photo similaire n'a été trouvé ");
                } catch (UnsupportedEncodingException e) {
-                   log.info("Erreur dans le format du StringEntity pour la méthode findSimilarFace : " + e);
+                   JsonUtil.log.info("Erreur dans le format du StringEntity pour la méthode findSimilarFace : " + e);
                } catch (ClientProtocolException e) {
-                   log.info("Erreur dans la requête HTTP pour la méthode findSimilarFace : " + e);
+                   JsonUtil.log.info("Erreur dans la requête HTTP pour la méthode findSimilarFace : " + e);
                } catch (IOException e) {
-                   log.info("Erreur lors de la lecture du fichier pour la méthode findSimilarFace : " + e);
+                   JsonUtil.log.info("Erreur lors de la lecture du fichier pour la méthode findSimilarFace : " + e);
                } catch (URISyntaxException e) {
-                   log.info("Erreur lors du parse de l'URI pour la méthode findSimilarFace : " + e);
+                   JsonUtil.log.info("Erreur lors du parse de l'URI pour la méthode findSimilarFace : " + e);
                }
            }
 

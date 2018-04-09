@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AnalyseVideo.iml" filepath="$PROJECT_DIR$/AnalyseVideo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end.iml" filepath="$PROJECT_DIR$/back-end.iml" />
     </modules>
   </component>
 </project>

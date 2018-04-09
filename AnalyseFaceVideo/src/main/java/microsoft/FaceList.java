@@ -1,5 +1,6 @@
 package microsoft;
 
+import identification.KeyMicrosoftApi;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 
@@ -9,9 +10,9 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.json.JSONObject;
+import useful.JsonUtil;
 
 import java.io.IOException;
 
@@ -26,7 +27,7 @@ public class FaceList {
 
     }
 
-    private static Logger log = LogManager.getLogger();
+
     /**
      * Pour créer une listePhoto (faceList) qui va pouvoir contenir une listePhoto de photo
      * @param name Nom de la listePhoto à créer
@@ -37,7 +38,7 @@ public class FaceList {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 
             try {
-                URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FACE_LIST);
+                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
 
                 builder.setPath(builder.getPath() + id);
 
@@ -45,7 +46,7 @@ public class FaceList {
 
                 HttpPut request = new HttpPut(uri);
                 request.setHeader("Content-Type", "application/json");
-                request.setHeader(OCP, IdAPI.SUBSCRIPTION_KEY);
+                request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
                 //Création du fichier Json pour l'envoyer à l'api
                 JSONObject j = new JSONObject().put("name", name).put("userData", user);
@@ -57,11 +58,11 @@ public class FaceList {
                 HttpEntity entity = response.getEntity();
 
                 if (entity != null) {
-                    log.info("\nCréation de la faceList pour la vidéo " + (Integer.parseInt(id) + 1) + " réussi \n");
+                    JsonUtil.log.info("\nCréation de la faceList pour la vidéo " + (Integer.parseInt(id) + 1) + " réussi \n");
                 }
 
             } catch (IOException | URISyntaxException e) {
-                log.info( e);
+                JsonUtil.log.info( e);
             }
         }
     }
@@ -78,14 +79,14 @@ public class FaceList {
        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
            try {
-               URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FACE_LIST);
+               URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
 
                builder.setPath(builder.getPath() + id + "/persistedFaces");
 
                builder.addParameter("userData", userData);
                URI uri = builder.build();
                HttpPost request = new HttpPost(uri);
-               request.setHeader(OCP, IdAPI.SUBSCRIPTION_KEY);
+               request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
                DetectFace.insertFileToHttpRequest(path, url, request);
 
@@ -95,7 +96,7 @@ public class FaceList {
                out.println(JsonUtil.httpToJsonObject(entity));
 
            } catch (IOException | URISyntaxException e) {
-               log.info( e);
+               JsonUtil.log.info( e);
            }
 
        }
@@ -111,22 +112,22 @@ public class FaceList {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             json = null;
             try {
-                URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FACE_LIST);
+                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
 
                 URI uri = builder.build();
 
                 HttpGet request = new HttpGet(uri);
                 request.setHeader("Content-Type", "application/json");
-                request.setHeader(OCP, IdAPI.SUBSCRIPTION_KEY);
+                request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
                 CloseableHttpResponse response = httpClient.execute(request);
                 HttpEntity entity = response.getEntity();
 
-                out.println("Liste des FaceList : \n");
+                JsonUtil.log.info("Liste des FaceList : \n");
                 json = JsonUtil.httpToJsonObject(entity);
 
             } catch (IOException | URISyntaxException e) {
-                log.info(e);
+                JsonUtil.log.info(e);
             }
         }
 
@@ -146,13 +147,13 @@ public class FaceList {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
             try {
-                URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FACE_LIST);
+                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
 
                 builder.setPath(builder.getPath() + id);
 
                 URI uri = builder.build();
                 HttpGet request = new HttpGet(uri);
-                request.setHeader(OCP, IdAPI.SUBSCRIPTION_KEY);
+                request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
 
                 HttpResponse response = httpclient.execute(request);
@@ -160,7 +161,7 @@ public class FaceList {
 
                 json = JsonUtil.httpToJsonObject(entity);
             } catch (IOException | URISyntaxException e) {
-                log.info(e);
+                JsonUtil.log.info(e);
             }
         }
         if (json == null)
@@ -176,13 +177,13 @@ public class FaceList {
     public static void deleteFaceList(String id) throws IOException, URISyntaxException {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
-            URIBuilder builder = new URIBuilder(IdAPI.URI_BASE_FACE_LIST);
+            URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
 
             builder.setPath(builder.getPath() + id);
 
             URI uri = builder.build();
             HttpDelete request = new HttpDelete(uri);
-            request.setHeader(OCP, IdAPI.SUBSCRIPTION_KEY);
+            request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
 
             HttpResponse response = httpclient.execute(request);

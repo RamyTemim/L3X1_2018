@@ -9,11 +9,10 @@ body {
 
 .microsoft {
 
-
   width: 35%;
   height: 30%;
   object-fit: fill;
-  margin: 0 15px;
+
 }
 
 .vs {
@@ -24,8 +23,6 @@ body {
 }
 
 .amazon {
-  top: 200em;
-  left: 600em;
   width: 35%;
   height: 30%;
   object-fit: fill;

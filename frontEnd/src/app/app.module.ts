@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {NgProgressModule} from 'ngx-progressbar';
 
 import { AppComponent } from './app.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
@@ -19,7 +19,8 @@ import {AppRoutingModule} from './result/app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgProgressModule
   ],
   providers: [
     AppService

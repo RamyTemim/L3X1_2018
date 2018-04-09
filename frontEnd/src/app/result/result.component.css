@@ -9,6 +9,10 @@
 #tableau{
   width: 100%;
 }
+#IdTab{
+  display: flex;
+  justify-content: center;
+}
 .goBack{
   display: flex;
   justify-content: center;

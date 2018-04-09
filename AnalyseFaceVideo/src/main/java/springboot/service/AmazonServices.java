@@ -1,5 +1,6 @@
 package springboot.service;
 
+import identification.KeyAmazonApi;
 import springboot.model.AmazonModel;
 import springboot.model.Persons;
 import amazon.*;
@@ -19,40 +20,40 @@ private AmazonServices(){}
 
      public static AmazonModel getJson(List<String> pathPhoto, List<String> pathVideo) throws IOException {
 
-        S3operation.creatBucket(VarAma.BUCKETPHOTO);
+        S3operation.creatBucket(KeyAmazonApi.BUCKETPHOTO);
 
         for (String aListpathTophoto : pathPhoto)
         {
-            S3operation.uploadFileToBucket(VarAma.BUCKETPHOTO, aListpathTophoto);
+            S3operation.uploadFileToBucket(KeyAmazonApi.BUCKETPHOTO, aListpathTophoto);
         }
 
-        S3operation.creatBucket(VarAma.BUCKETVIDEO);
+        S3operation.creatBucket(KeyAmazonApi.BUCKETVIDEO);
 
 
         for (String aListpathToVideo : pathVideo)
         {
-            S3operation.uploadFileToBucket(VarAma.BUCKETVIDEO, aListpathToVideo);
+            S3operation.uploadFileToBucket(KeyAmazonApi.BUCKETVIDEO, aListpathToVideo);
         }
 
-        CreatCollectionFaces.deleteCollection(VarAma.COLLECTIONID, credentials);
+        CreatCollectionFaces.deleteCollection(KeyAmazonApi.COLLECTIONID, credentials);
 
-        CreatCollectionFaces.creatCollectionFace(credentials, VarAma.COLLECTIONID);
+        CreatCollectionFaces.creatCollectionFace(credentials, KeyAmazonApi.COLLECTIONID);
 
-        List<String> listnameOfImage = S3operation.listFilesInBucket(VarAma.BUCKETPHOTO);
+        List<String> listnameOfImage = S3operation.listFilesInBucket(KeyAmazonApi.BUCKETPHOTO);
 
         for (int i=0; i<listnameOfImage.size();i++)
         {
-            CreatCollectionFaces.addFace(credentials, VarAma.BUCKETPHOTO, listnameOfImage.get(i) , VarAma.COLLECTIONID);
+            CreatCollectionFaces.addFace(credentials, KeyAmazonApi.BUCKETPHOTO, listnameOfImage.get(i) , KeyAmazonApi.COLLECTIONID);
         }
 
-        List<String> listnameOfVideos = S3operation.listFilesInBucket(VarAma.BUCKETVIDEO);
+        List<String> listnameOfVideos = S3operation.listFilesInBucket(KeyAmazonApi.BUCKETVIDEO);
 
         List<List<String>> listImageInVideos = new ArrayList<>();
 
 
         for (int i =0 ; i<listnameOfVideos.size();i++)
         {
-            listImageInVideos.add(DetectFaceInVideo.detectFacesInVideos(VarAma.BUCKETVIDEO, listnameOfVideos.get(i), VarAma.REK, VarAma.CHANNEL, VarAma.COLLECTIONID, VarAma.QUEUEURL, VarAma.SQS));
+            listImageInVideos.add(DetectFaceInVideo.detectFacesInVideos(KeyAmazonApi.BUCKETVIDEO, listnameOfVideos.get(i), KeyAmazonApi.REK, KeyAmazonApi.CHANNEL, KeyAmazonApi.COLLECTIONID, KeyAmazonApi.QUEUEURL, KeyAmazonApi.SQS));
         }
 
 
@@ -79,8 +80,8 @@ private AmazonServices(){}
 
 
 
-        S3operation.purgeBucket(VarAma.BUCKETPHOTO);
-        S3operation.purgeBucket(VarAma.BUCKETVIDEO);
+        S3operation.purgeBucket(KeyAmazonApi.BUCKETPHOTO);
+        S3operation.purgeBucket(KeyAmazonApi.BUCKETVIDEO);
 
         return amazonModel;
     }

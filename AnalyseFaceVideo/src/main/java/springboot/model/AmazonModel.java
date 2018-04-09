@@ -1,21 +1,22 @@
 package springboot.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AmazonModel {
-     private static List<Persons> photos;
+     private  List<Persons> photos;
 
      public AmazonModel()
      {
-          // instnaci le model
+         photos = new ArrayList<>();
      }
 
-     public static List<Persons> getPhotos() {
-          return photos;
+     public  List<Persons> getPhotos() {
+          return this.photos;
      }
 
      public void addPerson(Persons photos)
      {
-          AmazonModel.photos.add(photos);
+          this.photos.add(photos);
      }
 }
