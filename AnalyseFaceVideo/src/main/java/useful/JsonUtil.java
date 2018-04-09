@@ -1,5 +1,19 @@
+/*
+ * L3X1 FACIAL RECONGITION COMPARATOR
+ *
+ * IA as a service (Facial recognition on vidéo)
+ *
+ * PACKAGE AMAZON
+ *
+ * Classe qui fait ofice d'une boite a outils. Elle contient
+ * divert méthode qui permettent de manipuler des fichiers( lire
+ * un fichier, écrir dans un fichier...)
+ *
+ * elle permet aussi de manipuller des objets JSON
+ *
+ * Elle est utiliser pratiquement dans toutes les classes
+ */
 package useful;
-
 
 import identification.KeyMicrosoftApi;
 import microsoft.VideoIndexer;
@@ -10,7 +24,6 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import java.io.*;
 import java.nio.file.Files;
@@ -27,7 +40,12 @@ private JsonUtil(){}
     public static final Logger log = LogManager.getLogger();
 
 
-
+    /**
+     * Méthode pour faire un temps d'attente.
+     * cette méthode est utiliser dans le get du controler
+     * pour attendre que les fichiers qui contienent les paths arrivent
+     * @throws InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied
+     */
     public static void sleepGet() throws InterruptedException {
        log.info("Attente de fichier ");
         Thread.sleep(100);
@@ -35,7 +53,8 @@ private JsonUtil(){}
     }
 
     /**
-     *
+     * Méthode qui prend le fichier envoyer pas l'utilisateur et copie sont contenu
+     * dans le fichier listePhotos
      * @param multipartFile  fichier reçu dans une requete HTTP
      * @return un fichier qui contient le contunue du multipartFile
      */
@@ -53,7 +72,12 @@ private JsonUtil(){}
     }
 
 
-
+    /**
+     * Méthode qui prend le fichier envoyer pas l'utilisateur et copie sont contenu
+     * dans le fichier listeVideos
+     * @param multipartFile  fichier reçu dans une requete HTTP
+     * @return un fichier qui contient le contunue du multipartFile
+     */
     public static File storeFileVideo(MultipartFile multipartFile)
     {
         File file= new File("src/resources/listeVideo");
@@ -69,7 +93,10 @@ private JsonUtil(){}
 
 
     /**
-     * Methode qui lis un fichier ligne par ligne
+     * Methode qui lis un fichier ligne par ligne pour récuprer
+     * les paths que l'utilisateur a écrit dans un fichier
+     * et chaque fois qu'il lis une ligne qui est un path il récupére
+     * le cheain absolut pour accéder au fichier qu'il y a dans le path
      * @param file fichier a lire
      * @return  listeOfpaths : listePhoto de string qui contien les ligne du fichier
      */
@@ -166,15 +193,14 @@ private JsonUtil(){}
      */
     public static List<List<String>> getListLienVideo (List<String> videoIds ) throws IOException {
         List<List<String>> listLien = new ArrayList<>();
-        for(int i = 0; i<videoIds.size(); i++)
-        {
-            JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
+        for (String videoId : videoIds) {
+            JSONObject json = VideoIndexer.getBreakdown(videoId);
             List<String> listUrlPhoto = new ArrayList<>();
             //Met dans la listePhoto les url pour accéder aux photos extraite de la vidéo
             JSONArray faces = VideoIndexer.getFacesFromVideos(json);
 
             for (int j = 0; j < faces.length(); j++) {
-                listUrlPhoto.add(KeyMicrosoftApi.THUMBNAIL.concat(videoIds.get(i) + "/")
+                listUrlPhoto.add(KeyMicrosoftApi.THUMBNAIL.concat(videoId + "/")
                         .concat(faces.getJSONObject(j).get("thumbnailId").toString()));
             }
             listLien.add(listUrlPhoto);

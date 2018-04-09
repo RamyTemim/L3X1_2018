@@ -1,4 +1,15 @@
-
+/*
+ * L3X1 FACIAL RECONGITION COMPARATOR
+ *
+ * IA as a service (Facial recognition on vidéo)
+ *
+ * PACKAGE identification
+ *
+ *  Cette Classe est une classe constante
+ *
+ * Elle contient les constante qui sont les clées d'accés
+ * à l'API d'Amazon
+ */
 
 
 package identification;

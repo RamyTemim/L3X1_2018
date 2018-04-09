@@ -1,18 +1,12 @@
 
-P
- src/main/java/amazon/VarAma.java,c/e/ce382433c41330180e96005e36979078d82cba48
 U
 %src/main/java/amazon/S3operation.java,e/1/e179a3a537eda2078d4897a15e281f7480e8f75b
 [
 +src/main/java/amazon/DetectFaceInVideo.java,8/c/8cb561fa7615994194137a0ee1bebf0b3ef14d2e
 ^
 .src/main/java/amazon/CreatCollectionFaces.java,4/4/44d11856aa006eec73e463691510e0a312d184f0
-R
-"src/main/java/microsoft/IdAPI.java,6/8/68eb3c842ea0d23be8cbef902abb0f066c4f5251
 U
 %src/main/java/microsoft/FaceList.java,b/d/bd0822436f8104f44cccb9f170c13b330970b927
-U
-%src/main/java/microsoft/JsonUtil.java,0/e/0e0a52bfdf632b1ed2fbf0609f5260d807dd96d7
 W
 'src/main/java/microsoft/DetectFace.java,2/a/2ab3e0bba45a96f9c82c1fb82327d7fbc121d220
 Y

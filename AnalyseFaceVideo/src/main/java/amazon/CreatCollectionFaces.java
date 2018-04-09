@@ -1,3 +1,26 @@
+/*
+ * L3X1 FACIAL RECONGITION COMPARATOR
+ *
+ * IA as a service (Facial recognition on vidéo)
+ *
+ * PACKAGE AMAZON
+ *
+ *
+ * Cette classe contient des méthodes qui seront utiliser pour
+ * interagir avec les service AWS: vérifier l'identité de l'utilisateur
+ * et ces autorisations, manipuler les photos de
+ * profiles qui seront donner comme input par l'utilisateur.
+ *
+ * Cette classe est en interaction avec la classe AmazonService
+ * qui se trouve dans le package service du package springboot.
+ *
+ * La classe AmazonSerive va faire appel au méthodes :
+ *
+ *  - creatCollectionFace() : pour créer une collection vide
+ *  - addFace() : ajouter les visages détecté sur les photos dans la collection
+ *  - deleteCollection() : supprimer la collection a la fin de la recherche
+ *
+ */
 package amazon;
 
 import com.amazonaws.AmazonClientException;
@@ -20,8 +43,9 @@ public class CreatCollectionFaces {
      private CreatCollectionFaces(){ }
 
     /**
-     * Methode pour pour verifier les données d'identifications, les autorisations et les droits d'accèes de l'utilisateur
-     * @return credentials
+     * Méthode pour vérifier les données d'identifications, les autorisations et les
+     * * droits d’accès de l'utilisateur qui se trouve dans le fichier credentials
+     * * @return credentials vérifier par Amazon
      */
    public static AWSCredentials connexionIdexFace()
     {
@@ -42,7 +66,9 @@ public class CreatCollectionFaces {
 
 
     /**
-     * Methode pour instancier un client Amazon dans la région pour lesquels l'utisateur est autorisé
+     * Méthode pour instancier un client Amazon dans la région pour laquelle
+     * le credentials a été vérifier. le client sera utiliser pour interagir
+     * avec les service d'AWS
      * @param credentials données d'identification et autorisation d'accès
      */
     private static AmazonRekognition getAWSR(AWSCredentials credentials)
@@ -56,7 +82,9 @@ public class CreatCollectionFaces {
 
 
     /**
-     * Méthode pour la création d'une collection qui va contenir les métadonnées des visages qui se trouvent sur les photos
+     * Méthode pour la création d'un objet collection qui va contenir les méta-données des
+     * visages qui se trouvent sur les photos de profiles pour les comparer ensuite au visages
+     * qui se trouve sur les vidéos
      * @param credentials données d'identification et autorisation d'accé
      * @param collectionId identifiant pour  la collection
      */
@@ -72,7 +100,8 @@ public class CreatCollectionFaces {
 
 
     /**
-     * Méthode pour analyser un visage, l'indexer puis l'ajouter à la collection
+     * Méthode pour analyser un visage, l'indexer et recueillir les méta-données
+     * puis l'ajouter à la collection créer avec la méthode creatCollectionFace()
      * @param credentials données d'identification et autorisation d'accès
      * @param bucket nom du comportiment où sont stockés les photos
      * @param nameOfImage nom de la photo qui contient le visage à analyser
@@ -80,11 +109,8 @@ public class CreatCollectionFaces {
      */
     public static void addFace(AWSCredentials credentials,String bucket,String nameOfImage,String collectionId)
     {
-            // chargement de l'image encoder en base64 en mémoire
-        Image picture = new Image().withS3Object(new S3Object()
-                .withBucket(bucket)
-                .withName(nameOfImage));
-
+       // chargement de l'image encoder en base64 en mémoire
+        Image picture = new Image().withS3Object(new S3Object().withBucket(bucket).withName(nameOfImage));
 
         // Indexation du visage qui se trouve sur la photo
         IndexFacesRequest indexFacesRequest = new IndexFacesRequest()

@@ -92,13 +92,13 @@ public class MethodMain {
             }
 
             //Création de la faceList qui va contenir les photos extraite de la vidéo
-            FaceList.createFaceList(JsonUtil.pathToName(pathVideos.get(i)), String.valueOf(i), "yoni");
+            FaceList.createFaceList(JsonUtil.pathToName(pathVideos.get(i)), String.valueOf(i));
 
             JsonUtil.log.info("Ajout des photos dans la listePhoto " + (i+1) + " : ");
 
             //Ajout des photos dans la faceList
             for (int j = 0; j < faces.length(); j++) {
-                FaceList.addFace(listUrlPhoto.get(j), String.valueOf(i), "Photo ".concat(String.valueOf(j+1)), true);
+                FaceList.addFace(listUrlPhoto.get(j), String.valueOf(i), "Photo ".concat(String.valueOf(j+1)));
             }
 
             JsonUtil.log.info("\nListe "+ (i+1) + ": ");

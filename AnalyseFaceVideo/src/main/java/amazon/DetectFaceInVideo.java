@@ -1,3 +1,24 @@
+/*
+ *
+ * L3X1 FACIAL RECONGITION COMPARATOR
+ *
+ * IA as a service (Facial recognition on vidéo)
+ *
+ * PACKAGE AMAZON
+ *
+ * Cette classe et la classe principale de ce package
+ * dans celle-ci  on vas analyser les vidéos et comparer
+ * les visage qui se trouvent dedans aves les visages
+ * qu'il y a dans la collection créer dans la classe CreatCollectionFaces
+ *
+ * Cette classe va lancer une analyse avec la méthode startFaceSearchCollection()
+ * puis récupérer les résultas et les traiter dans la méthode getResultsFaceSearchCollection()
+ * ces méthode son appeller dans la  detectFacesInVideos()
+ *
+ * Puis la méthode detectFacesInVideos() est appeller dans la classe AmazonService
+ *
+ */
+
 package amazon;
 
 import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -20,7 +41,9 @@ public class DetectFaceInVideo {
     private  static String startJobId=null;
 
     /**
-     *Méthode qui detecte les visages des personnes dans une vidéo et les compare a la collection
+     *Méthode qui detecte les visages des personnes dans une vidéo et les compare au
+     * visage qui se trouve dans la collection.
+     * Methode Fourni par AMAZON DOCUMENTATION
      * @param bucket Le nom du compartiment dans lequel sont uploader les videos et les images
      * @param video Le nom de la video à analyser
      * @param rek instance du service de reconnaissance de amazon
@@ -37,26 +60,24 @@ public class DetectFaceInVideo {
         JsonNode operationStatus;
         JsonNode jsonMessageTree;
         JsonNode jsonResultTree;
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper operationResultMapper = new ObjectMapper();
+
         startFaceSearchCollection(bucket,video, rek,  channel, collectionId);
 
         List<String> listnameimage = new ArrayList<>();
         JsonUtil.log.info("Waiting for job: " + startJobId);
-        //Poll queue for messages
         List<Message> messages;
         boolean jobFound=false;
-
         do {
             do {
                 messages = sqs.receiveMessage(queueUrl).getMessages();
             }while(messages.isEmpty());
-
             for (Message message: messages)
             {
                 String notification = message.getBody();
-                ObjectMapper mapper = new ObjectMapper();
                 jsonMessageTree = mapper.readTree(notification);
                 messageBodyText = jsonMessageTree.get("Message");
-                ObjectMapper operationResultMapper = new ObjectMapper();
                 jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
                 operationJobId = jsonResultTree.get("JobId");
                 operationStatus = jsonResultTree.get("Status");
@@ -80,21 +101,20 @@ public class DetectFaceInVideo {
                     JsonUtil.log.info("Job received was not job " +  startJobId);
                 }
             }
-
         } while (!jobFound);
         return listnameimage;
     }// end DetectFacesInVideos
 
 
     /**
-     *
+     * Méthode qui envoie une requete d'analyse de vidéo
      * @param bucket Le nom du compartiment dans lequel sont uploader les videos et les images
      * @param video Le nom de la video à analyser
      * @param rek instance du service de reconnaissance de amazon
      * @param channel Service de notification à laquelle Amazon Rekognition publie l'état d'achèvement d'une opération d'analyse vidéo
      * @param collectionId Le nom de la collection qui comporte les images
      */
-    private static void startFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId)
+    private static void startFaceSearchCollection(String bucket, String video, AmazonRekognition rek, NotificationChannel channel, String collectionId)
     {
         StartFaceSearchRequest req = new StartFaceSearchRequest()
                 .withCollectionId(collectionId)
@@ -109,12 +129,13 @@ public class DetectFaceInVideo {
 
 
     /**
-     *Méthode qui
+     *Méthode qui récupére le fichier json qui es le résulta de l'analyse
+     * de la viéo et qui parse les fichier pour récupérer les donnée pertinantes
      * @param startJobId identifiant de la vidéo
      * @param rek instance du service de reconnaissance de amazon
-     * @return nom de l'image
+     * @return nom de l'image ou aprai le visage qui est sur la vidéos
      */
-    private static List<String>   getResultsFaceSearchCollection(String startJobId, AmazonRekognition rek)
+    private static List<String> getResultsFaceSearchCollection(String startJobId, AmazonRekognition rek)
     {
 
         GetFaceSearchResult faceSearchResult= null;

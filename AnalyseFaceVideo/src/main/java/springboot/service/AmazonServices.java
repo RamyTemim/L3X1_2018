@@ -41,44 +41,36 @@ private AmazonServices(){}
 
         List<String> listnameOfImage = S3operation.listFilesInBucket(KeyAmazonApi.BUCKETPHOTO);
 
-        for (int i=0; i<listnameOfImage.size();i++)
-        {
-            CreatCollectionFaces.addFace(credentials, KeyAmazonApi.BUCKETPHOTO, listnameOfImage.get(i) , KeyAmazonApi.COLLECTIONID);
-        }
+         for (String aListnameOfImage : listnameOfImage) {
+             CreatCollectionFaces.addFace(credentials, KeyAmazonApi.BUCKETPHOTO, aListnameOfImage, KeyAmazonApi.COLLECTIONID);
+         }
 
         List<String> listnameOfVideos = S3operation.listFilesInBucket(KeyAmazonApi.BUCKETVIDEO);
 
         List<List<String>> listImageInVideos = new ArrayList<>();
 
 
-        for (int i =0 ; i<listnameOfVideos.size();i++)
-        {
-            listImageInVideos.add(DetectFaceInVideo.detectFacesInVideos(KeyAmazonApi.BUCKETVIDEO, listnameOfVideos.get(i), KeyAmazonApi.REK, KeyAmazonApi.CHANNEL, KeyAmazonApi.COLLECTIONID, KeyAmazonApi.QUEUEURL, KeyAmazonApi.SQS));
-        }
-
+         for (String listnameOfVideo : listnameOfVideos) {
+             listImageInVideos.add(DetectFaceInVideo.detectFacesInVideos(KeyAmazonApi.BUCKETVIDEO, listnameOfVideo, KeyAmazonApi.REK, KeyAmazonApi.CHANNEL, KeyAmazonApi.COLLECTIONID, KeyAmazonApi.QUEUEURL, KeyAmazonApi.SQS));
+         }
 
          AmazonModel amazonModel = new AmazonModel();
          Persons persons = new Persons();
 
 
-        for (int i=0; i<listnameOfImage.size(); i++)
-        {
-            List <String> list = new ArrayList<>();
+         for (String aListnameOfImage : listnameOfImage)
+         {
+             List<String> list = new ArrayList<>();
 
-            for ( int j=0; j<listImageInVideos.size(); j++ )
-            {
-                if (listImageInVideos.get(j).contains(listnameOfImage.get(i)))
-                {
-                    list.add(listnameOfVideos.get(j));
-                }
-            }
-          persons.setName(listnameOfImage.get(i));
-          persons.setVideos(list);
-          amazonModel.addPerson(persons);
-        }
-
-
-
+             for (int j = 0; j < listImageInVideos.size(); j++)
+             {
+                 if (listImageInVideos.get(j).contains(aListnameOfImage))
+                     list.add(listnameOfVideos.get(j));
+             }
+             persons.setName(aListnameOfImage);
+             persons.setVideos(list);
+             amazonModel.addPerson(persons);
+         }
 
         S3operation.purgeBucket(KeyAmazonApi.BUCKETPHOTO);
         S3operation.purgeBucket(KeyAmazonApi.BUCKETVIDEO);

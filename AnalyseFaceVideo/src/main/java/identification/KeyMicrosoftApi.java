@@ -1,8 +1,19 @@
+/*
+ * L3X1 FACIAL RECONGITION COMPARATOR
+ *
+ * IA as a service (Facial recognition on vidéo)
+ *
+ * PACKAGE identification
+ *
+ *  Cette Classe est une classe constante
+ *
+ * Elle contient les constante qui sont les clées d'accés
+ * à l'API de Microsoft
+ */
+
+
 package identification;
 
-/**
- * Interface contenant toutes les clés et les url permettant de s'authentifier et d'intéragire avec les différentes APIs de Microsoft
- */
 public final class KeyMicrosoftApi {
     private KeyMicrosoftApi(){}
 

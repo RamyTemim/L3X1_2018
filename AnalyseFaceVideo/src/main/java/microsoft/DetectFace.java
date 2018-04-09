@@ -24,20 +24,20 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class DetectFace {
+ class DetectFace {
 
     private DetectFace(){}
 
 
     private static final String CONTENT  = "Content-Type";
     /**
-     * C'est une fonction permettant d'envoyer la requête post à l'api de microsoft pour lui demander d'analyser une photo (Detect)
-     * @param path Le chemin permettant d'accéder à la vidéo (en local si url = false ou en ligne si url = true)
-     * @param detectOnImage Les éléments à détécter sur l'image (age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise)
-     * @param url Un boolean permettant à la méthode de savoir si le path est une adresse local (si url = false) ou un url (si url = true)
-     * @return Renvoit une un JSONObject qui correspond à l'objet Json renvoyé par l'API Face de microsoft
+     * C'est une fonction permettant d'envoyer la requ&ecirc;te post &agrave; l'api de microsoft pour lui demander d'analyser une photo (Detect)
+     * @param path Le chemin permettant d'acc&eacute;der &agrave; la vid&eacute;o (en local si url = false ou en ligne si url = true)
+     * @param detectOnImage Les &eacute;l&eacute;ments &agrave; d&eacute;t&eacute;cter sur l'image (age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise)
+     * @param url Un boolean permettant &agrave; la m&eacute;thode de savoir si le path est une adresse local (si url = false) ou un url (si url = true)
+     * @return Renvoit une un JSONObject qui correspond &agrave; l'objet Json renvoy&eacute; par l'API Face de microsoft
      */
-    public static JSONObject detectFace (String path, String detectOnImage, Boolean url) throws IOException {
+     static JSONObject detectFace (String path, String detectOnImage, Boolean url) throws IOException {
         JSONObject jsonObject;
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
             jsonObject = null;
@@ -84,7 +84,7 @@ public class DetectFace {
      * @param url le boolean permettant de savoir si c'est un url ou un fichier stocké localement
      * @param request la requête Post dans laquelle on va insérer le fichier
      */
-    public static void insertFileToHttpRequest(String path, Boolean url, HttpPost request) throws UnsupportedEncodingException
+     static void insertFileToHttpRequest(String path, Boolean url, HttpPost request) throws UnsupportedEncodingException
     {
         if (url)
         {
@@ -110,7 +110,7 @@ public class DetectFace {
      * @param faceId L'id de la photo qui sert de modèle pour la comparaison
      * @return Un fichier json contenant la photo que l'API à trouver qui correspond le plus au modèle
      */
-    public static JSONArray findSimilarFace(String faceListId, String faceId) throws IOException {
+    static JSONArray findSimilarFace(String faceListId, String faceId) throws IOException {
 
 
            JSONArray jsonArray;

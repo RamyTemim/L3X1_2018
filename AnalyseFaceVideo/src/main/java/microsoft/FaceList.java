@@ -21,20 +21,21 @@ import java.net.URISyntaxException;
 
 import static java.lang.System.*;
 
-public class FaceList {
+class FaceList {
     private static final String  OCP = "Ocp-Apim-Subscription-Key";
+    private static final String USER = "yoni";
+    private static final Boolean URL = true;
     private  FaceList(){
 
     }
 
 
     /**
-     * Pour créer une listePhoto (faceList) qui va pouvoir contenir une listePhoto de photo
-     * @param name Nom de la listePhoto à créer
-     * @param id L'identifiant de la listePhoto qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la méthode findSimilar
-     * @param user Nom de l'utilisateur de la listePhoto
+     * Pour cr&eacute;er une listePhoto (faceList) qui va pouvoir contenir une listePhoto de photo
+     * @param name Nom de la listePhoto &agrave; cr&eacute;er
+     * @param id L'identifiant de la listePhoto qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la m&eacute;thode findSimilar
      */
-    public static void createFaceList(String name, String id, String user) throws IOException {
+    static void createFaceList(String name, String id) throws IOException {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 
             try {
@@ -49,7 +50,7 @@ public class FaceList {
                 request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
                 //Création du fichier Json pour l'envoyer à l'api
-                JSONObject j = new JSONObject().put("name", name).put("userData", user);
+                JSONObject j = new JSONObject().put("name", name).put("userData", USER);
                 StringEntity reqEntity = new StringEntity(j.toString());
 
                 request.setEntity(reqEntity);
@@ -70,12 +71,11 @@ public class FaceList {
 
     /**
      * Pour ajouter une photo dans une faceList (POST)
-     * @param path Le chemin pour accéder à la photo (en local)
+     * @param path Le chemin pour acc&eacute;der &agrave; la photo (en local)
      * @param id l'identifiant de la faceList dans laquelle il faut rajouter la photo
      * @param userData le label de la photo (nom de l'individu)
-     * @param url si vrai alors il s'agit d'un chemin vers un url sinon il s'agi d'une photo stocké localement
      */
-    public static void addFace(String path, String id, String userData, Boolean url) throws IOException {
+    static void addFace(String path, String id, String userData) throws IOException {
        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
            try {
@@ -88,7 +88,7 @@ public class FaceList {
                HttpPost request = new HttpPost(uri);
                request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
-               DetectFace.insertFileToHttpRequest(path, url, request);
+               DetectFace.insertFileToHttpRequest(path,URL, request);
 
                CloseableHttpResponse response = httpclient.execute(request);
                HttpEntity entity = response.getEntity();
@@ -102,47 +102,13 @@ public class FaceList {
        }
     }
 
-    /**
-     * C'est une fonction qui va intéragir avec l'API et permettant de renvoyer l'ensembles des
-     * listes de photos contenus dans le compte de l'utilisateur
-     * @return Renvois un Objet JSON contenant la listePhoto des faceList qui correspond au retour de l'API de Microsoft
-     */
-    public static JSONObject getFaceList() throws IOException {
-        JSONObject json;
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            json = null;
-            try {
-                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
-
-                URI uri = builder.build();
-
-                HttpGet request = new HttpGet(uri);
-                request.setHeader("Content-Type", "application/json");
-                request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
-
-                CloseableHttpResponse response = httpClient.execute(request);
-                HttpEntity entity = response.getEntity();
-
-                JsonUtil.log.info("Liste des FaceList : \n");
-                json = JsonUtil.httpToJsonObject(entity);
-
-            } catch (IOException | URISyntaxException e) {
-                JsonUtil.log.info(e);
-            }
-        }
-
-        if (json == null)
-            return new JSONObject();
-
-        return json;
-    }
 
     /**
      * Pour renvoyer la listePhoto des photos d'une face list
-     * @param id l'identifiant de la faceList à analyser
+     * @param id l'identifiant de la faceList &agrave; analyser
      * @return Le fichier JSON contenant la listePhoto des identifiant des photos de la faceList id
      */
-    public static JSONObject getFaceOflist(String id) throws IOException {
+    static JSONObject getFaceOflist(String id) throws IOException {
         JSONObject json = null;
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
@@ -174,7 +140,7 @@ public class FaceList {
      * Pour supprimer une faceList
      * @param id l'identifiant de la faceList à supprimer
      */
-    public static void deleteFaceList(String id) throws IOException, URISyntaxException {
+    static void deleteFaceList(String id) throws IOException, URISyntaxException {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
             URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);

@@ -34,7 +34,7 @@ public class VideoIndexer {
      * @param path le chemin pour acceder à la vidéo
      * @return l'identifiant de la vidéo uploadé
      */
-    public static String upload(String path) throws IOException {
+    static String upload(String path) throws IOException {
         String videoId = null;
           try ( CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
@@ -153,7 +153,7 @@ public class VideoIndexer {
      * @param videoId L'id de la vidéo
      * @return renvoit l'objet JSON qui va contenir les informations à propos de la vidéo
      */
-    public static JSONObject getProcessingState (String videoId) throws IOException {
+     static JSONObject getProcessingState (String videoId) throws IOException {
         JSONObject json = null;
 
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {

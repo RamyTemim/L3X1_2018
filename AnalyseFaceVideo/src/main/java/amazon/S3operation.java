@@ -1,3 +1,28 @@
+/*
+ * L3X1 FACIAL RECONGITION COMPARATOR
+ *
+ * IA as a service (Facial recognition on vidéo)
+ *
+ * PACKAGE AMAZON
+ *
+ * Cette classe contient des méthodes qui seront utiliser
+ * pour interagir avec les service S3 d'AWS qi est le cloud
+ * de storage d'amazon.
+ *
+ * Elle contient des méthodes pour s'autentifier auprés du
+ * service S3, et des methode pour manipuler les compartément
+ * de stockage.
+ *
+ * Cette classe est en interaction avec la classe AmazonService
+ * qui se trouve dans le package service du package springboot.
+ *
+ * La classe AmazonSerive va faire appel au méthodes :
+ *   - creatBucket() : créer un compartément de stockage
+ *   - uploadFileToBucket() :envoyer les fichier donner comme input dans le cloud
+ *   - listFilesInBucket():récupérer les noms des fichier stocker
+ *   - purgeBucket(): vider le compartément pour ne pas garder les
+ *                    photos et videos des utilisateur
+ */
 package amazon;
 
 import com.amazonaws.AmazonClientException;
@@ -28,8 +53,9 @@ public class S3operation {
     private  static Upload upload;
 
     /**
-     * Méthode pour créer un client S3
-     * @return s3client un clien S3 pour utilise le service AWS S3
+     * Méthode pour créer un client S3 pour utiliser le service S3
+     * et manipuler les compartément qui se trouve sur le cloud d'Amazon
+     * @return s3client un clien S3 pour utiliser le service AWS S3
      */
     private static AmazonS3 getS3Client() {
         AmazonS3 s3client = AmazonS3ClientBuilder.standard().build();
@@ -40,7 +66,8 @@ public class S3operation {
 
 
     /**
-     * Méthode  pour créer un compartiment dans le service S3 pour y stocker les photos et les videos
+     * Méthode  pour créer un compartiment dans le service S3 pour y stocker
+     * les photos et les videos a fin de les analyser
      * @param bucketName le nom que vous voulez donner au compartiment
      */
     public static void creatBucket(String bucketName)
@@ -65,6 +92,7 @@ public class S3operation {
 
     /**
      * Methode pour uploader un fichier dans un compartiment S3
+     * et stocker les photos et vidéos dedans
      * @param bucketName le nom du compartiment dans lequel vous voulez uploader le fichier
      * @param filePath le chemain relative du fichier que vous voulez uploader
      *
@@ -91,7 +119,7 @@ public class S3operation {
         try {
 
             upload.waitForCompletion();
-            out.println("Chargement réussi");
+            JsonUtil.log.info("Chargement réussi");
         } catch (AmazonClientException amazonClientException) {
             JsonUtil.log.info("Impossible de charger le fichier le chargement a étais annuler .");
             JsonUtil.log.info(amazonClientException);
@@ -105,7 +133,7 @@ public class S3operation {
      * @return listePhoto de srting qui contient les nom des fichiers
      */
 
-    public  static List<String>  listFilesInBucket(String bucketName)
+    public  static List<String> listFilesInBucket(String bucketName)
     {
         ObjectListing objectListing = getS3Client().listObjects(new ListObjectsRequest().withBucketName(bucketName));
         List<S3ObjectSummary> summary =  objectListing.getObjectSummaries();
@@ -121,6 +149,7 @@ public class S3operation {
 
     /**
      * Méthode qui vide un compartiment S3
+     * a la fin de l'analyse et de la recherche
      * @param bucketName le nom du compartiment a vider
      */
     public  static  void  purgeBucket (String bucketName)
@@ -132,8 +161,6 @@ public class S3operation {
                 for (S3ObjectSummary summary : objectListing.getObjectSummaries()) {
                     getS3Client().deleteObject(bucketName, summary.getKey());
                 }
-
-                // more object_listing to retrieve?
                 if (objectListing.isTruncated()) {
                     objectListing = getS3Client().listNextBatchOfObjects(objectListing);
                 } else {
