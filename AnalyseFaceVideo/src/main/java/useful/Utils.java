@@ -1,7 +1,7 @@
 /*
- * L3X1 FACIAL RECONGITION COMPARATOR
+ * L3X1 FACIAL RECOGNITION COMPARATOR
  *
- * IA as a service (Facial recognition on vidéo)
+ * IA as a service (Facial recognition on video)
  *
  * PACKAGE AMAZON
  *
@@ -25,16 +25,30 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonUtil {
+/**
+ * L3X1 FACIAL RECONGITION COMPARATOR
+ * <p>
+ * IA as a service (Facial recognition on vidéo)
+ * <p>
+ * PACKAGE useful
+ * <p>
+ * Cette classe correspond à une boite à outil pour tout ce qui n'est pas inclus dans les autre méthodes
+ * comme la manipulation du JSON
+ */
+public class Utils {
 
-private JsonUtil(){}
+    private Utils() {
+    }
 
 
     public static final Logger log = LogManager.getLogger();
@@ -44,27 +58,30 @@ private JsonUtil(){}
      * Méthode pour faire un temps d'attente.
      * cette méthode est utiliser dans le get du controler
      * pour attendre que les fichiers qui contiennent les paths arrivent
-     * @throws InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied
      */
-    public static void sleepGet() throws InterruptedException {
-       log.info("Attente de fichier ");
-       Thread.sleep(100);
+    public static void sleepGet() {
+        log.info("Attente de fichier ");
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
     /**
      * Méthode qui prend le fichier envoyé par l'utilisateur et copie son contenu
      * dans le fichier listePhotos
-     * @param multipartFile  fichier reçu dans une requete HTTP
+     *
+     * @param multipartFile fichier reçu dans une requete HTTP
      * @return un fichier qui contient le contunue du multipartFile
      */
-    public static File storeFilePhoto(MultipartFile multipartFile)
-    {
-        File file=new File("src/main/resources/listePhoto");
+    public static File storeFilePhoto(MultipartFile multipartFile) {
+        File file = new File("src/main/resources/listePhoto");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path =Paths.get("src/main/resources/listePhoto");
-            Files.write(path,bytes);
+            Path path = Paths.get("src/main/resources/listePhoto");
+            Files.write(path, bytes);
         } catch (Exception e) {
             log.info(e);
         }
@@ -75,16 +92,16 @@ private JsonUtil(){}
     /**
      * Méthode qui prend le fichier envoyer pas l'utilisateur et copie sont contenu
      * dans le fichier listeVideos
-     * @param multipartFile  fichier reçu dans une requete HTTP
+     *
+     * @param multipartFile fichier reçu dans une requete HTTP
      * @return un fichier qui contient le contunue du multipartFile
      */
-    public static File storeFileVideo(MultipartFile multipartFile)
-    {
-        File file= new File("src/main/resources/listeVideo");
+    public static File storeFileVideo(MultipartFile multipartFile) {
+        File file = new File("src/main/resources/listeVideo");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path =Paths.get("src/main/resources/listeVideo");
-            Files.write(path,bytes);
+            Path path = Paths.get("src/main/resources/listeVideo");
+            Files.write(path, bytes);
         } catch (Exception e) {
             log.info(e);
         }
@@ -97,28 +114,29 @@ private JsonUtil(){}
      * les paths que l'utilisateur a écrit dans un fichier
      * et chaque fois qu'il lit une ligne qui est un path il récupére
      * le chemin absolu pour accéder au fichier qu'il y a dans le path
+     *
      * @param file fichier a lire
-     * @return  listeOfpaths : listePhoto de string qui contient les lignes du fichier
+     * @return listeOfpaths : listePhoto de string qui contient les lignes du fichier
      */
-    public static List<String> readFile (File file) throws IOException {
+    public static List<String> readFile(File file) {
         String path;
         List<String> listeOfpaths = new ArrayList<>();
         if (file.exists()) {
             // test si on peut lire le fichier
-            if (file.canRead())
-            {
-                try( BufferedReader buffer = new BufferedReader(new FileReader(file))) {
+            if (file.canRead()) {
+                try (BufferedReader buffer = new BufferedReader(new FileReader(file))) {
                     while ((path = buffer.readLine()) != null) {
                         File fileForAbsolutePath = new File(path);
                         String absolutePath = fileForAbsolutePath.getAbsolutePath();
                         listeOfpaths.add(absolutePath);
                     }
+                } catch (IOException e) {
+                    log.info("Erreur lors de la lecture du fichier dans la méthode readFile : ");
                 }
-            } else
-            {
+            } else {
                 log.info("Le fichier ne peut pas être lu ");
             }
-        }else {
+        } else {
             log.info("Le fichier n'existe pas ");
         }
         return listeOfpaths;
@@ -127,19 +145,17 @@ private JsonUtil(){}
 
     /**
      * Méthode permettant à partir d'une entité HTTP de récupérer le fichier JSON contenu à l'intérieur
+     *
      * @param entity L'entitée HTTP à extraire
      * @return Un objet JSON qui était présent dans l'entité HTTP
      */
-    public static JSONObject httpToJsonObject(HttpEntity entity)
-    {
+    public static JSONObject httpToJsonObject(HttpEntity entity) {
         JSONObject jsonObject = null;
-        if (entity!=null)
-        {
+        if (entity != null) {
             try {
-                String jsonString=EntityUtils.toString(entity).trim();
+                String jsonString = EntityUtils.toString(entity).trim();
                 jsonObject = stringToJson(jsonString);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 log.info("erreur lors de la lecture du fichier pour la methode httpToJsonObject" + e);
             }
 
@@ -150,16 +166,15 @@ private JsonUtil(){}
     /**
      * Méthode permettant de transformer une chaine de caractère en JSONObject
      * ou JsonArray en fonction de la chaine de caractère
+     *
      * @param jsonString La chaine de caractère à transformer en Objet JSON
      * @return Un objet JSON correspondant à la chaine de caractère passée en paramètre
      */
-    private static JSONObject stringToJson (String jsonString)
-    {
-        JSONObject jsonObject=null;
+    private static JSONObject stringToJson(String jsonString) {
+        JSONObject jsonObject = null;
         if (jsonString.charAt(0) == '[') {
-            jsonObject = new JSONObject(jsonString.substring(1,jsonString.length()-1));
-        }
-        else if (jsonString.charAt(0) == '{') {
+            jsonObject = new JSONObject(jsonString.substring(1, jsonString.length() - 1));
+        } else if (jsonString.charAt(0) == '{') {
             jsonObject = new JSONObject(jsonString);
         }
         return jsonObject;
@@ -168,30 +183,31 @@ private JsonUtil(){}
 
     /**
      * Méthode permettant de récupérer le nom d'un fichier à partir de son path
+     *
      * @param path le path du fichier que l'on veut extraire le nom
      * @return le nom du fichier correspondant au path
      */
-    public static String pathToName(String path)
-    {
-        return path.substring(path.lastIndexOf('/')+1, path.lastIndexOf('.'));
+    public static String pathToName(String path) {
+        return path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
     }
 
     /**
      * Méthode permettant de supprimer les guillemets d'une chaine de caractère
+     *
      * @param mot le String auquel on veut supprimer les guillemets
      * @return un String auquel on a enlevé les guillemets
      */
-    public static String supprimeGuillemet(String mot)
-    {
-         return mot.substring(1,mot.length()-1);
+    public static String supprimeGuillemet(String mot) {
+        return mot.substring(1, mot.length() - 1);
     }
 
     /**
      * Méthode qui renvoit une liste de liens permettant d'accéder au photos extraites de chaque vidéo
+     *
      * @param videoIds List de videoId permettant d'accéder aux vidéos indexées dans le cloud
      * @return Une liste qui va contenir pour chaque membre de sa liste une liste de lien pour accéder aux photos extraite des vidéos
      */
-    public static List<List<String>> getListLienVideo (List<String> videoIds ) throws IOException {
+    public static List<List<String>> getListLienVideo(List<String> videoIds) {
         List<List<String>> listLien = new ArrayList<>();
         for (String videoId : videoIds) {
             JSONObject json = VideoIndexer.getBreakdown(videoId);

@@ -13,18 +13,17 @@ public class AppInitializer implements WebApplicationInitializer {
 
 
     @Override
-    public void onStartup( ServletContext servletContext ) 
-    {
+    public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register( AppConfig.class );
-        rootContext.setServletContext( servletContext );
-        servletContext.addListener( new ContextLoaderListener( rootContext ) );
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet( "dispatcher",
-                new DispatcherServlet( rootContext ) );
-        dispatcher.addMapping( "/" );
-        dispatcher.setLoadOnStartup( 1 );
+        rootContext.register(AppConfig.class);
+        rootContext.setServletContext(servletContext);
+        servletContext.addListener(new ContextLoaderListener(rootContext));
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher",
+                new DispatcherServlet(rootContext));
+        dispatcher.addMapping("/");
+        dispatcher.setLoadOnStartup(1);
 
-        FilterRegistration.Dynamic corsFilter = servletContext.addFilter( "corsFiler", CROSFiler.class );
-        corsFilter.addMappingForUrlPatterns( null, false, "/*" );
+        FilterRegistration.Dynamic corsFilter = servletContext.addFilter("corsFiler", CROSFiler.class);
+        corsFilter.addMappingForUrlPatterns(null, false, "/*");
     }
 }

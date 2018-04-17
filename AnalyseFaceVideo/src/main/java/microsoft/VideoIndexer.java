@@ -12,10 +12,11 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import useful.JsonUtil;
+import useful.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,122 +25,143 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/**
+ * L3X1 FACIAL RECOGNITION COMPARATOR
+ * <p>
+ * IA as a service (Facial recognition on video)
+ * <p>
+ * PACKAGE microsoft
+ * <p>
+ * Cette classe contient les méthodes qui vont intéragir avec l'API Video Indexer
+ * de Microsoft qui contient toutes les méthodes pour la manipulation des vidéos
+ */
 public class VideoIndexer {
-    private VideoIndexer(){}
+    private VideoIndexer() {
+    }
 
     private static final String OCP = "Ocp-Apim-Subscription-Key";
 
+    public static final Logger log = LogManager.getLogger();
+
     /**
-     * Permet d'uploader la vidéo vers le cloud de microsoft pour qu'il l'analyse
-     * @param path le chemin pour acceder à la vidéo
-     * @return l'identifiant de la vidéo uploadé
+     * Permet d'uploader la vidéo vers le cloud de microsoft pour l'analyser et l'indexer
+     *
+     * @param path le chemin pour accéder à la vidéo
+     * @return l'identifiant de la vidéo uploadée
      */
-    static String upload(String path) throws IOException {
+    static String upload(String path) {
+
+
         String videoId = null;
-          try ( CloseableHttpClient httpclient = HttpClients.createDefault()) {
+        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
-              //Pour le retourner en dehors du catch
+            try {
+                //Transforme le lien en Uri
+                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.VIDEO_INDEXER_UPLOAD);
 
+                builder.addParameter("name", Utils.pathToName(path));
+                builder.addParameter("privacy", "Public");
 
-              try {
-                  //Transforme le lien en Uri
-                  URIBuilder builder = new URIBuilder(KeyMicrosoftApi.VIDEO_INDEXER_UPLOAD);
-                  builder.toString();
+                URI uri = builder.build();
 
-                  builder.addParameter("name", JsonUtil.pathToName(path));
-                  builder.addParameter("privacy", "Public");
+                //Création de la requête HTTP Post
+                HttpPost httpPost = new HttpPost(uri);
+                //Header de la requête Post
 
-                  URI uri = builder.build();
+                httpPost.setHeader(OCP, KeyMicrosoftApi.VIDEO_KEY);
 
-                  //Création de la requête HTTP Post
-                  HttpPost httpPost = new HttpPost(uri);
-                  //Header de la requête Post
+                //Création de l'entite Multipart qui va être rajouté dans le http
+                MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
 
-                  httpPost.setHeader(OCP, KeyMicrosoftApi.VIDEO_KEY);
+                //Rajout du fichier dans le multipart
+                File f = new File(path);
+                multipart.addBinaryBody("film2", new FileInputStream(f));
 
-                  //Création de l'entite Multipart qui va être rajouté dans le http
-                  MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
+                //Transforme le multipart en entité Http
+                HttpEntity entityMultipart = multipart.build();
 
-                  //Rajout du fichier dans le multipart
-                  File f = new File(path);
-                  multipart.addBinaryBody("film2", new FileInputStream(f));
+                //Rajout de cette entité à la requête http POST
+                httpPost.setEntity(entityMultipart);
 
-                  //Transforme le multipart en entité Http
-                  HttpEntity entityMultipart = multipart.build();
+                //Récupere la réponse de la requête Http
+                CloseableHttpResponse response = httpclient.execute(httpPost);
+                //Transforme la réponse en entité Http
+                HttpEntity entity = response.getEntity();
 
-                  //Rajout de cette entité à la requête http POST
-                  httpPost.setEntity(entityMultipart);
+                videoId = EntityUtils.toString(entity);
 
-                  //Récupere la réponse de la requête Http
-                  CloseableHttpResponse response = httpclient.execute(httpPost);
-                  //Transforme la réponse en entité Http
-                  HttpEntity entity = response.getEntity();
+            } catch (FileNotFoundException e) {
+                log.info("Erreur lors de la lecture du fichier pour la méthode upload : " + e);
+            } catch (ClientProtocolException e) {
+                log.info("Erreur dans la requête HTTP pour la méthode upload : " + e);
+            } catch (IOException e) {
+                log.info("Erreur lors de l'execution de la requete pour la méthode upload : " + e);
+            } catch (URISyntaxException e) {
+                log.info("Erreur lors du parse de l'URI  la méthode upload : " + e);
+            }
+        } catch (IOException e) {
+            log.info("Erreur lors de la lecture du fichier dans la méthode upload : ");
+        }
 
-                  videoId = EntityUtils.toString(entity);
-
-              } catch (FileNotFoundException e) {
-                  JsonUtil.log.info("Erreur lors de la lecture du fichier pour la méthode upload : " + e);
-              } catch (ClientProtocolException e) {
-                  JsonUtil.log.info("Erreur dans la requête HTTP pour la méthode upload : " + e);
-              } catch (IOException e) {
-                  JsonUtil.log.info("Erreur lors de l'execution de la requete pour la méthode upload : " + e);
-              } catch (URISyntaxException e) {
-                  JsonUtil.log.info("Erreur lors du parse de l'URI  la méthode upload : " + e);
-              }
-          }
-        return JsonUtil.supprimeGuillemet(videoId);
-        //return videoId;
+        if (videoId == null) {
+            log.info("Erreur lors de l'upload de la vidéo " + Utils.pathToName(path));
+            System.exit(-2);
+        }
+        return Utils.supprimeGuillemet(videoId);
     }
 
     /**
-     * Méthode permettant de récuperer l'ensemble des informations qui on été extraite de la vidéo passé en paramètre par l'API Video Indexer
-     * de Microsoft
+     * Méthode permettant de récuperer l'ensemble des informations qui on été extraite de la vidéo passée
+     * en paramètre par l'API Video Indexerde Microsoft
+     *
      * @param videoId l'Id de la vidéo
      * @return Un objet Json qui va contenir l'ensemble des éléments que l'API de Microsoft a extrait de la vidéo
      */
-    public static JSONObject getBreakdown(String videoId) throws IOException {
+    public static JSONObject getBreakdown(String videoId) {
         JSONObject json = null;
 
-    try(CloseableHttpClient httpclient = HttpClients.createDefault()) {
+        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
-        try {
-            URIBuilder builder = new URIBuilder(KeyMicrosoftApi.VIDEO_INDEXER_UPLOAD.concat(videoId));
+            try {
+                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.VIDEO_INDEXER_UPLOAD.concat(videoId));
 
-            builder.setParameter("language", "French");
+                builder.setParameter("language", "French");
 
-            URI uri = builder.build();
-            HttpGet request = new HttpGet(uri);
-            request.setHeader(OCP, KeyMicrosoftApi.VIDEO_KEY);
+                URI uri = builder.build();
+                HttpGet request = new HttpGet(uri);
+                request.setHeader(OCP, KeyMicrosoftApi.VIDEO_KEY);
 
 
-            CloseableHttpResponse response = httpclient.execute(request);
-            HttpEntity entity = response.getEntity();
-            json = JsonUtil.httpToJsonObject(entity);
+                CloseableHttpResponse response = httpclient.execute(request);
+                HttpEntity entity = response.getEntity();
+                json = Utils.httpToJsonObject(entity);
 
-        } catch (ClientProtocolException e) {
-            JsonUtil.log.info("Erreur dans la requête HTTP pour la méthode geBreakdown : " + e);
+            } catch (ClientProtocolException e) {
+                log.info("Erreur dans la requête HTTP pour la méthode geBreakdown : " + e);
+            } catch (IOException e) {
+                log.info("Erreur lors de la lecture du fichier pour la méthode getBreakdown : " + e);
+            } catch (URISyntaxException e) {
+                log.info("Erreur dans l'URI pour la méthode getBreakdown : " + e);
+            }
         } catch (IOException e) {
-            JsonUtil.log.info("Erreur lors de la lecture du fichier pour la méthode getBreakdown : " + e);
-        } catch (URISyntaxException e) {
-            JsonUtil.log.info("Erreur dans l'URI pour la méthode getBreakdown : " + e);
+            log.info("Erreur lors de la lecture du fichier dans la méthode getBreakdown : " + e);
         }
-    }
         return json;
     }
 
     /**
      * Méthode permettant de filtrer le Json récupéré par la méthode getBreakdown et de récuperer seulement la partie qui correspond aux
      * photos extraites de la vidéos
+     *
      * @param jsonObject l'objet JSON qui a été retourné par la méthode getBreakdown
      * @return Un Json contenant seulement la partie correspondant aux photos
      */
-    public static JSONArray getFacesFromVideos (JSONObject jsonObject)
-    {
+    public static JSONArray getFacesFromVideos(JSONObject jsonObject) {
         JSONArray json = jsonObject.getJSONArray("breakdowns")
                 .getJSONObject(0)
                 .getJSONObject("insights")
                 .getJSONArray("faces");
-        if(json !=null)
+        if (json != null)
             return json;
         else
             return new JSONArray();
@@ -151,10 +173,11 @@ public class VideoIndexer {
      * La vidéo ne s'est pas chargé (Failed)
      * La vidéo est en cours d'indéxation (Processing)
      * La vidéo est indéxé (Processed)
+     *
      * @param videoId L'id de la vidéo
      * @return renvoit l'objet JSON qui va contenir les informations à propos de la vidéo
      */
-     static JSONObject getProcessingState (String videoId) throws IOException {
+    static JSONObject getProcessingState(String videoId) {
         JSONObject json = null;
 
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
@@ -171,20 +194,23 @@ public class VideoIndexer {
                 request.setConfig(params);
                 CloseableHttpResponse response = httpclient.execute(request);
                 HttpEntity entity = response.getEntity();
-                json = JsonUtil.httpToJsonObject(entity);
+                json = Utils.httpToJsonObject(entity);
 
             } catch (ClientProtocolException e) {
-                JsonUtil.log.info("Erreur dans la requête HTTP pour la méthode getProcessingState : " + e);
+                log.info("Erreur dans la requête HTTP pour la méthode getProcessingState : " + e);
             } catch (IOException e) {
-                JsonUtil.log.info("Erreur lors de la lecture du fichier pour la méthode getProcessingState : " + e);
+                log.info("Erreur lors de la lecture du fichier pour la méthode getProcessingState : " + e);
             } catch (URISyntaxException e) {
-                JsonUtil.log.info("Erreur dans l'URI pour la méthode getProcessingState : " + e);
+                log.info("Erreur dans l'URI pour la méthode getProcessingState : " + e);
             }
 
-            if (json == null)
-                return new JSONObject();
-            else
-                return json;
+
+        } catch (IOException e) {
+            log.info("Erreur lors de la lecture du fichier dans la méthode getProcessingState : ");
         }
+        if (json == null)
+            return new JSONObject();
+        else
+            return json;
     }
 }

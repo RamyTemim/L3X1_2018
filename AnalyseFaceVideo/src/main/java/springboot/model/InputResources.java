@@ -9,8 +9,6 @@ public class InputResources {
     private List<String> listpathTophoto;
     private List<String> listpathToVideo;
 
-
-
     public List<String> getListpathTophoto() {
         return listpathTophoto;
     }
