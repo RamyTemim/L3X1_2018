@@ -27,9 +27,11 @@ package amazon;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CreateBucketRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
@@ -58,7 +60,7 @@ public class S3operation {
      * @return s3client un clien S3 pour utiliser le service AWS S3
      */
     private static AmazonS3 getS3Client() {
-        AmazonS3 s3client = AmazonS3ClientBuilder.standard().build();
+        AmazonS3 s3client = new AmazonS3Client();
         s3client.setRegion(Region.getRegion(Regions.US_EAST_1));
 
         return s3client;
@@ -79,7 +81,7 @@ public class S3operation {
             }
 
         } catch (AmazonServiceException ase) {
-            JsonUtil.log.info("La création du compartiment n'a pa pu etre effectuer a cause : "+ ase.getMessage());
+            JsonUtil.log.info("La création du compartiment n'a pa pu etre effectuer a cause client  : "+ ase.getMessage());
 
 
         } catch (AmazonClientException ace) {
@@ -104,18 +106,29 @@ public class S3operation {
         {
             File file = new File(filePath);
             String keyName = JsonUtil.pathToName(filePath);
-            TransferManager tm =  TransferManagerBuilder.defaultTransferManager();
-             upload = tm.upload(bucketName, keyName , file );
-            uploadWait();
+            TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
+            // TransferManager processes all transfers asynchronously,
+            // so this call will return immediately.
+            Upload upload = tm.upload(bucketName, keyName , file );
+            try {
+                // Or you can block and wait for the upload to finish
+                upload.waitForCompletion();
+                System.out.println("Chargement réussi");
+            } catch (AmazonClientException amazonClientException) {
+                System.out.println("Impossible de charger le fichier le chargement a étais annuler .");
+                amazonClientException.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } catch (Exception e)
         {
-            JsonUtil.log.info(e);
+            System.err.println(" le fichier n'a pas pu être lu ");
         }
     }// END UploadFileToBucket
 
 
 
-    private static void uploadWait() throws InterruptedException {
+   /* private static void uploadWait() throws InterruptedException {
         try {
 
             upload.waitForCompletion();
@@ -125,7 +138,7 @@ public class S3operation {
             JsonUtil.log.info(amazonClientException);
         }
 
-    }
+    }*/
 
     /**
      * Méthode pour récupérer la listePhoto des fichiers qui se trouve dans un compartiment

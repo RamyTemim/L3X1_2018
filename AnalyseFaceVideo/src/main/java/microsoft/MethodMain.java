@@ -27,10 +27,10 @@ public class MethodMain {
     public static List<String> uploadVideo(List<String> pathVideo) throws IOException {
         //videoIds est la liste qui va contenir les Id des vidéos que videoIndexer va indéxer
         List <String> videoIds = new ArrayList<>();
-       JsonUtil.log.info("videos en cours d'upload");
+        JsonUtil.log.info("videos en cours d'upload");
         //On rajoute dans la liste le retour de l'upload de videoIndexer
         for (String path : pathVideo) {
-            videoIds.add(JsonUtil.supprimeGuillemet(VideoIndexer.upload(path)));
+            videoIds.add(VideoIndexer.upload(path));
         }
 
         JsonUtil.log.info("Vidéos en cours d'indexation");
@@ -68,16 +68,17 @@ public class MethodMain {
      * @param videoIds Liste des identifiants des vidéos stockées sur le cloud de microsoft
      * @param pathVideos La liste des chemins pour accéder aux vidéos localement (pour en extraire le nom)
      */
-    public static void createFaceListFromPhotosOnVideo (List<String> videoIds, List<String> pathVideos) throws IOException {
+    public static void createFaceListFromPhotosOnVideo (List<String> videoIds, List<String> pathVideos) {
         for(int i = 0 ; i< videoIds.size() ; i++) {
-            try {
-                FaceList.deleteFaceList(String.valueOf(i));
-            } catch (URISyntaxException e) {
-                JsonUtil.log.info(e);
-            }
+            FaceList.deleteFaceList(String.valueOf(i));
 
             //Récupération des métadonnées de la vidéo
-            JSONObject json = VideoIndexer.getBreakdown(videoIds.get(i));
+            JSONObject json = null;
+            try {
+                json = VideoIndexer.getBreakdown(videoIds.get(i));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             //Création de la listePhoto qui va contenir les urls pour accéder aux photos de profils extraite de la vidéo
             List<String> listUrlPhoto = new ArrayList<>();

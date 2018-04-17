@@ -34,26 +34,22 @@ public final class KeyAmazonApi {
     public  static final String  COLLECTIONID= "yoni";
 
     // le nom du compartiment S3 pour les photos
-    public  static final String BUCKETPHOTO = "lxphoto";
+    public  static final String BUCKETPHOTO = "analysphoto";
 
     // le nom du compartiment S3 pour les videos
-    public  static final String BUCKETVIDEO = "lxvideo";
+    public  static final String BUCKETVIDEO = "analysvideo";
 
     // l'url du sqs
-    public  static final String QUEUEURL = "{Your URL }";
+    public  static final String QUEUEURL = "";
 
-    public  static final NotificationChannel CHANNEL = new NotificationChannel().withSNSTopicArn("{Your SNS}")
-            .withRoleArn("{Your ARN}");
+    public  static final NotificationChannel CHANNEL = new NotificationChannel().withSNSTopicArn("")
+            .withRoleArn("");
 
     public  static final AmazonSQS SQS = AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(AmazonServices.credentials)).build();
 
     public  static final AmazonRekognition REK = AmazonRekognitionClientBuilder.standard().withCredentials( new ProfileCredentialsProvider())
-            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://rekognition.us-east-1.amazonaws.com", "us-east-1")).build();
-
-
-
-
-
+            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("", "")).build();
 
 
 }
+

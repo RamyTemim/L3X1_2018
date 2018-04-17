@@ -87,7 +87,8 @@ public class VideoIndexer {
                   JsonUtil.log.info("Erreur lors du parse de l'URI  la méthode upload : " + e);
               }
           }
-        return videoId;
+        return JsonUtil.supprimeGuillemet(videoId);
+        //return videoId;
     }
 
     /**

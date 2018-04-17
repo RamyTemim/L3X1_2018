@@ -19,7 +19,7 @@ public final class KeyMicrosoftApi {
 
     // A modifier avec sa propre clé crée en ouvrant un compte sur azure.microsoft.com
     //Clé pour accéder à l'Api Face
-    public  static final String SUBSCRIPTION_KEY = "7c5a15ca818b48d6b13d8ec78bcc8cbe";
+    public  static final String SUBSCRIPTION_KEY = "c04fe078bbc24062bbf4e19e2872aeb8";
 
     //Url pour accéder à la fonction de detection des visages dans l'API face
     public  static final String URI_BASE_DETECT = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/detect";

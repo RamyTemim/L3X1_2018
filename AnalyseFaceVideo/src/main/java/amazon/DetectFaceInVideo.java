@@ -53,52 +53,52 @@ public class DetectFaceInVideo {
      * @param sqs Service de mise en file d'attente (Amazon SQS) offre une file d'attente hébergée fiable et hautement évolutive pour le stockage des messages
      * @return listePhoto des noms des images
      */
-    public static List<String> detectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws  IOException {
-
-        JsonNode messageBodyText;
-        JsonNode operationJobId;
-        JsonNode operationStatus;
-        JsonNode jsonMessageTree;
-        JsonNode jsonResultTree;
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectMapper operationResultMapper = new ObjectMapper();
+    public static List<String> detectFacesInVideos(String bucket, String video, AmazonRekognition rek, NotificationChannel channel,String collectionId,String queueUrl,AmazonSQS sqs) throws  IOException
+    {
 
         startFaceSearchCollection(bucket,video, rek,  channel, collectionId);
-
         List<String> listnameimage = new ArrayList<>();
-        JsonUtil.log.info("Waiting for job: " + startJobId);
+        System.out.println("Waiting for job: " + startJobId);
+        //Poll queue for messages
         List<Message> messages;
         boolean jobFound=false;
-        do {
-            do {
+        //loop until the job status is published. Ignore other messages in queue.
+        do
+        {
+            //Get messages.
+            do
+            {
                 messages = sqs.receiveMessage(queueUrl).getMessages();
             }while(messages.isEmpty());
+            //Loop through messages received.
             for (Message message: messages)
             {
                 String notification = message.getBody();
-                jsonMessageTree = mapper.readTree(notification);
-                messageBodyText = jsonMessageTree.get("Message");
-                jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
-                operationJobId = jsonResultTree.get("JobId");
-                operationStatus = jsonResultTree.get("Status");
-                JsonUtil.log.info("Job found was " + operationJobId);
-
+                // Get status and job id from notification.
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode jsonMessageTree = mapper.readTree(notification);
+                JsonNode messageBodyText = jsonMessageTree.get("Message");
+                ObjectMapper operationResultMapper = new ObjectMapper();
+                JsonNode jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
+                JsonNode operationJobId = jsonResultTree.get("JobId");
+                JsonNode operationStatus = jsonResultTree.get("Status");
+                System.out.println("Job found was " + operationJobId);
                 if(operationJobId.asText().equals(startJobId))
                 {
                     jobFound=true;
-                    JsonUtil.log.info("Job id: " + operationJobId );
-                    JsonUtil.log.info("Status : " + operationStatus.toString());
+                    System.out.println("Job id: " + operationJobId );
+                    System.out.println("Status : " + operationStatus.toString());
                     if (operationStatus.asText().equals("SUCCEEDED"))
                     {
-                        listnameimage= getResultsFaceSearchCollection(startJobId,rek);
+                        listnameimage= getResultsFaceSearchCollection(startJobId,rek,video);
                     }
                     else
-                        {
-                            JsonUtil.log.info("Video analysis failed");
+                    {
+                        System.out.println("Video analysis failed");
                     }
                     sqs.deleteMessage(queueUrl,message.getReceiptHandle());
                 }else{
-                    JsonUtil.log.info("Job received was not job " +  startJobId);
+                    System.out.println("Job received was not job " +  startJobId);
                 }
             }
         } while (!jobFound);
@@ -135,7 +135,7 @@ public class DetectFaceInVideo {
      * @param rek instance du service de reconnaissance de amazon
      * @return nom de l'image ou aprai le visage qui est sur la vidéos
      */
-    private static List<String> getResultsFaceSearchCollection(String startJobId, AmazonRekognition rek)
+    private static List<String> getResultsFaceSearchCollection(String startJobId, AmazonRekognition rek, String video)
     {
 
         GetFaceSearchResult faceSearchResult= null;
@@ -154,14 +154,14 @@ public class DetectFaceInVideo {
             List<PersonMatch> matches= faceSearchResult.getPersons();
             for (PersonMatch match: matches)
             {
-                    List<FaceMatch> faceMatches = match.getFaceMatches();
-                    for (FaceMatch faceMatch : faceMatches)
-                    {
-                        Face face= faceMatch.getFace();
-                        String imageId = face.getExternalImageId();
-                        if (!nameImage.contains(imageId))
-                        {
-                            nameImage.add(imageId);
+                    if (match.getFaceMatches()!=null && match.getFaceMatches().size()!=0) {
+                        List<FaceMatch> faceMatches = match.getFaceMatches();
+                        for (FaceMatch faceMatch : faceMatches) {
+                            Face face = faceMatch.getFace();
+                            String imageId = face.getExternalImageId();
+                            if (!nameImage.contains(imageId)) {
+                                nameImage.add(imageId);
+                            }
                         }
                     }
             }

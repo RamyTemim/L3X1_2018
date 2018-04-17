@@ -43,27 +43,27 @@ private JsonUtil(){}
     /**
      * Méthode pour faire un temps d'attente.
      * cette méthode est utiliser dans le get du controler
-     * pour attendre que les fichiers qui contienent les paths arrivent
+     * pour attendre que les fichiers qui contiennent les paths arrivent
      * @throws InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied
      */
     public static void sleepGet() throws InterruptedException {
        log.info("Attente de fichier ");
-        Thread.sleep(100);
+       Thread.sleep(100);
 
     }
 
     /**
-     * Méthode qui prend le fichier envoyer pas l'utilisateur et copie sont contenu
+     * Méthode qui prend le fichier envoyé par l'utilisateur et copie son contenu
      * dans le fichier listePhotos
      * @param multipartFile  fichier reçu dans une requete HTTP
      * @return un fichier qui contient le contunue du multipartFile
      */
     public static File storeFilePhoto(MultipartFile multipartFile)
     {
-        File file=new File("src/resources/listePhoto");
+        File file=new File("src/main/resources/listePhoto");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path =Paths.get("src/resources/listePhoto");
+            Path path =Paths.get("src/main/resources/listePhoto");
             Files.write(path,bytes);
         } catch (Exception e) {
             log.info(e);
@@ -80,10 +80,10 @@ private JsonUtil(){}
      */
     public static File storeFileVideo(MultipartFile multipartFile)
     {
-        File file= new File("src/resources/listeVideo");
+        File file= new File("src/main/resources/listeVideo");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path =Paths.get("src/resources/listeVideo");
+            Path path =Paths.get("src/main/resources/listeVideo");
             Files.write(path,bytes);
         } catch (Exception e) {
             log.info(e);
@@ -93,12 +93,12 @@ private JsonUtil(){}
 
 
     /**
-     * Methode qui lis un fichier ligne par ligne pour récuprer
+     * Methode qui lis un fichier ligne par ligne pour récupérer
      * les paths que l'utilisateur a écrit dans un fichier
-     * et chaque fois qu'il lis une ligne qui est un path il récupére
-     * le cheain absolut pour accéder au fichier qu'il y a dans le path
+     * et chaque fois qu'il lit une ligne qui est un path il récupére
+     * le chemin absolu pour accéder au fichier qu'il y a dans le path
      * @param file fichier a lire
-     * @return  listeOfpaths : listePhoto de string qui contien les ligne du fichier
+     * @return  listeOfpaths : listePhoto de string qui contient les lignes du fichier
      */
     public static List<String> readFile (File file) throws IOException {
         String path;
@@ -183,7 +183,7 @@ private JsonUtil(){}
      */
     public static String supprimeGuillemet(String mot)
     {
-        return mot.substring(1,mot.length()-1);
+         return mot.substring(1,mot.length()-1);
     }
 
     /**

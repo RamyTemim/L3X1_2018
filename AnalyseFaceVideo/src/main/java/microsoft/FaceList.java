@@ -25,17 +25,15 @@ class FaceList {
     private static final String  OCP = "Ocp-Apim-Subscription-Key";
     private static final String USER = "yoni";
     private static final Boolean URL = true;
-    private  FaceList(){
-
-    }
+    private  FaceList(){}
 
 
     /**
-     * Pour cr&eacute;er une listePhoto (faceList) qui va pouvoir contenir une listePhoto de photo
-     * @param name Nom de la listePhoto &agrave; cr&eacute;er
-     * @param id L'identifiant de la listePhoto qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la m&eacute;thode findSimilar
+     * Pour crer une listePhoto (faceList) qui va pouvoir contenir une listePhoto de photo
+     * @param name Nom de la listePhoto creer
+     * @param id L'identifiant de la listePhoto qui sera utiliser plus tard pour rajouter des photos ou pour utiliser la méthode findSimilar
      */
-    static void createFaceList(String name, String id) throws IOException {
+    static void createFaceList(String name, String id){
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 
             try {
@@ -65,17 +63,19 @@ class FaceList {
             } catch (IOException | URISyntaxException e) {
                 JsonUtil.log.info( e);
             }
+        } catch (IOException e) {
+            JsonUtil.log.info(e);
         }
     }
 
 
     /**
      * Pour ajouter une photo dans une faceList (POST)
-     * @param path Le chemin pour acc&eacute;der &agrave; la photo (en local)
+     * @param path Le chemin pour accéder à la photo (en local)
      * @param id l'identifiant de la faceList dans laquelle il faut rajouter la photo
      * @param userData le label de la photo (nom de l'individu)
      */
-    static void addFace(String path, String id, String userData) throws IOException {
+    static void addFace(String path, String id, String userData){
        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
            try {
@@ -96,19 +96,21 @@ class FaceList {
                out.println(JsonUtil.httpToJsonObject(entity));
 
            } catch (IOException | URISyntaxException e) {
-               JsonUtil.log.info( e);
+               JsonUtil.log.info(e);
            }
 
+       } catch (IOException e) {
+           JsonUtil.log.info(e);
        }
     }
 
 
     /**
      * Pour renvoyer la listePhoto des photos d'une face list
-     * @param id l'identifiant de la faceList &agrave; analyser
+     * @param id l'identifiant de la faceList à analyser
      * @return Le fichier JSON contenant la listePhoto des identifiant des photos de la faceList id
      */
-    static JSONObject getFaceOflist(String id) throws IOException {
+    static JSONObject getFaceOflist(String id){
         JSONObject json = null;
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
@@ -129,6 +131,8 @@ class FaceList {
             } catch (IOException | URISyntaxException e) {
                 JsonUtil.log.info(e);
             }
+        } catch (IOException e) {
+            JsonUtil.log.info(e);
         }
         if (json == null)
             return new JSONObject();
@@ -140,24 +144,28 @@ class FaceList {
      * Pour supprimer une faceList
      * @param id l'identifiant de la faceList à supprimer
      */
-    static void deleteFaceList(String id) throws IOException, URISyntaxException {
-        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
+    static void deleteFaceList(String id){
+        try {
+            try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 
-            URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
+                URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FACE_LIST);
 
-            builder.setPath(builder.getPath() + id);
+                builder.setPath(builder.getPath() + id);
 
-            URI uri = builder.build();
-            HttpDelete request = new HttpDelete(uri);
-            request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
+                URI uri = builder.build();
+                HttpDelete request = new HttpDelete(uri);
+                request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
 
-            HttpResponse response = httpclient.execute(request);
-            HttpEntity entity = response.getEntity();
+                HttpResponse response = httpclient.execute(request);
+                HttpEntity entity = response.getEntity();
 
-            if (entity != null) {
-                out.println(EntityUtils.toString(entity));
+                if (entity != null) {
+                    out.println(EntityUtils.toString(entity));
+                }
             }
+        } catch (IOException | URISyntaxException e) {
+            JsonUtil.log.info(e);
         }
     }
 }

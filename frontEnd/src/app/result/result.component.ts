@@ -19,18 +19,34 @@ export class ResultComponent implements OnInit {
   ) {
   }
 
-  photos: Photos;
+  photosMicrosoft: Photos;
 
-  getJson() {
+  photosAmazon: Photos;
+
+
+  getMicrosoft() {
     this.appService.getMicrosoft()
       .subscribe( data => {
           console.log(data);
-          this.photos = data;
+          this.photosMicrosoft = data;
         },
         error => {
           console.log(error);
         }, () => {
-          console.log('finis');
+          console.log('finis Microsoft');
+        });
+  }
+
+  getAmazon() {
+    this.appService.getAmazon()
+      .subscribe( data => {
+          console.log(data);
+          this.photosAmazon = data;
+        },
+        error => {
+          console.log(error);
+        }, () => {
+          console.log('finis Amazon');
         });
   }
 
@@ -39,8 +55,13 @@ export class ResultComponent implements OnInit {
     this.location.back();
   }
 
+  init(): void {
+    this.getMicrosoft();
+    //this.getAmazon();
+  }
+
   ngOnInit() {
-    this.getJson();
+    this.init();
   }
 
 }

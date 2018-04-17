@@ -16,11 +16,11 @@ import java.util.List;
 public class AmazonServices {
 private AmazonServices(){}
 
-     public static final  AWSCredentials credentials = CreatCollectionFaces.connexionIdexFace();
+     public static   AWSCredentials credentials = CreatCollectionFaces.connexionIdexFace();
 
-     public static AmazonModel getJson(List<String> pathPhoto, List<String> pathVideo) throws IOException {
+     public AmazonModel getJson(List<String> pathPhoto, List<String> pathVideo) throws IOException {
 
-        S3operation.creatBucket(KeyAmazonApi.BUCKETPHOTO);
+         /*S3operation.creatBucket(KeyAmazonApi.BUCKETPHOTO);
 
         for (String aListpathTophoto : pathPhoto)
         {
@@ -34,7 +34,7 @@ private AmazonServices(){}
         {
             S3operation.uploadFileToBucket(KeyAmazonApi.BUCKETVIDEO, aListpathToVideo);
         }
-
+*/
         CreatCollectionFaces.deleteCollection(KeyAmazonApi.COLLECTIONID, credentials);
 
         CreatCollectionFaces.creatCollectionFace(credentials, KeyAmazonApi.COLLECTIONID);
@@ -50,8 +50,8 @@ private AmazonServices(){}
         List<List<String>> listImageInVideos = new ArrayList<>();
 
 
-         for (String listnameOfVideo : listnameOfVideos) {
-             listImageInVideos.add(DetectFaceInVideo.detectFacesInVideos(KeyAmazonApi.BUCKETVIDEO, listnameOfVideo, KeyAmazonApi.REK, KeyAmazonApi.CHANNEL, KeyAmazonApi.COLLECTIONID, KeyAmazonApi.QUEUEURL, KeyAmazonApi.SQS));
+         for (int i =0 ; i<listnameOfVideos.size();i++)   {
+             listImageInVideos.add(DetectFaceInVideo.detectFacesInVideos(KeyAmazonApi.BUCKETVIDEO, listnameOfVideos.get(i), KeyAmazonApi.REK, KeyAmazonApi.CHANNEL, KeyAmazonApi.COLLECTIONID, KeyAmazonApi.QUEUEURL, KeyAmazonApi.SQS));
          }
 
          AmazonModel amazonModel = new AmazonModel();
@@ -72,8 +72,8 @@ private AmazonServices(){}
              amazonModel.addPerson(persons);
          }
 
-        S3operation.purgeBucket(KeyAmazonApi.BUCKETPHOTO);
-        S3operation.purgeBucket(KeyAmazonApi.BUCKETVIDEO);
+        //S3operation.purgeBucket(KeyAmazonApi.BUCKETPHOTO);
+        //S3operation.purgeBucket(KeyAmazonApi.BUCKETVIDEO);
 
         return amazonModel;
     }

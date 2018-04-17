@@ -3,8 +3,8 @@
   <table id="tableau" cellspacing="10">
     <tr>
       <td class="celule">
-        <ul *ngFor="let photoObj of photos.photos">
-          <li class="nameOf">{{ photoObj.name }}</li>
+        <ul *ngFor="let photoObj of photosMicrosoft.photos">
+          <li class="nameOf">{{ photoObj.name}}</li>
           <ul>
             <li *ngFor="let link of photoObj.videos" class="videoOf">
               {{ link }}
@@ -12,8 +12,17 @@
           </ul>
         </ul>
       </td>
+
       <td class="celule">
-         ERROR 500
+        <!--<ul *ngFor="let photoObj1 of photosAmazon.photos">
+          <li class="nameOf">{{ photoObj1.name}}</li>
+          <ul>
+            <li *ngFor="let link1 of photoObj1.videos" class="videoOf">
+              {{ link1 }}
+            </li>
+          </ul>
+        </ul>-->
+        Erreur 500
       </td>
 
     </tr>

@@ -25,6 +25,10 @@ public class Controller {
     @Autowired
     private InputResources inputResources;
 
+    @Autowired
+    private AmazonServices amazonService;
+
+
 
     /**
      * Méthode pour définir le Post dans l'application qui va récupérer le lien
@@ -35,8 +39,6 @@ public class Controller {
     public void postPathPhotos(@RequestParam("filePhoto") MultipartFile multipartFileImage) throws IOException {
         File file = JsonUtil.storeFilePhoto(multipartFileImage);
         inputResources.setListpathTophoto(JsonUtil.readFile(file));
-
-
     }
 
     /**
@@ -48,14 +50,12 @@ public class Controller {
     public void postPathVideos (@RequestParam("fileVideo") MultipartFile multipartFileVideo) throws IOException {
         File file =JsonUtil.storeFileVideo(multipartFileVideo);
         inputResources.setListpathToVideo(JsonUtil.readFile(file));
-
-
     }
 
    @RequestMapping(value ="/amazon", method = RequestMethod.GET, produces ="application/json")
     public AmazonModel getAmazon() throws InterruptedException, IOException {
         JsonUtil.sleepGet();
-        return AmazonServices.getJson(inputResources.getListpathTophoto(), inputResources.getListpathToVideo());
+        return amazonService.getJson(inputResources.getListpathTophoto(), inputResources.getListpathToVideo());
    }
 
     /**

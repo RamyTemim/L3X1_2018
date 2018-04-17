@@ -27,17 +27,11 @@ f
 6src/main/java/springboot/configapp/AppInitializer.java,7/0/701be48f4bf0827db74a8b2bec4b185596a7219a
 e
 5src/main/java/springboot/application/Application.java,6/0/60c397160b82097b1302a40a37897ccd341b9d48
-I
-src/resources/credentials,1/3/132655a82c6005e6c65145e3dfc563a93ead16f9
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 W
 'src/main/java/microsoft/MethodMain.java,8/5/85685d83ec7c3bc195f4e07c74fefbab2180790d
 f
 6src/main/java/springboot/service/MicrosoftService.java,d/f/dfa529c7ae2bda1e78ff73410cf841a8573475f5
-H
-src/resources/listePhoto,a/7/a78b55f5bf44b80e0bf8820e5cbe14d82179ced8
-H
-src/resources/listeVideo,1/6/169ace3ec54d59fa1cf3e2bd8a8b019eb7aaeaee
 b
 2src/main/java/springboot/controler/Controller.java,2/5/25268977182687068e231ed25ade5c8eeceb35b5
