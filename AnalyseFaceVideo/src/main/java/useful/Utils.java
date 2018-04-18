@@ -56,7 +56,7 @@ public class Utils {
 
     /**
      * Méthode pour faire un temps d'attente.
-     * cette méthode est utiliser dans le get du controler
+     * cette méthode est utiliser dans le get du controller
      * pour attendre que les fichiers qui contiennent les paths arrivent
      */
     public static void sleepGet() {

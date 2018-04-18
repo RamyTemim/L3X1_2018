@@ -107,7 +107,7 @@ class FaceList {
                 CloseableHttpResponse response = httpclient.execute(request);
                 HttpEntity entity = response.getEntity();
 
-                out.println(Utils.httpToJsonObject(entity));
+                log.info(Utils.httpToJsonObject(entity));
 
             } catch (IOException | URISyntaxException e) {
                 log.info(e);
@@ -177,7 +177,7 @@ class FaceList {
                 HttpEntity entity = response.getEntity();
 
                 if (entity != null) {
-                    out.println(EntityUtils.toString(entity));
+                    log.info(EntityUtils.toString(entity));
                 }
             }
         } catch (IOException | URISyntaxException e) {

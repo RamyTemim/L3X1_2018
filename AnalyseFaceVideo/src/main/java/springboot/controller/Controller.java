@@ -1,4 +1,4 @@
-package springboot.controler;
+package springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ import java.io.File;
  * <p>
  * IA as a service (Facial recognition on video)
  * <p>
- * PACKAGE controler
+ * PACKAGE controller
  * <p>
  * Cette classe contient le Controller de l'application ce qui va permettre l'interaction entre les modèle et la vue
  * dans le modèle MVC

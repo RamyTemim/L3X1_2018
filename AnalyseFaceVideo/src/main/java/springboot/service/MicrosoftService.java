@@ -2,6 +2,8 @@ package springboot.service;
 
 
 import microsoft.MethodMain;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import springboot.model.MicrosoftModel;
 import useful.Utils;
@@ -24,8 +26,10 @@ public class MicrosoftService {
 
     public MicrosoftModel getJson(List<String> pathPhoto, List<String> pathVideo) {
 
+        final Logger log = LogManager.getLogger();
+
         List<String> videoIds = MethodMain.uploadVideo(pathVideo);
-        out.println("Identifiants des vidéos indexées : " + Utils.getListLienVideo(videoIds));
+        log.info("Identifiants des vidéos indexées : " + Utils.getListLienVideo(videoIds));
 
         // Création de toutes les Facelist pour chaque vidéo (stockés dans un id , 0 pour la 1ere video, ...)
         MethodMain.createFaceListFromPhotosOnVideo(videoIds, pathVideo);
