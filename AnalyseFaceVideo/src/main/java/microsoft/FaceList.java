@@ -31,6 +31,8 @@ import java.net.URISyntaxException;
 class FaceList {
     private static final String OCP = "Ocp-Apim-Subscription-Key";
     private static final String USER = "yoni";
+    private static final Boolean URL = true;
+
 
     private FaceList() {
     }
@@ -99,8 +101,7 @@ class FaceList {
                 HttpPost request = new HttpPost(uri);
                 request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
-                DetectFace.insertFileToHttpRequest(path, request);
-
+                DetectFace.insertFileToHttpRequest(path, URL, request);
                 CloseableHttpResponse response = httpclient.execute(request);
                 HttpEntity entity = response.getEntity();
 
