@@ -3,8 +3,6 @@ U
 %src/main/java/amazon/S3operation.java,e/1/e179a3a537eda2078d4897a15e281f7480e8f75b
 [
 +src/main/java/amazon/DetectFaceInVideo.java,8/c/8cb561fa7615994194137a0ee1bebf0b3ef14d2e
-^
-.src/main/java/amazon/CreatCollectionFaces.java,4/4/44d11856aa006eec73e463691510e0a312d184f0
 U
 %src/main/java/microsoft/FaceList.java,b/d/bd0822436f8104f44cccb9f170c13b330970b927
 W

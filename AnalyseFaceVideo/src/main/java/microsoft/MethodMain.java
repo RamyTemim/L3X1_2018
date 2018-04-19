@@ -128,7 +128,7 @@ public class MethodMain {
         for (int i = 0; i < photosPath.size(); i++) {
 
             Persons person = new Persons();
-            JSONObject jsonObject = DetectFace.detectFace(photosPath.get(i), "", false);
+            JSONObject jsonObject = DetectFace.detectFace(photosPath.get(i));
 
             if (jsonObject == null) {
                 log.info("La photo " + i + " n'est pas détécté comme un humain");

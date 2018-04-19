@@ -48,15 +48,12 @@ class DetectFace {
     /**
      * C'est une fonction permettant d'envoyer la requête post à l'api de microsoft pour lui demander d'analyser une photo (Detect)
      *
-     * @param path          Le chemin permettant d'accéder à la vidéo (en local si url = false ou en ligne si url = true)
-     * @param detectOnImage Les éléments à détécter sur l'image (age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise)
-     * @param url           Un boolean permettant à la méthode de savoir si le path est une adresse local (si url = false) ou un url (si url = true)
+     * @param path Le chemin permettant d'accéder à la vidéo (en local si url = false ou en ligne si url = true)
      * @return Renvoit un JSONObject qui correspond à l'objet Json renvoyé par l'API Face de microsoft
      */
-    static JSONObject detectFace(String path, String detectOnImage, Boolean url) {
+    static JSONObject detectFace(String path) {
         JSONObject jsonObject = null;
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
-            jsonObject = null;
 
             try {
                 // Pour transformer le lien en URI (une URI c'est un String qui permet d'identifier une ressource du web)
@@ -65,7 +62,6 @@ class DetectFace {
                 // Pour définir les paramètres que le fichier json doit renvoyer
                 builder.setParameter("returnFaceId", "true");
                 builder.setParameter("returnFaceLandmarks", "false");
-                builder.setParameter("returnFaceAttributes", detectOnImage);
 
                 // Prepare the URI for the REST API call.
                 URI uri = builder.build();
@@ -73,7 +69,7 @@ class DetectFace {
 
                 request.setHeader("Ocp-Apim-Subscription-Key", KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
-                insertFileToHttpRequest(path, url, request);
+                insertFileToHttpRequest(path, request);
 
                 // Pour effectuer l'appel vers l'API et recuperer le retour de cette appel
                 CloseableHttpResponse response = httpclient.execute(request);
@@ -102,26 +98,17 @@ class DetectFace {
      * sinon il s'agit d'un lien vers un fichier stocké localement
      *
      * @param path    le chemin pour accéder au fichier
-     * @param url     le boolean permettant de savoir si c'est un url ou un fichier stocké localement
      * @param request la requête Post dans laquelle on va insérer le fichier
      */
-    static void insertFileToHttpRequest(String path, Boolean url, HttpPost request) {
-        if (url) {
-            request.setHeader(CONTENT, "application/json");
-            JSONObject json = new JSONObject().put("url", path);
-            try {
-                request.setEntity(new StringEntity(json.toString()));
-            } catch (UnsupportedEncodingException e) {
-                log.info("Erreur lors de l'encodage dans la méthode detectFacesInVideos : ");
-            }
-        } else {
-            request.setHeader(CONTENT, "application/octet-stream");
+    static void insertFileToHttpRequest(String path, HttpPost request) {
 
-            // Pour définir le lien vers la photo que l'on va intégrer dans la requête
-            File file = new File(path);
-            FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
-            request.setEntity(reqEntity);
-        }
+        request.setHeader(CONTENT, "application/octet-stream");
+
+        // Pour définir le lien vers la photo que l'on va intégrer dans la requête
+        File file = new File(path);
+        FileEntity reqEntity = new FileEntity(file, ContentType.APPLICATION_OCTET_STREAM);
+        request.setEntity(reqEntity);
+
     }
 
     /**
@@ -136,7 +123,6 @@ class DetectFace {
 
         JSONArray jsonArray = null;
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
-            jsonArray = null;
             try {
                 URIBuilder builder = new URIBuilder(KeyMicrosoftApi.URI_BASE_FIND_SIMILAR);
 

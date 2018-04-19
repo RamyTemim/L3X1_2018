@@ -10,8 +10,6 @@ import useful.Utils;
 
 import java.util.List;
 
-import static java.lang.System.out;
-
 /**
  * L3X1 FACIAL RECONGITION COMPARATOR
  * <p>

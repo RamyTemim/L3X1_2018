@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static java.lang.System.out;
-
 /**
  * L3X1 FACIAL RECOGNITION COMPARATOR
  * <p>
@@ -33,7 +31,6 @@ import static java.lang.System.out;
 class FaceList {
     private static final String OCP = "Ocp-Apim-Subscription-Key";
     private static final String USER = "yoni";
-    private static final Boolean URL = true;
 
     private FaceList() {
     }
@@ -102,7 +99,7 @@ class FaceList {
                 HttpPost request = new HttpPost(uri);
                 request.setHeader(OCP, KeyMicrosoftApi.SUBSCRIPTION_KEY);
 
-                DetectFace.insertFileToHttpRequest(path, URL, request);
+                DetectFace.insertFileToHttpRequest(path, request);
 
                 CloseableHttpResponse response = httpclient.execute(request);
                 HttpEntity entity = response.getEntity();
