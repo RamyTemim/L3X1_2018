@@ -50,7 +50,10 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of e9fd28f... Suppresion d'une dépendance inutile
 =======
 >>>>>>> parent of e9fd28f... Suppresion d'une dépendance inutile
         <dependency>
@@ -61,6 +64,9 @@
         </dependency>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of e9fd28f... Suppresion d'une dépendance inutile
+=======
 >>>>>>> parent of e9fd28f... Suppresion d'une dépendance inutile
 =======
 >>>>>>> parent of e9fd28f... Suppresion d'une dépendance inutile
