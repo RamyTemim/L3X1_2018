@@ -8,11 +8,25 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * L3X1 FACIAL RECOGNITION COMPARATOR
+ * <p>
+ * IA as a service (Facial recognition on video)
+ * <p>
+ * PACKAGE controller
+ * <p>
+ * Filtres effectuer un filtrage . Chaque filtre a accès à un objet AppConfig
+ * à partir duvquel il peut obtenir les paramètres d'initialisation, une référence
+ * à la Servlet Context qu'il peut utiliser, par exemple, pour charger les ressources nécessaires
+ * pour les tâches de filtrage.
+ */
 @Component
 public class CROSFiler implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
-        //implémentation de la methode abstraite
+        /*implémentation de la methode abstraite init
+           de l'interface Filter
+        */
     }
 
     public static final Logger log = LogManager.getLogger();
@@ -33,6 +47,8 @@ public class CROSFiler implements Filter {
 
     @Override
     public void destroy() {
-//implémentation de la methode abstraite
+     /*implémentation de la methode abstraite
+       destroy de l'interface Filter
+      */
     }
 }
