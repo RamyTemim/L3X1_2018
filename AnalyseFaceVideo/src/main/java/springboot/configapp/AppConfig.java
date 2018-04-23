@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * <p>
  * PACKAGE configapp
  * <p>
- * CDéfinit les méthodes de rappel pour personnaliser la configuration
+ * Définit les méthodes de rappel pour personnaliser la configuration
  * Java pour Spring MVC activé via @EnableWebMvc.
  */
 @Configuration

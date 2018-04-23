@@ -20,7 +20,6 @@ import java.util.List;
  * <p>
  * PACKAGE amazon
  * <p>
- * <p>
  * Cette classe contient des méthodes qui seront utiliser pour
  * interagir avec les service AWS: vérifier l'identité de l'utilisateur
  * et ces autorisations, manipuler les photos de
