@@ -49,15 +49,10 @@ public class CreateCollectionFaces {
      */
     public static AWSCredentials connexionIndexFace() {
         AWSCredentials credentials;
-        // Connexion au cloud d'amazon avec les données d'identifications
         try {
             credentials = new ProfileCredentialsProvider().getCredentials();
         } catch (Exception e) {
-            throw new AmazonClientException(
-                    "\t\t\t ############ CreateCollection #########\n" +
-                            "Cannot load the credentials from the credential profiles file. " +
-                            "Please make sure that your credentials file is at the correct " +
-                            "location (/Users/userid/.aws/credentials), and is in valid format.", e);
+            throw new AmazonClientException("Le credentials n'a pas été trouvé dasn votre répertoir "+ e);
         }
 
         return credentials;

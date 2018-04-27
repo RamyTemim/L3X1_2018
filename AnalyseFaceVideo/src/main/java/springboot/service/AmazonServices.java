@@ -26,7 +26,7 @@ public class AmazonServices {
     private AmazonServices() {
     }
 
-    public static AWSCredentials credentials = CreateCollectionFaces.connexionIndexFace();
+    public static final AWSCredentials credentials = CreateCollectionFaces.connexionIndexFace();
 
     public AmazonModel getJson(List<String> pathPhoto, List<String> pathVideo) {
 
@@ -78,8 +78,8 @@ public class AmazonServices {
             amazonModel.addPerson(persons);
         }
 
-        //S3operation.purgeBucket(KeyAmazonApi.BUCKETPHOTO);
-        //S3operation.purgeBucket(KeyAmazonApi.BUCKETVIDEO);
+        S3operation.purgeBucket(KeyAmazonApi.BUCKETPHOTO);
+        S3operation.purgeBucket(KeyAmazonApi.BUCKETVIDEO);
 
         return amazonModel;
     }

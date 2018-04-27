@@ -64,7 +64,8 @@ public class Utils {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.warn(e);
+            Thread.currentThread().interrupt();
         }
 
     }
@@ -77,10 +78,10 @@ public class Utils {
      * @return un fichier qui contient le contunue du multipartFile
      */
     public static File storeFilePhoto(MultipartFile multipartFile) {
-        File file = new File("src/main/resources/listePhoto");
+        File file = new File("listePhoto");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path = Paths.get("src/main/resources/listePhoto");
+            Path path = Paths.get("listePhoto");
             Files.write(path, bytes);
         } catch (Exception e) {
             log.info(e);
@@ -97,10 +98,10 @@ public class Utils {
      * @return un fichier qui contient le contunue du multipartFile
      */
     public static File storeFileVideo(MultipartFile multipartFile) {
-        File file = new File("src/main/resources/listeVideo");
+        File file = new File("listeVideo");
         try {
             byte[] bytes = multipartFile.getBytes();
-            Path path = Paths.get("src/main/resources/listeVideo");
+            Path path = Paths.get("listeVideo");
             Files.write(path, bytes);
         } catch (Exception e) {
             log.info(e);

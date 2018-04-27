@@ -58,7 +58,7 @@ public class DetectFaceInVideo {
 
         startFaceSearchCollection(bucket, video, rek, channel, collectionId);
         List<String> listnameimage = new ArrayList<>();
-        System.out.println("Waiting for job: " + startJobId);
+        log.info("Waiting for job: " + startJobId);
         //Poll queue for messages
         List<Message> messages;
         boolean jobFound = false;
@@ -79,29 +79,42 @@ public class DetectFaceInVideo {
                 } catch (IOException e) {
                     log.info("Erreur lors de la lecture du fichier dans la méthode detectFacesInVideos : ");
                 }
-                JsonNode messageBodyText = jsonMessageTree.get("Message");
+                JsonNode messageBodyText = null;
+                if (jsonMessageTree != null) {
+                    messageBodyText = jsonMessageTree.get("Message");
+                }
                 ObjectMapper operationResultMapper = new ObjectMapper();
                 JsonNode jsonResultTree = null;
                 try {
-                    jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
+                    if (messageBodyText != null) {
+                        jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
+                    }
                 } catch (IOException e) {
                     log.info("Erreur lors de la lecture du fichier dans la méthode detectFacesInVideos : ");
                 }
-                JsonNode operationJobId = jsonResultTree.get("JobId");
-                JsonNode operationStatus = jsonResultTree.get("Status");
-                System.out.println("Job found was " + operationJobId);
-                if (operationJobId.asText().equals(startJobId)) {
-                    jobFound = true;
-                    System.out.println("Job id: " + operationJobId);
-                    System.out.println("Status : " + operationStatus.toString());
-                    if (operationStatus.asText().equals("SUCCEEDED")) {
-                        listnameimage = getResultsFaceSearchCollection(startJobId, rek, video);
+                JsonNode operationJobId = null;
+                if (jsonResultTree != null) {
+                    operationJobId = jsonResultTree.get("JobId");
+                }
+                JsonNode operationStatus = null;
+                if (jsonResultTree != null) {
+                    operationStatus = jsonResultTree.get("Status");
+                }
+                log.info("Job found was " + operationJobId);
+                if (operationJobId != null) {
+                    if (operationJobId.asText().equals(startJobId)) {
+                        jobFound = true;
+                        log.info("id: du job  " + operationJobId);
+                        log.info("Status du job : " + operationStatus.toString());
+                        if (operationStatus.asText().equals("SUCCEEDED")) {
+                            listnameimage = getResultsFaceSearchCollection(startJobId, rek);
+                        } else {
+                            log.info("Video analysis failed");
+                        }
+                        sqs.deleteMessage(queueUrl, message.getReceiptHandle());
                     } else {
-                        System.out.println("Video analysis failed");
+                        log.info("Job received was not job " + startJobId);
                     }
-                    sqs.deleteMessage(queueUrl, message.getReceiptHandle());
-                } else {
-                    System.out.println("Job received was not job " + startJobId);
                 }
             }
         } while (!jobFound);
@@ -134,12 +147,11 @@ public class DetectFaceInVideo {
     /**
      * Méthode qui récupére le fichier json qui est le résultat de l'analyse
      * de la vidéo et qui parse les fichier pour récupérer les donnéed pertinantes
-     *
      * @param startJobId identifiant de la vidéo
      * @param rek        instance du service de reconnaissance de amazon
      * @return nom de l'image ou aparait le visage qui est sur la vidéo
      */
-    private static List<String> getResultsFaceSearchCollection(String startJobId, AmazonRekognition rek, String video) {
+    private static List<String> getResultsFaceSearchCollection(String startJobId, AmazonRekognition rek) {
 
         GetFaceSearchResult faceSearchResult = null;
         String paginationToken = null;

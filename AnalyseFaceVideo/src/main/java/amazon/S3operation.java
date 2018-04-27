@@ -55,7 +55,7 @@ public class S3operation {
 
     public static final Logger log = LogManager.getLogger();
 
-    private static Upload upload;
+
 
     /**
      * Méthode pour créer un client S3 pour utiliser le service S3
@@ -109,40 +109,23 @@ public class S3operation {
             File file = new File(filePath);
             String keyName = Utils.pathToName(filePath);
             TransferManager tm = new TransferManager(new ProfileCredentialsProvider());
-            // TransferManager processes all transfers asynchronously,
-            // so this call will return immediately.
             Upload upload = tm.upload(bucketName, keyName, file);
             try {
-                // Or you can block and wait for the upload to finish
                 upload.waitForCompletion();
-                System.out.println("Chargement réussi");
+                log.info("Chargement réussi");
             } catch (AmazonClientException amazonClientException) {
-                System.out.println("Impossible de charger le fichier le chargement a étais annuler .");
-                amazonClientException.printStackTrace();
+                log.info("Impossible de charger le fichier, le chargement a étais annuler .");
+                log.info(amazonClientException);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.info(e);
+                Thread.currentThread().interrupt();
             }
         } catch (Exception e) {
-            System.err.println(" le fichier n'a pas pu être lu ");
+            log.info(" le fichier n'a pas pu être lu ");
         }
     }// END UploadFileToBucket
 
-    /**
-     * Méthode pour attendre le chargement du fichier
-     */
-    private static void uploadWait() {
-        try {
 
-            upload.waitForCompletion();
-            log.info("Chargement réussi");
-        } catch (AmazonClientException amazonClientException) {
-            log.info("Impossible de charger le fichier le chargement a été annuler .");
-            log.info(amazonClientException);
-        } catch (InterruptedException e) {
-            log.info("Erreur dans la méthode uploadWait : " + e);
-        }
-
-    }
 
     /**
      * Méthode pour récupérer la listePhoto des fichiers qui se trouve dans un compartiment
@@ -166,7 +149,6 @@ public class S3operation {
     /**
      * Méthode qui vide un compartiment S3
      * a la fin de l'analyse et de la recherche
-     *
      * @param bucketName le nom du compartiment à vider
      */
     public static void purgeBucket(String bucketName) {

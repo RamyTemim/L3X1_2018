@@ -31,5 +31,3 @@ W
 'src/main/java/microsoft/MethodMain.java,8/5/85685d83ec7c3bc195f4e07c74fefbab2180790d
 f
 6src/main/java/springboot/service/MicrosoftService.java,d/f/dfa529c7ae2bda1e78ff73410cf841a8573475f5
-b
-2src/main/java/springboot/controler/Controller.java,2/5/25268977182687068e231ed25ade5c8eeceb35b5
