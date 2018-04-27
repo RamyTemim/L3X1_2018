@@ -29,14 +29,18 @@ import java.io.File;
 @RequestMapping("/")
 public class Controller {
 
-    @Autowired
-    private MicrosoftService microsoftService;
+    private final MicrosoftService microsoftService;
+
+    private final InputResources inputResources;
+
+    private final AmazonServices amazonService;
 
     @Autowired
-    private InputResources inputResources;
-
-    @Autowired
-    private AmazonServices amazonService;
+    public Controller(MicrosoftService microsoftService, InputResources inputResources, AmazonServices amazonService) {
+        this.microsoftService = microsoftService;
+        this.inputResources = inputResources;
+        this.amazonService = amazonService;
+    }
 
 
     /**
@@ -47,8 +51,9 @@ public class Controller {
      */
     @RequestMapping(value = "/photos", method = RequestMethod.POST)
     public void postPathPhotos(@RequestParam("filePhoto") MultipartFile multipartFileImage) {
-        File file = Utils.storeFilePhoto(multipartFileImage);
+        File file = Utils.storeFile(multipartFileImage, "photo");
         inputResources.setListpathTophoto(Utils.readFile(file));
+        Utils.checkLink(inputResources.getListpathTophoto(),"photo");
     }
 
     /**
@@ -59,8 +64,9 @@ public class Controller {
      */
     @RequestMapping(value = "/videos", method = RequestMethod.POST)
     public void postPathVideos(@RequestParam("fileVideo") MultipartFile multipartFileVideo) {
-        File file = Utils.storeFileVideo(multipartFileVideo);
+        File file = Utils.storeFile(multipartFileVideo,"video" );
         inputResources.setListpathToVideo(Utils.readFile(file));
+        Utils.checkLink(inputResources.getListpathToVideo(),"video");
     }
 
     /**

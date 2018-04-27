@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.activation.MimetypesFileTypeMap;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -53,6 +54,49 @@ public class Utils {
 
     public static final Logger log = LogManager.getLogger();
 
+    /**
+     * <p>
+     * Methode pour tester si l'utilisateur a rentre les fichiers contenant
+     * les pĥotos et celui contenant les videos au bon endroit
+     * Elle verifie aussi que le fichier contenant les photos contient que des liens
+     * vers des photos et celui contenant des vidéos que des liens vers des videos
+     * @param list la liste qui contient les chemins
+     * @param type pour savoir a quelle vérification faire appel
+     */
+    public static void checkLink(List<String> list, String type)
+    {
+        if (type.equals("photo"))
+        {
+            for (String aList : list)
+            {
+                File file = new File(aList);
+                String mimetype = new MimetypesFileTypeMap().getContentType(file);
+                String typeFile = mimetype.split("/")[0];
+                if (!typeFile.equals("image"))
+                {
+                    log.info("le chemin que vous avez donner n'est pas un chemin vers une photo");
+                    System.exit(1);
+                }
+            }
+        }
+
+        if (type.equals("video"))
+        {
+            for(String aList : list)
+            {
+                File file = new File(aList);
+                String mimetype = new MimetypesFileTypeMap().getContentType(file);
+                String typeFile = mimetype.split("/")[0];
+                if (!typeFile.equals("video"))
+                {
+                    log.info("le chemin que vous avez donner n'est pas un chemin vers une video");
+                    System.exit(1);
+                }
+            }
+        }
+
+    }
+
 
     /**
      * Méthode pour faire un temps d'attente.
@@ -77,34 +121,32 @@ public class Utils {
      * @param multipartFile fichier reçu dans une requete HTTP
      * @return un fichier qui contient le contunue du multipartFile
      */
-    public static File storeFilePhoto(MultipartFile multipartFile) {
-        File file = new File("listePhoto");
-        try {
-            byte[] bytes = multipartFile.getBytes();
-            Path path = Paths.get("listePhoto");
-            Files.write(path, bytes);
-        } catch (Exception e) {
-            log.info(e);
+    public static File storeFile(MultipartFile multipartFile, String type )
+    {
+        File file = null;
+
+        if (type.equals("photo"))
+        {
+            file = new File("listePhoto");
+            try {
+                byte[] bytes = multipartFile.getBytes();
+                Path path = Paths.get("listePhoto");
+                Files.write(path, bytes);
+            } catch (Exception e) {
+                log.info(e);
+            }
         }
-        return file;
-    }
 
-
-    /**
-     * Méthode qui prend le fichier envoyer pas l'utilisateur et copie sont contenu
-     * dans le fichier listeVideos
-     *
-     * @param multipartFile fichier reçu dans une requete HTTP
-     * @return un fichier qui contient le contunue du multipartFile
-     */
-    public static File storeFileVideo(MultipartFile multipartFile) {
-        File file = new File("listeVideo");
-        try {
-            byte[] bytes = multipartFile.getBytes();
-            Path path = Paths.get("listeVideo");
-            Files.write(path, bytes);
-        } catch (Exception e) {
-            log.info(e);
+        if (type.equals("video"))
+        {
+            file = new File("listeVideo");
+            try {
+                byte[] bytes = multipartFile.getBytes();
+                Path path = Paths.get("listeVideo");
+                Files.write(path, bytes);
+            } catch (Exception e) {
+                log.info(e);
+            }
         }
         return file;
     }
@@ -128,8 +170,13 @@ public class Utils {
                 try (BufferedReader buffer = new BufferedReader(new FileReader(file))) {
                     while ((path = buffer.readLine()) != null) {
                         File fileForAbsolutePath = new File(path);
-                        String absolutePath = fileForAbsolutePath.getAbsolutePath();
-                        listeOfpaths.add(absolutePath);
+                        if(fileForAbsolutePath.exists()) {
+                            String absolutePath = fileForAbsolutePath.getAbsolutePath();
+                            listeOfpaths.add(absolutePath);
+                        }else {
+                            log.info("la photo ou la vidéo n'existe pas");
+                            System.exit(1);
+                        }
                     }
                 } catch (IOException e) {
                     log.info("Erreur lors de la lecture du fichier dans la méthode readFile : ");
