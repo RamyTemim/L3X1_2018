@@ -1,6 +1,0 @@
-projectKey=com.AnalyseVideo:AnalyseVideo
-serverUrl=http://localhost:9000
-serverVersion=6.7.3.38370
-dashboardUrl=http://localhost:9000/dashboard/index/com.AnalyseVideo:AnalyseVideo
-ceTaskId=AWMHBDipANV8vELSQ6hv
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWMHBDipANV8vELSQ6hv

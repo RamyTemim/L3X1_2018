@@ -174,7 +174,7 @@ public class Utils {
                             String absolutePath = fileForAbsolutePath.getAbsolutePath();
                             listeOfpaths.add(absolutePath);
                         }else {
-                            log.info("la photo ou la vidéo n'existe pas");
+                            log.info("");
                             System.exit(1);
                         }
                     }

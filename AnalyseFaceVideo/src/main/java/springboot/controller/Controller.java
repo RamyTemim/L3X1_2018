@@ -29,18 +29,15 @@ import java.io.File;
 @RequestMapping("/")
 public class Controller {
 
-    private final MicrosoftService microsoftService;
-
-    private final InputResources inputResources;
-
-    private final AmazonServices amazonService;
+    @Autowired
+    MicrosoftService microsoftService;
 
     @Autowired
-    public Controller(MicrosoftService microsoftService, InputResources inputResources, AmazonServices amazonService) {
-        this.microsoftService = microsoftService;
-        this.inputResources = inputResources;
-        this.amazonService = amazonService;
-    }
+    InputResources inputResources;
+
+    @Autowired
+    AmazonServices amazonService;
+
 
 
     /**
